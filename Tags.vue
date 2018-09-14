@@ -1,0 +1,129 @@
+<template>
+  <div class="tags-wrapper">
+    <div class="tags">
+      <span 
+        v-for="(tag, index) in tags" 
+        :key="index"
+        :class="{'active': tag == trueCurrentTag}"
+        @click="getPagesByTags(tag)">{{tag}}</span>
+    </div>
+
+
+    <note-abstract
+      :data="pages"
+      :currentPage="currentPage"></note-abstract>
+    
+    <pagation
+      :data="pages" 
+      @getCurrentPage="getCurrentPage"></pagation>
+  </div>
+</template>
+
+<script>
+import NoteAbstract from './components/noteAbstract'
+import Pagation from './components/pagation'
+
+export default {
+
+  data () {
+    return {
+      pages: [],
+      tags: [],
+      currentTag: '',
+      currentPage: 1
+    }
+  },
+  props: {
+    tag: {
+      type: String,
+      default: ''
+    }
+  },
+  computed: {
+    trueCurrentTag () {
+      return this.currentTag
+    }
+  },
+  created () {
+    let pages = this.$site.pages,
+        newTags = []
+    pages.forEach(page => {
+      let tags = page.frontmatter.tags
+      if (tags) {
+        tags.forEach(tag => {
+          if (newTags.indexOf(tag) == -1) {
+            newTags.push(tag)
+          }
+        })
+        this.tags = newTags
+      }
+      
+    })
+    if (this.currentTag != '') {
+      this.getPagesByTags(this.currentTag)
+    }
+    this.currentTag = this.tag
+  },
+  methods: {
+    // 根据分类获取页面数据
+    getPagesByTags (tag) {
+      let pages = this.$site.pages
+      this.currentTag = tag
+      pages = pages.filter(item => {
+        let tags = item.frontmatter.tags
+        return tags && item.frontmatter.tags.indexOf(tag) > -1
+      })
+      this.pages = pages.length == 0 ? [] : pages
+    },
+    getCurrentPage () {
+      this.currentPage = page
+    }
+  },
+  watch: {
+    currentTag (newTag) {
+      this.getPagesByTags(newTag)
+    }
+  },
+  components: {
+    NoteAbstract,
+    Pagation
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+@import './styles/config.styl'
+@require './styles/wrapper.styl'
+
+.tags-wrapper
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  .tags
+    margin-bottom 30px
+    span
+      vertical-align: middle;
+      margin: 4px 4px 10px;
+      padding: 4px 8px;
+      display: inline-flex;
+      cursor: pointer;
+      border-radius: 2px;
+      border: 1px solid #e8eaec;
+      background: #fff;
+      color: #999;
+      font-size: 13px;
+      transition all .3s
+      &.active
+        background #3eaf7c
+        color #fff
+
+@media (max-width: $MQMobile)
+  .page-edit
+    .edit-link
+      margin-bottom .5rem
+    .last-updated
+      font-size .8em
+      float none
+      text-align left
+
+</style>
