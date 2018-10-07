@@ -2,12 +2,12 @@
 
 [中文文档](./README_zh.md)
 
-> 1. This is a vuepress theme aimed at adding the categories, TAB walls, pagination, comments and other features required for blogging;<br>
-> 2. The theme itself is minimalist and is modified based on the default theme of the vuepress.
+> 1.This is a vuepress theme aimed at adding the categories, TAB walls, pagination, comments and other features required for blogging;<br>
+> 2.The theme itself is minimalist and is modified based on the default theme of the vuepress.
 
 ## Installation and use
 
-1. Installation
+1. Install
 
     ```bash
     npm install vuepress-theme-reco -dev--save
@@ -16,7 +16,7 @@
 
     yarn add vuepress-theme-reco
     ```
-2. use
+2. Use
 
     ```javscript
     // 修改 /docs/.vuepress/config.js
@@ -25,9 +25,9 @@
       theme: 'reco'
     }  
     ```
-## add categories
+## Add categories
 
-**f want to add a `front-end` and `back-end` classification, need to undertake the following steps：**
+**If want to add a `front-end` and `back-end` classification, need to undertake the following steps：**
 
 1. Add a category drop button to the top navigation
     
@@ -129,7 +129,7 @@
     ---
     ```
 
-## comment(valine)
+## Comment(valine)
 
 Theme with a built-in valine comments, if you want to open this function, only configure your `config.js`
 
