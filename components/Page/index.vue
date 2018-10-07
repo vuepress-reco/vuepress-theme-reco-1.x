@@ -1,9 +1,8 @@
 <template>
   <div class="page">
     <slot name="top"/>
-    
     <Content :custom="false"/>
-    <categories @currentTag="getCurrentTag"></categories>
+    <categories v-if="isCategories" @currentTag="getCurrentTag"></categories>
     <valine v-if="!isCategories && !isTags"></valine>
     <tags v-if="isTags" :tag="currentTag"></tags>
 
@@ -65,10 +64,10 @@
 </template>
 
 <script>
-import { resolvePage, normalize, outboundRE, endingSlashRE } from './util'
-import Categories from './Categories'
-import Valine from './components/valine'
-import Tags from './Tags'
+import { resolvePage, normalize, outboundRE, endingSlashRE } from '../../util/'
+import Categories from '../Categories/'
+import Valine from '../Valine/'
+import Tags from '../Tags/'
 
 export default {
   data () {
@@ -221,8 +220,8 @@ function find (page, items, offset) {
 </script>
 
 <style lang="stylus">
-@import './styles/config.styl'
-@require './styles/wrapper.styl'
+@import '../../styles/config.styl'
+@require '../../styles/wrapper.styl'
 
 .page
   padding-bottom 2rem

@@ -37,10 +37,10 @@
 </template>
 
 <script>
-import SidebarButton from './SidebarButton.vue'
-import AlgoliaSearchBox from '@AlgoliaSearchBox'
-import SearchBox from './SearchBox.vue'
-import NavLinks from './NavLinks.vue'
+import SidebarButton from '../SidebarButton/'
+import AlgoliaSearchBox from '../AlgoliaSearchBox/'
+import SearchBox from '../SearchBox/'
+import NavLinks from '../NavLinks/'
 
 export default {
   components: { SidebarButton, NavLinks, SearchBox, AlgoliaSearchBox },
@@ -86,7 +86,7 @@ function css (el, property) {
 </script>
 
 <style lang="stylus">
-@import './styles/config.styl'
+@import '../../styles/config.styl'
 
 $navbar-vertical-padding = 0.7rem
 $navbar-horizontal-padding = 1.5rem

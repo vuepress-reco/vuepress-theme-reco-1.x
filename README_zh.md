@@ -1,22 +1,20 @@
 # vuepress-theme-reco
 
-[中文文档](./README_zh.md)
+> 1. 这是一个vuepress主题，目的是增加博客所需要的分类、标签墙、分页、评论等功能；<br>
+> 2. 主题本身追求极简，是在vuepress默认主题的基础上进行修改的。
 
-> 1. This is a vuepress theme aimed at adding the categories, TAB walls, pagination, comments and other features required for blogging;<br>
-> 2. The theme itself is minimalist and is modified based on the default theme of the vuepress.
+## 安装和使用
 
-## Installation and use
-
-1. Installation
+1. 安装
 
     ```bash
     npm install vuepress-theme-reco -dev--save
 
-    # or
+    # 或
 
     yarn add vuepress-theme-reco
     ```
-2. use
+2. 使用
 
     ```javscript
     // 修改 /docs/.vuepress/config.js
@@ -25,23 +23,23 @@
       theme: 'reco'
     }  
     ```
-## add categories
+## 增加分类功能
 
-**f want to add a `front-end` and `back-end` classification, need to undertake the following steps：**
+**假如想增加一个 `前端` 和 `后端` 分类，需要进行以下几步操作：**
 
-1. Add a category drop button to the top navigation
+1. 在顶部导航添加一个分类的下拉按钮
     
     ```javscript
-    // change /docs/.vuepress/config.js
+    // 修改 /docs/.vuepress/config.js
 
     module.exports = {
       theme: 'reco',
       themeConfig: {
         nav: [
-          { text: 'categories', 
+          { text: '分类', 
             items: [
-              { text: 'frontEnd', link: '/categories/frontEnd' },
-              { text: 'backEnd', link: '/categories/backEnd' }
+              { text: '前端', link: '/categories/frontEnd' },
+              { text: '后端', link: '/categories/backEnd' }
             ]
           }
         ]
@@ -49,35 +47,35 @@
     }  
     ```
 
-2. Add the files needed for classification
+2. 添加前端和后端的分类所需要的文件
 
     **`/docs/categories/frontEnd.md`**
 
     ```
     --- 
-    title: frontEnd  
+    title: 前端  
     isCategories: true  
     sidebar: false  
     ---
 
-    ## frontEnd
+    ## 前端
     ```
 
     **`/docs/categories/backEnd.md`**
 
     ```
     ---
-    title: backEnd
+    title: 后端
     isCategories: true
     sidebar: false
     ---
 
-    ## backEnd
+    ## 后端
     ```
 
-    > Why do you set sidebar false? Because you enable classification, that's a little bit of a conflict with the custom sidebar feature, so you globally turn on the auto sidebar feature, and then close it where you don't need a side marker
+    > 为什么设置sidebar: false，因为启用分类功能，那就跟自定义侧边栏功能有些冲突了，所以全局开启了自动生成侧边栏功能，然后在这种不需要侧标兰的地方关闭
 
-3. Add categories when writing articles
+3. 写文章时添加分类 
    
     ```
     ---
@@ -87,12 +85,12 @@
     ---
     ```
     
-## Add tag cloud
+## 添加标签云功能
 
-1. Add a button to the top navigation
+1. 在顶部导航添加一个按钮
     
     ```javscript
-    // change /docs/.vuepress/config.js
+    // 修改 /docs/.vuepress/config.js
 
     module.exports = {
       theme: 'reco',
@@ -104,7 +102,7 @@
     }  
     ```
 
-2. Add the required files
+2. 添加所需要的文件
 
     **`/docs/tags/README.md`**
 
@@ -114,10 +112,10 @@
     sidebar: false
     ---
 
-    ## tag cloud
+    ## 标签墙
     ```
 
-3. Add tags when writing articles
+3. 写文章时添加标签
    
     ```
     ---
@@ -129,17 +127,17 @@
     ---
     ```
 
-## comment(valine)
+## 评论功能(valine)
 
-Theme with a built-in valine comments, if you want to open this function, only configure your `config.js`
+主题内置valine评论功能，如果想开启此功能，仅需配置一下 `config.js`
 
 ```javscript
-// change /docs/.vuepress/config.js
+// 修改 /docs/.vuepress/config.js
 
 module.exports = {
   theme: 'reco',
   themeConfig: {
-    // valine
+    // valine配置
     valineConfig: {
       appId: '...',// your appId
       appKey: '...', // your appKey

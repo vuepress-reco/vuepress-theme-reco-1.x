@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import NavLink from './NavLink.vue'
+import NavLink from '../NavLink/'
 
 export default {
   components: { NavLink },
@@ -71,7 +71,7 @@ export default {
 </script>
 
 <style lang="stylus">
-@import './styles/config.styl'
+@import '../../styles/config.styl'
 
 .home
   padding $navbarHeight 2rem 0

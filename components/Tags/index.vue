@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import NoteAbstract from './components/noteAbstract'
-import Pagation from './components/pagation'
+import NoteAbstract from '../NoteAbstract/'
+import Pagation from '../Pagation/'
 
 export default {
 
@@ -92,8 +92,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import './styles/config.styl'
-@require './styles/wrapper.styl'
+@import '../../styles/config.styl'
+@require '../../styles/wrapper.styl'
 
 .tags-wrapper
   max-width: 740px;

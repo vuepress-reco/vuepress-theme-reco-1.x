@@ -50,8 +50,8 @@
 </template>
 
 <script>
-import NavLink from './NavLink.vue'
-import DropdownTransition from './DropdownTransition.vue'
+import NavLink from '../NavLink/'
+import DropdownTransition from '../DropdownTransition/'
 
 export default {
   components: { NavLink, DropdownTransition },
@@ -77,7 +77,7 @@ export default {
 </script>
 
 <style lang="stylus">
-@import './styles/config.styl'
+@import '../../styles/config.styl'
 
 .dropdown-wrapper
   cursor pointer
