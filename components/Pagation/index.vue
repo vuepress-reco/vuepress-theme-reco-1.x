@@ -4,7 +4,7 @@
       <span class="jump" v-show="currentPage>1" @click="goPrev">上一页</span> 
       <span v-show="currentPage>5" class="jump" @click="jumpPage(1)">1</span> 
       <span class="ellipsis"  v-show="efont">...</span> 
-      <span class="jump" v-for="num in indexs" :class="{bgprimary:currentPage==num}" @click="jumpPage(num)">{{num}}</span> 
+      <span class="jump" v-for="num in indexs" :key="num" :class="{bgprimary:currentPage==num}" @click="jumpPage(num)">{{num}}</span> 
       <span class="ellipsis"  v-show="efont&&currentPage<pages-4">...</span> 
 
       <span class="jump" v-show="currentPage < pages" @click="goNext">下一页</span> 
@@ -105,7 +105,6 @@ export default {
 <style lang="stylus" scoped>
 .pagation
   font-weight: 900; 
-  height: 40px; 
   text-align: center; 
   color: #888; 
   margin: 20px auto 0; 
@@ -113,7 +112,6 @@ export default {
   .pagation-list
     font-size: 0; 
     background: #fff; 
-    height: 50px; 
     line-height: 50px; 
     span
       font-size: 14px;

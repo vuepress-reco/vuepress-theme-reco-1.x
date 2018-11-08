@@ -73,7 +73,8 @@ export default {
         let tags = item.frontmatter.tags
         return tags && item.frontmatter.tags.indexOf(tag) > -1
       })
-      this.pages = pages.length == 0 ? [] : pages
+      // reverse()是为了按时间最近排序排序
+      this.pages = pages.length == 0 ? [] : pages.reverse()
     },
     getCurrentPage () {
       this.currentPage = page

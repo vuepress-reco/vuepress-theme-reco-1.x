@@ -44,7 +44,8 @@ export default {
       pages = pages.filter(item => {
         return item.frontmatter.categories == title
       })
-      this.pages = pages.length == 0 ? [] : pages
+      // reverse()是为了按时间最近排序排序
+      this.pages = pages.length == 0 ? [] : pages.reverse()
     },
     getCurrentTag (tag) {
       this.$emit('currentTag', tag)
