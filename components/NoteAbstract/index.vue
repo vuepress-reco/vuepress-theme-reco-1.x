@@ -45,8 +45,11 @@ export default {
     width 100%
     overflow: hidden;
     border-radius: 2px;
-    box-shadow: 0 1px 10px rgba(26,26,26,.1);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     box-sizing: border-box;
+    transition all .3s
+    &:hover
+      box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
     .title
       position: relative;
       font-size: 24px;
@@ -70,14 +73,17 @@ export default {
         transform: scaleX(1);
     .tags
       .tag-item
+        transition: all .3s
         vertical-align: middle;
         margin: 4px;
         padding 4px 8px
         display: inline-flex;
         cursor: pointer;
         border-radius: 2px;
-        border: 1px solid #e8eaec;
         background: #fff;
         color: #999;
         font-size: 13px; 
+        box-shadow 0 1px 5px 0 rgba(0,0,0,0.2)
+        &:hover 
+          transform scale(1.05)
 </style>

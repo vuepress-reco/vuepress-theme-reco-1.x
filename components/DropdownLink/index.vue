@@ -172,10 +172,9 @@ export default {
       right 0
       background-color #fff
       padding 0.6rem 0
-      border 1px solid #ddd
-      border-bottom-color #ccc
       text-align left
       border-radius 0.25rem
       white-space nowrap
       margin 0
+      box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
 </style>

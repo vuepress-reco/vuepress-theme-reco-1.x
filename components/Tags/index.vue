@@ -109,11 +109,13 @@ export default {
       display: inline-flex;
       cursor: pointer;
       border-radius: 2px;
-      border: 1px solid #e8eaec;
       background: #fff;
       color: #999;
       font-size: 13px;
-      transition all .3s
+      box-shadow 0 1px 4px 0 rgba(0,0,0,0.2)
+      transition: all .5s
+      &:hover
+        transform scale(1.04)
       &.active
         background #3eaf7c
         color #fff

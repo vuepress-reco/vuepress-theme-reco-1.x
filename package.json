@@ -15,5 +15,7 @@
   "bugs": {
     "url": "https://github.com/recoluan/vuepress-theme-reco/issues"
   },
-  "homepage": "https://github.com/recoluan/vuepress-theme-reco#readme"
+  "homepage": "https://github.com/recoluan/vuepress-theme-reco#readme",
+  "_from": "vuepress-theme-reco@0.0.3",
+  "_resolved": "http://registry.npm.taobao.org/vuepress-theme-reco/download/vuepress-theme-reco-0.0.3.tgz"
 }
