@@ -52,7 +52,7 @@ export default {
       box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
     .title
       position: relative;
-      font-size: 24px;
+      font-size: 1.28rem;
       line-height: 36px;
       display: inline-block;
       :after
