@@ -2,7 +2,7 @@
 
 [中文文档](./README_zh.md)
 
-> 1.This is a vuepress theme aimed at adding the categories, TAB walls, pagination, comments and other features required for blogging;<br>
+> 1.This is a vuepress theme aimed at adding the categories, TAB walls, pagination, comments and other features required for blogging;<br>
 > 2.The theme itself is minimalist and is modified based on the default theme of the vuepress.
 
 ## Installation and use
