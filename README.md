@@ -199,7 +199,7 @@ module.exports = {
 1. If your heroImage has your website title, maybe you need to set the value of `isShowTitleInHome` `false` to make title not show
 
 ```
-# this is you homepage
+# this is your homepage
 
 ---
 home: true
@@ -211,7 +211,7 @@ isShowTitleInHome: false
 2. If you want change heroImage's style, you can set the value of `heroImageStyle` to achieve the effec you want
 
 ```
-# this is you homepage
+# this is your homepage
 
 ---
 home: true
