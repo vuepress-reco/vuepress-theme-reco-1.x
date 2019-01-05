@@ -153,7 +153,7 @@ export default {
 </script>
 
 <style lang="stylus">
-@import '../../styles/config.styl'
+@import '../../../styles/config.styl'
 
 .search-box
   display inline-block
@@ -171,7 +171,7 @@ export default {
     padding 0 0.5rem 0 2rem
     outline none
     transition all .2s ease
-    background #fff url(../../images/search.svg) 0.6rem 0.5rem no-repeat
+    background #fff url(./images/search.svg) 0.6rem 0.5rem no-repeat
     background-size 1rem
     &:focus
       cursor auto

@@ -1,11 +1,11 @@
 <template>
   <div class="home">
     <div class="hero">
-      <img v-if="data.heroImage" :src="$withBase(data.heroImage)" alt="hero">
+      <img v-if="data.heroImage" :style="heroImageStyle" :src="$withBase(data.heroImage)" alt="hero">
 
-      <h1>{{ data.heroText || $title || 'Hello' }}</h1>
+      <h1 v-if="data.isShowTitleInHome !== false">{{ data.heroText || $title || '午后南杂' }}</h1>
 
-      <p class="description">{{ data.tagline || $description || 'Welcome to your VuePress site' }}</p>
+      <p class="description">{{ data.tagline || $description || 'Welcome to your vuePress-theme-reco site' }}</p>
 
       <p class="action" v-if="data.actionText && data.actionLink">
         <NavLink class="action-button" :item="actionLink"/>
@@ -26,11 +26,10 @@
 </template>
 
 <script>
-import NavLink from "../NavLink/";
+import NavLink from "../../components/NavLink/";
 
 export default {
   components: { NavLink },
-
   computed: {
     data() {
       return this.$page.frontmatter;
@@ -41,6 +40,13 @@ export default {
         link: this.data.actionLink,
         text: this.data.actionText
       };
+    },
+
+    heroImageStyle () {
+      return this.data.heroImageStyle || {
+        maxHeight: '200px',
+        margin: '6rem auto 1.5rem'
+      }
     }
   }
 };
@@ -57,12 +63,6 @@ export default {
   .hero {
     text-align: center;
 
-    img {
-      max-height: 280px;
-      display: block;
-      margin: 3rem auto 1.5rem;
-    }
-
     h1 {
       font-size: 2.5rem;
     }
@@ -73,8 +73,10 @@ export default {
 
     .description {
       max-width: 35rem;
+      background-color #fff
       font-size: 1.6rem;
       line-height: 1.3;
+      background-color #fff
       color: lighten($textColor, 40%);
     }
 
@@ -116,10 +118,12 @@ export default {
       font-weight: 500;
       border-bottom: none;
       padding-bottom: 0;
+      background-color #fff
       color: lighten($textColor, 10%);
     }
 
     p {
+      background-color #fff
       color: lighten($textColor, 25%);
     }
 

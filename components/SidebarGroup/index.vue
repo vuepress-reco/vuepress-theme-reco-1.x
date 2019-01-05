@@ -1,13 +1,11 @@
 <template>
   <div
     class="sidebar-group"
-    :class="{ first, collapsable }"
-  >
+    :class="{ first, collapsable }">
     <p
       class="sidebar-heading"
       :class="{ open }"
-      @click="$emit('toggle')"
-    >
+      @click="$emit('toggle')">
       <span>{{ item.title }}</span>
       <span
         class="arrow"

@@ -8,10 +8,10 @@
         @click="getPagesByTags(tag)">{{tag}}</span>
     </div>
 
-
     <note-abstract
       :data="pages"
-      :currentPage="currentPage"></note-abstract>
+      :currentPage="currentPage"
+      @currentTag="getCurrentTag"></note-abstract>
     
     <pagation
       :data="pages" 
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { setStorage, getStorage } from '../../util/handleStorage'
 import NoteAbstract from '../NoteAbstract/'
 import Pagation from '../Pagation/'
 
@@ -64,6 +65,9 @@ export default {
     }
     this.currentTag = this.tag
   },
+  updated () {
+    this.currentPage = getStorage('currentPage')
+  },
   methods: {
     // 根据分类获取页面数据
     getPagesByTags (tag) {
@@ -76,8 +80,12 @@ export default {
       // reverse()是为了按时间最近排序排序
       this.pages = pages.length == 0 ? [] : pages.reverse()
     },
-    getCurrentPage () {
+    getCurrentPage (page) {
       this.currentPage = page
+      setStorage('currentPage', page)
+    },
+    getCurrentTag (tag) {
+      this.currentTag = tag
     }
   },
   watch: {
@@ -117,16 +125,10 @@ export default {
       &:hover
         transform scale(1.04)
       &.active
-        background #3eaf7c
+        background $accentColor
         color #fff
 
 @media (max-width: $MQMobile)
-  .page-edit
-    .edit-link
-      margin-bottom .5rem
-    .last-updated
-      font-size .8em
-      float none
-      text-align left
-
+  .tags-wrapper
+    padding: 4rem 0.6rem 0;
 </style>

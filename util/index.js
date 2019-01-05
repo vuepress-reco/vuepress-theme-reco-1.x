@@ -35,7 +35,6 @@ export function ensureExt (path) {
   const hashMatch = path.match(hashRE)
   const hash = hashMatch ? hashMatch[0] : ''
   const normalized = normalize(path)
-
   if (endingSlashRE.test(normalized)) {
     return path
   }

@@ -1,5 +1,5 @@
 <template>
-  <header class="navbar">
+  <header class="navbar" id="navbarWrapper">
     <SidebarButton @toggle-sidebar="$emit('toggle-sidebar')"/>
 
     <router-link :to="$localePath" class="home-link">
@@ -28,9 +28,9 @@
 </template>
 
 <script>
-import SidebarButton from "../SidebarButton/";
-import AlgoliaSearchBox from "../AlgoliaSearchBox/";
-import SearchBox from "../SearchBox/";
+import SidebarButton from "./components/SidebarButton/";
+import AlgoliaSearchBox from "../Search/AlgoliaSearchBox/";
+import SearchBox from "../Search/SearchBox/";
 import NavLinks from "../NavLinks/";
 
 export default {
@@ -61,6 +61,31 @@ export default {
     window.addEventListener("resize", handleLinksWrapWidth, false);
   },
 
+  updated () {
+    this.$nextTick(() => {
+      // 头部导航条的滚动
+      let oldScrollY = 0
+      let oldTransformHeight = 0
+      window.addEventListener('scroll', (e) => {
+        const newScrollY = window.scrollY
+        // 判断滚动方向
+        const scrollDirection = newScrollY - oldScrollY > 0 ? 'up' : 'down'
+        
+        // 使用ref会间断性获取不到dom
+        const navbarWrapper = document.querySelector('#navbarWrapper')
+        const height = navbarWrapper.offsetHeight == 58 ? 58 : 58
+        const transformHeight = scrollDirection == 'up' ? height : 0
+
+        if (oldTransformHeight != transformHeight) {
+          navbarWrapper.style.top = `-${transformHeight}px`
+        }
+        
+        oldScrollY = newScrollY
+        oldTransformHeight = transformHeight
+      })
+    })
+  },
+
   computed: {
     algolia() {
       return (
@@ -89,6 +114,7 @@ $navbar-vertical-padding = 0.7rem;
 $navbar-horizontal-padding = 1.5rem;
 
 .navbar {
+  transition all .4s
   padding: $navbar-vertical-padding $navbar-horizontal-padding;
   line-height: $navbarHeight - 1.4rem;
   position: relative;
@@ -135,6 +161,7 @@ $navbar-horizontal-padding = 1.5rem;
 
 @media (max-width: $MQMobile) {
   .navbar {
+    transition all .5s
     padding-left: 4rem;
 
     .can-hide {

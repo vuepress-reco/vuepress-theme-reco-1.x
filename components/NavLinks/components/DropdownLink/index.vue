@@ -1,48 +1,40 @@
 <template>
   <div
     class="dropdown-wrapper"
-    :class="{ open }"
-  >
+    :class="{ open }">
     <a
       class="dropdown-title"
-      @click="toggle"
-    >
+      @click="toggle">
       <span class="title">{{ item.text }}</span>
       <span
         class="arrow"
-        :class="open ? 'down' : 'right'"
-      ></span>
+        :class="open ? 'down' : 'right'"></span>
     </a>
 
     <DropdownTransition>
       <ul
         class="nav-dropdown"
-        v-show="open"
-      >
+        v-show="open">
         <li
           class="dropdown-item"
           :key="subItem.link || index"
-          v-for="(subItem, index) in item.items"
-        >
+          v-for="(subItem, index) in item.items">
           <h4 v-if="subItem.type === 'links'">{{ subItem.text }}</h4>
 
           <ul
             class="dropdown-subitem-wrapper"
-            v-if="subItem.type === 'links'"
-          >
+            v-if="subItem.type === 'links'">
             <li
               class="dropdown-subitem"
               :key="childSubItem.link"
-              v-for="childSubItem in subItem.items"
-            >
+              v-for="childSubItem in subItem.items">
               <NavLink :item="childSubItem"/>
             </li>
           </ul>
 
           <NavLink
             v-else
-            :item="subItem"
-          />
+            :item="subItem"/>
         </li>
       </ul>
     </DropdownTransition>
@@ -50,8 +42,8 @@
 </template>
 
 <script>
-import NavLink from '../NavLink/'
-import DropdownTransition from '../DropdownTransition/'
+import NavLink from '../../../NavLink/'
+import DropdownTransition from '../../../DropdownTransition/'
 
 export default {
   components: { NavLink, DropdownTransition },
@@ -77,7 +69,7 @@ export default {
 </script>
 
 <style lang="stylus">
-@import '../../styles/config.styl'
+@import '../../../../styles/config.styl'
 
 .dropdown-wrapper
   cursor pointer
