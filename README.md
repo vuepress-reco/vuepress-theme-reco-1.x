@@ -149,8 +149,6 @@ module.exports = {
 }  
 ```
 
-
-
 ## Config.js
 
 1. On the mobile side, the search box will enlarge when it gets the focus, and it can scroll left and right after losing the focus, which can be optimized by setting the meta.
