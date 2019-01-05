@@ -1,22 +1,18 @@
 <template>
   <nav
     class="nav-links"
-    v-if="userLinks.length || repoLink"
-  >
+    v-if="userLinks.length || repoLink">
     <!-- user links -->
     <div
       class="nav-item"
       v-for="item in userLinks"
-      :key="item.link"
-    >
+      :key="item.link">
       <DropdownLink
         v-if="item.type === 'links'"
-        :item="item"
-      />
+        :item="item"/>
       <NavLink
         v-else
-        :item="item"
-      />
+        :item="item"/>
     </div>
 
     <!-- repo link -->
@@ -25,8 +21,7 @@
       :href="repoLink"
       class="repo-link"
       target="_blank"
-      rel="noopener noreferrer"
-    >
+      rel="noopener noreferrer">
       {{ repoLabel }}
       <OutboundLink/>
     </a>
@@ -34,7 +29,7 @@
 </template>
 
 <script>
-import DropdownLink from '../DropdownLink/'
+import DropdownLink from './components/DropdownLink/'
 import { resolveNavLinkItem } from '../../util/'
 import NavLink from '../NavLink/'
 

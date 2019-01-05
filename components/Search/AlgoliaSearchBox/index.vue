@@ -1,12 +1,10 @@
 <template>
   <form
     id="search-form"
-    class="algolia-search-wrapper search-box"
-  >
+    class="algolia-search-wrapper search-box">
     <input
       id="algolia-search-input"
-      class="search-query"
-    >
+      class="search-query">
   </form>
 </template>
 
@@ -59,7 +57,7 @@ export default {
 </script>
 
 <style lang="stylus">
-@import '../../styles/config.styl'
+@import '../../../styles/config.styl'
 
 .algolia-search-wrapper
   & > span

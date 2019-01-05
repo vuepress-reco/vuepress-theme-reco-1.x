@@ -3,8 +3,7 @@
     name="dropdown"
     @enter="setHeight"
     @after-enter="unsetHeight"
-    @before-leave="setHeight"
-  >
+    @before-leave="setHeight">
     <slot/>
   </transition>
 </template>
