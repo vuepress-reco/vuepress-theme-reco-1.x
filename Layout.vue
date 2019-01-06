@@ -4,6 +4,7 @@
     :class="pageClasses"
     @touchstart="onTouchStart"
     @touchend="onTouchEnd">
+    <div class="CanvasNest" style="width: 100vw; height: 100vh;position:abso"></div>
     <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar"/>
 
     <div class="sidebar-mask" @click="toggleSidebar(false)"></div>
@@ -24,6 +25,8 @@
       <slot name="page-bottom" slot="bottom"/>
     </Page>
 
+    <router-view></router-view>
+
     <SWUpdatePopup :updateEvent="swUpdateEvent"/>
   </div>
 </template>
@@ -31,12 +34,13 @@
 <script>
 import Vue from "vue";
 import nprogress from "nprogress";
-import Home from "./components/Home/";
+import Home from "./pages/Home/";
 import Navbar from "./components/Navbar/";
-import Page from "./components/Page/";
+import Page from "./pages/Page/";
 import Sidebar from "./components/Sidebar/";
 import SWUpdatePopup from "./components/SWUpdatePopup/";
 import { resolveSidebarItems } from "./util/";
+import CanvasNest from 'canvas-nest.js';
 
 export default {
   components: { Home, Page, Sidebar, Navbar, SWUpdatePopup },
@@ -115,6 +119,24 @@ export default {
     });
 
     this.$on("sw-updated", this.onSWUpdated);
+
+    const { themeConfig } = this.$site;
+
+    console.log(111,themeConfig.particles != undefined, !themeConfig.particles)
+    if (!(themeConfig.particles != undefined && !themeConfig.particles)) {
+      const config = themeConfig.particlesConfig || {
+        color: '102, 102, 102',
+        count: 66,
+      };
+
+      // Using config rendering effect at 'element'.
+      const cn = new CanvasNest(document.querySelector('.CanvasNest'), config);
+
+      // destroy
+      // cn.destroy();
+    }
+
+    
   },
 
   methods: {
@@ -150,4 +172,4 @@ export default {
 </script>
 
 <style src="prismjs/themes/prism-tomorrow.css"></style>
-<style src="./styles/theme.styl" lang="stylus"></style>
+<style src="./styles/theme.styl" lang="stylus"></style> 

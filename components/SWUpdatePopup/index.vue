@@ -2,8 +2,7 @@
   <transition name="sw-update-popup">
     <div
       v-if="enabled"
-      class="sw-update-popup"
-    >
+      class="sw-update-popup">
       {{message}}<br>
       <button @click="reload">{{buttonText}}</button>
     </div>

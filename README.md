@@ -1,9 +1,8 @@
 # vuepress-theme-reco
 
-[中文文档](./README_zh.md)
-
-> 1.This is a vuepress theme aimed at adding the categories, TAB walls, pagination, comments and other features required for blogging;<br>
-> 2.The theme itself is minimalist and is modified based on the default theme of the vuepress.
+> 1. This is a vuepress theme aimed at adding the categories, TAB walls, pagination, comments and other features required for blogging;<br>
+> 2. The theme itself is minimalist and is modified based on the default theme of the vuepress.<br>
+> 3. You can click [vuepress-theme-reco](htttps://recoluan.gitlab.io) to see it.
 
 ## Installation and use
 
@@ -16,6 +15,7 @@
 
     yarn add vuepress-theme-reco
     ```
+
 2. Use
 
     ```javscript
@@ -25,6 +25,7 @@
       theme: 'reco'
     }  
     ```
+
 ## Add categories
 
 **If want to add a `front-end` and `back-end` classification, need to undertake the following steps：**
@@ -146,4 +147,79 @@ module.exports = {
     }
   }  
 }  
+```
+
+## Config.js
+
+1. On the mobile side, the search box will enlarge when it gets the focus, and it can scroll left and right after losing the focus, which can be optimized by setting the meta.
+
+```javascript
+module.exports = {
+  head: [
+    ['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1,user-scalable=no' }]
+  ]
+}  
+```
+
+2. If you don't like the particle effect, you can turn it off. If you like it, you can also set the count and color of particles.
+
+```javascript
+module.exports = {
+  title: "午后南杂",
+  theme: 'reco',
+  themeConfig: {
+    // particles
+    showParticles: true,
+    // particlesConfig
+    particlesConfig: {
+      color: '136, 136, 136', // color of line
+      count: 66, // number of particle
+    },
+  }  
+}
+``` 
+
+3. If you want to click the tags in the list, you can set themeConfig's value of tagClick true 
+
+```javascript
+module.exports = {
+  title: "午后南杂",
+  theme: 'reco',
+  themeConfig: {
+    // whether you can click the tags in the list
+    tagClick: true,
+  }  
+}  
+```
+
+## Home Config
+
+1. If your heroImage has your website title, maybe you need to set the value of `isShowTitleInHome` `false` to make title not show
+
+```
+# this is your homepage
+
+---
+home: true
+heroImage: /hero.png
+isShowTitleInHome: false
+---
+```
+
+2. If you want change heroImage's style, you can set the value of `heroImageStyle` to achieve the effec you want
+
+```
+# this is your homepage
+
+---
+home: true
+heroImage: /hero.png
+heroImageStyle: {
+  maxHeight: '200px',
+  display: block,
+  margin: '6rem auto 1.5rem',
+  borderRadius: '50%',
+  boxShadow: '0 5px 18px rgba(0,0,0,0.2)'
+}
+---
 ```

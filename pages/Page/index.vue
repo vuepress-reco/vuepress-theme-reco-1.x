@@ -2,27 +2,23 @@
   <div class="page">
     <slot name="top"/>
     <Content :custom="false"/>
-    <categories v-if="isCategories" @currentTag="getCurrentTag"></categories>
-    <valine v-if="!isCategories && !isTags"></valine>
-    <tags v-if="isTags" :tag="currentTag"></tags>
-
+    <valine v-if="isComment"></valine>
+    <category v-if="isCategories" :currentPage="currentPage" @currentTag="getCurrentTag"></category>
+    <tag v-if="isTags" :tag="currentTag"></tag>
     <div class="page-edit">
       <div
         class="edit-link"
-        v-if="editLink"
-      >
+        v-if="editLink">
         <a
           :href="editLink"
           target="_blank"
-          rel="noopener noreferrer"
-        >{{ editLinkText }}</a>
+          rel="noopener noreferrer">{{ editLinkText }}</a>
         <OutboundLink/>
       </div>
 
       <div
         class="last-updated"
-        v-if="lastUpdated"
-      >
+        v-if="lastUpdated">
         <span class="prefix">{{ lastUpdatedText }}: </span>
         <span class="time">{{ lastUpdated }}</span>
       </div>
@@ -32,26 +28,22 @@
       <p class="inner">
         <span
           v-if="prev"
-          class="prev"
-        >
+          class="prev">
           ←
           <router-link
             v-if="prev"
             class="prev"
-            :to="prev.path"
-          >
+            :to="prev.path">
             {{ prev.title || prev.path }}
           </router-link>
         </span>
 
         <span
           v-if="next"
-          class="next"
-        >
+          class="next">
           <router-link
             v-if="next"
-            :to="next.path"
-          >
+            :to="next.path">
             {{ next.title || next.path }}
           </router-link>
           →
@@ -65,14 +57,19 @@
 
 <script>
 import { resolvePage, normalize, outboundRE, endingSlashRE } from '../../util/'
-import Categories from '../Categories/'
-import Valine from '../Valine/'
-import Tags from '../Tags/'
+import { setStorage } from '../../util/handleStorage'
+import Valine from '../../components/Valine/'
+import Category from '../../components/Category/'
+import Tag from '../../components/Tag/'
 
 export default {
+  beforeUpdate () {
+    setStorage('currentPage', 1)
+  },
   data () {
     return {
-      currentTag: ''
+      currentTag: '',
+      currentPage: 1
     }
   },
   props: ['sidebarItems'],
@@ -84,7 +81,12 @@ export default {
     isTags () {
       return this.$page.frontmatter.isTags
     },
-    
+
+    // 是否显示评论
+    isComment () {
+      const isComment = this.$page.frontmatter.isComment
+      return isComment == false ? false : true
+    },
     lastUpdated () {
       if (this.$page.lastUpdated) {
         return new Date(this.$page.lastUpdated).toLocaleString(this.$lang)
@@ -154,7 +156,6 @@ export default {
       )
     },
   },
-
   methods: {
     createEditLink (repo, docsRepo, docsDir, docsBranch, path) {
       const bitbucket = /bitbucket.org/
@@ -187,9 +188,9 @@ export default {
     }
   },
   components: {
-    Categories,
     Valine,
-    Tags
+    Category,
+    Tag
   }
 }
 
@@ -225,6 +226,7 @@ function find (page, items, offset) {
 
 .page
   padding-bottom 2rem
+  background-color #fff
 
 .page-edit
   @extend $wrapper
