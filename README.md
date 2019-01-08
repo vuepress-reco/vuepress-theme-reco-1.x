@@ -2,7 +2,7 @@
 
 > 1. This is a vuepress theme aimed at adding the categories, TAB walls, pagination, comments and other features required for blogging;<br>
 > 2. The theme itself is minimalist and is modified based on the default theme of the vuepress.<br>
-> 3. You can open htttps://recoluan.gitlab.io to see it.
+> 3. You can open https://recoluan.gitlab.io to see it.
 
 ## Preview
 
