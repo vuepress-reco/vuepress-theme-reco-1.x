@@ -170,15 +170,6 @@ th, td
   padding-top $navbarHeight
 
 .theme-container
-  .CanvasNest
-    position: fixed
-    z-index -1
-    left: 0
-    right 0
-    top: 0
-    bottom: 0
-    width: 100vw
-    height 100vh
   &.sidebar-open
     .sidebar-mask
       display: block
@@ -198,9 +189,5 @@ th, td
       display none
     .page
       padding-left 0
-
-@media (max-width: $MQMobile)
-  .CanvasNest
-      display: none
 
 @require './mobile.styl'

@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import { setStorage, getStorage } from '../../util/handleStorage'
 import NoteAbstract from '../NoteAbstract/'
 import Pagation from '../Pagation/'
 
@@ -66,7 +65,7 @@ export default {
     this.currentTag = this.tag
   },
   updated () {
-    this.currentPage = getStorage('currentPage')
+    this.currentPage = this.$page.currentPage
   },
   methods: {
     // 根据分类获取页面数据
@@ -82,7 +81,7 @@ export default {
     },
     getCurrentPage (page) {
       this.currentPage = page
-      setStorage('currentPage', page)
+      this.$page.currentPage = page
     },
     getCurrentTag (tag) {
       this.currentTag = tag

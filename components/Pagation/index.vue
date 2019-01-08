@@ -17,11 +17,9 @@
 </template>
 
 <script>
-import { getStorage } from '../../util/handleStorage'
 export default {
   data () {
     return {
-      currentPage: 1, // 当前页
       changePage:'', // 跳转页
     } 
   }, 
@@ -35,6 +33,10 @@ export default {
     perPage: {
       type: Number,
       default: 10
+    },
+    currentPage: {
+      type: Number,
+      default: 1
     }
   },
   computed:{
@@ -48,49 +50,47 @@ export default {
        if (this.pages <= 7) return false; 
        return this.currentPage > 5 
      }, 
-     indexs: function() { 
- 
-       var left = 1, 
-         right = this.pages, 
-         ar = []; 
-       if (this.pages >= 7) { 
-         if (this.currentPage > 5 && this.currentPage < this.pages - 4) { 
-           left = Number(this.currentPage) - 3; 
-           right = Number(this.currentPage) + 3; 
-         } else { 
-           if (this.currentPage <= 5) { 
-             left = 1; 
-             right = 7; 
-           } else { 
-             right = this.pages; 
- 
-             left = this.pages - 6; 
-           } 
-         } 
-       } 
-       while (left <= right) { 
-         ar.push(left); 
-         left++; 
-       } 
-       return ar; 
-     }, 
-   }, 
+    indexs: function() { 
+      var left = 1, 
+        right = this.pages, 
+        ar = []; 
+      if (this.pages >= 7) { 
+        if (this.currentPage > 5 && this.currentPage < this.pages - 4) { 
+          left = Number(this.currentPage) - 3; 
+          right = Number(this.currentPage) + 3; 
+        } else { 
+          if (this.currentPage <= 5) { 
+            left = 1; 
+            right = 7; 
+          } else { 
+            right = this.pages; 
+
+            left = this.pages - 6; 
+          } 
+        } 
+      } 
+      while (left <= right) { 
+        ar.push(left); 
+        left++; 
+      } 
+      return ar; 
+    }, 
+  },
   methods: {
     goPrev () {
       if (this.currentPage > 1) {
-        this.currentPage--
-        this.emit(this.currentPage)
+        const currentPage = this.currentPage
+        this.emit(currentPage--)
       }
     },
     goNext () {
       if (this.currentPage < this.pages) {
-        this.currentPage++
-        this.emit(this.currentPage)
+        const currentPage = this.currentPage
+        this.emit(currentPage++)
       }
     },
     jumpPage: function(id) {
       if (id <= this.pages) {
-        this.currentPage = id
         this.emit(id)
         return
       }

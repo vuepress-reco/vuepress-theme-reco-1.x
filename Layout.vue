@@ -4,7 +4,6 @@
     :class="pageClasses"
     @touchstart="onTouchStart"
     @touchend="onTouchEnd">
-    <div class="CanvasNest" style="width: 100vw; height: 100vh;position:abso"></div>
     <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar"/>
 
     <div class="sidebar-mask" @click="toggleSidebar(false)"></div>
@@ -39,8 +38,7 @@ import Navbar from "./components/Navbar/";
 import Page from "./pages/Page/";
 import Sidebar from "./components/Sidebar/";
 import SWUpdatePopup from "./components/SWUpdatePopup/";
-import { resolveSidebarItems } from "./util/";
-import CanvasNest from 'canvas-nest.js';
+import { resolveSidebarItems } from "./util/"
 
 export default {
   components: { Home, Page, Sidebar, Navbar, SWUpdatePopup },
@@ -122,21 +120,12 @@ export default {
 
     const { themeConfig } = this.$site;
 
-    console.log(111,themeConfig.particles != undefined, !themeConfig.particles)
-    if (!(themeConfig.particles != undefined && !themeConfig.particles)) {
-      const config = themeConfig.particlesConfig || {
-        color: '102, 102, 102',
-        count: 66,
-      };
-
-      // Using config rendering effect at 'element'.
-      const cn = new CanvasNest(document.querySelector('.CanvasNest'), config);
-
-      // destroy
-      // cn.destroy();
+    if (!(themeConfig.showParticles != undefined && !themeConfig.showParticles)) {
+      localStorage.setItem('particle', JSON.stringify(themeConfig.particlesConfig || {}))
+      var script = document.createElement('script')
+      script.src = 'https://blog-static.cnblogs.com/files/luanhewei/particle.js'
+      document.querySelector('body').appendChild(script)
     }
-
-    
   },
 
   methods: {

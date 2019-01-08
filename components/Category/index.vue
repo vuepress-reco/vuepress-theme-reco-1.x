@@ -6,7 +6,8 @@
       @currentTag="getCurrentTag"></note-abstract>
     
     <pagation 
-      :data="pages" 
+      :data="pages"
+      :currentPage="currentPage"
       @getCurrentPage="getCurrentPage"></pagation>
   </div>
 </template>
@@ -14,7 +15,6 @@
 <script>
 import NoteAbstract from '../NoteAbstract/'
 import Pagation from '../Pagation/'
-import { setStorage, getStorage } from '../../util/handleStorage'
 
 export default {
   data () {
@@ -37,7 +37,7 @@ export default {
     }
   },
   updated () {
-    this.currentPage = getStorage('currentPage')
+    this.currentPage = this.$page.currentPage
   },
   methods: {
     // 根据分类获取页面数据
@@ -55,7 +55,7 @@ export default {
     },
     getCurrentPage (page) {
       this.currentPage = page
-      setStorage('currentPage', page)
+      this.$page.currentPage = page
     }
   },
   components: {

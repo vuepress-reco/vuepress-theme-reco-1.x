@@ -172,8 +172,11 @@ module.exports = {
     showParticles: true,
     // particlesConfig
     particlesConfig: {
-      color: '136, 136, 136', // color of line
-      count: 66, // number of particle
+      color: '0, 0, 0', //color of lines, default: '0,0,0'; RGB values: (R,G,B).(note: use ',' to separate.)
+      pointColor: '0, 0, 0', //color of points, default: '0,0,0'; RGB values: (R,G,B).(note: use ',' to separate.)
+      opacity: 0.5, // the opacity of line (0~1), default: 0.5.
+      count: 60, // the number of lines, default: 66.
+      zIndex: -1,  // z-index property of the background, default: -1.
     },
   }  
 }
