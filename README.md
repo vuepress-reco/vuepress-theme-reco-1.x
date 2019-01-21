@@ -78,7 +78,7 @@
     sidebar: false  
     ---
 
-    ## frontEnd
+    ## FrontEnd
     ```
 
     **`/docs/categories/backEnd.md`**
@@ -90,7 +90,7 @@
     sidebar: false
     ---
 
-    ## backEnd
+    ## BackEnd
     ```
 
     > Why do you set sidebar false? Because you enable classification, that's a little bit of a conflict with the custom sidebar feature, so you globally turn on the auto sidebar feature, and then close it where you don't need a side marker
@@ -104,6 +104,8 @@
     categories: frontEnd
     ---
     ```
+
+    > Remember, `categories` corresponding value to file and the corresponding classification `title` values are consistent.
     
 ## Add tag cloud
 
@@ -146,6 +148,18 @@
     - webpack
     ---
     ```
+
+## Add abstract
+
+Effect：
+
+![2.png](https://upload-images.jianshu.io/upload_images/4660406-a15ae55c1e77bef1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+The corresponding markdown：
+
+![1.png](https://upload-images.jianshu.io/upload_images/4660406-54a9168672d45d1d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+In the markdown code, you will see a comment, and the code in front of the comment will be displayed in the article abstract on the list page.
 
 ## Comment(valine)
 
