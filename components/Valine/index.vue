@@ -34,7 +34,7 @@ export default {
 
 <style lang="stylus" scoped>
 #valine
-  max-width: 740px;
+  max-width: 50%;
   margin: 0 auto;
   padding: 0 2.5rem;
   background-color #fff

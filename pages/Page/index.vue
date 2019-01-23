@@ -103,7 +103,7 @@ export default {
     },
 
     prev () {
-      const prev = this.$page.frontmatter.prev
+      let prev = this.$page.frontmatter.prev
       if (prev === false) {
         return
       } else if (prev) {
@@ -114,7 +114,7 @@ export default {
     },
 
     next () {
-      const next = this.$page.frontmatter.next
+      let next = this.$page.frontmatter.next
       if (next === false) {
         return
       } else if (next) {

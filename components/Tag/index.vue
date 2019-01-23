@@ -15,6 +15,7 @@
     
     <pagation
       :data="pages" 
+      :currentPage="currentPage"
       @getCurrentPage="getCurrentPage"></pagation>
   </div>
 </template>
@@ -78,6 +79,7 @@ export default {
       })
       // reverse()是为了按时间最近排序排序
       this.pages = pages.length == 0 ? [] : pages.reverse()
+      this.getCurrentPage(1);
     },
     getCurrentPage (page) {
       this.currentPage = page
@@ -104,9 +106,9 @@ export default {
 @require '../../styles/wrapper.styl'
 
 .tags-wrapper
-  max-width: 740px;
-  margin: 0 auto;
-  padding: 0 2.5rem;
+  padding: 0rem 1.5rem 0 !important;
+  max-width: 960px;
+  margin: 0px auto;
   .tags
     margin-bottom 30px
     span
