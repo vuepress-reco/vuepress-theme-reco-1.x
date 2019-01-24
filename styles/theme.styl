@@ -58,9 +58,7 @@ body
   overflow-y auto
 
 .content:not(.custom)
-  padding: 2rem 2rem 0;
-  max-width: 960px;
-  margin: 0px auto;
+  @extend $wrapper
   > *:first-child
     margin-top $navbarHeight
   a:hover
