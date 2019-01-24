@@ -106,9 +106,9 @@ export default {
 @require '../../styles/wrapper.styl'
 
 .tags-wrapper
-  padding: 0rem 1.5rem 0 !important;
-  max-width: 960px;
-  margin: 0px auto;
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
   .tags
     margin-bottom 30px
     span
