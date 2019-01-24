@@ -70,9 +70,9 @@ export default {
 @require '../../styles/wrapper.styl'
 
 .categories-wrapper
-  padding: 0rem 1.5rem 0 !important;
-  max-width: 960px;
-  margin: 0px auto;
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 0 2.5rem; 
 
 @media (max-width: $MQMobile)
   .categories-wrapper
