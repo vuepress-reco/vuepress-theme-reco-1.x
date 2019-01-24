@@ -15,6 +15,7 @@
     
     <pagation
       :data="pages" 
+      :currentPage="currentPage"
       @getCurrentPage="getCurrentPage"></pagation>
   </div>
 </template>
@@ -78,6 +79,7 @@ export default {
       })
       // reverse()是为了按时间最近排序排序
       this.pages = pages.length == 0 ? [] : pages.reverse()
+      this.getCurrentPage(1);
     },
     getCurrentPage (page) {
       this.currentPage = page
