@@ -1,17 +1,17 @@
 <template>
-  <div class="pagation" v-if="show"> 
-    <div class="pagation-list" unselectable="on"> 
-      <span class="jump" v-show="currentPage>1" @click="jumpPage(currentPage-1)">上一页</span> 
-      <span v-show="efont" class="jump" @click="jumpPage(1)">1</span> 
+  <div class="pagation" v-show="show"> 
+    <div class="pagation-list"> 
+      <span class="jump" v-show="currentPage>1" @click="goPrev">上一页</span> 
+      <span v-show="currentPage>5" class="jump" @click="jumpPage(1)">1</span> 
       <span class="ellipsis"  v-show="efont">...</span> 
       <span class="jump" v-for="num in indexs" :key="num" :class="{bgprimary:currentPage==num}" @click="jumpPage(num)">{{num}}</span> 
       <span class="ellipsis"  v-show="efont&&currentPage<pages-4">...</span> 
-      <span v-show="efont&&currentPage<pages-4" class="jump" @click="jumpPage(pages)">{{pages}}</span>
-      <span class="jump" v-show="currentPage < pages" @click="jumpPage(currentPage+1)">下一页</span> 
+
+      <span class="jump" v-show="currentPage < pages" @click="goNext">下一页</span> 
 
       <span class="jumppoint">跳转到：</span> 
-      <span class="jumpinp"><input type="text" v-model="changePage" @keyup.enter.native="jumpPage(changePage)"></span>
-      <span class="jump gobtn" @click="jumpPage(changePage)">GO</span>
+      <span class="jumpinp"><input type="text" v-model="changePage"></span> 
+      <span class="jump gobtn" @click="jumpPage(changePage)">GO</span> 
     </div> 
   </div> 
 </template>
@@ -78,27 +78,15 @@ export default {
   },
   methods: {
     goPrev () {
-      alert(this.currentPage)
+      let currentPage = this.currentPage
       if (this.currentPage > 1) {
-        let currentPage = this.currentPage;
-        --currentPage;
-
-        alert(currentPage)
-        this.emit(currentPage);
-
-        return;
+        this.emit(--currentPage)
       }
     },
     goNext () {
-      alert(this.currentPage)
-      alert(this.pages)
-      if (this.currentPage < this.pages) {
-        let currentPage = this.currentPage;
-        ++currentPage;
-        alert(currentPage)
-        this.emit(currentPage);
-
-        return;
+      let currentPage = this.currentPage
+      if (currentPage < this.pages) {
+        this.emit(++currentPage)
       }
     },
     jumpPage: function(id) {
