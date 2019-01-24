@@ -1,14 +1,13 @@
 <template>
   <div class="pagation" v-show="show"> 
     <div class="pagation-list"> 
-      <span class="jump" v-show="currentPage>1" @click="goPrev">上一页</span> 
-      <span v-show="currentPage>5" class="jump" @click="jumpPage(1)">1</span> 
+      <span class="jump" v-show="currentPage>1" @click="goPrev" unselectable="on">上一页</span> 
+      <span v-show="efont" class="jump" @click="jumpPage(1)">1</span> 
       <span class="ellipsis"  v-show="efont">...</span> 
       <span class="jump" v-for="num in indexs" :key="num" :class="{bgprimary:currentPage==num}" @click="jumpPage(num)">{{num}}</span> 
       <span class="ellipsis"  v-show="efont&&currentPage<pages-4">...</span> 
-
+      <span v-show="efont&&currentPage<pages-4" class="jump" @click="jumpPage(pages)">{{pages}}</span>
       <span class="jump" v-show="currentPage < pages" @click="goNext">下一页</span> 
-
       <span class="jumppoint">跳转到：</span> 
       <span class="jumpinp"><input type="text" v-model="changePage"></span> 
       <span class="jump gobtn" @click="jumpPage(changePage)">GO</span> 
@@ -90,12 +89,12 @@ export default {
       }
     },
     jumpPage: function(id) {
-      if (id <= this.pages) {
-        this.emit(id)
+      if(id == ''){
+        alert(`请输入页码！`)
         return
       }
-      if(!id){
-        alert(`请输入页码！`)
+      if (id <= this.pages) {
+        this.emit(id)
         return
       }
       alert(`请输入小于${this.pages}的页码！`)
@@ -111,7 +110,7 @@ export default {
 @import '../../styles/config.styl'
 
 .pagation
-  font-weight: 900; 
+  font-weight: 700; 
   text-align: center; 
   color: #888; 
   margin: 20px auto 0; 
