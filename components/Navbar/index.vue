@@ -73,8 +73,7 @@ export default {
         
         // 使用ref会间断性获取不到dom
         const navbarWrapper = document.querySelector('#navbarWrapper')
-        // const height = navbarWrapper.offsetHeight == 58 ? 58 : 58
-        const height = navbarWrapper.offsetHeight == 0 ? 0 : 0
+        const height = navbarWrapper.offsetHeight == 58 ? 58 : 58
         const transformHeight = scrollDirection == 'up' ? height : 0
 
         if (oldTransformHeight != transformHeight) {
