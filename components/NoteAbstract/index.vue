@@ -3,7 +3,7 @@
     <div
       v-for="(item, index) in data"
       :key="index"
-      v-show="((index + 1) > (currentPage - 1) * 10) && ((index + 1) <= currentPage * 10)"
+      v-if="((index + 1) > (currentPage - 1) * 10) && ((index + 1) <= currentPage * 10)"
       class="abstract-item">
       <div class="title">
         <router-link
