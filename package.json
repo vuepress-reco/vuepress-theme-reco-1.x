@@ -10,6 +10,11 @@
     "type": "git",
     "url": "git+https://github.com/recoluan/vuepress-theme-reco.git"
   },
+  "keywords": [
+    "vuepress",
+    "vue",
+    "theme"
+  ],
   "author": "reco_luan",
   "license": "MIT",
   "bugs": {
