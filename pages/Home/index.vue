@@ -21,16 +21,36 @@
 
     <Content custom/>
 
-    <div class="footer" v-if="data.footer">{{ data.footer }}</div>
+    <div class="footer">
+      <span>
+        <i class="iconfont reco-theme"></i>
+        <a target="blank" href="https://www.npmjs.com/package/vuepress-theme-reco">vuePress-theme-reco</a>
+      </span>
+      <span>
+        <i class="iconfont reco-other"></i>
+        <a>{{ $site.themeConfig.author || $site.title }}</a>
+      </span>
+      <span>
+        <i class="iconfont reco-copyright"></i>
+        <a>{{ year }}</a>
+      </span>
+      <span>
+        <AccessNumber idVal="/"></AccessNumber>
+      </span>
+    </div>
   </div>
 </template>
 
 <script>
 import NavLink from "../../components/NavLink/";
+import AccessNumber from '../../components/Valine/AccessNumber'
 
 export default {
-  components: { NavLink },
+  components: { NavLink, AccessNumber },
   computed: {
+    year () {
+      return new Date().getFullYear()
+    },
     data() {
       return this.$page.frontmatter;
     },
@@ -73,10 +93,8 @@ export default {
 
     .description {
       max-width: 35rem;
-      background-color #fff
       font-size: 1.6rem;
       line-height: 1.3;
-      background-color #fff
       color: lighten($textColor, 40%);
     }
 
@@ -114,16 +132,14 @@ export default {
     max-width: 30%;
     transition: all .5s
     h2 {
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       font-weight: 500;
       border-bottom: none;
       padding-bottom: 0;
-      background-color #fff
       color: lighten($textColor, 10%);
     }
 
     p {
-      background-color #fff
       color: lighten($textColor, 25%);
     }
 
@@ -137,6 +153,12 @@ export default {
     border-top: 1px solid $borderColor;
     text-align: center;
     color: lighten($textColor, 25%);
+    > span {
+      margin-left 1rem
+      > i {
+        margin-right .5rem
+      } 
+    }
   }
 }
 
@@ -149,6 +171,14 @@ export default {
     .feature {
       max-width: 100%;
       padding: 0 2.5rem;
+    }
+  }
+  .footer {
+    text-align: left!important;
+    > span {
+      display block
+      margin-left 0
+      line-height 2rem
     }
   }
 }

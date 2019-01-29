@@ -1,10 +1,14 @@
 <template>
   <div class="page">
     <slot name="top"/>
+    <div class="page-title" v-if="!(isCategories || isTags)">
+      <h1>{{$page.title}}</h1>
+      <hr>
+      <PageInfo :pageInfo="$page" @currentTag="getCurrentTag"></PageInfo>
+    </div>
     <Content :custom="false"/>
-    <valine v-if="isComment"></valine>
     <category v-if="isCategories" :currentPage="currentPage" @currentTag="getCurrentTag"></category>
-    <tag v-if="isTags" :tag="currentTag"></tag>
+    <tag v-if="isTags" :tag="currentTag" @tagChange="$emit('tagChange')"></tag>
     <div class="page-edit">
       <div
         class="edit-link"
@@ -57,8 +61,8 @@
 
 <script>
 import { resolvePage, normalize, outboundRE, endingSlashRE } from '../../util/'
-import Valine from '../../components/Valine/'
 import Category from '../../components/Category/'
+import PageInfo from '../../components/PageInfo/'
 import Tag from '../../components/Tag/'
 
 export default {
@@ -72,19 +76,12 @@ export default {
     }
   },
   props: ['sidebarItems'],
-
   computed: {
     isCategories () {
       return this.$page.frontmatter.isCategories
     },
     isTags () {
       return this.$page.frontmatter.isTags
-    },
-
-    // 是否显示评论
-    isComment () {
-      const isComment = this.$page.frontmatter.isComment
-      return isComment == false ? false : true
     },
     lastUpdated () {
       if (this.$page.lastUpdated) {
@@ -187,9 +184,9 @@ export default {
     }
   },
   components: {
-    Valine,
     Category,
-    Tag
+    Tag,
+    PageInfo
   }
 }
 
@@ -219,13 +216,16 @@ function find (page, items, offset) {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 @import '../../styles/config.styl'
 @require '../../styles/wrapper.styl'
 
 .page
   padding-bottom 2rem
-  background-color #fff
+
+.page-title
+  max-width: 740px;
+  margin: 6rem auto 0;
 
 .page-edit
   @extend $wrapper
@@ -268,4 +268,10 @@ function find (page, items, offset) {
       font-size .8em
       float none
       text-align left
+  .page-title
+    padding: 0 1rem;    
+    .tags
+      display block
+      margin-top 1rem;
+      margin-left: 0!important;    
 </style>

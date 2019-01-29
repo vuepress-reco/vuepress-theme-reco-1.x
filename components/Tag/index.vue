@@ -2,19 +2,22 @@
   <div class="tags-wrapper">
     <div class="tags">
       <span 
-        v-for="(tag, index) in tags" 
+        v-for="(item, index) in tags" 
         :key="index"
-        :class="{'active': tag == trueCurrentTag}"
-        @click="getPagesByTags(tag)">{{tag}}</span>
+        :class="{'active': item.tag == currentTag}"
+        :style="{ 'backgroundColor': item.color }"
+        @click="getPagesByTags(item.tag)">{{item.tag}}</span>
     </div>
 
     <note-abstract
       :data="pages"
       :currentPage="currentPage"
+      :currentTag="currentTag"
       @currentTag="getCurrentTag"></note-abstract>
     
     <pagation
       :data="pages" 
+      :currentPage="currentPage"
       @getCurrentPage="getCurrentPage"></pagation>
   </div>
 </template>
@@ -46,23 +49,26 @@ export default {
   },
   created () {
     let pages = this.$site.pages,
+        hasTags = [],
         newTags = []
     pages.forEach(page => {
       let tags = page.frontmatter.tags
       if (tags) {
         tags.forEach(tag => {
-          if (newTags.indexOf(tag) == -1) {
-            newTags.push(tag)
+          if (hasTags.indexOf(tag) == -1) {
+            hasTags.push(tag)
+            const color = this.tagColor()
+            newTags.push({
+              tag,
+              color
+            })
           }
         })
         this.tags = newTags
       }
-      
     })
-    if (this.currentTag != '') {
-      this.getPagesByTags(this.currentTag)
-    }
-    this.currentTag = this.tag
+    this.currentTag = this.tag != '' ? this.tag : hasTags[0]
+    this.getPagesByTags(this.currentTag)
   },
   updated () {
     this.currentPage = this.$page.currentPage
@@ -70,6 +76,7 @@ export default {
   methods: {
     // 根据分类获取页面数据
     getPagesByTags (tag) {
+      this.$emit('tagChange')
       let pages = this.$site.pages
       this.currentTag = tag
       pages = pages.filter(item => {
@@ -78,6 +85,7 @@ export default {
       })
       // reverse()是为了按时间最近排序排序
       this.pages = pages.length == 0 ? [] : pages.reverse()
+      this.getCurrentPage(1);
     },
     getCurrentPage (page) {
       this.currentPage = page
@@ -85,6 +93,12 @@ export default {
     },
     getCurrentTag (tag) {
       this.currentTag = tag
+    },
+    tagColor () {
+      // 红、蓝、绿、橙、灰
+      const tagColorArr = ['#f26d6d', '#3498db', '#67cc86', '#fb9b5f', '#838282']
+      const index = Math.floor(Math.random() * tagColorArr.length)
+      return tagColorArr[index]
     }
   },
   watch: {
@@ -117,17 +131,16 @@ export default {
       cursor: pointer;
       border-radius: 2px;
       background: #fff;
-      color: #999;
+      color: #fff;
       font-size: 13px;
       box-shadow 0 1px 4px 0 rgba(0,0,0,0.2)
       transition: all .5s
       &:hover
         transform scale(1.04)
       &.active
-        background $accentColor
-        color #fff
+        transform scale(1.2)
 
 @media (max-width: $MQMobile)
   .tags-wrapper
-    padding: 4rem 0.6rem 0;
+    padding: 0 0.6rem;
 </style>

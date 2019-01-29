@@ -7,21 +7,17 @@
         class="logo"
         v-if="$site.themeConfig.logo"
         :src="$withBase($site.themeConfig.logo)"
-        :alt="$siteTitle"
-      >
+        :alt="$siteTitle">
       <span
         ref="siteName"
         class="site-name"
-        v-if="$siteTitle"
-        :class="{ 'can-hide': $site.themeConfig.logo }"
-      >{{ $siteTitle }}</span>
+        v-if="$siteTitle">{{ $siteTitle }}</span>
     </router-link>
 
     <div class="links" :style="{
         'max-width': linksWrapMaxWidth + 'px'
       }">
-      <AlgoliaSearchBox v-if="isAlgoliaSearch" :options="algolia"/>
-      <SearchBox v-else-if="$site.themeConfig.search !== false"/>
+      <Search class="side-search-wrapper"></Search>
       <NavLinks class="can-hide"/>
     </div>
   </header>
@@ -29,12 +25,11 @@
 
 <script>
 import SidebarButton from "./components/SidebarButton/";
-import AlgoliaSearchBox from "../Search/AlgoliaSearchBox/";
-import SearchBox from "../Search/SearchBox/";
+import Search from '../Search/'
 import NavLinks from "../NavLinks/";
 
 export default {
-  components: { SidebarButton, NavLinks, SearchBox, AlgoliaSearchBox },
+  components: { SidebarButton, NavLinks, Search },
 
   data() {
     return {
@@ -116,12 +111,15 @@ $navbar-horizontal-padding = 1.5rem;
 .navbar {
   transition all .4s
   padding: $navbar-vertical-padding $navbar-horizontal-padding;
-  line-height: $navbarHeight - 1.4rem;
   position: relative;
 
   a, span, img {
     display: inline-block;
   }
+
+  .home-link {
+    line-height $navbarHeight - 1.4rem
+  }  
 
   .logo {
     height: $navbarHeight - 1.4rem;
@@ -131,8 +129,7 @@ $navbar-horizontal-padding = 1.5rem;
   }
 
   .site-name {
-    font-size: 1.3rem;
-    font-weight: 600;
+    font-size: 1.2rem;
     color: $textColor;
     position: relative;
   }
@@ -140,18 +137,13 @@ $navbar-horizontal-padding = 1.5rem;
   .links {
     padding-left: 1.5rem;
     box-sizing: border-box;
-    background-color: white;
+    background-color: $bgColor;
     white-space: nowrap;
     font-size: 0.9rem;
     position: absolute;
     right: $navbar-horizontal-padding;
     top: $navbar-vertical-padding;
     display: flex;
-
-    .search-box {
-      flex: 0 0 auto;
-      vertical-align: top;
-    }
 
     .nav-links {
       flex: 1;
@@ -162,7 +154,6 @@ $navbar-horizontal-padding = 1.5rem;
 @media (max-width: $MQMobile) {
   .navbar {
     transition all .5s
-    padding-left: 4rem;
 
     .can-hide {
       display: none;
@@ -171,6 +162,9 @@ $navbar-horizontal-padding = 1.5rem;
     .links {
       padding-left: 1.5rem;
     }
+    .side-search-wrapper {
+      display none
+    }  
   }
 }
 </style>

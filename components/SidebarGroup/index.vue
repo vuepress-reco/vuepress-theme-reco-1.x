@@ -6,7 +6,7 @@
       class="sidebar-heading"
       :class="{ open }"
       @click="$emit('toggle')">
-      <span>{{ item.title }}</span>
+      <!-- <span>{{ item.title }}</span> -->
       <span
         class="arrow"
         v-if="collapsable"

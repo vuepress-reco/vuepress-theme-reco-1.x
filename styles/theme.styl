@@ -5,17 +5,30 @@
 @require './arrow'
 @require './wrapper'
 @require './toc'
+// @require './common'
+@require '../fonts/iconfont.css'
 
 html, body
   padding 0
   margin 0
+  -moz-user-select:none;/*火狐*/
+  -webkit-user-select:none;/*webkit浏览器*/
+  -ms-user-select:none;/*IE10*/
+  -khtml-user-select:none;/*早期浏览器*/
+  user-select:none;
+  background-color: $bgColor
+  overflow-x: hidden
 
 body
   font-family -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
   font-size 16px
-  color $textColor
+  color $textColor  
+
+input 
+  background-color: $bgColor
+  -webkit-appearance: none;
 
 .page
   padding-left $sidebarWidth
@@ -27,7 +40,7 @@ body
   left 0
   right 0
   height $navbarHeight
-  background-color #fff
+  background-color $bgColor
   box-sizing border-box
   box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28)
 
@@ -45,7 +58,7 @@ body
 
 .sidebar
   font-size 15px
-  background-color #fff
+  background-color $bgColor
   width $sidebarWidth
   position fixed
   z-index 10
@@ -60,7 +73,7 @@ body
 .content:not(.custom)
   @extend $wrapper
   > *:first-child
-    margin-top $navbarHeight
+    margin-top 1rem
   a:hover
     text-decoration underline
   p.demo
@@ -182,6 +195,32 @@ th, td
     .custom-layout
       padding-top 0
 
+.iconfont
+  font-size: 0.9rem;
+  color: #999;
+  // &:not(:first-child)
+  //   margin-left: 1rem
+  // span
+  //   margin-left: .5rem
+
+/************** 滚动条 **************/
+::-webkit-scrollbar
+  width: 5px;
+  height: 5px;
+
+::-webkit-scrollbar-track-piece
+  background-color: rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 6px;
+
+::-webkit-scrollbar-thumb:vertical
+  height: 5px;
+  background-color: rgba(125, 125, 125, 0.7);
+  -webkit-border-radius: 6px;
+
+::-webkit-scrollbar-thumb:horizontal
+  width: 5px;
+  background-color: rgba(125, 125, 125, 0.7);
+  -webkit-border-radius: 6px;    
 
 @media (min-width: ($MQMobile + 1px))
   .theme-container.no-sidebar

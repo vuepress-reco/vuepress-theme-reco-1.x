@@ -67,7 +67,7 @@ export default {
   padding 1em
   border 1px solid $accentColor
   border-radius 3px
-  background #fff
+  background-color: $bgColor;
   box-shadow 0 4px 16px rgba(0, 0, 0, 0.5)
   text-align center
 

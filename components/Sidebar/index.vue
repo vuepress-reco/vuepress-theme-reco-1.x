@@ -1,5 +1,6 @@
 <template>
   <div class="sidebar">
+    <Search class="side-search-wrapper"></Search>
     <NavLinks/>
     <slot name="top"/>
     <ul class="sidebar-links" v-if="items.length">
@@ -10,8 +11,7 @@
           :first="i === 0"
           :open="i === openGroupIndex"
           :collapsable="item.collapsable || item.collapsible"
-          @toggle="toggleGroup(i)"
-        />
+          @toggle="toggleGroup(i)"/>
         <SidebarLink v-else :item="item"/>
       </li>
     </ul>
@@ -23,10 +23,11 @@
 import SidebarGroup from '../SidebarGroup/'
 import SidebarLink from '../SidebarLink/'
 import NavLinks from '../NavLinks/'
+import Search from '../Search/'
 import { isActive } from '../../util/'
 
 export default {
-  components: { SidebarGroup, SidebarLink, NavLinks },
+  components: { SidebarGroup, SidebarLink, NavLinks, Search },
 
   props: ['items'],
 
@@ -101,6 +102,9 @@ function resolveOpenGroupIndex (route, items) {
       padding 0.5rem 0 0.5rem 1.5rem
   .sidebar-links
     padding 1.5rem 0
+  .side-search-wrapper
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    display none
 
 @media (max-width: $MQMobile)
   .sidebar
@@ -110,4 +114,6 @@ function resolveOpenGroupIndex (route, items) {
         top calc(1rem - 2px)
     .sidebar-links
       padding 1rem 0
+    .side-search-wrapper
+      display block  
 </style>
