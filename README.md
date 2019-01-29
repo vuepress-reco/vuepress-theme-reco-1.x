@@ -199,7 +199,7 @@ module.exports = {
 }  
 ```
 
-2. You can add icon to the navigation menu，like this:
+2. You can add icon to the navigation menu，like this:
 
 ```javascript
 { text: 'Tags', link: '/tags/', icon: 'reco-tag' }
