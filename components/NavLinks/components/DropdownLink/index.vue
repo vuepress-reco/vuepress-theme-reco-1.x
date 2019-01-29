@@ -5,7 +5,10 @@
     <a
       class="dropdown-title"
       @click="toggle">
-      <span class="title">{{ item.text }}</span>
+      <span class="title">
+        <i :class="`iconfont ${item.icon}`"></i>
+        {{ item.text }}
+      </span>
       <span
         class="arrow"
         :class="open ? 'down' : 'right'"></span>
@@ -93,7 +96,7 @@ export default {
         padding 0
         list-style none
         .dropdown-subitem
-          font-size 0.9em
+          font-size 0.9rem
       a
         display block
         line-height 1.7rem
@@ -102,6 +105,7 @@ export default {
         font-weight 400
         margin-bottom 0
         padding 0 1.5rem 0 1.25rem
+        font-size .9rem
         &:hover
           color $accentColor
         &.router-link-active
@@ -162,7 +166,7 @@ export default {
       position absolute
       top 100%
       right 0
-      background-color #fff
+      background-color $bgColor
       padding 0.6rem 0
       text-align left
       border-radius 0.25rem

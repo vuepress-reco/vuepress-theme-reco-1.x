@@ -1,5 +1,5 @@
 <template>
-  <div class="search-box">
+  <div class="search-box" ref="searchBox" @click="searchBoxTap">
     <input
       @input="query = $event.target.value"
       aria-label="Search"
@@ -11,14 +11,13 @@
       @blur="focused = false"
       @keyup.enter="go(focusIndex)"
       @keyup.up="onUp"
-      @keyup.down="onDown"
-    >
+      @keyup.down="onDown">
+    <i class="iconfont reco-search" @click="focused = true"></i>
     <ul
       class="suggestions"
       v-if="showSuggestions"
       :class="{ 'align-right': alignRight }"
-      @mouseleave="unfocus"
-    >
+      @mouseleave="unfocus">
       <li
         class="suggestion"
         v-for="(s, i) in suggestions"
@@ -103,6 +102,9 @@ export default {
   },
 
   methods: {
+    searchBoxTap () {
+      this.$refs.searchBox.querySelector('input').focus()
+    },
     getPageLocalePath (page) {
       for (const localePath in this.$site.locales || {}) {
         if (localePath !== '/' && page.path.indexOf(localePath) === 0) {
@@ -152,7 +154,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 @import '../../../styles/config.styl'
 
 .search-box
@@ -167,21 +169,27 @@ export default {
     border 1px solid darken($borderColor, 10%)
     border-radius 2rem
     font-size 0.9rem
-    line-height 2rem
-    padding 0 0.5rem 0 2rem
+    padding 0.5rem 0.5rem .5rem 2rem
     outline none
     transition all .2s ease
-    background #fff url(./images/search.svg) 0.6rem 0.5rem no-repeat
-    background-size 1rem
     &:focus
       cursor auto
       border-color $accentColor
+  .iconfont
+    position: absolute;
+    left: 0.6rem;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 1rem;
   .suggestions
-    background #fff
+    margin: 1rem 0
+    background-color: $bgColor;
     width 20rem
     position absolute
     top 1.5rem
-    border 1px solid darken($borderColor, 10%)
+    z-index 1
+    box-shadow: 0 4px 20px 0 rgba(0,0,0,0.2);
     border-radius 6px
     padding 0.4rem
     list-style-type none
@@ -195,45 +203,22 @@ export default {
     a
       white-space normal
       color lighten($textColor, 35%)
+      font-size 0.9em
       .page-title
         font-weight 600
       .header
-        font-size 0.9em
         margin-left 0.25em
     &.focused
       background-color #f3f4f5
       a
         color $accentColor
 
-@media (max-width: $MQNarrow)
-  .search-box
-    input
-      cursor pointer
-      width 0
-      border-color transparent
-      position relative
-      &:focus
-        cursor text
-        left 0
-        width 10rem
-
-@media (max-width: $MQNarrow) and (min-width: $MQMobile)
-  .search-box
-    .suggestions
-      left 0
-
 @media (max-width: $MQMobile)
   .search-box
-    margin-right 0
-    input
-      left 1rem
     .suggestions
-      right 0
-
-@media (max-width: $MQMobileNarrow)
-  .search-box
-    .suggestions
-      width calc(100vw - 4rem)
-    input:focus
-      width 8rem
+      width 100%
+      li 
+        padding: 0.3rem;
+        a 
+          font-size .7rem
 </style>

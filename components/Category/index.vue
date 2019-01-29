@@ -76,7 +76,7 @@ export default {
 
 @media (max-width: $MQMobile)
   .categories-wrapper
-    padding: 0 0.6rem;
+    padding: 0 1rem;
   .page-edit
     .edit-link
       margin-bottom .5rem

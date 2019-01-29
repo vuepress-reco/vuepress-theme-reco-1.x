@@ -19,14 +19,16 @@
 
     <Home v-else-if="$page.frontmatter.home"/>
 
-    <Page v-else :sidebar-items="sidebarItems">
+    <Page v-else :sidebar-items="sidebarItems" @tagChange="tagChange">
       <slot name="page-top" slot="top"/>
       <slot name="page-bottom" slot="bottom"/>
     </Page>
 
-    <router-view></router-view>
+    <Valine :valineRefresh="valineRefresh"></Valine>
 
+    <router-view></router-view>
     <SWUpdatePopup :updateEvent="swUpdateEvent"/>
+    <BackToTop></BackToTop>
   </div>
 </template>
 
@@ -39,14 +41,17 @@ import Page from "./pages/Page/";
 import Sidebar from "./components/Sidebar/";
 import SWUpdatePopup from "./components/SWUpdatePopup/";
 import { resolveSidebarItems } from "./util/"
+import BackToTop from "./components/BackToTop/"
+import Valine from './components/Valine/'
 
 export default {
-  components: { Home, Page, Sidebar, Navbar, SWUpdatePopup },
+  components: { Home, Page, Sidebar, Navbar, SWUpdatePopup, BackToTop, Valine },
 
   data() {
     return {
       isSidebarOpen: false,
-      swUpdateEvent: null
+      swUpdateEvent: null,
+      valineRefresh: false
     };
   },
 
@@ -117,18 +122,15 @@ export default {
     });
 
     this.$on("sw-updated", this.onSWUpdated);
-
-    const { themeConfig } = this.$site;
-
-    if (!(themeConfig.showParticles != undefined && !themeConfig.showParticles)) {
-      localStorage.setItem('particle', JSON.stringify(themeConfig.particlesConfig || {}))
-      var script = document.createElement('script')
-      script.src = 'https://blog-static.cnblogs.com/files/luanhewei/particle.js'
-      document.querySelector('body').appendChild(script)
-    }
   },
 
   methods: {
+    tagChange () {
+      this.valineRefresh = true
+      setTimeout(() => {
+        this.valineRefresh = false
+      }, 300)
+    },
     toggleSidebar(to) {
       this.isSidebarOpen = typeof to === "boolean" ? to : !this.isSidebarOpen;
     },
@@ -162,3 +164,4 @@ export default {
 
 <style src="prismjs/themes/prism-tomorrow.css"></style>
 <style src="./styles/theme.styl" lang="stylus"></style> 
+

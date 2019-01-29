@@ -1,25 +1,35 @@
+![vuepress](https://img.shields.io/badge/vuepress-0.14.8-brightgreen.svg)
+![leancloud-storage](https://img.shields.io/badge/leancloud--storage-3.10.1-orange.svg)
+![valine](https://img.shields.io/badge/valine-1.3.4-blue.svg)
 # vuepress-theme-reco
 
-> 1. This is a vuepress theme aimed at adding the categories, TAB walls, pagination, comments and other features required for blogging;<br>
-> 2. The theme itself is minimalist and is modified based on the default theme of the vuepress.<br>
+![vuepress](https://img.shields.io/badge/vuepress-0.14.8-brightgreen.svg)
+![leancloud-storage](https://img.shields.io/badge/leancloud--storage-3.10.1-orange.svg)
+![valine](https://img.shields.io/badge/valine-1.3.4-blue.svg)
+
+> 1. It's a vuepress theme aimed at adding the categories, TAB walls, pagination, comments and other features required for blogging, suitable for `vuepress 0.x`;<br>
+> 2. The theme itself is minimalist and is modified based on the default theme of the vuepress;<br>
 > 3. You can open https://recoluan.gitlab.io to see it.
 
 ## Preview
 
-#### Home Page
-![home.png](https://upload-images.jianshu.io/upload_images/4660406-becd33be1de7391c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+### Home Page
+![home.png](https://upload-images.jianshu.io/upload_images/4660406-0bf9d91e9d289f75.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-#### Categories Page
-![category.png](https://upload-images.jianshu.io/upload_images/4660406-acdd68dfa730e5a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+### Categories Page
+![category.png](https://upload-images.jianshu.io/upload_images/4660406-8c7995d750c58536.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-#### Tags page
-![tag.png](https://upload-images.jianshu.io/upload_images/4660406-d3b1ec44b870fbd6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+### Tags page
+![tag.png](https://upload-images.jianshu.io/upload_images/4660406-39c0d47627869e3a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-#### Article Page
-![article.png](https://upload-images.jianshu.io/upload_images/4660406-00303788bc2edcaa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+### Article Page
+![article.png](https://upload-images.jianshu.io/upload_images/4660406-a19cad487991409d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+### Mobile
+![m.png](https://upload-images.jianshu.io/upload_images/4660406-7e2c78c48dd78284.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ## Installation and use
 
@@ -192,45 +202,44 @@ module.exports = {
 }  
 ```
 
-2. If you don't like the particle effect, you can turn it off. If you like it, you can also set the count and color of particles.
+2. You can add icon to the navigation menu，like this:
 
 ```javascript
-module.exports = {
-  title: "午后南杂",
-  theme: 'reco',
-  themeConfig: {
-    // particles
-    showParticles: true,
-    // particlesConfig
-    particlesConfig: {
-      color: '0, 0, 0', //color of lines, default: '0,0,0'; RGB values: (R,G,B).(note: use ',' to separate.)
-      pointColor: '0, 0, 0', //color of points, default: '0,0,0'; RGB values: (R,G,B).(note: use ',' to separate.)
-      opacity: 0.5, // the opacity of line (0~1), default: 0.5.
-      count: 60, // the number of lines, default: 66.
-      zIndex: -1,  // z-index property of the background, default: -1.
-    },
-  }  
-}
-``` 
-
-3. If you want to click the tags in the list, you can set themeConfig's value of tagClick true 
-
-```javascript
-module.exports = {
-  title: "午后南杂",
-  theme: 'reco',
-  themeConfig: {
-    // whether you can click the tags in the list
-    tagClick: true,
-  }  
-}  
+{ text: 'Tags', link: '/tags/', icon: 'reco-tag' }
 ```
+
+The project has built-in icons for you to choose
+
+![icon.png](https://upload-images.jianshu.io/upload_images/4660406-565b8ffd891b9cb3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+3. Sets the global author name
+
+```javascript
+module.exports = {
+  themeConfig: {
+    // author
+    author: 'reco_luan',
+  }
+}
+```
+
+4. Set the author name for a single article
+
+```bash
+---
+title: 你还没真的努力过，就轻易输给了懒惰
+date: 2015-04-23 11:21
+categories: article
+author: 渡渡
+---
+```
+
 
 ## Home Config
 
 1. If your heroImage has your website title, maybe you need to set the value of `isShowTitleInHome` `false` to make title not show
 
-```
+```bash
 # this is your homepage
 
 ---
@@ -242,7 +251,7 @@ isShowTitleInHome: false
 
 2. If you want change heroImage's style, you can set the value of `heroImageStyle` to achieve the effec you want
 
-```
+```bash
 # this is your homepage
 
 ---
@@ -257,3 +266,16 @@ heroImageStyle: {
 }
 ---
 ```
+
+3. Home page footer can no longer be edited at will, only the owner's name can be changed. The global author name will be displayed first, and if not, the title of the blog will be displayed
+
+
+## Donate
+If you are enjoying this project, please consider making a donation to keep it alive, I will try my best to dedicate more time to work on it. 😉
+
+| Alipay | Wechat | 
+| :------: | :------: | 
+| ![Alipay.png](https://upload-images.jianshu.io/upload_images/4660406-43aff22cc8a5a4b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/240)|![WeChat.png](https://upload-images.jianshu.io/upload_images/4660406-58cfd94e92e60c48.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/240)| 
+
+## License
+[MIT](https://github.com/recoluan/vuepress-theme-reco/blob/master/LICENSE)

@@ -65,7 +65,7 @@ export default {
   .algolia-autocomplete
     line-height normal
     .ds-dropdown-menu
-      background-color #fff
+      background-color $bgColor
       border 1px solid #999
       border-radius 4px
       font-size 16px
