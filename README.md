@@ -209,7 +209,7 @@ The project has built-in icons for you to choose
 
 ![icon.png](https://upload-images.jianshu.io/upload_images/4660406-565b8ffd891b9cb3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-3. Sets the global author name
+3. Sets the global author name
 
 ```javascript
 module.exports = {
