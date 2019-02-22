@@ -112,6 +112,11 @@ $navbar-horizontal-padding = 1.5rem;
   transition all .4s
   padding: $navbar-vertical-padding $navbar-horizontal-padding;
   position: relative;
+  -moz-user-select:none;/*火狐*/
+  -webkit-user-select:none;/*webkit浏览器*/
+  -ms-user-select:none;/*IE10*/
+  -khtml-user-select:none;/*早期浏览器*/
+  user-select:none;
 
   a, span, img {
     display: inline-block;

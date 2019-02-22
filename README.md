@@ -266,15 +266,5 @@ heroImageStyle: {
 
 3. Home page footer can no longer be edited at will, only the owner's name can be changed. The global author name will be displayed first, and if not, the title of the blog will be displayed
 
-
-## Donate
-If you are enjoying this project, please consider making a donation to keep it alive, I will try my best to dedicate more time to work on it. 😉
-
-| Alipay | Wechat | 
-| :------: | :------: | 
-| ![Alipay.png](https://upload-images.jianshu.io/upload_images/4660406-43aff22cc8a5a4b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/240)|![WeChat.png](https://upload-images.jianshu.io/upload_images/4660406-58cfd94e92e60c48.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/240)| 
-
-If you are not available for this, simply spreading the word for me would help too!
-
 ## License
 [MIT](https://github.com/recoluan/vuepress-theme-reco/blob/master/LICENSE)
