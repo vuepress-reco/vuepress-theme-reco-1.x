@@ -7,6 +7,10 @@
 @require './toc'
 // @require './common'
 @require '../fonts/iconfont.css'
+@font-face
+  font-family Ubuntu
+  font-weight bold
+  src url(https://fonts.gstatic.com/s/ubuntu/v13/4iCs6KVjbNBYlgoKfw72nU6AFw.woff2)
 
 html, body
   padding 0
@@ -15,7 +19,7 @@ html, body
   overflow-x: hidden
 
 body
-  font-family -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif
+  font-family Ubuntu, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
   font-size 16px
@@ -150,7 +154,7 @@ a.header-anchor
     text-decoration none
 
 code, kbd, .line-number
-  font-family source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace
+  font-family Ubuntu, source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace
 
 p, ul, ol
   line-height 1.7
