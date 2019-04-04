@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <slot name="top"/>
-    <div class="page-title" v-if="!(isCategories || isTags)">
+    <div class="page-title" v-if="!(isCategories || isTags || isTimeLine)">
       <h1>{{$page.title}}</h1>
       <hr>
       <PageInfo :pageInfo="$page" @currentTag="getCurrentTag"></PageInfo>
@@ -9,6 +9,7 @@
     <Content :custom="false"/>
     <category v-if="isCategories" :currentPage="currentPage" @currentTag="getCurrentTag"></category>
     <tag v-if="isTags" :tag="currentTag" @tagChange="$emit('tagChange')"></tag>
+    <time-line v-if="isTimeLine"></time-line>
     <div class="page-edit">
       <div
         class="edit-link"
@@ -64,11 +65,10 @@ import { resolvePage, normalize, outboundRE, endingSlashRE } from '../../util/'
 import Category from '../../components/Category/'
 import PageInfo from '../../components/PageInfo/'
 import Tag from '../../components/Tag/'
+import TimeLine from '../../components/TimeLine/'
 
 export default {
-  beforeUpdate () {
-    this.$page.currentPage = 1
-  },
+  name: 'Page',
   data () {
     return {
       currentTag: '',
@@ -82,6 +82,9 @@ export default {
     },
     isTags () {
       return this.$page.frontmatter.isTags
+    },
+    isTimeLine () {
+      return this.$page.frontmatter.isTimeLine
     },
     lastUpdated () {
       if (this.$page.lastUpdated) {
@@ -152,6 +155,9 @@ export default {
       )
     },
   },
+  beforeUpdate () {
+    this.$page.currentPage = 1
+  },
   methods: {
     createEditLink (repo, docsRepo, docsDir, docsBranch, path) {
       const bitbucket = /bitbucket.org/
@@ -186,7 +192,8 @@ export default {
   components: {
     Category,
     Tag,
-    PageInfo
+    PageInfo,
+    TimeLine
   }
 }
 

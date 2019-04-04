@@ -4,33 +4,41 @@
 ![leancloud-storage](https://img.shields.io/badge/leancloud--storage-3.10.1-orange.svg)
 ![valine](https://img.shields.io/badge/valine-1.3.4-blue.svg)
 
-> 1. It's a vuepress theme aimed at adding the categories, TAB walls, pagination, comments and other features required for blogging, suitable for `vuepress 0.x`;<br>
-> 2. The theme itself is minimalist and is modified based on the default theme of the vuepress;<br>
-> 3. You can open https://recoluan.gitlab.io to see it.
+> 1. 这是一个vuepress主题，旨在添加博客所需的类别，TAB墙，分页，评论和其他功能，适合 `vuepress 0.x`;<br>
+> 2. 主题本身是极简主义的，并根据vuepress的默认主题进行修改;<br>
+> 3. 你可以打开 http://recoluan.gitlab.io 来查看它。
 
-## Preview
+## 预览
 
-### Home Page
+### 首页
 ![home.png](https://upload-images.jianshu.io/upload_images/4660406-0bf9d91e9d289f75.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-### Categories Page
+### 分类页面
 ![category.png](https://upload-images.jianshu.io/upload_images/4660406-8c7995d750c58536.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-### Tags page
+### 标签页
 ![tag.png](https://upload-images.jianshu.io/upload_images/4660406-39c0d47627869e3a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-### Article Page
+### 文章页面
 ![article.png](https://upload-images.jianshu.io/upload_images/4660406-a19cad487991409d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-### Mobile
+### 加密登录页
+
+![password.png](https://upload-images.jianshu.io/upload_images/4660406-7d38dc78c16b7d48.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+### 时间轴
+
+![timeline.png](https://upload-images.jianshu.io/upload_images/4660406-1dc5a5fe6c03952e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+### 移动端
 ![m.png](https://upload-images.jianshu.io/upload_images/4660406-7e2c78c48dd78284.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-## Installation and use
+## 安装和使用
 
-1. Install
+1. 安装
 
     ```bash
     npm install vuepress-theme-reco -dev--save
@@ -40,7 +48,7 @@
     yarn add vuepress-theme-reco
     ```
 
-2. Use
+2. 使用
 
     ```javscript
     // 修改 /docs/.vuepress/config.js
@@ -50,11 +58,11 @@
     }  
     ```
 
-## Add categories
+## 添加分类
 
-**If want to add a `front-end` and `back-end` classification, need to undertake the following steps：**
+**如果要添加 `front-end` 和 `back-end` 分类，需要进行以下步骤：**
 
-1. Add a category drop button to the top navigation
+1. 在顶部导航中添加类别下拉按钮
     
     ```javscript
     // change /docs/.vuepress/config.js
@@ -74,7 +82,7 @@
     }  
     ```
 
-2. Add the files needed for classification
+2. 添加分类所需的文件
 
     **`/docs/categories/frontEnd.md`**
 
@@ -83,6 +91,7 @@
     title: frontEnd  
     isCategories: true  
     sidebar: false  
+    isComment: false
     ---
 
     ## FrontEnd
@@ -95,28 +104,29 @@
     title: backEnd
     isCategories: true
     sidebar: false
+    isComment: false
     ---
 
     ## BackEnd
     ```
 
-    > Why do you set sidebar false? Because you enable classification, that's a little bit of a conflict with the custom sidebar feature, so you globally turn on the auto sidebar feature, and then close it where you don't need a side marker
+    > 你为什么设置侧边栏是假的？因为您启用了分类，这与自定义侧边栏功能有点冲突，所以您全局打开自动侧边栏功能，然后在不需要侧标记的地方关闭它
 
-3. Add categories when writing articles
+3. 撰写文章时添加类别
    
     ```
     ---
     title: 【vue】跨域解决方案之proxyTable  
-    date: 2017-12-28
+    date: 2017-12-28 23:39:45
     categories: frontEnd
     ---
     ```
 
-    > Remember, `categories` corresponding value to file and the corresponding classification `title` values are consistent.
+    > 请记住， `categories` 文件的相应 `title` 值和相应的分类值是一致的。
     
-## Add tag cloud
+## 添加标签云
 
-1. Add a button to the top navigation
+1. 在顶部导航中添加一个按钮
     
     ```javscript
     // change /docs/.vuepress/config.js
@@ -131,7 +141,7 @@
     }  
     ```
 
-2. Add the required files
+2. 添加所需的文件
 
     **`/docs/tags/README.md`**
 
@@ -139,41 +149,73 @@
     ---
     isTags: true
     sidebar: false
+    isComment: false
     ---
 
     ## tag cloud
     ```
 
-3. Add tags when writing articles
+3. 在撰写文章时添加标签
    
     ```
     ---
     title: 【vue】跨域解决方案之proxyTable  
-    date: 2017-12-28
+    date: 2017-12-28 23:39:45  
     tags:
     - vue
     - webpack
     ---
     ```
 
-## Add abstract
+## 添加时间轴
 
-Effect：
+1. 在顶部导航中添加一个按钮
+    
+    ```javscript
+    // change /docs/.vuepress/config.js
+
+    module.exports = {
+      theme: 'reco',
+      themeConfig: {
+        nav: [
+          { text: 'TimeLine', link: '/timeLine/', icon: 'reco-date' }
+        ]
+      }    
+    }  
+    ```
+
+2. 添加所需的文件
+
+    **`/docs/timeLine/README.md`**
+
+    ```
+    ---
+    isTimeLine: true
+    sidebar: false
+    isComment: false
+    ---
+
+  ## Time Line
+    ``` 
+
+## 添加摘要
+
+效果：
 
 ![2.png](https://upload-images.jianshu.io/upload_images/4660406-a15ae55c1e77bef1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-The corresponding markdown：
+相应的markdown：
 
 ![1.png](https://upload-images.jianshu.io/upload_images/4660406-54a9168672d45d1d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-In the markdown code, you will see a comment, and the code in front of the comment will be displayed in the article abstract on the list page.
+在markdown代码中，您将看到注释，注释前面的代码将显示在列表页面上的文章摘要中。
 
-## Comment(valine)
+## 评论(valine)
 
-Theme with a built-in valine comments, if you want to open this function, only configure your `config.js`
+带有内置了valine评论功能，如果要打开此功能，只需配置你的 `config.js`
 
 ```javscript
-// change /docs/.vuepress/config.js
+// 更改 /docs/.vuepress/config.js
 
 module.exports = {
   theme: 'reco',
@@ -187,9 +229,29 @@ module.exports = {
 }  
 ```
 
+## 加入加密功能
+
+有些项目可能具有私密性，不希望被公开，只有填入密钥登录后（关闭标签后登录失效），才能进入内容页面。
+
+```javscript
+// 更改 /docs/.vuepress/config.js
+
+module.exports = {
+  theme: 'reco',
+  themeConfig: {
+    // 密钥
+    keyPage: {
+      keys: ['930105'],
+      color: '#fb9b5f', // 登录页动画球的颜色
+      lineColor: '#fb9b5f' // 登录页动画线的颜色
+    }
+  }  
+}  
+```
+
 ## Config.js
 
-1. On the mobile side, the search box will enlarge when it gets the focus, and it can scroll left and right after losing the focus, which can be optimized by setting the meta.
+1. 在移动端，搜索框在获得焦点时会放大，并且在失去焦点后可以左右滚动，这可以通过设置元来优化。
 
 ```javascript
 module.exports = {
@@ -199,17 +261,17 @@ module.exports = {
 }  
 ```
 
-2. You can add icon to the navigation menu，like this:
+2. 您可以在导航菜单中添加图标，如下所示：
 
 ```javascript
 { text: 'Tags', link: '/tags/', icon: 'reco-tag' }
 ```
 
-The project has built-in icons for you to choose
+该项目有内置图标供您选择
 
 ![icon.png](https://upload-images.jianshu.io/upload_images/4660406-565b8ffd891b9cb3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-3. Sets the global author name
+3. 设置全局作者姓名
 
 ```javascript
 module.exports = {
@@ -220,21 +282,21 @@ module.exports = {
 }
 ```
 
-4. Set the author name for a single article
+4. 为单篇文章设置作者姓名
 
 ```bash
 ---
 title: 你还没真的努力过，就轻易输给了懒惰
-date: 2015-04-23
+date: 2015-04-23 11:21
 categories: article
 author: 渡渡
 ---
 ```
 
 
-## Home Config
+## 首页配置
 
-1. If your heroImage has your website title, maybe you need to set the value of `isShowTitleInHome` `false` to make title not show
+1. 如果您的heroImage具有您的网站标题，则可能需要设置值 `isShowTitleInHome` `false` 以使标题不显示。
 
 ```bash
 # this is your homepage
@@ -246,10 +308,10 @@ isShowTitleInHome: false
 ---
 ```
 
-2. If you want change heroImage's style, you can set the value of `heroImageStyle` to achieve the effec you want
+2. 如果你想改变heroImage的风格，你可以设置值 `heroImageStyle` 来实现你想要的效果
 
 ```bash
-# this is your homepage
+# 这是你的主页 
 
 ---
 home: true
@@ -264,7 +326,7 @@ heroImageStyle: {
 ---
 ```
 
-3. Home page footer can no longer be edited at will, only the owner's name can be changed. The global author name will be displayed first, and if not, the title of the blog will be displayed
+3. 无法再随意编辑主页页脚，只能更改所有者的名称。将首先显示全局作者姓名，否则将显示博客的标题
 
 ## License
 [MIT](https://github.com/recoluan/vuepress-theme-reco/blob/master/LICENSE)
