@@ -4,31 +4,35 @@
     :class="pageClasses"
     @touchstart="onTouchStart"
     @touchend="onTouchEnd">
-    <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar"/>
+    <Password v-if="!isHasKey"></Password>
 
-    <div class="sidebar-mask" @click="toggleSidebar(false)"></div>
+    <div v-else>
+      <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar"/>
 
-    <Sidebar :items="sidebarItems" @toggle-sidebar="toggleSidebar">
-      <slot name="sidebar-top" slot="top"/>
-      <slot name="sidebar-bottom" slot="bottom"/>
-    </Sidebar>
+      <div class="sidebar-mask" @click="toggleSidebar(false)"></div>
 
-    <div class="custom-layout" v-if="$page.frontmatter.layout">
-      <component :is="$page.frontmatter.layout"/>
+      <Sidebar :items="sidebarItems" @toggle-sidebar="toggleSidebar">
+        <slot name="sidebar-top" slot="top"/>
+        <slot name="sidebar-bottom" slot="bottom"/>
+      </Sidebar>
+
+      <div class="custom-layout" v-if="$page.frontmatter.layout">
+        <component :is="$page.frontmatter.layout"/>
+      </div>
+
+      <Home v-else-if="$page.frontmatter.home"/>
+
+      <Page v-else :sidebar-items="sidebarItems" @tagChange="tagChange">
+        <slot name="page-top" slot="top"/>
+        <slot name="page-bottom" slot="bottom"/>
+      </Page>
+
+      <Valine :valineRefresh="valineRefresh"></Valine>
+
+      <router-view></router-view>
+      <SWUpdatePopup :updateEvent="swUpdateEvent"/>
+      <BackToTop></BackToTop>
     </div>
-
-    <Home v-else-if="$page.frontmatter.home"/>
-
-    <Page v-else :sidebar-items="sidebarItems" @tagChange="tagChange">
-      <slot name="page-top" slot="top"/>
-      <slot name="page-bottom" slot="bottom"/>
-    </Page>
-
-    <Valine :valineRefresh="valineRefresh"></Valine>
-
-    <router-view></router-view>
-    <SWUpdatePopup :updateEvent="swUpdateEvent"/>
-    <BackToTop></BackToTop>
   </div>
 </template>
 
@@ -43,9 +47,12 @@ import SWUpdatePopup from "./components/SWUpdatePopup/";
 import { resolveSidebarItems } from "./util/"
 import BackToTop from "./components/BackToTop/"
 import Valine from './components/Valine/'
+import Password from './components/Password/'
+
+import key from './util/handleKey'
 
 export default {
-  components: { Home, Page, Sidebar, Navbar, SWUpdatePopup, BackToTop, Valine },
+  components: { Home, Page, Sidebar, Navbar, SWUpdatePopup, BackToTop, Valine, Password },
 
   data() {
     return {
@@ -100,6 +107,16 @@ export default {
         },
         userPageClass
       ];
+    },
+
+    isHasKey () {
+      const keyPage = this.$site.themeConfig.keyPage
+      if (!keyPage) {
+        return true
+      }
+      
+      const {keys} = keyPage
+      return key.isHasKey(keys)
     }
   },
 

@@ -21,8 +21,8 @@
     "url": "https://github.com/recoluan/vuepress-theme-reco/issues"
   },
   "homepage": "https://recoluan.gitlab.io",
-  "_from": "vuepress-theme-reco@0.1.0",
-  "_resolved": "http://registry.npm.taobao.org/vuepress-theme-reco/download/vuepress-theme-reco-0.1.0.tgz",
+  "_from": "vuepress-theme-reco@0.2.1",
+  "_resolved": "http://registry.npm.taobao.org/vuepress-theme-reco/download/vuepress-theme-reco-0.2.1.tgz",
   "dependencies": {
     "leancloud-storage": "^3.10.1",
     "valine": "^1.3.4"
