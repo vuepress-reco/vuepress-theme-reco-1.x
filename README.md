@@ -117,7 +117,7 @@
     ```
     ---
     title: 【vue】跨域解决方案之proxyTable  
-    date: 2017-12-28 23:39:45
+    date: 2017-12-28
     categories: frontEnd
     ---
     ```
@@ -160,7 +160,7 @@
     ```
     ---
     title: 【vue】跨域解决方案之proxyTable  
-    date: 2017-12-28 23:39:45  
+    date: 2017-12-28
     tags:
     - vue
     - webpack
@@ -195,8 +195,20 @@
     isComment: false
     ---
 
-  ## Time Line
+    ## Time Line
     ``` 
+
+3. 在撰写文章时添加日期
+   
+    ```
+    ---
+    title: 【vue】跨域解决方案之proxyTable  
+    date: 2017-12-28
+    tags:
+    - vue
+    - webpack
+    ---
+    ```    
 
 ## 添加摘要
 
@@ -287,7 +299,7 @@ module.exports = {
 ```bash
 ---
 title: 你还没真的努力过，就轻易输给了懒惰
-date: 2015-04-23 11:21
+date: 2015-04-23
 categories: article
 author: 渡渡
 ---

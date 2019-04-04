@@ -48,9 +48,6 @@ export default {
     year () {
       return new Date().getFullYear()
     }
-  },  
-  mounted () {
-    console.log(this.$site)
   },
   methods: {
     inter () {
