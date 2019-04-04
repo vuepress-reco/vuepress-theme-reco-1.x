@@ -110,15 +110,6 @@ export default {
   },
 
   mounted() {
-    const keyPage = this.$site.themeConfig.keyPage
-    if (!keyPage) {
-      this.isHasKey =  true
-    }
-    
-    const {keys} = keyPage
-    this.isHasKey = keys.indexOf(sessionStorage.getItem('key')) > -1
-
-
     window.addEventListener("scroll", this.onScroll);
 
     // configure progress bar
@@ -137,6 +128,14 @@ export default {
     });
 
     this.$on("sw-updated", this.onSWUpdated);
+
+    const keyPage = this.$site.themeConfig.keyPage
+    if (!keyPage) {
+      this.isHasKey =  true
+    }
+    
+    const {keys} = keyPage
+    this.isHasKey = keys.indexOf(sessionStorage.getItem('key')) > -1
   },
 
   methods: {
