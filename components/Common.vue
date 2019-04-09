@@ -109,8 +109,8 @@ export default {
       this.isHasKey =  true
     }
     
-    const keys = keyPage.keys
-    this.isHasKey = keys && keys.indexOf(sessionStorage.getItem('key')) > -1
+    const {keys} = keyPage
+    this.isHasKey = keys.indexOf(sessionStorage.getItem('key')) > -1
   },
 
   methods: {
