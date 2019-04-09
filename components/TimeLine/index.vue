@@ -2,10 +2,10 @@
 <div>
   <ul class="timeline-wrapper">
     <li class="desc">Yesterday Once More!</li>
-    <li v-for="(item, index) in formatPagesArr">
+    <li v-for="(item, index) in formatPagesArr" :key="index">
       <h3 class="year">{{item.year}}</h3>
       <ul class="year-wrapper">
-        <li v-for="(subItem, subIndex) in item.data">
+        <li v-for="(subItem, subIndex) in item.data" :key="subIndex">
           <span class="date">{{dateFormat(new Date(subItem.frontmatter.date))}}</span>
           <span class="title" @click="go(subItem.path)">{{subItem.title}}</span>
         </li>
