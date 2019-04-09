@@ -40,8 +40,8 @@ export default {
   },
 
    created () {
-    if (this.$tags) {
-      const currentTag = this.$route.query.tag ? this.$route.query.tag : this.$tags.list.length > 0 ? this.$tags.list[0].name : ''
+    if (this.$tags.list.length > 0) {
+      const currentTag = this.$route.query.tag ? this.$route.query.tag : this.$tags.list[0].name
       let tags = this.$tags.list
       tags.map(item => {
         const color = this._tagColor()
@@ -61,7 +61,6 @@ export default {
 
       this.currentTag = currentTag
 
-      this.$emit('tagChange')
       let posts = this.$tags.map[currentTag].posts
       posts.sort((a, b) => {
         return this._getTimeNum(b) - this._getTimeNum(a)
