@@ -2,10 +2,10 @@
 <div>
   <ul class="timeline-wrapper">
     <li class="desc">Yesterday Once More!</li>
-    <li v-for="(item, index) in formatPagesArr">
+    <li v-for="(item, index) in formatPagesArr" :key="index">
       <h3 class="year">{{item.year}}</h3>
       <ul class="year-wrapper">
-        <li v-for="(subItem, subIndex) in item.data">
+        <li v-for="(subItem, subIndex) in item.data" :key="subIndex">
           <span class="date">{{dateFormat(new Date(subItem.frontmatter.date))}}</span>
           <span class="title" @click="go(subItem.path)">{{subItem.title}}</span>
         </li>
@@ -64,12 +64,13 @@ export default {
           this.formatPages[pageDateYear] = [page]
         }
       }
-
       
       for(let key in this.formatPages) {
         this.formatPagesArr.unshift({
           year: key,
-          data: this.formatPages[key].reverse()
+          data: this.formatPages[key].sort((a, b) => {
+            return this._getTimeNum(b) - this._getTimeNum(a)
+          })
         })
       }
     },
@@ -85,6 +86,10 @@ export default {
     // 跳转
     go (url) {
       this.$router.push({path: url})
+    },
+    // 获取时间的数字类型
+    _getTimeNum (date) {
+      return parseInt(new Date(date.frontmatter.date).getTime())
     }
   }
 }
