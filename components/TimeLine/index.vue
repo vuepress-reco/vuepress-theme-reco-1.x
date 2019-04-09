@@ -64,12 +64,13 @@ export default {
           this.formatPages[pageDateYear] = [page]
         }
       }
-
       
       for(let key in this.formatPages) {
         this.formatPagesArr.unshift({
           year: key,
-          data: this.formatPages[key].reverse()
+          data: this.formatPages[key].sort((a, b) => {
+            return this._getTimeNum(b) - this._getTimeNum(a)
+          })
         })
       }
     },
@@ -85,6 +86,10 @@ export default {
     // 跳转
     go (url) {
       this.$router.push({path: url})
+    },
+    // 获取时间的数字类型
+    _getTimeNum (date) {
+      return parseInt(new Date(date.frontmatter.date).getTime())
     }
   }
 }

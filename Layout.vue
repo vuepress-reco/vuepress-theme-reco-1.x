@@ -132,10 +132,11 @@ export default {
     const keyPage = this.$site.themeConfig.keyPage
     if (!keyPage) {
       this.isHasKey =  true
+      return
     }
-    
-    const {keys} = keyPage
-    this.isHasKey = keys.indexOf(sessionStorage.getItem('key')) > -1
+
+    const keys = keyPagekeys
+    this.isHasKey = keys && keys.indexOf(sessionStorage.getItem('key')) > -1
   },
 
   methods: {
