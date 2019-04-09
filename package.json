@@ -1,6 +1,6 @@
 {
   "name": "vuepress-theme-reco",
-  "version": "1.0.0-alpha.5",
+  "version": "1.0.0-alpha.6",
   "description": "this is a vuepress theme",
   "main": "index.js",
   "scripts": {
