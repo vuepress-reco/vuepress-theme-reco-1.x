@@ -41,7 +41,7 @@ export default {
 
    created () {
     if (this.$tags) {
-      const currentTag = this.$route.query.tag ? this.$route.query.tag : this.$tags.list[0].name
+      const currentTag = this.$route.query.tag ? this.$route.query.tag : this.$tags.list.length > 0 ? this.$tags.list[0].name : ''
       let tags = this.$tags.list
       tags.map(item => {
         const color = this._tagColor()
