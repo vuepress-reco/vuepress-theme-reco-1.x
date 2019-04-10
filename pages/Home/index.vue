@@ -24,7 +24,7 @@
     <div class="footer">
       <span>
         <i class="iconfont reco-theme"></i>
-        <a target="blank" href="https://www.npmjs.com/package/vuepress-theme-reco">vuePress-theme-reco</a>
+        <a target="blank" href="https://recoluan.gitlab.io/vuepress-theme-reco-doc/">vuePress-theme-reco</a>
       </span>
       <span>
         <i class="iconfont reco-other"></i>
