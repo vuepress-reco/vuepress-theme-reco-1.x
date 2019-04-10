@@ -26,6 +26,7 @@
       </Sidebar>
       <slot></slot>
       <Valine :isComment="isComment"></Valine>
+      <BackToTop></BackToTop>
     </div>
   </div>
 </template>
@@ -36,9 +37,10 @@ import Sidebar from '@theme/components/Sidebar.vue'
 import { resolveSidebarItems } from '../util'
 import Password from '@theme/components/Password'
 import Valine from '@theme/components/Valine/'
+import BackToTop from "@theme/components/BackToTop"
 
 export default {
-  components: { Sidebar, Navbar, Password, Valine },
+  components: { Sidebar, Navbar, Password, Valine, BackToTop },
 
   props: ['sidebar', 'isComment'],
 

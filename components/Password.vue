@@ -36,7 +36,7 @@ import Background from '@theme/components/Background'
 
 export default {
   components: {Background},
-  name: 'BackToTop',
+  name: 'Password',
   data() {
     return {
       warningText: 'Konck! Knock!',
