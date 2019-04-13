@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="page" :class="recoShow?'reco-show': 'reco-hide'">
     <slot name="top"/>
     <div class="page-title" v-if="!(isCategories || isTags || isTimeLine)">
       <h1>{{$page.title}}</h1>
@@ -72,7 +72,8 @@ export default {
   data () {
     return {
       currentTag: '',
-      currentPage: 1
+      currentPage: 1,
+      recoShow: false
     }
   },
   props: ['sidebarItems'],
@@ -155,6 +156,9 @@ export default {
       )
     },
   },
+  mounted () {
+    this.recoShow = true
+  },
   beforeUpdate () {
     this.$page.currentPage = 1
   },
@@ -225,14 +229,16 @@ function find (page, items, offset) {
 
 <style lang="stylus" scoped>
 @import '../../styles/config.styl'
-@require '../../styles/wrapper.styl'
+@import '../../styles/wrapper.styl'
+@import '../../styles/loadMixin.styl';
 
 .page
+  padding-top 6rem
   padding-bottom 2rem
 
 .page-title
   max-width: 740px;
-  margin: 6rem auto 0;
+  margin: 0 auto;
 
 .page-edit
   @extend $wrapper
@@ -266,6 +272,13 @@ function find (page, items, offset) {
     overflow auto // clear float
   .next
     float right
+
+.reco-hide.page {
+  load-start()
+}
+.reco-show.page {
+  load-end(0.08s)
+}
 
 @media (max-width: $MQMobile)
   .page-edit

@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" :class="recoShow?'reco-show': 'reco-hide'">
     <div class="hero">
       <img v-if="data.heroImage" :style="heroImageStyle" :src="$withBase(data.heroImage)" alt="hero">
 
@@ -19,12 +19,12 @@
       </div>
     </div>
 
-    <Content custom/>
+    <Content class="home-center" custom/>
 
     <div class="footer">
       <span>
         <i class="iconfont reco-theme"></i>
-        <a target="blank" href="https://recoluan.gitlab.io/vuepress-theme-reco-doc/">vuePress-theme-reco</a>
+        <a target="blank" href="https://recoluan.gitlab.io/vuepress-theme-reco-doc/">VuePress-theme-reco</a>
       </span>
       <span>
         <i class="iconfont reco-other"></i>
@@ -47,6 +47,11 @@ import AccessNumber from '../../components/Valine/AccessNumber'
 
 export default {
   components: { NavLink, AccessNumber },
+  data () {
+    return {
+      recoShow: false
+    }
+  },
   computed: {
     year () {
       return new Date().getFullYear()
@@ -68,12 +73,16 @@ export default {
         margin: '6rem auto 1.5rem'
       }
     }
+  },
+  mounted () {
+    this.recoShow = true
   }
 };
 </script>
 
 <style lang="stylus">
 @import '../../styles/config.styl';
+@import '../../styles/loadMixin.styl';
 
 .home {
   padding: $navbarHeight 2rem 0;
@@ -83,6 +92,9 @@ export default {
   .hero {
     text-align: center;
 
+    img {
+      background-color: $accentColor;
+    }
     h1 {
       font-size: 2.5rem;
     }
@@ -95,7 +107,7 @@ export default {
       max-width: 35rem;
       font-size: 1.6rem;
       line-height: 1.3;
-      color: lighten($textColor, 40%);
+      color: lighten($textColor, 20%);
     }
 
     .action-button {
@@ -107,6 +119,7 @@ export default {
       border-radius: 4px;
       transition: background-color 0.1s ease;
       box-sizing: border-box;
+      load-start()
 
       &:hover {
         background-color: lighten($accentColor, 10%);
@@ -139,7 +152,7 @@ export default {
     }
 
     p {
-      color: lighten($textColor, 25%);
+      color: lighten($textColor, 20%);
     }
 
     &:hover {
@@ -152,11 +165,64 @@ export default {
     border-top: 1px solid $borderColor;
     text-align: center;
     color: lighten($textColor, 25%);
+    load-start()
     > span {
       margin-left 1rem
       > i {
         margin-right .5rem
       } 
+    }
+  }
+
+  &.reco-hide {
+    .hero {
+      img {
+        load-start()
+      }
+      .h1 {
+        load-start()
+      }
+      .description {
+        load-start()
+      }
+      .action-button {
+        load-start()
+      }
+    }
+    .features {
+      load-start()
+    }
+    .home-center {
+      load-start()
+    }
+    .footer {
+      load-start()
+    }
+  }
+
+  &.reco-show {
+    .hero {
+      img {
+        load-end(0.08s)
+      }
+      .h1 {
+        load-end(0.16s)
+      }
+      .description {
+        load-end(0.24s)
+      }
+      .action-button {
+        load-end(0.32s)
+      }
+    }
+    .features {
+      load-end(0.40s)
+    }
+    .home-center {
+      load-end(0.48s)
+    }
+    .footer {
+      load-end(0.56s)
     }
   }
 }
