@@ -1,6 +1,6 @@
 <template>
-  <div class="valine-wrapper">
-    <div id="valine" v-show="isShowComment"></div>
+  <div class="valine-wrapper" v-show="isShowComment">
+    <div id="valine"></div>
   </div>
 </template>
 

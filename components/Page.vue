@@ -1,5 +1,5 @@
 <template>
-  <main class="page">
+  <main class="page" :class="recoShow?'reco-show': 'reco-hide'">
     <slot name="top"/>
 
     <div class="page-title" v-if="!(isTimeLine)">
@@ -79,6 +79,12 @@ export default {
 
   props: ['sidebarItems'],
 
+  data () {
+    return {
+      recoShow: false
+    }
+  },
+
   computed: {
     isTimeLine () {
       return this.$page.frontmatter.isTimeLine
@@ -145,6 +151,10 @@ export default {
     }
   },
 
+  mounted () {
+    this.recoShow = true
+  },
+
   methods: {
     createEditLink (repo, docsRepo, docsDir, docsBranch, path) {
       const bitbucket = /bitbucket.org/
@@ -209,13 +219,15 @@ function flatten (items, res) {
 
 <style lang="stylus">
 @require '../styles/wrapper.styl'
+@require '../../styles/loadMixin.styl'
 
 .page
+  padding-top 6rem
   padding-bottom 2rem
   display block
   .page-title
     max-width: 740px;
-    margin: 6rem auto 0;
+    margin: 0 auto;
     padding: 0rem 2.5rem;
 
 .page-edit
@@ -250,6 +262,13 @@ function flatten (items, res) {
     overflow auto // clear float
   .next
     float right
+
+.reco-hide.page {
+  load-start()
+}
+.reco-show.page {
+  load-end(0.08s)
+}    
 
 @media (max-width: $MQMobile)
   .page-title

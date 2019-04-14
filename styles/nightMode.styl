@@ -1,0 +1,88 @@
+$bc = #000
+$fc = #9e9e9e
+$bdc = #9e9e9e
+$fcActive = #fff
+
+
+bc() {
+  background-color: $bc!important
+}
+fc() {
+  color: $fc!important
+}
+bdc() {
+  border-color: $bdc!important
+}
+fc-active() {
+  color: $fcActive!important
+}
+
+.night-mode
+  bc()
+  fc()
+  bdc()
+  h1, h2, h3, h4, h5, h6, a, hr
+    bdc()
+    fc()
+  input
+    bc()
+    fc()
+    bdc()
+  .navbar
+    bc()
+    box-shadow: 0 2px 20px 0 rgba(255,255,255,0.4);
+    // border-bottom: 1px solid $bdc
+    .site-name, .links
+      bc()
+      fc()
+  .nav-links a:hover, 
+  .nav-links a.router-link-active,
+  .nav-links a:hover .iconfont, 
+  .nav-links a.router-link-active .iconfont
+    fc-active()
+  @media (min-width: 765px)
+    .nav-item > a:not(.external):hover, 
+    .nav-item > a:not(.external).router-link-active
+      border-bottom: 2px solid $fcActive;
+    .dropdown-wrapper .nav-dropdown
+      bc()
+      box-shadow: 0 2px 20px 0 rgba(255,255,255,0.4);
+  .home 
+    .hero 
+      .description
+        fc()
+    .features
+      bdc()    
+      .feature
+        h2, p
+          fc()
+    .footer 
+      bdc()
+      a 
+        fc()   
+  .abstract-wrapper .abstract-item
+    background-color: lighten($bc, 20%)
+  .custom-block.tip, .custom-block.warning, .custom-block.danger
+    background-color: lighten($bc, 15%)
+  .pagation .pagation-list
+    bc()
+  .sidebar
+    bc()
+    bdc()  
+  .valine-wrapper
+    bc()
+
+    .v .vbtn, .v .vwrap
+      bc()
+      bdc()
+    .v .vlist .vcard 
+      .vhead .vsys, .vh
+        bdc()
+        bc()
+  .timeline-wrapper
+    &::after
+      background: $fc   
+    .year-wrapper li
+      bdc()
+  .back-to-ceiling i
+    fc() 

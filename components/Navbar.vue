@@ -21,6 +21,7 @@
       :style="linksWrapMaxWidth ? {
         'max-width': linksWrapMaxWidth + 'px'
       } : {}">
+      <Theme />
       <AlgoliaSearchBox
         v-if="isAlgoliaSearch"
         :options="algolia"/>
@@ -35,9 +36,10 @@ import AlgoliaSearchBox from '@AlgoliaSearchBox'
 import SearchBox from '@SearchBox'
 import SidebarButton from '@theme/components/SidebarButton.vue'
 import NavLinks from '@theme/components/NavLinks.vue'
+import Theme from '@theme/components/Theme'
 
 export default {
-  components: { SidebarButton, NavLinks, SearchBox, AlgoliaSearchBox },
+  components: { SidebarButton, NavLinks, SearchBox, AlgoliaSearchBox, Theme },
 
   data () {
     return {
