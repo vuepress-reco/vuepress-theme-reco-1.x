@@ -1,0 +1,55 @@
+color-mode(accountColor , colorName)
+  .reco-theme-{colorName}
+    input
+      color accountColor!important; 
+    .search-box input
+      border-color: accountColor!important; 
+      &:focus
+        border-color: accountColor!important; 
+    .navbar
+      box-shadow: 0 1px 6px 0 rgba(32,33,36,.28)
+      .nav-links a:hover, 
+      .nav-links a.router-link-active,
+      .nav-links a:hover .iconfont, 
+      .nav-links a.router-link-active .iconfont
+        color accountColor!important; 
+    .home 
+      .hero 
+        .description
+          color accountColor!important; 
+        .action-button, img
+          background-color accountColor!important; 
+          color: #fff!important
+      .features  
+        .feature
+          h2, p
+            color accountColor!important; 
+      .footer 
+        a 
+          color accountColor!important;    
+    .abstract-wrapper .abstract-item .title 
+      a
+        color accountColor!important; 
+      a:after
+        background-color accountColor!important; 
+    .back-to-ceiling i
+      color accountColor!important;  
+    .dropdown-wrapper .nav-dropdown .dropdown-item a.router-link-active::after
+      border-left: 5px solid accountColor!important; 
+    .tags 
+      .tag-item.active, .tag-item:hover
+        color accountColor!important;   
+    .timeline-wrapper .year-wrapper li:hover 
+      .title
+        color accountColor!important; 
+      .date::before
+        background: accountColor!important; 
+      .date
+        color accountColor!important;    
+    @media (min-width: 765px)
+      .nav-item > a:not(.external):hover, 
+      .nav-item > a:not(.external).router-link-active
+        border-color: accountColor!important; 
+    @media (max-width: 959px)
+      .search-box input
+        border-color: transparent!important; 

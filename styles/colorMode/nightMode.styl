@@ -17,7 +17,7 @@ fc-active() {
   color: $fcActive!important
 }
 
-.night-mode
+.reco-theme-night
   bc()
   fc()
   bdc()
@@ -27,11 +27,14 @@ fc-active() {
   input
     bc()
     fc()
+  .search-box input
     bdc()
+    &:focus
+      bdc()
   .navbar
     bc()
     box-shadow: 0 2px 20px 0 rgba(255,255,255,0.4);
-    // border-bottom: 1px solid $bdc
+    border-bottom: 1px solid $bdc
     .site-name, .links
       bc()
       fc()
@@ -40,13 +43,23 @@ fc-active() {
   .nav-links a:hover .iconfont, 
   .nav-links a.router-link-active .iconfont
     fc-active()
+  .tags .tag-item:hover 
+    fc-active()  
   @media (min-width: 765px)
     .nav-item > a:not(.external):hover, 
     .nav-item > a:not(.external).router-link-active
-      border-bottom: 2px solid $fcActive;
+      border-color: $fcActive;
     .dropdown-wrapper .nav-dropdown
       bc()
       box-shadow: 0 2px 20px 0 rgba(255,255,255,0.4);
+      border: 1px solid $bdc
+  @media (min-width: 719px)
+    .nav-item > a:not(.external):hover,
+    .nav-item > a:not(.external).router-link-active
+      border-bottom: 2px solid $fcActive!important;
+  @media (max-width: 959px)
+    .search-box input
+      border-color: transparent!important;
   .home 
     .hero 
       .description
@@ -84,5 +97,18 @@ fc-active() {
       background: $fc   
     .year-wrapper li
       bdc()
-  .back-to-ceiling i
-    fc() 
+  .back-to-ceiling
+    background-color: lighten($bc, 15%)!important
+    i
+      fc()
+  .color-picker .color-button .iconfont
+    fc()  
+  .dropdown-wrapper .nav-dropdown .dropdown-item a.router-link-active::after
+    border-left: 5px solid $fcActive
+  .timeline-wrapper .year-wrapper li:hover 
+    .title
+      fc()
+    .date::before
+      background: $fcActive
+    .date
+      fc()    

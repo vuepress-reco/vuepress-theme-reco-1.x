@@ -174,55 +174,54 @@ export default {
 }
 
 &.reco-hide {
-    .hero {
-      img {
-        load-start()
-      }
-      .h1 {
-        load-start()
-      }
-      .description {
-        load-start()
-      }
-      .action-button {
-        load-start()
-      }
-    }
-    .features {
+  .hero {
+    img {
       load-start()
     }
-    .home-center {
+    .h1 {
       load-start()
     }
-    .footer {
+    .description {
+      load-start()
+    }
+    .action-button {
       load-start()
     }
   }
+  .features {
+    load-start()
+  }
+  .home-center {
+    load-start()
+  }
+  .footer {
+    load-start()
+  }
+}
 
-  &.reco-show {
-    .hero {
-      img {
-        load-end(0.08s)
-      }
-      .h1 {
-        load-end(0.16s)
-      }
-      .description {
-        load-end(0.24s)
-      }
-      .action-button {
-        load-end(0.32s)
-      }
+&.reco-show {
+  .hero {
+    img {
+      load-end(0.08s)
     }
-    .features {
-      load-end(0.40s)
+    .h1 {
+      load-end(0.16s)
     }
-    .home-center {
-      load-end(0.48s)
+    .description {
+      load-end(0.24s)
     }
-    .footer {
-      load-end(0.56s)
+    .action-button {
+      load-end(0.32s)
     }
+  }
+  .features {
+    load-end(0.40s)
+  }
+  .home-center {
+    load-end(0.48s)
+  }
+  .footer {
+    load-end(0.56s)
   }
 }
 

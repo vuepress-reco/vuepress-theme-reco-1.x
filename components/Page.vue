@@ -219,7 +219,7 @@ function flatten (items, res) {
 
 <style lang="stylus">
 @require '../styles/wrapper.styl'
-@require '../../styles/loadMixin.styl'
+@require '../styles/loadMixin.styl'
 
 .page
   padding-top 6rem
