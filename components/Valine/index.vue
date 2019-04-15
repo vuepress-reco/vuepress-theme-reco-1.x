@@ -1,5 +1,9 @@
 <template>
+<<<<<<< HEAD
   <div class="valine-wrapper" v-show="isComment">
+=======
+  <div class="valine-wrapper" v-show="isShowComment">
+>>>>>>> 24c38eb010e47bfb4c4532c15a8d35e38c27adfd
     <div id="valine"></div>
   </div>
 </template>
@@ -8,12 +12,21 @@
 
 
 export default {
+<<<<<<< HEAD
   props: ['valineRefresh'],
   computed: {
     // 是否显示评论
     isComment () {
       const frontmatter = this.$page.frontmatter
       return frontmatter.isComment == false || frontmatter.home == true ? false : true
+=======
+  props: ['isComment'],
+  computed: {
+    // 是否显示评论
+    isShowComment () {
+      const frontmatter = this.$page.frontmatter
+      return this.isComment == false || frontmatter.isComment == false || frontmatter.home == true ? false : true
+>>>>>>> 24c38eb010e47bfb4c4532c15a8d35e38c27adfd
     }
   }, 
   mounted: function(){
@@ -28,7 +41,10 @@ export default {
         if (typeof window !== 'undefined') {
           this.window = window
           window.AV = AV
+<<<<<<< HEAD
           
+=======
+>>>>>>> 24c38eb010e47bfb4c4532c15a8d35e38c27adfd
         }
         
         new Valine({
@@ -41,7 +57,10 @@ export default {
           path: window.location.pathname,
           placeholder: 'just go go' 
         });
+<<<<<<< HEAD
         this.valineRefresh = false
+=======
+>>>>>>> 24c38eb010e47bfb4c4532c15a8d35e38c27adfd
       }
     }
   },
@@ -55,6 +74,7 @@ export default {
         }, 300)
         
       }
+<<<<<<< HEAD
     },
     'valineRefresh' (val) {
       if (val) {
@@ -62,12 +82,15 @@ export default {
           this.createValine()
         }, 300)
       }
+=======
+>>>>>>> 24c38eb010e47bfb4c4532c15a8d35e38c27adfd
     }
   },
 };
 </script>
 
 <style lang="stylus" scoped>
+<<<<<<< HEAD
 @import '../../styles/config.styl'
 
 .valine-wrapper
@@ -78,4 +101,27 @@ export default {
 @media (max-width: $MQMobile)
   .valine-wrapper
     padding 1rem
+=======
+
+.theme-container.no-sidebar
+  .valine-wrapper
+    padding-left 0
+
+.valine-wrapper
+  background-color $bgColor
+  padding-left: 20rem;
+  #valine
+    padding 2rem
+    max-width: 740px;
+    margin: 0 auto;
+@media (max-width: $MQNarrow)
+  .theme-container.no-sidebar
+    .valine-wrapper
+      padding-left 0
+  .valine-wrapper
+    padding-left: 16.4rem;
+@media (max-width: $MQMobile)
+  .valine-wrapper
+    padding-left: 0;    
+>>>>>>> 24c38eb010e47bfb4c4532c15a8d35e38c27adfd
 </style>

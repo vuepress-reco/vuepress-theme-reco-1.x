@@ -1,0 +1,114 @@
+$bc = #000
+$fc = #9e9e9e
+$bdc = #9e9e9e
+$fcActive = #fff
+
+
+bc() {
+  background-color: $bc!important
+}
+fc() {
+  color: $fc!important
+}
+bdc() {
+  border-color: $bdc!important
+}
+fc-active() {
+  color: $fcActive!important
+}
+
+.reco-theme-night
+  bc()
+  fc()
+  bdc()
+  h1, h2, h3, h4, h5, h6, a, hr
+    bdc()
+    fc()
+  input
+    bc()
+    fc()
+  .search-box input
+    bdc()
+    &:focus
+      bdc()
+  .navbar
+    bc()
+    box-shadow: 0 2px 20px 0 rgba(255,255,255,0.4);
+    border-bottom: 1px solid $bdc
+    .site-name, .links
+      bc()
+      fc()
+  .nav-links a:hover, 
+  .nav-links a.router-link-active,
+  .nav-links a:hover .iconfont, 
+  .nav-links a.router-link-active .iconfont
+    fc-active()
+  .tags .tag-item:hover 
+    fc-active()  
+  @media (min-width: 765px)
+    .nav-item > a:not(.external):hover, 
+    .nav-item > a:not(.external).router-link-active
+      border-color: $fcActive;
+    .dropdown-wrapper .nav-dropdown
+      bc()
+      box-shadow: 0 2px 20px 0 rgba(255,255,255,0.4);
+      border: 1px solid $bdc
+  @media (min-width: 719px)
+    .nav-item > a:not(.external):hover,
+    .nav-item > a:not(.external).router-link-active
+      border-bottom: 2px solid $fcActive!important;
+  @media (max-width: 959px)
+    .search-box input
+      border-color: transparent!important;
+  .home 
+    .hero 
+      .description
+        fc()
+    .features
+      bdc()    
+      .feature
+        h2, p
+          fc()
+    .footer 
+      bdc()
+      a 
+        fc()   
+  .abstract-wrapper .abstract-item
+    background-color: lighten($bc, 20%)
+  .custom-block.tip, .custom-block.warning, .custom-block.danger
+    background-color: lighten($bc, 15%)
+  .pagation .pagation-list
+    bc()
+  .sidebar
+    bc()
+    bdc()  
+  .valine-wrapper
+    bc()
+
+    .v .vbtn, .v .vwrap
+      bc()
+      bdc()
+    .v .vlist .vcard 
+      .vhead .vsys, .vh
+        bdc()
+        bc()
+  .timeline-wrapper
+    &::after
+      background: $fc   
+    .year-wrapper li
+      bdc()
+  .back-to-ceiling
+    background-color: lighten($bc, 15%)!important
+    i
+      fc()
+  .color-picker .color-button .iconfont
+    fc()  
+  .dropdown-wrapper .nav-dropdown .dropdown-item a.router-link-active::after
+    border-left: 5px solid $fcActive
+  .timeline-wrapper .year-wrapper li:hover 
+    .title
+      fc()
+    .date::before
+      background: $fcActive
+    .date
+      fc()    

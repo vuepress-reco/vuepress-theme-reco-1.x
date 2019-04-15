@@ -12,7 +12,12 @@
     :href="link"
     class="nav-link external"
     :target="isMailto(link) || isTel(link) ? null : '_blank'"
+<<<<<<< HEAD:components/NavLink/index.vue
     :rel="isMailto(link) || isTel(link) ? null : 'noopener noreferrer'">
+=======
+    :rel="isMailto(link) || isTel(link) ? null : 'noopener noreferrer'"
+  >
+>>>>>>> 24c38eb010e47bfb4c4532c15a8d35e38c27adfd:components/NavLink.vue
     <i :class="`iconfont ${item.icon}`"></i>
     {{ item.text }}
     <!-- <OutboundLink/> -->
@@ -20,7 +25,7 @@
 </template>
 
 <script>
-import { isExternal, isMailto, isTel, ensureExt } from '../../util/'
+import { isExternal, isMailto, isTel, ensureExt } from '../util'
 
 export default {
   props: {

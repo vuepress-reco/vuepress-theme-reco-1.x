@@ -29,9 +29,15 @@
 </template>
 
 <script>
+<<<<<<< HEAD:components/NavLinks/index.vue
 import DropdownLink from './components/DropdownLink/'
 import { resolveNavLinkItem } from '../../util/'
 import NavLink from '../NavLink/'
+=======
+import DropdownLink from '@theme/components/DropdownLink.vue'
+import { resolveNavLinkItem } from '../util'
+import NavLink from '@theme/components/NavLink.vue'
+>>>>>>> 24c38eb010e47bfb4c4532c15a8d35e38c27adfd:components/NavLinks.vue
 
 export default {
   components: { NavLink, DropdownLink },
@@ -69,6 +75,40 @@ export default {
         }
         return [...this.userNav, languageDropdown]
       }
+
+      // blogConfig 的处理，根绝配置自动添加分类和标签
+      const blogConfig = this.$themeConfig.blogConfig || {},
+            isHasCategory = this.userNav.some(item => {
+              return item.text === 'Category'
+            }),
+            isHasTag = this.userNav.some(item => {
+              return item.text === 'Tag'
+            })      
+
+      if (!isHasCategory && blogConfig.hasOwnProperty('category')) {
+        const category = blogConfig.category
+        const $categories = this.$categories
+        this.userNav.splice( parseInt(category.location || 2) - 1, 0, {
+          items: $categories.list.map(item => {
+            item.link = item.path
+            item.text = item.name
+            return item
+          }),
+          text: category.text || '分类',
+          type: "links",
+          icon: "reco-category"
+        })
+      }
+      if (!isHasTag && blogConfig.hasOwnProperty('tag')) {
+        const tag = blogConfig.tag
+        this.userNav.splice(parseInt(tag.location || 3) - 1, 0, {
+          link: '/tag/',
+          text: tag.text || '标签',
+          type: "links",
+          icon: "reco-tag"
+        })
+      }
+      
       return this.userNav
     },
 
@@ -111,8 +151,6 @@ export default {
 </script>
 
 <style lang="stylus">
-@import '../../styles/config.styl'
-
 .nav-links
   display inline-block
   a
@@ -121,7 +159,11 @@ export default {
     &:hover, &.router-link-active
       color $accentColor
       .iconfont
+<<<<<<< HEAD:components/NavLinks/index.vue
         color $accentColor!important
+=======
+        color $accentColor
+>>>>>>> 24c38eb010e47bfb4c4532c15a8d35e38c27adfd:components/NavLinks.vue
   .nav-item
     position relative
     display inline-block

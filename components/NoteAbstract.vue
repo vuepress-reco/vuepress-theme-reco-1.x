@@ -10,13 +10,21 @@
       </div>
       <div class="abstract" v-html="item.excerpt"></div>
       <hr>
+<<<<<<< HEAD:components/NoteAbstract/index.vue
       <PageInfo :pageInfo="item" :currentTag="currentTag" @currentTag="getCurrentTag"></PageInfo>
+=======
+      <PageInfo :pageInfo="item" :currentTag="currentTag"></PageInfo>
+>>>>>>> 24c38eb010e47bfb4c4532c15a8d35e38c27adfd:components/NoteAbstract.vue
     </div>
   </div>
 </template>
 
 <script>
+<<<<<<< HEAD:components/NoteAbstract/index.vue
 import PageInfo from '../PageInfo/'
+=======
+import PageInfo from './PageInfo'
+>>>>>>> 24c38eb010e47bfb4c4532c15a8d35e38c27adfd:components/NoteAbstract.vue
 
 export default {
   components: { PageInfo },
@@ -26,18 +34,24 @@ export default {
       const data = this.data
       const currentPage = this.currentPage
       return data.slice(currentPage * 10 - 10, currentPage * 10)
+<<<<<<< HEAD:components/NoteAbstract/index.vue
     }
   },
   methods: {
     getCurrentTag (tag) {
       this.$emit('currentTag', tag)
+=======
+>>>>>>> 24c38eb010e47bfb4c4532c15a8d35e38c27adfd:components/NoteAbstract.vue
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
+<<<<<<< HEAD:components/NoteAbstract/index.vue
 @import '../../styles/config.styl'
+=======
+>>>>>>> 24c38eb010e47bfb4c4532c15a8d35e38c27adfd:components/NoteAbstract.vue
 
 .abstract-wrapper
   width 100%

@@ -107,7 +107,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+<<<<<<< HEAD:components/Pagation/index.vue
 @import '../../styles/config.styl'
+=======
+>>>>>>> 24c38eb010e47bfb4c4532c15a8d35e38c27adfd:components/Pagation.vue
 
 .pagation
   font-weight: 700; 
