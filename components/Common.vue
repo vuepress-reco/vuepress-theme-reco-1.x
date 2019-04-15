@@ -120,7 +120,7 @@ export default {
     }
 
     const keys = keyPage.keys
-    return keys && keys.indexOf(sessionStorage.getItem('key')) > -1
+    this.isHasKey = keys && keys.indexOf(sessionStorage.getItem('key')) > -1
   },
 
   methods: {
