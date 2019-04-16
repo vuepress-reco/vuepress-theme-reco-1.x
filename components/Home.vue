@@ -193,6 +193,7 @@ export default {
   }
   .home-center {
     load-start()
+    padding 0
   }
   .footer {
     load-start()
