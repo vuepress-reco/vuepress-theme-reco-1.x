@@ -74,11 +74,19 @@ export default {
       // blogConfig 的处理，根绝配置自动添加分类和标签
       const blogConfig = this.$themeConfig.blogConfig || {},
             isHasCategory = this.userNav.some(item => {
-              return item.text === ('分类' || blogConfig.category.text)
+              if (blogConfig.category) {
+                return item.text === (blogConfig.category.text || '分类')
+              } else {
+                return true
+              }
             }),
             isHasTag = this.userNav.some(item => {
-              return item.text === ('标签' || blogConfig.tag.text)
-            }) 
+              if (blogConfig.tag) {
+                return item.text === (blogConfig.tag.text || '标签')
+              } else {
+                return true
+              }
+            })
 
       if (!isHasCategory && blogConfig.hasOwnProperty('category')) {
         const category = blogConfig.category
