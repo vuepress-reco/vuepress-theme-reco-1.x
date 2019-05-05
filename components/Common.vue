@@ -141,7 +141,7 @@ export default {
         return
       }
 
-      this.isHasPageKey = pageKeys && pageKeys.indexOf(Number(sessionStorage.getItem('pageKey'))) > -1
+      this.isHasPageKey = pageKeys && pageKeys.indexOf(sessionStorage.getItem('pageKey')) > -1
       console.log(123, this.isHasPageKey, pageKeys)
     },
     toggleSidebar (to) {
