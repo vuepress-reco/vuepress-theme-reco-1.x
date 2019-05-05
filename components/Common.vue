@@ -23,9 +23,14 @@
         <slot
           name="sidebar-bottom"
           slot="bottom"/>
-      </Sidebar>
-      <slot></slot>
-      <Valine :isComment="isComment"></Valine>
+      </Sidebar>  
+
+      <Password v-if="!isHasPageKey" :isPage="true"></Password>
+      <div v-else>
+        <slot></slot>
+        <Valine :isComment="isComment"></Valine>
+      </div>
+      
       <BackToTop></BackToTop>
     </div>
   </div>
@@ -48,6 +53,7 @@ export default {
     return {
       isSidebarOpen: false,
       isHasKey: true,
+      isHasPageKey: true,
       nightMode: false
     }
   },
@@ -113,17 +119,31 @@ export default {
       this.nightMode = true
     }
 
-    const keyPage = this.$site.themeConfig.keyPage
-    if (!keyPage) {
-      this.isHasKey =  true
-      return
-    }
-
-    const keys = keyPage.keys
-    this.isHasKey = keys && keys.indexOf(sessionStorage.getItem('key')) > -1
+    this.hasKey()
+    this.hasPageKey()
   },
 
   methods: {
+    hasKey () {
+      const keyPage = this.$site.themeConfig.keyPage
+      if (!keyPage) {
+        this.isHasKey =  true
+        return
+      }
+
+      const keys = keyPage.keys
+      this.isHasKey = keys && keys.indexOf(sessionStorage.getItem('key')) > -1
+    },
+    hasPageKey () {
+      const pageKeys = this.$frontmatter.keys
+      if (!pageKeys) {
+        this.isHasPageKey =  true
+        return
+      }
+
+      this.isHasPageKey = pageKeys && pageKeys.indexOf(Number(sessionStorage.getItem('pageKey'))) > -1
+      console.log(123, this.isHasPageKey, pageKeys)
+    },
     toggleSidebar (to) {
       this.isSidebarOpen = typeof to === 'boolean' ? to : !this.isSidebarOpen
     },

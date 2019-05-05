@@ -1,8 +1,8 @@
 <template>
   <div class="password-shadow">
     <Background></Background>
-    <h3 class="title">{{$site.title}}</h3>
-    <p class="description">{{$site.description}}</p>
+    <h3 class="title">{{isPage ? $frontmatter.title : $site.title}}</h3>
+    <p class="description" v-if="!isPage">{{$site.description}}</p>
     <label class="inputBox" id="box">
       <input
         v-model="key"
@@ -36,6 +36,12 @@ import Background from '@theme/components/Background'
 
 export default {
   components: {Background},
+  props: {
+    isPage: {
+      type: Boolean,
+      default: false
+    }
+  },
   name: 'Password',
   data() {
     return {
@@ -51,8 +57,10 @@ export default {
   methods: {
     inter () {
       const keyVal = this.key.trim()
-      sessionStorage.setItem('key', keyVal)
-      if (!this.isHasKey()) {
+      const key = this.isPage ? 'pageKey' : 'key'
+      sessionStorage.setItem(key, keyVal)
+      const isHasKey = this.isPage ? this.isHasPageKey() : this.isHasKey()
+      if (isHasKey) {
         this.warningText = 'Key Error'
         return
       } 
@@ -69,6 +77,11 @@ export default {
       const keyPage = this.$site.themeConfig.keyPage
       const keys = keyPage.keys
       return keys && keys.indexOf(sessionStorage.getItem('key')) > -1
+    },
+    isHasPageKey () {
+      const pageKeys = this.$frontmatter.keys
+
+      return pageKeys && pageKeys.indexOf(sessionStorage.getItem('pageKey')) > -1
     },
     inputFocus () {
       this.warningText = 'Input Your Key'
@@ -87,6 +100,7 @@ export default {
   height 100vh;
   background #fff
   position relative
+  padding-left: 20rem;
   .title {
     position: absolute;
     left 0
@@ -279,5 +293,13 @@ export default {
   }
 }
 
+// narrow desktop / iPad
+@media (max-width: $MQNarrow)
+  .password-shadow
+    padding-left $mobileSidebarWidth
 
+// wide mobile
+@media (max-width: $MQMobile)
+  .password-shadow
+    padding-left 0
 </style>

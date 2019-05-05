@@ -6,8 +6,8 @@
 export default {
   mounted() {
     const keyPage = this.$site.themeConfig.keyPage
-    let color = '#fb9b5f'
-    let lineColor = '#fb9b5f'
+    let color = '#424242'
+    let lineColor = '#424242'
     if (keyPage) {
       color = keyPage.color || color
       lineColor = keyPage.lineColor || lineColor
