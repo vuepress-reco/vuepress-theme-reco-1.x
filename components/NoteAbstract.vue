@@ -1,8 +1,9 @@
 <template>
   <div class="abstract-wrapper">
     <div
-      v-for="item in formatData"
+      v-for="(item, index) in data"
       :key="item.path"
+      v-show="index >= (currentPage * 10 - 10) && index < currentPage * 10"
       class="abstract-item">
       <div class="title">
         <router-link
@@ -20,14 +21,7 @@ import PageInfo from './PageInfo'
 
 export default {
   components: { PageInfo },
-  props: ['data', 'currentPage', 'currentTag'],
-  computed: {
-    formatData () {
-      const data = this.data
-      const currentPage = this.currentPage
-      return data.slice(currentPage * 10 - 10, currentPage * 10)
-    }
-  }
+  props: ['data', 'currentPage', 'currentTag']
 }
 </script>
 

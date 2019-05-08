@@ -22,8 +22,8 @@
 
 <script>
 import Common from '@theme/components/Common.vue'
-import NoteAbstract from '../components//NoteAbstract.vue'
-import Pagation from '../components//Pagation.vue'
+import NoteAbstract from '@theme/components/NoteAbstract.vue'
+import Pagation from '@theme/components/Pagation.vue'
 
 export default {
   components: { Common, NoteAbstract, Pagation },
@@ -42,6 +42,7 @@ export default {
       posts.sort((a, b) => {
         return this._getTimeNum(b) - this._getTimeNum(a)
       })
+      this.getCurrentPage(1)
       return posts
     },
     // 标题只显示分类名称
@@ -89,5 +90,3 @@ export default {
       float none
       text-align left
 </style>
-
-

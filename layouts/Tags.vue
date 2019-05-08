@@ -125,5 +125,3 @@ export default {
   .tags-wrapper
     padding: 5rem 0.6rem 0;
 </style>
-
-
