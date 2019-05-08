@@ -7,8 +7,8 @@
       class="home-link">
       <img
         class="logo"
-        v-if="$site.themeConfig.logo"
-        :src="$withBase($site.themeConfig.logo)"
+        v-if="$themeConfig.logo"
+        :src="$withBase($themeConfig.logo)"
         :alt="$siteTitle">
       <span
         ref="siteName"
@@ -25,7 +25,7 @@
       <AlgoliaSearchBox
         v-if="isAlgoliaSearch"
         :options="algolia"/>
-      <SearchBox v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false"/>
+      <SearchBox v-else-if="$themeConfig.search !== false && $page.frontmatter.search !== false"/>
       <NavLinks class="can-hide"/>
     </div>
   </header>
@@ -64,7 +64,7 @@ export default {
 
   computed: {
     algolia () {
-      return this.$themeLocaleConfig.algolia || this.$site.themeConfig.algolia || {}
+      return this.$themeLocaleConfig.algolia || this.$themeConfig.algolia || {}
     },
 
     isAlgoliaSearch () {

@@ -28,7 +28,7 @@
       </span>
       <!-- <span>
         <i class="iconfont reco-other"></i>
-        <a>{{ $site.themeConfig.author || $site.title }}</a>
+        <a>{{ $themeConfig.author || $site.title }}</a>
       </span> -->
       <span v-if="$themeConfig.record">
         <i class="iconfont reco-beian"></i>

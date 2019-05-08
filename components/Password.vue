@@ -21,7 +21,7 @@
       </span>
       <span>
         <i class="iconfont reco-other"></i>
-        <a>{{ $site.themeConfig.author || $site.title }}</a>
+        <a>{{ $themeConfig.author || $site.title }}</a>
       </span>
       <span>
         <i class="iconfont reco-copyright"></i>
@@ -74,7 +74,7 @@ export default {
       }, 800)
     },
     isHasKey () {
-      const keyPage = this.$site.themeConfig.keyPage
+      const keyPage = this.$themeConfig.keyPage
       const keys = keyPage.keys
       return keys && keys.indexOf(sessionStorage.getItem('key')) > -1
     },

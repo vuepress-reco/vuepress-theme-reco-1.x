@@ -2,8 +2,8 @@
   <div>
     <i
       class="iconfont reco-account"
-      v-if="pageInfo.frontmatter.author || $site.themeConfig.author || $site.title">
-      <span>{{ pageInfo.frontmatter.author || $site.themeConfig.author || $site.title }}</span>
+      v-if="pageInfo.frontmatter.author || $themeConfig.author || $site.title">
+      <span>{{ pageInfo.frontmatter.author || $themeConfig.author || $site.title }}</span>
     </i>
     <i class="iconfont reco-date" v-if="pageInfo.frontmatter.date"><span>{{ new Date(pageInfo.frontmatter.date).toLocaleDateString() }}</span></i>
     <AccessNumber :idVal="pageInfo.path" :numStyle="numStyle"></AccessNumber>

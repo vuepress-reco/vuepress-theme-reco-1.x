@@ -97,8 +97,8 @@ export default {
       if (typeof this.$themeLocaleConfig.lastUpdated === 'string') {
         return this.$themeLocaleConfig.lastUpdated
       }
-      if (typeof this.$site.themeConfig.lastUpdated === 'string') {
-        return this.$site.themeConfig.lastUpdated
+      if (typeof this.$themeConfig.lastUpdated === 'string') {
+        return this.$themeConfig.lastUpdated
       }
       return 'Last Updated'
     },
@@ -135,7 +135,7 @@ export default {
         docsDir = '',
         docsBranch = 'master',
         docsRepo = repo
-      } = this.$site.themeConfig
+      } = this.$themeConfig
 
       if (docsRepo && editLinks && this.$page.relativePath) {
         return this.createEditLink(repo, docsRepo, docsDir, docsBranch, this.$page.relativePath)
@@ -145,7 +145,7 @@ export default {
     editLinkText () {
       return (
         this.$themeLocaleConfig.editLinkText
-        || this.$site.themeConfig.editLinkText
+        || this.$themeConfig.editLinkText
         || `Edit this page`
       )
     }

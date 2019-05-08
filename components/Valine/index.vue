@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     createValine () {
-      const valineConfig = this.$site.themeConfig.valineConfig
+      const valineConfig = this.$themeConfig.valineConfig
       if (valineConfig) {
         const Valine = require('valine');
         const AV = require('leancloud-storage')
@@ -34,11 +34,13 @@ export default {
           el: '#valine' ,
           appId: valineConfig.appId,// your appId
           appKey: valineConfig.appKey, // your appKey
-          verify:false, 
-          visitor: true,
-          avatar:'retro', 
-          path: window.location.pathname,
-          placeholder: 'just go go' 
+          placeholder: valineConfig.placeholder || 'just go go',
+          notify: valineConfig.notify || false,
+          verify: valineConfig.verify || false,
+          avatar: valineConfig.avatar || 'retro',
+          visitor: valineConfig.visitor || true,
+          recordIP: valineConfig.recordIP || false,
+          path: window.location.pathname
         });
       }
     }

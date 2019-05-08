@@ -5,7 +5,7 @@
 <script>
 export default {
   mounted() {
-    const keyPage = this.$site.themeConfig.keyPage
+    const keyPage = this.$themeConfig.keyPage
     let color = '#424242'
     let lineColor = '#424242'
     if (keyPage) {

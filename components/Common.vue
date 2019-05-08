@@ -125,7 +125,7 @@ export default {
 
   methods: {
     hasKey () {
-      const keyPage = this.$site.themeConfig.keyPage
+      const keyPage = this.$themeConfig.keyPage
       if (!keyPage) {
         this.isHasKey =  true
         return

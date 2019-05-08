@@ -17,6 +17,6 @@ export default {
 			disableDarkTheme: false
 		};
 
-		this.reco.hasThemes = this.$site.themeConfig.themePicker || true
+		this.reco.hasThemes = this.$themeConfig.themePicker || true
 	},
 };
