@@ -1,5 +1,5 @@
 <template>
-  <div class="password-shadow">
+  <div class="password-shadow" :class="{'is-home': !isPage}">
     <Background></Background>
     <h3 class="title">{{isPage ? $frontmatter.title : $site.title}}</h3>
     <p class="description" v-if="!isPage">{{$site.description}}</p>
@@ -60,7 +60,7 @@ export default {
       const key = this.isPage ? 'pageKey' : 'key'
       sessionStorage.setItem(key, keyVal)
       const isHasKey = this.isPage ? this.isHasPageKey() : this.isHasKey()
-      if (isHasKey) {
+      if (!isHasKey) {
         this.warningText = 'Key Error'
         return
       } 
@@ -94,7 +94,14 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  
+.theme-container.no-sidebar
+  .password-shadow
+    padding-left 0
+
+.password-shadow.is-home {
+  padding-left 0
+}
+
 .password-shadow {
   width 100vw;
   height 100vh;

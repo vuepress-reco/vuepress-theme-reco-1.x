@@ -24,15 +24,24 @@
     <div class="footer">
       <span>
         <i class="iconfont reco-theme"></i>
-        <a target="blank" href="https://recoluan.gitlab.io/vuepress-theme-reco-doc/">VuePress-theme-reco</a>
+        <a target="blank" href="https://vuepress-theme-reco.recoluan.com">VuePress-theme-reco</a>
       </span>
-      <span>
+      <!-- <span>
         <i class="iconfont reco-other"></i>
         <a>{{ $site.themeConfig.author || $site.title }}</a>
+      </span> -->
+      <span v-if="$themeConfig.record">
+        <i class="iconfont reco-beian"></i>
+        <a>{{ $themeConfig.record }}</a>
       </span>
       <span>
         <i class="iconfont reco-copyright"></i>
-        <a>{{ year }}</a>
+        <a>
+          <span v-if="$themeConfig.startYear">{{ $themeConfig.startYear }} - </span>
+          {{ year }}
+          &nbsp;&nbsp;
+          <span v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</span>
+          </a>
       </span>
       <span>
         <AccessNumber idVal="/"></AccessNumber>

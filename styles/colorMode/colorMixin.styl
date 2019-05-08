@@ -2,6 +2,10 @@ color-mode(accountColor , colorName)
   .reco-theme-{colorName}
     input
       color accountColor!important; 
+    a.sidebar-link.active
+      border-color: accountColor
+    blockquote
+      border-color: accountColor
     .search-box input
       border-color: accountColor!important; 
       &:focus
@@ -14,16 +18,10 @@ color-mode(accountColor , colorName)
       .nav-links a.router-link-active .iconfont
         color accountColor!important; 
     .home 
-      .hero 
-        .description
-          color accountColor!important; 
+      .hero
         .action-button, img
           background-color accountColor!important; 
           color: #fff!important
-      .features  
-        .feature
-          h2, p
-            color accountColor!important; 
       .footer 
         a 
           color accountColor!important;    
