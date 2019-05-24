@@ -10,10 +10,15 @@
 > 3. 效果：[午后南杂](https://www.recoluan.com) 
 > 4. 文档：[vuepress-theme-reco-doc](https://vuepress-theme-reco.recoluan.com)
 
+## 重点提醒
+
+**首页新增 “华为” 相关文案，请允许我以这样的方式支持 “华为”。**
+
 ## 预览
 
 ### 首页
-![home.png](https://upload-images.jianshu.io/upload_images/4660406-8c9f54e105920600.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![home.png](https://upload-images.jianshu.io/upload_images/4660406-28e3ea70b591d89b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 
 ### 分类页面
 ![category2.png](https://upload-images.jianshu.io/upload_images/4660406-711fdb00940722fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
