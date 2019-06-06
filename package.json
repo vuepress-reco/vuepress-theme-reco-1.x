@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/recoluan/vuepress-theme-reco/issues"
   },
-  "homepage": "https://recoluan.gitlab.io/vuepress-theme-reco-doc/",
+  "homepage": "https://vuepress-theme-reco.recoluan.com",
   "_from": "vuepress-theme-reco@0.2.1",
   "_resolved": "http://registry.npm.taobao.org/vuepress-theme-reco/download/vuepress-theme-reco-0.2.1.tgz",
   "dependencies": {
