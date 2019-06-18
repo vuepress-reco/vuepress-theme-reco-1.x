@@ -112,7 +112,6 @@ export default {
     }
 
     .description {
-      max-width: 35rem;
       font-size: 1.6rem;
       line-height: 1.3;
       color: lighten($textColor, 20%);
