@@ -1,7 +1,8 @@
 <template>
   <div>
     <Common>
-      <Home v-if="$page.frontmatter.home"/>
+      <Home v-if="$page.frontmatter.home && $themeConfig.type !== 'blog'"/>
+      <HomeBlog v-else-if="$page.frontmatter.home && $themeConfig.type === 'blog'"/>
       <Page
         v-else
         :sidebar-items="sidebarItems">
@@ -18,12 +19,13 @@
 
 <script>
 import Home from '@theme/components/Home.vue'
+import HomeBlog from '@theme/components/HomeBlog.vue'
 import Page from '@theme/components/Page.vue'
 import Common from '@theme/components/Common.vue'
 import { resolveSidebarItems } from '../util'
 
 export default {
-  components: { Home, Page, Common },
+  components: { HomeBlog, Home, Page, Common },
 
   computed: {
     sidebarItems () {

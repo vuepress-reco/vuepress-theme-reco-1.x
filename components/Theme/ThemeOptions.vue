@@ -41,9 +41,7 @@ export default {
 
 	methods: {
 		toggleDarkTheme() {
-			console.log(123, this.darkTheme)
 			localStorage.setItem('reco-night', this.darkTheme)
-			console.log(456, localStorage.getItem('reco-night'))
 			const classes = document.body.classList;
 			if (this.darkTheme) {
 				const oldColor = [...classes]

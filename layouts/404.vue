@@ -26,3 +26,12 @@ export default {
 </script>
 
 <style src="../styles/theme.styl" lang="stylus"></style>
+
+<style lang="stylus" scoped>
+.content {
+  margin 4rem auto 0
+  max-width 800px
+  padding 0 2rem
+}
+</style>
+
