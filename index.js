@@ -19,7 +19,9 @@ module.exports = (options, ctx) => ({
 
   plugins: [
     '@vuepress/active-header-links',
-    ['@vuepress-reco/plugin-blog', {}],
+    ['@vuepress/plugin-blog', {
+      permalink: '/:regular'
+    }],
     '@vuepress/search',
     '@vuepress/plugin-nprogress',
     ['container', {

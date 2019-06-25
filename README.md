@@ -16,26 +16,31 @@
 
 ## 预览
 
-### 首页
-![home.png](https://upload-images.jianshu.io/upload_images/4660406-28e3ea70b591d89b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+### Home
+![home.png](./images/1.png)
+
+### Home-Blog
+![home.png](./images/home-blog.png)
 
 
-### 分类页面
-![category2.png](https://upload-images.jianshu.io/upload_images/4660406-711fdb00940722fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-### 标签页
-![tag.png](https://upload-images.jianshu.io/upload_images/4660406-798b0127ae6de625.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-### 文章页面
-![article.png](https://upload-images.jianshu.io/upload_images/4660406-2ae619aea4ad97db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+### Category
+![category.png](./images/2.png)
 
 
-### 加密登录页
-![password.png](https://upload-images.jianshu.io/upload_images/4660406-62232294beb28059.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+### Tag
+![tag.png](./images/3.png)
 
 
-### 时间轴
-![timeline.png](https://upload-images.jianshu.io/upload_images/4660406-128367de2aa7d8f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+### Article
+![article.png](./images/4.png)
+
+### Add Password
+
+![password.png](./images/5.png)
+
+### Timeline
+
+![timeline.png](./images/6.png)
 
 
 ## License
