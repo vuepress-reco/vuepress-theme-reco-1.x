@@ -39,7 +39,7 @@ export default {
     }
   },
 
-   created () {
+  created () {
     if (this.$tags.list.length > 0) {
       const currentTag = this.$route.query.tag ? this.$route.query.tag : this.$tags.list[0].name
       let tags = this.$tags.list

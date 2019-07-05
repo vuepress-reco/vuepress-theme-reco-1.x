@@ -1,21 +1,13 @@
 <template>
   <div class="home-blog" :class="recoShow?'reco-show': 'reco-hide'">
-    <div class="hero" :style="{background: `url(${$page.frontmatter.bgImage || require('../images/home-bg.jpg')}) center/cover no-repeat`}">
+    <div class="hero" :style="{background: `url(${$page.frontmatter.bgImage || require('../images/home-bg.jpg')}) center/cover no-repeat`, ...bgImageStyle}">
       <h1>{{ data.heroText || $title || '午后南杂' }}</h1>
 
       <p class="description">{{ data.tagline || $description || 'Welcome to your vuePress-theme-reco site' }}</p>
       <p class="huawei" v-if="$themeConfig.huawei !== false"><i class="iconfont reco-huawei" style="color: #fc2d38"></i>&nbsp;&nbsp;&nbsp;华为，为中华而为之！</p>
     </div>
 
-    <!-- <div class="features" v-if="data.features && data.features.length">
-      <div v-for="(feature, index) in data.features" :key="index" class="feature">
-        <h2>{{ feature.title }}</h2>
-        <p>{{ feature.details }}</p>
-      </div>
-    </div>
-
-    <h1 class="home-blog-title">最近</h1> -->
-    <div class="home-blog">
+    <div class="home-blog-wrapper">
       <!-- 博客列表 -->
       <note-abstract 
         class="blog-list"
@@ -26,16 +18,35 @@
          <h3 class="name" v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</h3>
          <div class="num">
            <div>
-             <i class="iconfont reco-category"></i> {{$categories.length}}
+             <h3>{{$site.pages.length}}</h3>
+             <h6>文章</h6>
            </div>
            <div>
-             <i class="iconfont reco-tag"></i> {{$tags.length}}
+             <h3>{{$tags.length}}</h3>
+             <h6>标签</h6>
            </div>
          </div>
+         <hr>
+         <h4><i class="iconfont reco-category"></i> 分类</h4>
+         <ul class="category-wrapper">
+          <li class="category-item" v-for="(item, index) in this.$categories.list" :key="index">
+            <a :href="item.path">
+              <span class="category-name">{{ item.name }}</span>
+              <span class="post-num">{{ item.posts.length }}</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
+        <h4><i class="iconfont reco-tag"></i> 标签</h4>
+        <div class="tags">
+          <span 
+            v-for="(item, index) in tags" 
+            :key="index"
+            :style="{ 'backgroundColor': item.color }"
+            @click="getPagesByTags(item.name)">{{item.name}}</span>
+        </div>
       </div>  
     </div>
-
-    
 
     <Content class="home-center" custom/>
 
@@ -55,7 +66,7 @@
           {{ year }}
           &nbsp;&nbsp;
           <span v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</span>
-          </a>
+        </a>
       </span>
       <span>
         <AccessNumber idVal="/"></AccessNumber>
@@ -74,7 +85,8 @@ export default {
   components: { NavLink, AccessNumber, NoteAbstract },
   data () {
     return {
-      recoShow: false
+      recoShow: false,
+      tags: []
     }
   },
   computed: {
@@ -89,6 +101,11 @@ export default {
         return this._getTimeNum(b) - this._getTimeNum(a)
       })
       return posts
+    },
+
+    // 分类信息
+    categoryList () {
+      console.log(this)
     },
     year () {
       return new Date().getFullYear()
@@ -109,6 +126,26 @@ export default {
         maxHeight: '200px',
         margin: '6rem auto 1.5rem'
       }
+    },
+
+    bgImageStyle () {
+      const bgImageStyle = {
+        height: '350px',
+        textAlign: 'center',
+        overflow: 'hidden'
+      }
+      return this.data.bgImageStyle ? { ...bgImageStyle, ...this.data.bgImageStyle } : bgImageStyle
+    }
+  },
+  created () {
+    if (this.$tags.list.length > 0) {
+      let tags = this.$tags.list
+      tags.map(item => {
+        const color = this._tagColor()
+        item.color = color
+        return tags
+      })
+      this.tags = tags
     }
   },
   mounted () {
@@ -125,10 +162,19 @@ export default {
       // reverse()是为了按时间最近排序排序
       this.pages = pages.length == 0 ? [] : pages
     },
+    getPagesByTags (currentTag) {
+      window.location.href = `/tag/#?tag=${currentTag}`
+    },
     // 获取时间的数字类型
     _getTimeNum (data) {
       return parseInt(new Date(data.frontmatter.date).getTime())
-    }
+    },
+    _tagColor () {
+      // 红、蓝、绿、橙、灰
+      const tagColorArr = ['#f26d6d', '#3498db', '#67cc86', '#fb9b5f', '#838282']
+      const index = Math.floor(Math.random() * tagColorArr.length)
+      return tagColorArr[index]
+    },
   }
 };
 </script>
@@ -141,9 +187,6 @@ export default {
   margin: 0px auto;
 
   .hero {
-    min-height 350px
-    text-align: center;
-    overflow hidden
     figure {
       position absolute
       background yellow
@@ -170,7 +213,7 @@ export default {
     margin 0 auto 10px
     max-width 960px
   }
-  .home-blog {
+  .home-blog-wrapper {
     display flex
     align-items: flex-start;
     margin 20px auto 0
@@ -181,6 +224,8 @@ export default {
       width 380px;  
       height auto;
       box-shadow 0 2px 10px rgba(0,0,0,0.2);
+      box-sizing border-box
+      padding 0 15px
       &:hover {
         box-shadow: 0 4px 20px 0 rgba(0,0,0,0.2);
       }
@@ -203,11 +248,72 @@ export default {
           &:first-child {
             border-right 1px solid #333
           }
-          i {
-            margin-right .2rem
+          h3 {
+            line-height auto
+            margin 0 0 .6rem
+            color $textColor
+          }
+          h6 {
+            line-height auto
+            margin 0
           }
         }
       }
+      .category-wrapper {
+        list-style none
+        padding-left 0
+        .category-item {
+          padding: .4rem .8rem;
+          border: 1px solid #999;
+          transition: all .5s 
+          &:first-child {
+            border-top-right-radius: .25rem;
+            border-top-left-radius: .25rem;
+          }
+          &:not(:first-child) {
+            border-top: none;
+          }
+          &:hover {
+            background #d3d3d3
+          }
+          a {
+            display flex
+            justify-content: space-between
+            .post-num {
+              width 1.6rem;
+              height 1.6rem
+              text-align center
+              line-height 1.6rem
+              border-radius 50%
+              background #eee
+              font-size .6rem
+              color $textColor
+            }
+          }
+        }
+      }
+      .tags {
+        margin-bottom 30px
+        span {
+          vertical-align: middle;
+          margin: 4px 4px 10px;
+          padding: 4px 8px;
+          display: inline-flex;
+          cursor: pointer;
+          border-radius: 2px;
+          background: #fff;
+          color: #fff;
+          font-size: 13px;
+          box-shadow 0 1px 4px 0 rgba(0,0,0,0.2)
+          transition: all .5s  
+          &:hover {
+            transform scale(1.04)
+          }  
+          &.active {
+            transform scale(1.2)
+          }  
+        }  
+      }         
     }
   }
 
@@ -323,12 +429,12 @@ export default {
 }
 
 @media (max-width: $MQMobile) {
-  .home {
+  .home-blog {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     .hero {
       margin 0 -1.5rem
-      min-height 350px
+      height 350px
       img {
         max-height: 210px;
         margin: 2rem auto 1.2rem;
@@ -360,9 +466,9 @@ export default {
       max-width: 100%;
       padding: 0 2.5rem;
     }
-    .home-blog {
+    .home-blog-wrapper {
       .info-wrapper {
-        display none
+        display none!important
       }
     }
   }
@@ -377,13 +483,13 @@ export default {
 }
 
 @media (max-width: $MQMobileNarrow) {
-  .home {
+  .home-blog {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
 
     .hero {
       margin 0 -1.5rem
-      min-height 350px
+      height 350px
       img {
         max-height: 210px;
         margin: 2rem auto 1.2rem;
@@ -414,9 +520,9 @@ export default {
       }
     }
 
-    .home-blog {
+    .home-blog-wrapper {
       .info-wrapper {
-        display none
+        display none!important
       }
     }
   }
