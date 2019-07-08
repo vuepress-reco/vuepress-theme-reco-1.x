@@ -10,6 +10,7 @@
     <div class="home-blog-wrapper">
       <!-- 博客列表 -->
       <note-abstract 
+        v-if="showList"
         class="blog-list"
         :data="posts"
         :currentPage="1"></note-abstract>
@@ -86,7 +87,8 @@ export default {
   data () {
     return {
       recoShow: false,
-      tags: []
+      tags: [],
+      showList: false
     }
   },
   computed: {
@@ -150,6 +152,7 @@ export default {
   },
   mounted () {
     this.recoShow = true
+    this.showList = true
   },
   methods: {
     // 根据分类获取页面数据
