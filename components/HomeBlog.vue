@@ -19,7 +19,7 @@
          <h3 class="name" v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</h3>
          <div class="num">
            <div>
-             <h3>{{$site.pages.length}}</h3>
+             <h3>{{getPagesLength}}</h3>
              <h6>文章</h6>
            </div>
            <div>
@@ -106,8 +106,12 @@ export default {
     },
 
     // 分类信息
-    categoryList () {
-      console.log(this)
+    getPagesLength () {
+      let num = 0
+      this.$categories.list.map(v => {
+        num += v.posts.length
+      })
+      return num
     },
     year () {
       return new Date().getFullYear()
