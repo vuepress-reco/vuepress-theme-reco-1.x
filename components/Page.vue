@@ -87,7 +87,7 @@ export default {
 
   computed: {
     isTimeLine () {
-      return this.$page.frontmatter.isTimeLine
+      return this.$frontmatter.isTimeLine
     },
     lastUpdated () {
       return this.$page.lastUpdated
@@ -104,7 +104,7 @@ export default {
     },
 
     prev () {
-      const prev = this.$page.frontmatter.prev
+      const prev = this.$frontmatter.prev
       if (prev === false) {
         return
       } else if (prev) {
@@ -115,7 +115,7 @@ export default {
     },
 
     next () {
-      const next = this.$page.frontmatter.next
+      const next = this.$frontmatter.next
       if (next === false) {
         return
       } else if (next) {
@@ -126,7 +126,7 @@ export default {
     },
 
     editLink () {
-      if (this.$page.frontmatter.editLink === false) {
+      if (this.$frontmatter.editLink === false) {
         return
       }
       const {

@@ -47,7 +47,7 @@ export default {
     },
     // 标题只显示分类名称
     title () {
-      return this.$page.frontmatter.title.split('|')[0]
+      return this.$frontmatter.title.split('|')[0]
     }
   },
 

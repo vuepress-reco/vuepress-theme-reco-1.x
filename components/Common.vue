@@ -96,7 +96,7 @@ export default {
     },
 
     pageClasses () {
-      const userPageClass = this.$page.frontmatter.pageClass
+      const userPageClass = this.$frontmatter.pageClass
       return [
         {
           'no-navbar': !this.shouldShowNavbar,

@@ -12,7 +12,7 @@ export default {
   computed: {
     // 是否显示评论
     isShowComment () {
-      const frontmatter = this.$page.frontmatter
+      const frontmatter = this.$frontmatter
       return this.isComment == false || frontmatter.isComment == false || frontmatter.home == true ? false : true
     }
   }, 

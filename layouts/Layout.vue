@@ -1,8 +1,8 @@
 <template>
   <div>
     <Common>
-      <Home v-if="$page.frontmatter.home && $themeConfig.type !== 'blog'"/>
-      <HomeBlog v-else-if="$page.frontmatter.home && $themeConfig.type === 'blog'"/>
+      <Home v-if="$frontmatter.home && $themeConfig.type !== 'blog'"/>
+      <HomeBlog v-else-if="$frontmatter.home && $themeConfig.type === 'blog'"/>
       <Page
         v-else
         :sidebar-items="sidebarItems">
