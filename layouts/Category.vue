@@ -2,8 +2,19 @@
   <div class="categories-wrapper" :class="recoShow ?'reco-show' : 'reco-hide'">
     <!-- 公共布局 -->
     <Common :sidebar="false" :isComment="false">
-      <!-- 页面标题 -->
-      <h2 class="title">{{ title }}</h2>
+      <!-- 分类集合 -->
+      <ul class="category-wrapper">
+        <li 
+          class="category-item"
+          :class="title.trim() == item.name ? 'active': ''"
+          v-for="(item, index) in this.$categories.list" 
+          :key="index">
+          <a :href="item.path">
+            <span class="category-name">{{ item.name }}</span>
+            <span class="post-num">{{ item.posts.length }}</span>
+          </a>
+        </li>
+      </ul>
 
       <!-- 博客列表 -->
       <note-abstract 
@@ -84,13 +95,49 @@ export default {
   max-width: 740px;
   margin: 0 auto;
   padding: 4.6rem 2.5rem 0; 
-  .title
-    margin-bottom 3rem
+  .category-wrapper {
+    list-style none
+    padding-left 0
+    .category-item {
+      vertical-align: middle;
+      margin: 4px 8px 10px;
+      padding: 8px 14px;
+      display: inline-block;
+      cursor: pointer;
+      border-radius: 2px;
+      font-size: 13px;
+      box-shadow 0 1px 4px 0 rgba(0,0,0,0.2)
+      transition: all .5s 
+      &:hover, &.active {
+        background $accentColor
+        a span.category-name {
+          color #fff
+        }
+      }
+
+      a {
+        display flex
+        justify-content: space-between
+        align-items center
+        .post-num {
+          margin-left 4px
+          width 1.2rem;
+          height 1.2rem
+          text-align center
+          line-height 1.2rem
+          border-radius 50%
+          background #eee
+          font-size .4rem
+          color $textColor
+        }
+      }
+    }
+  }
   &.reco-hide
-    .title, .list, .pagation
+    .category-wrapper, .list, .pagation
       load-start()
   &.reco-show {
-    .title {
+    .category-wrapper {
       load-end(0.08s)
     }
     .list {

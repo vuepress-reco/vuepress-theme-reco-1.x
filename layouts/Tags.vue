@@ -116,7 +116,7 @@ export default {
       vertical-align: middle;
       margin: 4px 4px 10px;
       padding: 4px 8px;
-      display: inline-flex;
+      display: inline-block;
       cursor: pointer;
       border-radius: 2px;
       background: #fff;
