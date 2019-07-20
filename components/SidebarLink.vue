@@ -30,7 +30,7 @@ export default {
       : selfActive
     const link = renderLink(h, item.path, item.title || item.path, active)
 
-    const configDepth = $frontmatter.sidebarDepth
+    const configDepth = $page.frontmatter.sidebarDepth
       || sidebarDepth
       || $themeLocaleConfig.sidebarDepth
       || $themeConfig.sidebarDepth

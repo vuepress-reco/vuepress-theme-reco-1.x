@@ -13,6 +13,7 @@
         v-if="showList"
         class="blog-list"
         :data="posts"
+        :isHome="true"
         :currentPage="1"></note-abstract>
       <div class="info-wrapper">
          <img class="personal-img" :src="$frontmatter.faceImage || $themeConfig.logo" alt="hero"> 

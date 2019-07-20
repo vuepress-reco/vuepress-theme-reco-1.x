@@ -6,7 +6,7 @@
       <span>{{ pageInfo.frontmatter.author || $themeConfig.author || $site.title }}</span>
     </i>
     <i class="iconfont reco-date" v-if="pageInfo.frontmatter.date"><span>{{ new Date(pageInfo.frontmatter.date).toLocaleDateString() }}</span></i>
-    <AccessNumber :idVal="pageInfo.path" :numStyle="numStyle"></AccessNumber>
+    <AccessNumber v-if="isHome !== true" :idVal="pageInfo.path" :numStyle="numStyle"></AccessNumber>
     <i class="iconfont reco-tag tags" v-if="pageInfo.frontmatter.tags">
       <span
         v-for="(subItem, subIndex) in pageInfo.frontmatter.tags"
@@ -25,7 +25,21 @@ import AccessNumber from './Valine/AccessNumber'
 
 export default {
   components: { AccessNumber },
-  props: ['pageInfo', 'currentTag'],
+  // props: ['pageInfo', 'currentTag'],
+  props: {
+    pageInfo: {
+      type: Object,
+      default: {}
+    },
+    currentTag: {
+      type: String,
+      default: ''
+    },
+    isHome: {
+      type: Boolean,
+      default: false
+    }
+  },
   data () {
     return {
       numStyle: {
@@ -35,10 +49,14 @@ export default {
       }
     }
   },
+
+  mounted () {
+    console.log(1234, this.isHome)
+  },
   
   methods: {
     goTags (tag) {
-      window.location.href = `/tag/?tag=${tag}`
+      window.location.href = `/tag/#?tag=${tag}`
     }
   }
 }
