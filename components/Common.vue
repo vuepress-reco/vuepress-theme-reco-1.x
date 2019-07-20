@@ -166,6 +166,15 @@ export default {
         }
       }
     }
+  },
+
+  watch: {
+    $frontmatter (newVal, oldVal) {
+      if (newVal.home) {
+        this.hasKey()
+        this.hasPageKey()
+      }
+    }
   }
 }
 </script>
