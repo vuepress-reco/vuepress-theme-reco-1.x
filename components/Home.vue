@@ -180,9 +180,8 @@ export default {
       } 
     }
   }
-}
 
-&.reco-hide {
+  &.reco-hide {
   .hero {
     img {
       load-start()
@@ -212,32 +211,33 @@ export default {
   }
 }
 
-&.reco-show {
-  .hero {
-    img {
-      load-end(0.08s)
+  &.reco-show {
+    .hero {
+      img {
+        load-end(0.08s)
+      }
+      .h1 {
+        load-end(0.16s)
+      }
+      .description {
+        load-end(0.24s)
+      }
+      .huawei {
+        load-end(0.32s)
+      }
+      .action-button {
+        load-end(0.4s)
+      }
     }
-    .h1 {
-      load-end(0.16s)
+    .features {
+      load-end(0.40s)
     }
-    .description {
-      load-end(0.24s)
+    .home-center {
+      load-end(0.48s)
     }
-    .huawei {
-      load-end(0.32s)
+    .footer {
+      load-end(0.56s)
     }
-    .action-button {
-      load-end(0.4s)
-    }
-  }
-  .features {
-    load-end(0.40s)
-  }
-  .home-center {
-    load-end(0.48s)
-  }
-  .footer {
-    load-end(0.56s)
   }
 }
 
