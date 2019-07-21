@@ -23,7 +23,7 @@ export default {
       default: function() {
         return {
           right: '1rem',
-          bottom: '3rem',
+          bottom: '6rem',
           width: '2.5rem',
           height: '2.5rem',
           'border-radius': '.25rem',
@@ -96,11 +96,12 @@ export default {
   }
   .fade-enter-active,
   .fade-leave-active {
-    transition: opacity .5s;
+    transition: all .5s;
   }
   .fade-enter,
   .fade-leave-to {
     opacity: 0
+    transform translateY(120px)
   }
   .back-to-ceiling .Icon {
     fill: #9aaabf;
