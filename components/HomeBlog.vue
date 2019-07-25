@@ -31,10 +31,10 @@
          <h4><i class="iconfont reco-category"></i> 分类</h4>
          <ul class="category-wrapper">
           <li class="category-item" v-for="(item, index) in this.$categories.list" :key="index">
-            <a :href="item.path">
+            <router-link :to="item.path">
               <span class="category-name">{{ item.name }}</span>
               <span class="post-num">{{ item.posts.length }}</span>
-            </a>
+            </router-link>
           </li>
         </ul>
         <hr>
@@ -168,7 +168,8 @@ export default {
       this.pages = pages.length == 0 ? [] : pages
     },
     getPagesByTags (currentTag) {
-      window.location.href = `/tag/#?tag=${currentTag}`
+      const base = this.$site.base
+      window.location.href = `${base}tag/#?tag=${currentTag}`
     },
     // 获取时间的数字类型
     _getTimeNum (data) {
