@@ -199,7 +199,7 @@ export default {
     }
 
     h1 {
-      margin:10% auto 1.8rem ;
+      margin:7rem auto 1.8rem;
       font-size: 2.5rem;
       color #fff;
     }
