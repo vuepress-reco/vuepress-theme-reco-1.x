@@ -49,14 +49,11 @@ export default {
       }
     }
   },
-
-  mounted () {
-    console.log(1234, this.isHome)
-  },
   
   methods: {
     goTags (tag) {
-      window.location.href = `/tag/#?tag=${tag}`
+      const base = this.$site.base
+      window.location.href = `${base}tag/#?tag=${tag}`
     }
   }
 }
