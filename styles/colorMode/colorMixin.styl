@@ -68,6 +68,17 @@ color-mode(accountColor , colorName)
       color $textColor
     a.sidebar-link:hover
       color accountColor!important;
+    .password-shadow
+      .inputBox
+        background: accountColor!important
+        input
+          color #fff!important
+          &:focus~span
+            color accountColor!important
+        button
+          border 1px solid accountColor!important
+          color accountColor!important;
+
 
 
     @media (min-width: 765px)
