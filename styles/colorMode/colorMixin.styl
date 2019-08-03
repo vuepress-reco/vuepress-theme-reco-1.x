@@ -58,6 +58,16 @@ color-mode(accountColor , colorName)
             a 
               span.post-num
                 color accountColor!important
+    .color-picker
+      .color-button
+        .iconfont
+          color accountColor!important;
+    a
+      color accountColor;
+    a.sidebar-link
+      color $textColor
+    a.sidebar-link:hover
+      color accountColor!important;
 
 
     @media (min-width: 765px)

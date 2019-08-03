@@ -1,6 +1,6 @@
 <template>
 	<div v-if="showSettings" v-click-outside="hideMenu" class="color-picker">
-		<a class="color-button" href="#" @click.prevent="showMenu = !showMenu">
+		<a class="color-button" @click.prevent="showMenu = !showMenu">
 			<i class="iconfont reco-color"></i>
 		</a>
 		<transition name="menu-transition" mode="out-in">
