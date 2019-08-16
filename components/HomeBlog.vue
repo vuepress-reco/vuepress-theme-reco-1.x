@@ -1,6 +1,6 @@
 <template>
   <div class="home-blog" :class="recoShow?'reco-show': 'reco-hide'">
-    <div class="hero" :style="{background: `url(${$frontmatter.bgImage || require('../images/home-bg.jpg')}) center/cover no-repeat`, ...bgImageStyle}">
+    <div class="hero" :style="{background: `url(${$withBase($frontmatter.bgImage) || require('../images/home-bg.jpg')}) center/cover no-repeat`, ...bgImageStyle}">
       <h1>{{ data.heroText || $title || '午后南杂' }}</h1>
 
       <p class="description">{{ data.tagline || $description || 'Welcome to your vuePress-theme-reco site' }}</p>
