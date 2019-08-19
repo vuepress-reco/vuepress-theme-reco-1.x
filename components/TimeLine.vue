@@ -6,7 +6,7 @@
       <h3 class="year">{{item.year}}</h3>
       <ul class="year-wrapper">
         <li v-for="(subItem, subIndex) in item.data" :key="subIndex">
-          <span class="date">{{dateFormat(new Date(subItem.frontmatter.date))}}</span>
+          <span class="date">{{dateFormat(subItem.frontmatter.date)}}</span>
           <span class="title" @click="go(subItem.path)">{{subItem.title}}</span>
         </li>
       </ul>
@@ -75,6 +75,8 @@ export default {
     },
     // 时间格式化
     dateFormat (date, type) {
+      date = date.replace(/-/g,'/')
+      const dateObj = new Date(date)
       const dateObj = new Date(date)
       const year = dateObj.getFullYear()
       const mon = dateObj.getMonth() + 1
