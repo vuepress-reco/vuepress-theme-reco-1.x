@@ -1,18 +1,20 @@
 <p align="center"><a href="https://vuejs.org" target="_blank" rel="noopener noreferrer"><img width="100" src="./images/icon_vuepress_reco.png" alt="Vue logo"></a></p>
 
 <p align="center">
-![vuepress](https://img.shields.io/badge/vuepress-1.0.3-brightgreen.svg)
-![leancloud-storage](https://img.shields.io/badge/leancloud--storage-3.13.0-orange.svg)
-![valine](https://img.shields.io/badge/valine-1.3.6-blue.svg)
-![vue-click-outside](https://img.shields.io/badge/vue--click--outside-1.0.7-blue.svg)
+<img src="https://img.shields.io/badge/vuepress-1.0.3-brightgreen.svg">
+<img src="https://img.shields.io/badge/leancloud--storage-3.13.0-orange.svg">
+<img src="https://img.shields.io/badge/valine-1.3.6-blue.svg">
+<img src="https://img.shields.io/badge/vue--click--outside-1.0.7-blue.svg">
+<img src="">
+
 </p>
 
-<h2 align="center">vuepress-theme-reco</h2>
+## Introduce
 
-> 1. 这是一个vuepress主题，旨在添加博客所需的分类、TAB墙、分页、评论等功能；
-> 2. 主题追求极简，根据 vuepress 的默认主题修改而成，官方的主题配置仍然适用；
-> 3. 效果：[午后南杂](https://www.recoluan.com) 
-> 4. 文档：[vuepress-theme-reco-doc](https://vuepress-theme-reco.recoluan.com)
+1. 这是一个vuepress主题，旨在添加博客所需的分类、TAB墙、分页、评论等功能；
+2. 主题追求极简，根据 vuepress 的默认主题修改而成，官方的主题配置仍然适用；
+3. 效果：[午后南杂](https://www.recoluan.com) 
+4. 文档：[vuepress-theme-reco-doc](https://vuepress-theme-reco.recoluan.com)
 
 ## Remind
 
