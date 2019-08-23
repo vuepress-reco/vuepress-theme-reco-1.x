@@ -101,13 +101,12 @@ export default {
     .category-item {
       vertical-align: middle;
       margin: 4px 8px 10px;
-      padding: 8px 14px;
       display: inline-block;
       cursor: pointer;
       border-radius: 2px;
       font-size: 13px;
       box-shadow 0 1px 4px 0 rgba(0,0,0,0.2)
-      transition: all .5s 
+      transition: all .5s
       &:hover, &.active {
         background $accentColor
         a span.category-name {
@@ -117,9 +116,12 @@ export default {
           }
         }
       }
-
       a {
         display flex
+        box-sizing border-box
+        width 100%
+        height 100%
+        padding: 8px 14px;
         justify-content: space-between
         align-items center
         color: #666
