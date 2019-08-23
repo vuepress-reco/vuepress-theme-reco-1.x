@@ -1,5 +1,5 @@
 <template>
-	<div v-if="showSettings" v-click-outside="hideMenu" class="color-picker">
+	<div v-click-outside="hideMenu" class="color-picker">
 		<a class="color-button" @click.prevent="showMenu = !showMenu">
 			<i class="iconfont reco-color"></i>
 		</a>
@@ -14,7 +14,6 @@
 <script>
 import ClickOutside from 'vue-click-outside';
 import ThemeOptions from './ThemeOptions.vue';
-import recoConfig from './recoConfig.js';
 
 export default {
 	name: 'UserSettings',
@@ -27,19 +26,10 @@ export default {
 		ThemeOptions
 	},
 
-	mixins: [recoConfig],
-
 	data() {
 		return {
 			showMenu: false,
 		};
-	},
-
-	computed: {
-		showSettings() {
-			const { reco } = this;
-			return reco.hasThemes || reco.disableDarkTheme !== true || reco.disableThemeIgnore !== true;
-		},
 	},
 
 	methods: {
