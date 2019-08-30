@@ -4,35 +4,38 @@
     :class="pageClasses"
     @touchstart="onTouchStart"
     @touchend="onTouchEnd">
-    <Password v-if="!isHasKey"></Password>
-    <div v-else>
-      <Navbar
-      v-if="shouldShowNavbar"
-      @toggle-sidebar="toggleSidebar"/>
-
-      <div
-        class="sidebar-mask"
-        @click="toggleSidebar(false)"></div>
-
-      <Sidebar
-        :items="sidebarItems"
-        @toggle-sidebar="toggleSidebar">
-        <slot
-          name="sidebar-top"
-          slot="top"/>
-        <slot
-          name="sidebar-bottom"
-          slot="bottom"/>
-      </Sidebar>  
-
-      <Password v-if="!isHasPageKey" :isPage="true"></Password>
+    <transition name="fade">
+      <Loading v-if="firstLoad"></Loading>
+      <Password v-else-if="!isHasKey"></Password>
       <div v-else>
-        <slot></slot>
-        <Valine :isComment="isComment"></Valine>
+        <Navbar
+        v-if="shouldShowNavbar"
+        @toggle-sidebar="toggleSidebar"/>
+
+        <div
+          class="sidebar-mask"
+          @click="toggleSidebar(false)"></div>
+
+        <Sidebar
+          :items="sidebarItems"
+          @toggle-sidebar="toggleSidebar">
+          <slot
+            name="sidebar-top"
+            slot="top"/>
+          <slot
+            name="sidebar-bottom"
+            slot="bottom"/>
+        </Sidebar>  
+
+        <Password v-if="!isHasPageKey" :isPage="true"></Password>
+        <div v-else>
+          <slot></slot>
+          <Valine :isComment="isComment"></Valine>
+        </div>
+        
+        <BackToTop></BackToTop>
       </div>
-      
-      <BackToTop></BackToTop>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -41,11 +44,13 @@ import Navbar from '@theme/components/Navbar.vue'
 import Sidebar from '@theme/components/Sidebar.vue'
 import { resolveSidebarItems } from '../util'
 import Password from '@theme/components/Password'
+import Loading from '@theme/components/Loading'
 import Valine from '@theme/components/Valine/'
 import BackToTop from "@theme/components/BackToTop"
+import { setTimeout } from 'timers';
 
 export default {
-  components: { Sidebar, Navbar, Password, Valine, BackToTop },
+  components: { Sidebar, Navbar, Password, Valine, BackToTop, Loading },
 
   props: ['sidebar', 'isComment'],
 
@@ -54,7 +59,8 @@ export default {
       isSidebarOpen: false,
       isHasKey: true,
       isHasPageKey: true,
-      nightMode: false
+      nightMode: false,
+      firstLoad: false
     }
   },
 
@@ -109,6 +115,10 @@ export default {
     }
   },
 
+  created () {
+    this.firstLoad = sessionStorage.getItem('firstLoad') == undefined
+  },
+
   mounted () {
     this.$router.afterEach(() => {
       this.isSidebarOpen = false
@@ -121,6 +131,11 @@ export default {
 
     this.hasKey()
     this.hasPageKey()
+    setTimeout(() => {
+      this.firstLoad = false
+      sessionStorage.setItem('firstLoad', false)
+    }, 2000)
+    
   },
 
   methods: {
@@ -178,3 +193,12 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+</style>

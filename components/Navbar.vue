@@ -62,9 +62,7 @@ export default {
     }
     handleLinksWrapWidth()
     window.addEventListener('resize', handleLinksWrapWidth, false)
-    console.log(234, themePicker)
     this.hasThemes = themePicker === undefined ? true : themePicker
-    console.log(234, this.hasThemes)
   },
 
   computed: {

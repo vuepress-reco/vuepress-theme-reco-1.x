@@ -80,9 +80,10 @@
 import NavLink from "@theme/components/NavLink/";
 import AccessNumber from '@theme/components/Valine/AccessNumber'
 import NoteAbstract from '@theme/components/NoteAbstract.vue'
-import { constants } from 'fs';
+import mixin from '@theme/mixins/index.js'
 
 export default {
+  mixins: [mixin],
   components: { NavLink, AccessNumber, NoteAbstract },
   data () {
     return {
@@ -174,12 +175,6 @@ export default {
     // 获取时间的数字类型
     _getTimeNum (data) {
       return parseInt(new Date(data.frontmatter.date).getTime())
-    },
-    _tagColor () {
-      // 红、蓝、绿、橙、灰
-      const tagColorArr = ['#f26d6d', '#3498db', '#67cc86', '#fb9b5f', '#838282']
-      const index = Math.floor(Math.random() * tagColorArr.length)
-      return tagColorArr[index]
     },
   }
 };
