@@ -169,7 +169,7 @@ export default {
     },
     getPagesByTags (currentTag) {
       const base = this.$site.base
-      window.location.href = `${base}tag/#?tag=${currentTag}`
+      window.location.href = `${base}tag/?tag=${currentTag}`
     },
     // 获取时间的数字类型
     _getTimeNum (data) {
