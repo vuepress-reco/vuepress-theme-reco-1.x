@@ -4,7 +4,7 @@
       <div v-for="item in 4" :key="`out${item}`">
       </div>
     </div>
-    <h3 class="title">Welcome {{$site.title}}</h3>
+    <h3 class="title" v-if="$frontmatter.home">Welcome {{$site.title}}</h3>
     <p class="description">Just wait a minute!</p>
   </div>
 </template>
@@ -19,8 +19,6 @@ export default {
 #loader-wrapper{
   height:100vh;
   width:100vw;
-  // background:#888;
-  // background-image: radial-gradient(at center top, $accentColor 0px, rgb(0, 1, 5) 100%);
   .loader-main{
     position:fixed;
     width:120px;
@@ -54,7 +52,7 @@ export default {
         border-radius:25px;
         animation:rotate_pacman_half_down 0.5s 0s infinite;
         margin-top:-50px;}
-      &:nth-child(3), &:nth-child(4), &:nth-child(5), &:nth-child(6){
+      &:nth-child(3),&:nth-child(4),&:nth-child(5),&:nth-child(6){
         background-color:$accentColor;
         width:15px;
         height:15px;

@@ -59,7 +59,7 @@ export default {
       isSidebarOpen: false,
       isHasKey: true,
       isHasPageKey: true,
-      firstLoad: false
+      firstLoad: true
     }
   },
 
@@ -113,10 +113,6 @@ export default {
     }
   },
 
-  created () {
-    this.firstLoad = sessionStorage.getItem('firstLoad') == undefined
-  },
-
   mounted () {
     this.$router.afterEach(() => {
       this.isSidebarOpen = false
@@ -124,11 +120,7 @@ export default {
 
     this.hasKey()
     this.hasPageKey()
-    setTimeout(() => {
-      this.firstLoad = false
-      sessionStorage.setItem('firstLoad', false)
-    }, 2000)
-    
+    this.handleLoading()
   },
 
   methods: {
@@ -173,6 +165,14 @@ export default {
           this.toggleSidebar(false)
         }
       }
+    },
+
+    handleLoading () {
+      const time = this.$frontmatter.home && sessionStorage.getItem('firstLoad') == undefined ? 1000 : 0
+      setTimeout(() => {
+        this.firstLoad = false
+        if (sessionStorage.getItem('firstLoad') == undefined) sessionStorage.setItem('firstLoad', false)
+      }, time)
     }
   },
 
