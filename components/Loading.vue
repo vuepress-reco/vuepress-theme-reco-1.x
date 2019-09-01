@@ -1,22 +1,18 @@
 <template>
   <div id="loader-wrapper">
-    <Background></Background>
     <div class="loader-main">
-      <div class="loader-squ" v-for="item in 4" :key="`out${item}`">
-        <span v-for="subItem in 3" :key="`in${subItem}`" :style="{background: _tagColor()}"></span>
+      <div v-for="item in 4" :key="`out${item}`">
       </div>
     </div>
-    <h3 class="title">{{isPage ? $frontmatter.title : $site.title}}</h3>
-    <p class="description" v-if="!isPage">{{$site.description}}</p>
+    <h3 class="title">Welcome {{$site.title}}</h3>
+    <p class="description">Just wait a minute!</p>
   </div>
 </template>
 
 <script>
-import Background from '@theme/components/Background'
 import mixin from '@theme/mixins/index.js'
 export default {
-  mixins: [mixin],
-  components: {Background}
+  mixins: [mixin]
 };
 </script>
 <style lang="stylus" scoped>
@@ -24,17 +20,56 @@ export default {
   height:100vh;
   width:100vw;
   // background:#888;
-  // background-image: radial-gradient(at center top, green 0px, rgb(0, 1, 5) 100%);
+  // background-image: radial-gradient(at center top, $accentColor 0px, rgb(0, 1, 5) 100%);
   .loader-main{
-    position:absolute;
-    top:60%;
+    position:fixed;
+    width:120px;
+    height:50px;
+    top:45%;
     left:50%;
-    width:172px;
-    height:128px;
-    margin:0;
-    -webkit-transform:translate(-50%,-50%);
-    transform:translate(-50%,-50%);
+    z-index:555;
+    transform:translate(-50%,0);
+    div {
+      &:nth-child(2){ animation:pacman-balls 1s 0s infinite linear; }
+      &:nth-child(3){ animation:pacman-balls 1s 0.33s infinite linear; }
+      &:nth-child(4){ animation:pacman-balls 1s 0.66s infinite linear; }
+      &:nth-child(5){ animation:pacman-balls 1s 0.99s infinite linear; }
+      &:first-of-type{
+        width:0px;
+        height:0px;
+        border-right:25px solid transparent;
+        border-top:25px solid $accentColor;
+        border-left:25px solid $accentColor;
+        border-bottom:25px solid $accentColor;
+        border-radius:25px;
+        animation:rotate_pacman_half_up 0.5s 0s infinite;
+      }
+      &:nth-child(2){
+        width:0px;
+        height:0px;
+        border-right:25px solid transparent;
+        border-top:25px solid $accentColor;
+        border-left:25px solid $accentColor;
+        border-bottom:25px solid $accentColor;
+        border-radius:25px;
+        animation:rotate_pacman_half_down 0.5s 0s infinite;
+        margin-top:-50px;}
+      &:nth-child(3), &:nth-child(4), &:nth-child(5), &:nth-child(6){
+        background-color:$accentColor;
+        width:15px;
+        height:15px;
+        border-radius:100%;
+        margin:2px;
+        width:10px;
+        height:10px;
+        position:absolute;
+        transform:translate(0,-6.25px);
+        top:25px;
+        left:100px;
+      }
+    }
   }
+  
   .title {
     position: absolute;
     left 0
@@ -61,104 +96,21 @@ export default {
     padding: 0 10px;
     text-shadow 0 2px 10px rgba(0,0,0,0.2);
   }
-}
 
-.loader-squ{
-  position:relative;
-  &:nth-child(1){
-    margin-left:0px;
-    span{
-      -webkit-animation:animsquare1 2s infinite ease-in;
-      animation:animsquare1 2s infinite ease-in;
-      &:nth-child(1){
-        -webkit-animation-delay:0.00s;
-        animation-delay:0.00s
-      }
-      &:nth-child(2){
-        -webkit-animation-delay:0.15s;
-        animation-delay:0.15s
-      }
-      &:nth-child(3){
-        -webkit-animation-delay:0.30s;
-        animation-delay:0.30s
-      }
-    }
+  @keyframes pacman-balls{
+    75%{opacity:0.7;}
+    100%{-webkit-transform:translate(-100px,-6.25px);transform:translate(-100px,-6.25px);}
   }
-  &:nth-child(2){
-    margin-left:44px;
-    span{
-      -webkit-animation:animsquare2 2s infinite ease-in;
-      animation:animsquare2 2s infinite ease-in
-    }
+  @keyframes rotate_pacman_half_up{
+    0%{-webkit-transform:rotate(270deg);transform:rotate(270deg);}
+    50%{-webkit-transform:rotate(360deg);transform:rotate(360deg);}
+    100%{-webkit-transform:rotate(270deg);transform:rotate(270deg);}
   }
-  &:nth-child(3){
-    margin-left:88px;
-    span{
-      -webkit-animation:animsquare3 2s infinite ease-in;
-      animation:animsquare3 2s infinite ease-in
-    }
-  }
-  &:nth-child(4){
-    margin-left:132px;
-    span{
-      -webkit-animation:animsquare4 2s infinite ease-in;
-      animation:animsquare4 2s infinite ease-in
-    }
-  }
-  span {
-    position:absolute;
-    top:0px;
-    left:20px;
-    height:36px;
-    width:36px;
-    border-radius:2px;
-    background-color:#FFFFFF;
-    box-shadow 0 2px 10px rgba(0,0,0,0.2);
-    &:nth-child(1){top:0px}
-    &:nth-child(2){top:44px}
-    &:nth-child(3){top:88px}
+  @keyframes rotate_pacman_half_down{
+    0%{-webkit-transform:rotate(90deg);transform:rotate(90deg);}
+    50%{-webkit-transform:rotate(0deg);transform:rotate(0deg);}
+    100%{-webkit-transform:rotate(90deg);transform:rotate(90deg);}
   }
 }
 
-@keyframes animsquare1{
-  0%,5%,95%,100%{
-    -webkit-transform:translate(0px,0px) rotate(0deg);
-    transform:translate(0px,0px) rotate(0deg)
-  }
-  30%,70%{
-    -webkit-transform:translate(-40px,0px) rotate(-90deg);
-    transform:translate(-40px,0px) rotate(-90deg)
-  }
-}
-
-@keyframes animsquare2{
-  0%,10%,90%,100%{
-    -webkit-transform:translate(0px,0px) rotate(0deg);
-    transform:translate(0px,0px) rotate(0deg)
-  }
-  35%,65%{
-    -webkit-transform:translate(-40px,0px) rotate(-90deg);
-    transform:translate(-40px,0px) rotate(-90deg)
-  }
-}
-@keyframes animsquare3{
-  0%,15%,85%,100%{
-    -webkit-transform:translate(0px,0px) rotate(0deg);
-    transform:translate(0px,0px) rotate(0deg)
-  }
-  40%,60%{
-    -webkit-transform:translate(-40px,0px) rotate(-90deg);
-    transform:translate(-40px,0px) rotate(-90deg)
-  }
-}
-@keyframes animsquare4{
-  0%,20%,80%,100%{
-    -webkit-transform:translate(0px,0px) rotate(0deg);
-    transform:translate(0px,0px) rotate(0deg)
-  }
-  45%,55%{
-    -webkit-transform:translate(-40px,0px) rotate(-90deg);
-    transform:translate(-40px,0px) rotate(-90deg)
-  }
-}
 </style>

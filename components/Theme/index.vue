@@ -47,16 +47,11 @@ export default {
 	margin-right: 1em;
 
 	.color-button {
-		display: flex;
-		justify-content: center;
 		align-items: center;
 		height: 100%;
 		.iconfont {
 			font-size 1.4rem
 			color: $accentColor
-		}
-		.settings-icon {
-			width: 18px;
 		}
 	}
 
@@ -116,11 +111,9 @@ export default {
 
 @media (max-width: $MQMobile) {
 	.color-picker {
-		margin-right: 0;
-
+		margin-right: 1rem;
 		.color-picker-menu {
 			left: calc(50% - 35px);
-
 			&::before {
 				left: calc(50% + 35px);
 			}

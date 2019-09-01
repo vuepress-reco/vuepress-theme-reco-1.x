@@ -115,10 +115,11 @@ export default {
     top 12%
     margin auto
     text-align center
-    color #666
+    color $textColor
     font-size 30px
     box-sizing: border-box;
     padding: 0 10px;
+    text-shadow 0 2px 10px rgba(0,0,0,0.2);
   }
   .description {
     position: absolute;
@@ -127,10 +128,11 @@ export default {
     top 20%
     margin auto
     text-align center
-    color #999
+    color $textColor
     font-size 22px
     box-sizing: border-box;
     padding: 0 10px;
+    text-shadow 0 2px 10px rgba(0,0,0,0.2);
   }
   .inputBox{
     max-width:700px;
