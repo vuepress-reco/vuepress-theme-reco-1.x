@@ -77,7 +77,6 @@ export default {
     dateFormat (date, type) {
       date = date.replace(/-/g,'/')
       const dateObj = new Date(date)
-      const dateObj = new Date(date)
       const year = dateObj.getFullYear()
       const mon = dateObj.getMonth() + 1
       const day = dateObj.getDate()
