@@ -59,7 +59,6 @@ export default {
       isSidebarOpen: false,
       isHasKey: true,
       isHasPageKey: true,
-      nightMode: false,
       firstLoad: false
     }
   },
@@ -107,8 +106,7 @@ export default {
         {
           'no-navbar': !this.shouldShowNavbar,
           'sidebar-open': this.isSidebarOpen,
-          'no-sidebar': !this.shouldShowSidebar,
-          'night-mode': this.nightMode
+          'no-sidebar': !this.shouldShowSidebar
         },
         userPageClass
       ]
@@ -123,11 +121,6 @@ export default {
     this.$router.afterEach(() => {
       this.isSidebarOpen = false
     })
-
-    if (localStorage.getItem('nightMode')) {
-      document.documentElement.style.background = "#000"
-      this.nightMode = true
-    }
 
     this.hasKey()
     this.hasPageKey()

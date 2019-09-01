@@ -1,3 +1,5 @@
+@require './recoConfig.styl'
+
 color-mode(accountColor , colorName)
   .reco-theme-{colorName}
     input
@@ -20,7 +22,7 @@ color-mode(accountColor , colorName)
         color accountColor!important; 
     .home 
       .hero
-        .action-button, img
+        .action-button
           background-color accountColor!important; 
           color: #fff!important
       .footer 
@@ -62,6 +64,9 @@ color-mode(accountColor , colorName)
       .color-button
         .iconfont
           color accountColor!important;
+    .fullscreen-wrapper
+      .iconfont
+        color accountColor!important;
     a
       color accountColor;
     a.sidebar-link, a.nav-link, a.dropdown-title
@@ -88,3 +93,6 @@ color-mode(accountColor , colorName)
     @media (max-width: 959px)
       .search-box input
         border-color: transparent!important; 
+
+for key, value in $themePicker
+  color-mode(value, key)
