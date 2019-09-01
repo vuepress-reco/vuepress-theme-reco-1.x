@@ -5,9 +5,14 @@
 <script>
 export default {
   mounted () {
-    const color = '#fff'
-    const lineColor = '#fff'
+    const keyPage = this.$themeConfig.keyPage
+    let color = '#424242'
+    let lineColor = '#424242'
     const num = 20
+    if (keyPage) {
+      color = keyPage.color || color
+      lineColor = keyPage.lineColor || lineColor
+    }
 
     const script = document.createElement('script')
     script.src = 'https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js'
@@ -107,7 +112,7 @@ export default {
   }
 }
 </script>
-<style lang='scss' scoped>
+<style lang='stylus' scoped>
 #particles-oli-wrapper {
   position: absolute;
   z-index: -1;
