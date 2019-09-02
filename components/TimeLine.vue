@@ -73,13 +73,18 @@ export default {
         })
       }
     },
+    renderTime(date) {
+      var dateee = new Date(date).toJSON();
+      return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '').replace(/-/g,'/')
+    },
     // 时间格式化
     dateFormat (date, type) {
-      date = date.replace(/-/g,'/')
+      date = this.renderTime(date)
       const dateObj = new Date(date)
       const year = dateObj.getFullYear()
       const mon = dateObj.getMonth() + 1
       const day = dateObj.getDate()
+      console.log(dateObj)
       if (type == 'year') return year
       else return `${mon}-${day}`
     },
