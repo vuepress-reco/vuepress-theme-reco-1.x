@@ -1,12 +1,19 @@
 <template>
   <div class="home" :class="recoShow?'reco-show': 'reco-hide'">
     <div class="hero">
-      <img v-if="data.heroImage" :style="heroImageStyle" :src="$withBase(data.heroImage)" alt="hero">
+      <img 
+        v-if="data.isShowHeroImage !== false" 
+        :style="heroImageStyle" 
+        :src="data.heroImage ? $withBase(data.heroImage) : require('../images/icon_vuepress_reco.png')" 
+        alt="hero">
 
       <h1 v-if="data.isShowTitleInHome !== false">{{ data.heroText || $title || '午后南杂' }}</h1>
 
       <p class="description">{{ data.tagline || $description || 'Welcome to your vuePress-theme-reco site' }}</p>
-      <p class="huawei" v-if="$themeConfig.huawei === true"><i class="iconfont reco-huawei" style="color: #fc2d38"></i>&nbsp;&nbsp;&nbsp;华为，为中华而为之！</p>
+      <p class="huawei" v-if="$themeConfig.huawei === true">
+        <i class="iconfont reco-huawei" style="color: #fc2d38"></i>
+        &nbsp;&nbsp;&nbsp;华为，为中华而为之！
+      </p>
 
       <p class="action" v-if="data.actionText && data.actionLink">
         <NavLink class="action-button" :item="actionLink"/>
@@ -100,9 +107,6 @@ export default {
 
   .hero {
     text-align: center;
-    img {
-      background-color: $accentColor;
-    }
     h1 {
       font-size: 2.5rem;
     }
