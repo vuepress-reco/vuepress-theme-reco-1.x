@@ -23,11 +23,9 @@ export default {
     } 
   }, 
   props: {
-    data: {
-      type: Array,
-      default () {
-        return []
-      }
+    total: {
+      type: Number,
+      default: 10
     },
     perPage: {
       type: Number,
@@ -40,7 +38,7 @@ export default {
   },
   computed:{
      pages () {
-       return Math.ceil(this.data.length / this.perPage)
+       return Math.ceil(this.total / this.perPage)
      },
      show:function(){ 
          return this.pages && this.pages !=1 

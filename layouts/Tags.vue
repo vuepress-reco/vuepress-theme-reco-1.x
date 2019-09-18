@@ -18,7 +18,7 @@
     
     <pagation 
       class="pagation"
-      :data="posts"
+      :total="posts.length"
       :currentPage="currentPage"
       @getCurrentPage="getCurrentPage"></pagation>
   </div>
