@@ -38,24 +38,39 @@ export default {
     return {
       posts: [],
       tags: [],
-      currentTag: '',
+      currentTag: '全部',
       currentPage: 1,
-      recoShow: false
+      recoShow: false,
+      allTagName: '全部'
+    }
+  },
+
+  computed: {
+    // 时间降序后的博客列表
+    handlePosts () {
+      let posts = this.$site.pages
+      posts = posts.filter(item => {
+        const { home, isTimeLine, date } = item.frontmatter
+        return !(home == true || isTimeLine == true || date === undefined)
+      })
+      posts.sort((a, b) => {
+        return this._getTimeNum(b) - this._getTimeNum(a)
+      })
+      return posts
     }
   },
 
   created () {
     if (this.$tags.list.length > 0) {
-      const currentTag = this.$route.query.tag ? this.$route.query.tag : this.$tags.list[0].name
       let tags = this.$tags.list
       tags.map(item => {
         const color = this._tagColor()
         item.color = color
         return tags
       })
-      this.tags = tags
+      this.tags = [{ name: '全部', color: this._tagColor() }, ...tags]
 
-      this.getPagesByTags(currentTag)
+      this.getPagesByTags(this.currentTag)
     }
   },
 
@@ -69,11 +84,18 @@ export default {
     getPagesByTags (currentTag) {
 
       this.currentTag = currentTag
+      
 
-      let posts = this.$tags.map[currentTag].posts
-      posts.sort((a, b) => {
-        return this._getTimeNum(b) - this._getTimeNum(a)
-      })
+      let posts = []
+      if (currentTag !== '全部') {
+        posts = this.$tags.map[currentTag].posts
+        posts.sort((a, b) => {
+          return this._getTimeNum(b) - this._getTimeNum(a)
+        })
+      } else {
+        posts = this.handlePosts
+      }
+
       // reverse()是为了按时间最近排序排序
       this.posts = posts.length == 0 ? [] : posts
       
@@ -87,6 +109,7 @@ export default {
     getCurrentPage (page) {
       this.currentPage = page
       this.$page.currentPage = page
+      window.scrollTo(0, 0)
     },
 
     // 获取时间的数字类型
