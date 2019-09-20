@@ -1,5 +1,5 @@
 <template>
-  <div class="theme-container">
+  <div class="theme-container" v-if="!noFoundPageByTencent">
     <div class="content">
       <h1>404</h1>
       <blockquote>{{ getMsg() }}</blockquote>
@@ -17,6 +17,21 @@ const msgs = [
 ]
 
 export default {
+  computed: {
+    noFoundPageByTencent () {
+      return this.$themeConfig.noFoundPageByTencent !== false
+    }
+  },
+  mounted () {
+    if (this.noFoundPageByTencent) {
+      let dom = document.createElement('script')
+      dom.setAttribute('homePageName', '回到首页')
+      dom.setAttribute('homePageUrl', '/')
+      dom.setAttribute('src', '//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js')
+
+      document.body.append(dom)
+    }
+  },
   methods: {
     getMsg () {
       return msgs[Math.floor(Math.random() * msgs.length)]
