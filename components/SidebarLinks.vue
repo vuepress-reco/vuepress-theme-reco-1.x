@@ -33,7 +33,7 @@ export default {
 
   props: [
     'items',
-    'depth',  // depth of current sidebar links
+    'depth', // depth of current sidebar links
     'sidebarDepth' // depth of headers to be extracted
   ],
 

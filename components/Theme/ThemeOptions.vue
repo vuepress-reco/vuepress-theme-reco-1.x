@@ -14,55 +14,54 @@
 <script>
 
 export default {
-	name: 'ThemeOptions',
+  name: 'ThemeOptions',
 
-	data() {
-		return {
-			darkTheme: 'false',
-			reco: {}
-		};
-	},
+  data () {
+    return {
+      darkTheme: 'false',
+      reco: {}
+    }
+  },
 
-	computed: {
-		themePicker () {
-			return this.$themeConfig.themePicker || {
-				red: '#f26d6d',
-				blue: '#2196f3',
-				green: '#3eaf7c',
-				orange: '#fb9b5f'
-			}
-		}
-	},
+  computed: {
+    themePicker () {
+      return this.$themeConfig.themePicker || {
+        red: '#f26d6d',
+        blue: '#2196f3',
+        green: '#3eaf7c',
+        orange: '#fb9b5f'
+      }
+    }
+  },
 
-	mounted() {
-		const theme = localStorage.getItem('reco-theme')
-		if (theme) this.setTheme(theme)
-	},
+  mounted () {
+    const theme = localStorage.getItem('reco-theme')
+    if (theme) this.setTheme(theme)
+  },
 
-	methods: {
-		setTheme(theme, moveClass = true) {
+  methods: {
+    setTheme (theme, moveClass = true) {
+      const classes = document.body.classList
+      const themes = Object.keys(this.themePicker).map(colorTheme => `reco-theme-${colorTheme}`)
 
-			const classes = document.body.classList;
-			const themes = Object.keys(this.themePicker).map(colorTheme => `reco-theme-${colorTheme}`);
+      if (!theme) {
+        if (moveClass) localStorage.removeItem('reco-theme')
+        classes.remove(...themes)
+        return
+      }
 
-			if (!theme) {
-				if (moveClass) localStorage.removeItem('reco-theme');
-				classes.remove(...themes);
-				return 
-			}
+      classes.remove(...themes.filter(t => t !== `reco-theme-${theme}`))
 
-			classes.remove(...themes.filter(t => t !== `reco-theme-${theme}`));
-
-			if (moveClass) {
-				classes.add(`reco-theme-${theme}`);
-				localStorage.setItem('reco-theme', theme);
-			} else {
-				localStorage.removeItem('reco-theme')
-				classes.remove(`reco-theme-${theme}`);
-			}
-		}
-	},
-};
+      if (moveClass) {
+        classes.add(`reco-theme-${theme}`)
+        localStorage.setItem('reco-theme', theme)
+      } else {
+        localStorage.removeItem('reco-theme')
+        classes.remove(`reco-theme-${theme}`)
+      }
+    }
+  }
+}
 </script>
 
 <style lang="stylus">
@@ -87,7 +86,7 @@ export default {
 				&.{key}-theme {
 					background-color: value;
 				}
-			}	
+			}
 		}
 	}
 }

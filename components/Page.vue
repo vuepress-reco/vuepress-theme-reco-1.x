@@ -75,7 +75,7 @@ import { resolvePage, outboundRE, endingSlashRE } from '../util'
 import TimeLine from '@theme/components/TimeLine'
 
 export default {
-  components: { PageInfo, TimeLine},
+  components: { PageInfo, TimeLine },
 
   props: ['sidebarItems'],
 
@@ -92,7 +92,6 @@ export default {
     lastUpdated () {
       return this.$page.lastUpdated
     },
-
     lastUpdatedText () {
       if (typeof this.$themeLocaleConfig.lastUpdated === 'string') {
         return this.$themeLocaleConfig.lastUpdated
@@ -102,7 +101,6 @@ export default {
       }
       return 'Last Updated'
     },
-
     prev () {
       const prev = this.$frontmatter.prev
       if (prev === false) {
@@ -113,7 +111,6 @@ export default {
         return resolvePrev(this.$page, this.sidebarItems)
       }
     },
-
     next () {
       const next = this.$frontmatter.next
       if (next === false) {
@@ -124,10 +121,9 @@ export default {
         return resolveNext(this.$page, this.sidebarItems)
       }
     },
-
     editLink () {
       if (this.$frontmatter.editLink === false) {
-        return
+        return false
       }
       const {
         repo,
@@ -140,13 +136,11 @@ export default {
       if (docsRepo && editLinks && this.$page.relativePath) {
         return this.createEditLink(repo, docsRepo, docsDir, docsBranch, this.$page.relativePath)
       }
+      return ''
     },
-
     editLinkText () {
       return (
-        this.$themeLocaleConfig.editLinkText
-        || this.$themeConfig.editLinkText
-        || `Edit this page`
+        this.$themeLocaleConfig.editLinkText || this.$themeConfig.editLinkText || `Edit this page`
       )
     }
   },
@@ -156,7 +150,7 @@ export default {
 
     const keys = this.$frontmatter.keys
     if (!keys) {
-      this.isHasKey =  true
+      this.isHasKey = true
       return
     }
 
@@ -171,12 +165,12 @@ export default {
           ? docsRepo
           : repo
         return (
-          base.replace(endingSlashRE, '')
-           + `/src`
-           + `/${docsBranch}/`
-           + (docsDir ? docsDir.replace(endingSlashRE, '') + '/' : '')
-           + path
-           + `?mode=edit&spa=0&at=${docsBranch}&fileviewer=file-view-default`
+          base.replace(endingSlashRE, '') +
+           `/src` +
+           `/${docsBranch}/` +
+           (docsDir ? docsDir.replace(endingSlashRE, '') + '/' : '') +
+           path +
+           `?mode=edit&spa=0&at=${docsBranch}&fileviewer=file-view-default`
         )
       }
 
@@ -184,11 +178,11 @@ export default {
         ? docsRepo
         : `https://github.com/${docsRepo}`
       return (
-        base.replace(endingSlashRE, '')
-        + `/edit`
-        + `/${docsBranch}/`
-        + (docsDir ? docsDir.replace(endingSlashRE, '') + '/' : '')
-        + path
+        base.replace(endingSlashRE, '') +
+        `/edit` +
+        `/${docsBranch}/` +
+        (docsDir ? docsDir.replace(endingSlashRE, '') + '/' : '') +
+        path
       )
     }
   }
@@ -236,7 +230,7 @@ function flatten (items, res) {
   #time-line {
     margin-top 0
     padding-top 0
-  } 
+  }
   .page-title
     max-width: 740px;
     margin: 0 auto;
@@ -265,7 +259,7 @@ function flatten (items, res) {
   }
   &.reco-show.page {
     load-end(0.08s)
-  }          
+  }
 
 .page-nav
   @extend $wrapper
@@ -280,10 +274,9 @@ function flatten (items, res) {
   .next
     float right
 
-
 @media (max-width: $MQMobile)
   .page-title
-    padding: 0 1rem;  
+    padding: 0 1rem;
   .page-edit
     .edit-link
       margin-bottom .5rem

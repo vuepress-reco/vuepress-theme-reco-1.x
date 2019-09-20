@@ -1,10 +1,10 @@
 <template>
   <div class="home" :class="recoShow?'reco-show': 'reco-hide'">
     <div class="hero">
-      <img 
-        v-if="data.isShowHeroImage !== false" 
-        :style="heroImageStyle" 
-        :src="data.heroImage ? $withBase(data.heroImage) : require('../images/icon_vuepress_reco.png')" 
+      <img
+        v-if="data.isShowHeroImage !== false"
+        :style="heroImageStyle"
+        :src="data.heroImage ? $withBase(data.heroImage) : require('../images/icon_vuepress_reco.png')"
         alt="hero">
 
       <h1 v-if="data.isShowTitleInHome !== false">{{ data.heroText || $title || '午后南杂' }}</h1>
@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import NavLink from "@theme/components/NavLink/";
+import NavLink from '@theme/components/NavLink/'
 import AccessNumber from '@theme/components/Valine/AccessNumber'
 
 export default {
@@ -73,15 +73,15 @@ export default {
     year () {
       return new Date().getFullYear()
     },
-    data() {
-      return this.$frontmatter;
+    data () {
+      return this.$frontmatter
     },
 
-    actionLink() {
+    actionLink () {
       return {
         link: this.data.actionLink,
         text: this.data.actionText
-      };
+      }
     },
 
     heroImageStyle () {
@@ -94,7 +94,7 @@ export default {
   mounted () {
     this.recoShow = true
   }
-};
+}
 </script>
 
 <style lang="stylus">
@@ -181,7 +181,7 @@ export default {
       margin-left 1rem
       > i {
         margin-right .5rem
-      } 
+      }
     }
   }
 

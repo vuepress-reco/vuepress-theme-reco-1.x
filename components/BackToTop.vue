@@ -20,7 +20,7 @@ export default {
     },
     customStyle: {
       type: Object,
-      default: function() {
+      default: function () {
         return {
           right: '1rem',
           bottom: '6rem',
@@ -37,27 +37,27 @@ export default {
       default: 'fade'
     }
   },
-  data() {
+  data () {
     return {
       visible: false,
       interval: null,
       isMoving: false
     }
   },
-  mounted() {
+  mounted () {
     window.addEventListener('scroll', this.handleScroll)
   },
-  beforeDestroy() {
+  beforeDestroy () {
     window.removeEventListener('scroll', this.handleScroll)
     if (this.interval) {
       clearInterval(this.interval)
     }
   },
   methods: {
-    handleScroll() {
+    handleScroll () {
       this.visible = window.pageYOffset > this.visibilityHeight
     },
-    backToTop() {
+    backToTop () {
       if (this.isMoving) return
       const start = window.pageYOffset
       let i = 0
@@ -74,7 +74,7 @@ export default {
         i++
       }, 16.7)
     },
-    easeInOutQuad(t, b, c, d) {
+    easeInOutQuad (t, b, c, d) {
       if ((t /= d / 2) < 1) return c / 2 * t * t + b
       return -c / 2 * (--t * (t - 2) - 1) + b
     }
@@ -88,7 +88,7 @@ export default {
     display: inline-block;
     text-align: center;
     cursor: pointer;
-    i 
+    i
       font-size 1.6rem
       color $accentColor
   .back-to-ceiling:hover {

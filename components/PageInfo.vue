@@ -29,7 +29,9 @@ export default {
   props: {
     pageInfo: {
       type: Object,
-      default: {}
+      default () {
+        return {}
+      }
     },
     currentTag: {
       type: String,
@@ -49,7 +51,7 @@ export default {
       }
     }
   },
-  
+
   methods: {
     goTags (tag) {
       const base = this.$site.base
@@ -66,7 +68,7 @@ export default {
   line-height 1.5rem
   &:not(:last-child)
     margin-right 1rem
-  span 
+  span
     margin-left .5rem
 .tags
   .tag-item
@@ -74,7 +76,7 @@ export default {
     font-family Ubuntu, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif
     &.active
       color $accentColor
-    &:hover 
+    &:hover
       color $accentColor
 
 @media (max-width: $MQMobile)

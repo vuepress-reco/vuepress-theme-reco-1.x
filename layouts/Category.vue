@@ -4,10 +4,10 @@
     <Common :sidebar="false" :isComment="false">
       <!-- 分类集合 -->
       <ul class="category-wrapper">
-        <li 
+        <li
           class="category-item"
           :class="title.trim() == item.name ? 'active': ''"
-          v-for="(item, index) in this.$categories.list" 
+          v-for="(item, index) in this.$categories.list"
           :key="index">
           <router-link :to="item.path">
             <span class="category-name">{{ item.name }}</span>
@@ -17,14 +17,14 @@
       </ul>
 
       <!-- 博客列表 -->
-      <note-abstract 
+      <note-abstract
         class="list"
         :data="posts"
         :currentPage="currentPage"
         @currentTag="getCurrentTag"></note-abstract>
-      
+
       <!-- 分页 -->
-      <pagation 
+      <pagation
         class="pagation"
         :total="posts.length"
         :currentPage="currentPage"
@@ -52,7 +52,7 @@ export default {
   computed: {
     // 时间降序后的博客列表
     posts () {
-      let posts = this.$category.posts
+      const posts = this.$category.posts
       posts.sort((a, b) => {
         return this._getTimeNum(b) - this._getTimeNum(a)
       })
@@ -94,7 +94,7 @@ export default {
 .categories-wrapper
   max-width: 740px;
   margin: 0 auto;
-  padding: 4.6rem 2.5rem 0; 
+  padding: 4.6rem 2.5rem 0;
   .category-wrapper {
     list-style none
     padding-left 0
@@ -151,7 +151,7 @@ export default {
     .pagation {
       load-end(0.24s)
     }
-  }  
+  }
 
 @media (max-width: $MQMobile)
   .categories-wrapper

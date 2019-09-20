@@ -2,21 +2,21 @@
   <div class="tags-wrapper" :class="recoShow?'reco-show': 'reco-hide'">
     <Common :sidebar="false" :isComment="false"></Common>
     <div class="tags">
-      <span 
-        v-for="(item, index) in tags" 
+      <span
+        v-for="(item, index) in tags"
         :key="index"
         :class="{'active': item.name == currentTag}"
         :style="{ 'backgroundColor': item.color }"
         @click="getPagesByTags(item.name)">{{item.name}}</span>
     </div>
-    <note-abstract 
+    <note-abstract
       class="list"
       :data="posts"
       :currentPage="currentPage"
       :currentTag="currentTag"
       @currentTag="getCurrentTag"></note-abstract>
-    
-    <pagation 
+
+    <pagation
       class="pagation"
       :total="posts.length"
       :currentPage="currentPage"
@@ -62,7 +62,7 @@ export default {
 
   created () {
     if (this.$tags.list.length > 0) {
-      let tags = this.$tags.list
+      const tags = this.$tags.list
       tags.map(item => {
         const color = this._tagColor()
         item.color = color
@@ -82,9 +82,7 @@ export default {
 
     // 根据分类获取页面数据
     getPagesByTags (currentTag) {
-
       this.currentTag = currentTag
-      
 
       let posts = []
       if (currentTag !== '全部') {
@@ -98,8 +96,8 @@ export default {
 
       // reverse()是为了按时间最近排序排序
       this.posts = posts.length == 0 ? [] : posts
-      
-      this.getCurrentPage(1);
+
+      this.getCurrentPage(1)
     },
 
     getCurrentTag (tag) {
@@ -127,7 +125,7 @@ export default {
 .tags-wrapper
   max-width: 740px;
   margin: 0 auto;
-  padding: 4.6rem 2.5rem 0; 
+  padding: 4.6rem 2.5rem 0;
   .tags
     margin 30px 0
     span
@@ -161,7 +159,7 @@ export default {
     .pagation {
       load-end(0.24s)
     }
-  }      
+  }
 
 @media (max-width: $MQMobile)
   .tags-wrapper

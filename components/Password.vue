@@ -35,7 +35,7 @@
 import Background from '@theme/components/Background'
 
 export default {
-  components: {Background},
+  components: { Background },
   props: {
     isPage: {
       type: Boolean,
@@ -43,7 +43,7 @@ export default {
     }
   },
   name: 'Password',
-  data() {
+  data () {
     return {
       warningText: 'Konck! Knock!',
       key: ''
@@ -63,14 +63,14 @@ export default {
       if (!isHasKey) {
         this.warningText = 'Key Error'
         return
-      } 
+      }
       const passwordBtn = this.$refs.passwordBtn
       const width = document.getElementById('box').getClientRects()[0].width
 
       passwordBtn.style.width = `${width - 2}px`
       passwordBtn.style.opacity = 1
       setTimeout(() => {
-        window.location.reload();
+        window.location.reload()
       }, 800)
     },
     isHasKey () {
@@ -221,7 +221,7 @@ export default {
       margin-left 1rem
       > i {
         margin-right .5rem
-      } 
+      }
     }
   }
   @media (max-width: $MQMobile) {

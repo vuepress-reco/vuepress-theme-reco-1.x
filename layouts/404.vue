@@ -24,7 +24,7 @@ export default {
   },
   mounted () {
     if (this.noFoundPageByTencent) {
-      let dom = document.createElement('script')
+      const dom = document.createElement('script')
       dom.setAttribute('homePageName', '回到首页')
       dom.setAttribute('homePageUrl', '/')
       dom.setAttribute('src', '//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js')

@@ -56,15 +56,14 @@ export default {
       this.pages = pages.length == 0 ? [] : pages
       for (let i = 0, length = pages.length; i < length; i++) {
         const page = pages[i]
-        const pageDateYear =  this.dateFormat(page.frontmatter.date, 'year')
+        const pageDateYear = this.dateFormat(page.frontmatter.date, 'year')
         if (this.formatPages[pageDateYear]) this.formatPages[pageDateYear].push(page)
         else {
           this.formatPages[pageDateYear] = [page]
         }
       }
 
-      
-      for(let key in this.formatPages) {
+      for (const key in this.formatPages) {
         this.formatPagesArr.unshift({
           year: key,
           data: this.formatPages[key].sort((a, b) => {
@@ -73,9 +72,9 @@ export default {
         })
       }
     },
-    renderTime(date) {
-      var dateee = new Date(date).toJSON();
-      return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '').replace(/-/g,'/')
+    renderTime (date) {
+      var dateee = new Date(date).toJSON()
+      return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '').replace(/-/g, '/')
     },
     // 时间格式化
     dateFormat (date, type) {
@@ -90,7 +89,7 @@ export default {
     },
     // 跳转
     go (url) {
-      this.$router.push({path: url})
+      this.$router.push({ path: url })
     },
     // 获取时间的数字类型
     _getTimeNum (date) {
@@ -135,7 +134,7 @@ export default {
       height: 8px;
       background: #ddd;
       border-radius: 50%;
-    }  
+    }
   }
   .year {
     margin: 80px 0 0px;
@@ -157,7 +156,7 @@ export default {
           &::before {
             background $accentColor
           }
-        }  
+        }
         .title {
           color $accentColor
         }
@@ -179,7 +178,7 @@ export default {
           border-radius: 50%;
           border: 1px solid #fff;
           z-index 2
-        }  
+        }
       }
       .title {
         line-height 30px

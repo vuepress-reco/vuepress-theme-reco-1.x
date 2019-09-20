@@ -67,7 +67,7 @@ export default {
         cursor: pointer;
         &.active
           color $accentColor
-        &:hover 
+        &:hover
           color $accentColor
 
 @media (max-width: $MQMobile)

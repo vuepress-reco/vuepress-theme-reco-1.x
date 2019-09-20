@@ -13,7 +13,7 @@
 import mixin from '@theme/mixins/index.js'
 export default {
   mixins: [mixin]
-};
+}
 </script>
 <style lang="stylus" scoped>
 #loader-wrapper{
@@ -67,7 +67,7 @@ export default {
       }
     }
   }
-  
+
   .title {
     position: absolute;
     left 0

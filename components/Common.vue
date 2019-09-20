@@ -25,14 +25,14 @@
           <slot
             name="sidebar-bottom"
             slot="bottom"/>
-        </Sidebar>  
+        </Sidebar>
 
         <Password v-if="!isHasPageKey" :isPage="true"></Password>
         <div v-else>
           <slot></slot>
           <Valine :isComment="isComment"></Valine>
         </div>
-        
+
         <BackToTop></BackToTop>
       </div>
     </transition>
@@ -46,8 +46,8 @@ import { resolveSidebarItems } from '../util'
 import Password from '@theme/components/Password'
 import Loading from '@theme/components/Loading'
 import Valine from '@theme/components/Valine/'
-import BackToTop from "@theme/components/BackToTop"
-import { setTimeout } from 'timers';
+import BackToTop from '@theme/components/BackToTop'
+import { setTimeout } from 'timers'
 
 export default {
   components: { Sidebar, Navbar, Password, Valine, BackToTop, Loading },
@@ -68,26 +68,26 @@ export default {
       const { themeConfig } = this.$site
       const { frontmatter } = this.$page
       if (
-        frontmatter.navbar === false
-        || themeConfig.navbar === false) {
+        frontmatter.navbar === false ||
+        themeConfig.navbar === false) {
         return false
       }
       return (
-        this.$title
-        || themeConfig.logo
-        || themeConfig.repo
-        || themeConfig.nav
-        || this.$themeLocaleConfig.nav
+        this.$title ||
+        themeConfig.logo ||
+        themeConfig.repo ||
+        themeConfig.nav ||
+        this.$themeLocaleConfig.nav
       )
     },
 
     shouldShowSidebar () {
       const { frontmatter } = this.$page
       return (
-        this.sidebar !== false
-        && !frontmatter.home
-        && frontmatter.sidebar !== false
-        && this.sidebarItems.length
+        this.sidebar !== false &&
+        !frontmatter.home &&
+        frontmatter.sidebar !== false &&
+        this.sidebarItems.length
       )
     },
 
@@ -127,7 +127,7 @@ export default {
     hasKey () {
       const keyPage = this.$themeConfig.keyPage
       if (!keyPage) {
-        this.isHasKey =  true
+        this.isHasKey = true
         return
       }
 
@@ -137,7 +137,7 @@ export default {
     hasPageKey () {
       const pageKeys = this.$frontmatter.keys
       if (!pageKeys) {
-        this.isHasPageKey =  true
+        this.isHasPageKey = true
         return
       }
 
