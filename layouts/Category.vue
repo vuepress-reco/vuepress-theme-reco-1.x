@@ -55,7 +55,7 @@ export default {
       posts.sort((a, b) => {
         return this._getTimeNum(b) - this._getTimeNum(a)
       })
-      this.getCurrentPage(1)
+      this._setPage(1)
       return posts
     },
     // 标题只显示分类名称
@@ -75,6 +75,12 @@ export default {
     },
     // 获取当前页码
     getCurrentPage (page) {
+      this._setPage(page)
+      setTimeout(() => {
+        window.scrollTo(0, 0)
+      }, 100)
+    },
+    _setPage (page) {
       this.currentPage = page
       this.$page.currentPage = page
     },

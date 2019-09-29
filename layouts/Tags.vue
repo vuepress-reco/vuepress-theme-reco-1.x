@@ -7,7 +7,7 @@
         :key="index"
         :class="{'active': item.name == currentTag}"
         :style="{ 'backgroundColor': item.color }"
-        @click="getPagesByTags(item.name)">{{item.name}}</span>
+          @click="tagClick(item.name)">{{item.name}}</span>
     </div>
     <note-abstract
       class="list"
@@ -79,6 +79,15 @@ export default {
 
   methods: {
 
+    initData (currentTag) {
+      this.getPagesByTags(currentTag)
+    },
+
+    async tagClick (currentTag) {
+      await this.getPagesByTags(currentTag)
+      window.scrollTo(0, 0)
+    },
+
     // 根据分类获取页面数据
     getPagesByTags (currentTag) {
       this.currentTag = currentTag
@@ -96,7 +105,7 @@ export default {
       // reverse()是为了按时间最近排序排序
       this.posts = posts.length == 0 ? [] : posts
 
-      this.getCurrentPage(1)
+      this._setPage(1)
     },
 
     getCurrentTag (tag) {
@@ -104,11 +113,15 @@ export default {
     },
 
     getCurrentPage (page) {
+      this._setPage(page)
+      setTimeout(() => {
+        window.scrollTo(0, 0)
+      }, 100)
+    },
+    _setPage (page) {
       this.currentPage = page
       this.$page.currentPage = page
-      window.scrollTo(0, 0)
     },
-
     // 获取时间的数字类型
     _getTimeNum (date) {
       return parseInt(new Date(date.frontmatter.date).getTime())
