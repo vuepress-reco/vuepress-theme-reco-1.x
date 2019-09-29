@@ -36,10 +36,9 @@
 <script>
 import Common from '@theme/components/Common.vue'
 import NoteAbstract from '@theme/components/NoteAbstract.vue'
-import Pagation from '@theme/components/Pagation.vue'
 
 export default {
-  components: { Common, NoteAbstract, Pagation },
+  components: { Common, NoteAbstract },
 
   data () {
     return {
