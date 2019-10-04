@@ -61,6 +61,7 @@ export default {
 
   created () {
     if (this.$tags.list.length > 0) {
+      const currentTag = this.$route.query.tag ? this.$route.query.tag : this.currentTag
       const tags = this.$tags.list
       tags.map(item => {
         const color = this._tagColor()
@@ -69,7 +70,7 @@ export default {
       })
       this.tags = [{ name: '全部', color: this._tagColor() }, ...tags]
 
-      this.getPagesByTags(this.currentTag)
+      this.getPagesByTags(currentTag)
     }
   },
 
@@ -78,10 +79,6 @@ export default {
   },
 
   methods: {
-
-    initData (currentTag) {
-      this.getPagesByTags(currentTag)
-    },
 
     async tagClick (currentTag) {
       await this.getPagesByTags(currentTag)
@@ -94,7 +91,7 @@ export default {
 
       let posts = []
       if (currentTag !== '全部') {
-        posts = this.$tags.map[currentTag].posts
+        posts = this.$tags.map[currentTag].pages
         posts.sort((a, b) => {
           return this._getTimeNum(b) - this._getTimeNum(a)
         })

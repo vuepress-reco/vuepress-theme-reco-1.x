@@ -9,12 +9,6 @@
   </div>
 </template>
 
-<script>
-import mixin from '@theme/mixins/index.js'
-export default {
-  mixins: [mixin]
-}
-</script>
 <style lang="stylus" scoped>
 #loader-wrapper{
   height:100vh;

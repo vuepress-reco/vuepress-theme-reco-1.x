@@ -83,7 +83,6 @@ export default {
       const year = dateObj.getFullYear()
       const mon = dateObj.getMonth() + 1
       const day = dateObj.getDate()
-      console.log(dateObj)
       if (type == 'year') return year
       else return `${mon}-${day}`
     },

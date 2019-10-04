@@ -8,12 +8,21 @@
     </div>
 
     <div class="home-blog-wrapper">
-      <!-- 博客列表 -->
-      <note-abstract
-        class="blog-list"
-        :data="posts"
-        :isHome="true"
-        :currentPage="1"></note-abstract>
+      <div>
+        <!-- 博客列表 -->
+        <note-abstract
+          class="blog-list"
+          :data="posts"
+          :isHome="true"
+          :currentPage="currentPage"></note-abstract>
+        <!-- 分页 -->
+        <pagation
+          class="pagation"
+          :total="posts.length"
+          :currentPage="currentPage"
+          @getCurrentPage="getCurrentPage" /> 
+      </div>
+      
       <div class="info-wrapper">
          <img class="personal-img" :src="$frontmatter.faceImage ? $withBase($frontmatter.faceImage) : require('../images/home-head.png')" alt="hero">
          <h3 class="name" v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</h3>
@@ -23,7 +32,7 @@
              <h6>文章</h6>
            </div>
            <div>
-             <h3>{{$tags.length}}</h3>
+             <h3>{{$tags.list.length}}</h3>
              <h6>标签</h6>
            </div>
          </div>
@@ -33,7 +42,7 @@
           <li class="category-item" v-for="(item, index) in this.$categories.list" :key="index">
             <router-link :to="item.path">
               <span class="category-name">{{ item.name }}</span>
-              <span class="post-num">{{ item.posts.length }}</span>
+              <span class="post-num">{{ item.pages.length }}</span>
             </router-link>
           </li>
         </ul>
@@ -87,6 +96,7 @@ export default {
   data () {
     return {
       recoShow: false,
+      currentPage: 1,
       tags: []
     }
   },
@@ -108,7 +118,7 @@ export default {
     getPagesLength () {
       let num = 0
       this.$categories.list.map(v => {
-        num += v.posts.length
+        num += v.pages.length
       })
       return num
     },
@@ -140,6 +150,10 @@ export default {
         overflow: 'hidden'
       }
       return this.data.bgImageStyle ? { ...bgImageStyle, ...this.data.bgImageStyle } : bgImageStyle
+    },
+
+    heroHeight () {
+      return document.querySelector('.hero').clientHeight
     }
   },
   created () {
@@ -157,6 +171,13 @@ export default {
     this.recoShow = true
   },
   methods: {
+    // 获取当前页码
+    getCurrentPage (page) {
+      this._setPage(page)
+      setTimeout(() => {
+        window.scrollTo(0, this.heroHeight)
+      }, 100)
+    },
     // 根据分类获取页面数据
     getPages () {
       let pages = this.$site.pages
@@ -174,7 +195,11 @@ export default {
     // 获取时间的数字类型
     _getTimeNum (data) {
       return parseInt(new Date(data.frontmatter.date).getTime())
-    }
+    },
+    _setPage (page) {
+      this.currentPage = page
+      this.$page.currentPage = page
+    },
   }
 }
 </script>
@@ -259,18 +284,23 @@ export default {
         list-style none
         padding-left 0
         .category-item {
+          margin-bottom .4rem
           padding: .4rem .8rem;
-          border: 1px solid #999;
           transition: all .5s
-          &:first-child {
-            border-top-right-radius: .25rem;
-            border-top-left-radius: .25rem;
-          }
+          border-radius 2px
+          box-shadow 0 1px 4px 0 rgba(0,0,0,0.2)
           &:not(:first-child) {
             border-top: none;
           }
           &:hover {
             background #d3d3d3
+            a {
+              color #fff
+              .post-num {
+                background #999
+                color #fff
+              }
+            }
           }
           a {
             display flex
@@ -280,7 +310,7 @@ export default {
               height 1.6rem
               text-align center
               line-height 1.6rem
-              border-radius 50%
+              border-radius 4px
               background #eee
               font-size .6rem
               color $textColor
