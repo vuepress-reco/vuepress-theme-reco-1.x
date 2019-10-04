@@ -6,12 +6,12 @@
       <ul class="category-wrapper">
         <li
           class="category-item"
-          :class="title.trim() == item.name ? 'active': ''"
+          :class="title == item.name ? 'active': ''"
           v-for="(item, index) in this.$categories.list"
           :key="index">
           <router-link :to="item.path">
             <span class="category-name">{{ item.name }}</span>
-            <span class="post-num">{{ item.posts.length }}</span>
+            <span class="post-num">{{ item.pages.length }}</span>
           </router-link>
         </li>
       </ul>
@@ -51,7 +51,7 @@ export default {
   computed: {
     // 时间降序后的博客列表
     posts () {
-      const posts = this.$category.posts
+      const posts = this.$currentCategories.pages
       posts.sort((a, b) => {
         return this._getTimeNum(b) - this._getTimeNum(a)
       })
@@ -60,7 +60,7 @@ export default {
     },
     // 标题只显示分类名称
     title () {
-      return this.$frontmatter.title.split('|')[0]
+      return this.$currentCategories.key
     }
   },
 

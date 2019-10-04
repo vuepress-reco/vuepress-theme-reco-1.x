@@ -23,7 +23,23 @@ module.exports = (options, ctx) => ({
     '@vuepress-reco/vuepress-plugin-screenfull',
     '@vuepress/active-header-links',
     ['@vuepress/plugin-blog', {
-      permalink: '/:regular'
+      permalink: '/:regular',
+      frontmatters: [
+        {
+          id: 'tags',
+          keys: ['tags'],
+          path: '/tag/',
+          layout: 'Tags',
+          scopeLayout: 'Tag'
+        },
+        {
+          id: 'categories',
+          keys: ['categories'],
+          path: '/categories/',
+          layout: 'Categories',
+          scopeLayout: 'Category'
+        },
+      ],
     }],
     '@vuepress/search',
     '@vuepress/plugin-nprogress',

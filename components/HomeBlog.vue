@@ -23,7 +23,7 @@
              <h6>文章</h6>
            </div>
            <div>
-             <h3>{{$tags.length}}</h3>
+             <h3>{{$tags.list.length}}</h3>
              <h6>标签</h6>
            </div>
          </div>
@@ -33,7 +33,7 @@
           <li class="category-item" v-for="(item, index) in this.$categories.list" :key="index">
             <router-link :to="item.path">
               <span class="category-name">{{ item.name }}</span>
-              <span class="post-num">{{ item.posts.length }}</span>
+              <span class="post-num">{{ item.pages.length }}</span>
             </router-link>
           </li>
         </ul>
@@ -108,7 +108,7 @@ export default {
     getPagesLength () {
       let num = 0
       this.$categories.list.map(v => {
-        num += v.posts.length
+        num += v.pages.length
       })
       return num
     },
