@@ -136,9 +136,9 @@ export default {
           height 1.2rem
           text-align center
           line-height 1.2rem
-          border-radius 50%
+          border-radius 4px
           background #eee
-          font-size .4rem
+          font-size .7rem
         }
       }
     }

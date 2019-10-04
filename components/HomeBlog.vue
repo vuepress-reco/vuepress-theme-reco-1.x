@@ -284,18 +284,23 @@ export default {
         list-style none
         padding-left 0
         .category-item {
+          margin-bottom .4rem
           padding: .4rem .8rem;
-          border: 1px solid #999;
           transition: all .5s
-          &:first-child {
-            border-top-right-radius: .25rem;
-            border-top-left-radius: .25rem;
-          }
+          border-radius 2px
+          box-shadow 0 1px 4px 0 rgba(0,0,0,0.2)
           &:not(:first-child) {
             border-top: none;
           }
           &:hover {
             background #d3d3d3
+            a {
+              color #fff
+              .post-num {
+                background #999
+                color #fff
+              }
+            }
           }
           a {
             display flex
@@ -305,7 +310,7 @@ export default {
               height 1.6rem
               text-align center
               line-height 1.6rem
-              border-radius 50%
+              border-radius 4px
               background #eee
               font-size .6rem
               color $textColor
