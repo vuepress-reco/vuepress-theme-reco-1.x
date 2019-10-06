@@ -48,13 +48,7 @@
         </ul>
         <hr>
         <h4><i class="iconfont reco-tag"></i> 标签</h4>
-        <div class="tags">
-          <span
-            v-for="(item, index) in tags"
-            :key="index"
-            :style="{ 'backgroundColor': item.color }"
-            @click="getPagesByTags(item.name)">{{item.name}}</span>
-        </div>
+        <TagList @getCurrentTag="getPagesByTags"></TagList>
       </div>
     </div>
 
@@ -87,12 +81,11 @@
 
 <script>
 import AccessNumber from '@theme/components/Valine/AccessNumber'
+import TagList from '@theme/components/TagList.vue'
 import NoteAbstract from '@theme/components/NoteAbstract.vue'
-import mixin from '@theme/mixins/index.js'
 
 export default {
-  mixins: [mixin],
-  components: { AccessNumber, NoteAbstract },
+  components: { AccessNumber, NoteAbstract, TagList },
   data () {
     return {
       recoShow: false,
@@ -154,17 +147,6 @@ export default {
 
     heroHeight () {
       return document.querySelector('.hero').clientHeight
-    }
-  },
-  created () {
-    if (this.$tags.list.length > 0) {
-      const tags = this.$tags.list
-      tags.map(item => {
-        const color = this._tagColor()
-        item.color = color
-        return tags
-      })
-      this.tags = tags
     }
   },
   mounted () {
@@ -315,28 +297,6 @@ export default {
               font-size .6rem
               color $textColor
             }
-          }
-        }
-      }
-      .tags {
-        margin-bottom 30px
-        span {
-          vertical-align: middle;
-          margin: 4px 4px 10px;
-          padding: 4px 8px;
-          display: inline-flex;
-          cursor: pointer;
-          border-radius: 2px;
-          background: #fff;
-          color: #fff;
-          font-size: 13px;
-          box-shadow 0 1px 4px 0 rgba(0,0,0,0.2)
-          transition: all .5s
-          &:hover {
-            transform scale(1.04)
-          }
-          &.active {
-            transform scale(1.2)
           }
         }
       }
