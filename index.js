@@ -18,9 +18,10 @@ module.exports = (options, ctx) => ({
   },
 
   plugins: [
-    '@vuepress-reco/vuepress-plugin-back-to-top',
-    '@vuepress-reco/vuepress-plugin-pagation',
-    '@vuepress-reco/vuepress-plugin-screenfull',
+    '@vuepress-reco/back-to-top',
+    '@vuepress-reco/loading-page',
+    '@vuepress-reco/pagation',
+    '@vuepress-reco/screenfull',
     '@vuepress/active-header-links',
     ['@vuepress/plugin-blog', {
       permalink: '/:regular',

@@ -5,7 +5,7 @@
     @touchstart="onTouchStart"
     @touchend="onTouchEnd">
     <transition name="fade">
-      <Loading v-if="firstLoad"></Loading>
+      <LoadingPage v-if="firstLoad"></LoadingPage>
       <Password v-else-if="!isHasKey"></Password>
       <div v-else>
         <Navbar
@@ -42,12 +42,11 @@ import Navbar from '@theme/components/Navbar.vue'
 import Sidebar from '@theme/components/Sidebar.vue'
 import { resolveSidebarItems } from '../util'
 import Password from '@theme/components/Password'
-import Loading from '@theme/components/Loading'
 import Valine from '@theme/components/Valine/'
 import { setTimeout } from 'timers'
 
 export default {
-  components: { Sidebar, Navbar, Password, Valine, Loading },
+  components: { Sidebar, Navbar, Password, Valine },
 
   props: ['sidebar', 'isComment'],
 
