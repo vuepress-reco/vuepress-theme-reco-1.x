@@ -8,10 +8,9 @@
     </div>
 
     <div class="home-blog-wrapper">
-      <div>
+      <div class="blog-list">
         <!-- 博客列表 -->
         <note-abstract
-          class="blog-list"
           :data="posts"
           :isHome="true"
           :currentPage="currentPage"></note-abstract>
@@ -20,9 +19,8 @@
           class="pagation"
           :total="posts.length"
           :currentPage="currentPage"
-          @getCurrentPage="getCurrentPage" /> 
+          @getCurrentPage="getCurrentPage" />
       </div>
-      
       <div class="info-wrapper">
          <img class="personal-img" :src="$frontmatter.faceImage ? $withBase($frontmatter.faceImage) : require('../images/home-head.png')" alt="hero">
          <h3 class="name" v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</h3>
@@ -181,7 +179,7 @@ export default {
     _setPage (page) {
       this.currentPage = page
       this.$page.currentPage = page
-    },
+    }
   }
 }
 </script>
@@ -221,10 +219,13 @@ export default {
     align-items: flex-start;
     margin 20px auto 0
     max-width 1126px
+    .blog-list {
+      flex auto
+    }
     .info-wrapper {
       transition all .3s
       margin-left 15px;
-      width 380px;
+      width 34rem;
       height auto;
       box-shadow 0 2px 10px rgba(0,0,0,0.2);
       box-sizing border-box
