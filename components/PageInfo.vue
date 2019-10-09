@@ -5,7 +5,7 @@
       v-if="pageInfo.frontmatter.author || $themeConfig.author || $site.title">
       <span>{{ pageInfo.frontmatter.author || $themeConfig.author || $site.title }}</span>
     </i>
-    <i class="iconfont reco-date" v-if="pageInfo.frontmatter.date"><span>{{ new Date(pageInfo.frontmatter.date).toLocaleDateString() }}</span></i>
+    <i class="iconfont reco-date" v-if="pageInfo.frontmatter.date"><span>{{ pageInfo.frontmatter.date | formatDate }}</span></i>
     <AccessNumber v-if="isHome !== true" :idVal="pageInfo.path" :numStyle="numStyle"></AccessNumber>
     <i class="iconfont reco-tag tags" v-if="pageInfo.frontmatter.tags">
       <span
@@ -22,6 +22,8 @@
 
 <script>
 import AccessNumber from './Valine/AccessNumber'
+//引入时间格式化js文件
+import { fromatDateTime } from '@theme/util/formatDate.js'
 
 export default {
   components: { AccessNumber },
@@ -51,7 +53,27 @@ export default {
       }
     }
   },
-
+  filters: {
+    formatDate: function (value) {
+      if (!value) return ''
+      // 返回的value的值都是这个样子2019-09-20T18:22:30.000Z
+      // 对value进行处理
+      value = value.replace('T', ' ').slice(0,value.lastIndexOf('.'))
+      // 转化后的value 2019-09-20 18:22:30
+      // 判断时分秒是不是 00:00:00 (如果是用户手动输入的00:00:00也会不显示)
+      const h = Number(value.substr(11, 2))
+      const m = Number(value.substr(14, 2))
+      const s = Number(value.substr(17, 2))
+      // 时分秒有一个> 0 就说明用户输入一个非 00:00:00 的时分秒
+      if (h > 0 || m > 0 || s > 0) {
+        
+        return fromatDateTime(value)
+      }else {
+        // 用户没有输入或者输入了 00:00:00
+        return new Date(value).toLocaleDateString()
+      }
+    }
+  },
   methods: {
     goTags (tag) {
       const base = this.$site.base
