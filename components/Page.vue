@@ -81,7 +81,8 @@ export default {
 
   data () {
     return {
-      recoShow: false
+      recoShow: false,
+      isHasKey: true
     }
   },
 
@@ -154,7 +155,8 @@ export default {
       return
     }
 
-    this.isHasKey = keys && keys.indexOf(sessionStorage.getItem('key')) > -1
+    this.isHasKey = keys && keys.indexOf(sessionStorage.getItem('pageKey')) > -1
+    this.$parent.isHasPageKey = this.isHasKey
   },
 
   methods: {
