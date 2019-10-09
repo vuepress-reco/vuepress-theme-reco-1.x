@@ -1,6 +1,6 @@
 node_modules
 yarn-error.log
 .idea
-.DS_Store
 yarn.lock
+.DS_Store
 package-lock.json
