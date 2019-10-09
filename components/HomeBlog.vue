@@ -1,6 +1,6 @@
 <template>
   <div class="home-blog" :class="recoShow?'reco-show': 'reco-hide'">
-     <div class="hero" :style="{background: `url(${$frontmatter.bgImage ? $withBase($frontmatter.bgImage) : require('../images/home-bg.jpg')}) center/cover no-repeat`, ...bgImageStyle}">
+    <div class="hero" :style="{background: `url(${$frontmatter.bgImage ? $withBase($frontmatter.bgImage) : require('../images/home-bg.jpg')}) center/cover no-repeat`, ...bgImageStyle}">
       <h1>{{ data.heroText || $title || '午后南杂' }}</h1>
 
       <p class="description">{{ data.tagline || $description || 'Welcome to your vuePress-theme-reco site' }}</p>
@@ -24,21 +24,21 @@
       </div>
       
       <div class="info-wrapper">
-         <img class="personal-img" :src="$frontmatter.faceImage ? $withBase($frontmatter.faceImage) : require('../images/home-head.png')" alt="hero">
-         <h3 class="name" v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</h3>
-         <div class="num">
-           <div>
-             <h3>{{getPagesLength}}</h3>
-             <h6>文章</h6>
-           </div>
-           <div>
-             <h3>{{$tags.list.length}}</h3>
-             <h6>标签</h6>
-           </div>
-         </div>
-         <hr>
-         <h4><i class="iconfont reco-category"></i> 分类</h4>
-         <ul class="category-wrapper">
+        <img class="personal-img" :src="$frontmatter.faceImage ? $withBase($frontmatter.faceImage) : require('../images/home-head.png')" alt="hero">
+        <h3 class="name" v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</h3>
+        <div class="num">
+          <div>
+            <h3>{{getPagesLength}}</h3>
+            <h6>文章</h6>
+          </div>
+          <div>
+            <h3>{{$tags.list.length}}</h3>
+            <h6>标签</h6>
+          </div>
+        </div>
+        <hr>
+        <h4><i class="iconfont reco-category"></i> 分类</h4>
+        <ul class="category-wrapper">
           <li class="category-item" v-for="(item, index) in this.$categories.list" :key="index">
             <router-link :to="item.path">
               <span class="category-name">{{ item.name }}</span>
