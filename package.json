@@ -1,6 +1,6 @@
 {
   "name": "vuepress-theme-reco",
-  "version": "1.0.9-alpha.8",
+  "version": "1.0.9-alpha.11",
   "description": "this is a vuepress theme",
   "main": "index.js",
   "scripts": {
@@ -30,6 +30,7 @@
     "@vuepress-reco/vuepress-plugin-loading-page": "^1.0.0",
     "@vuepress-reco/vuepress-plugin-pagation": "^1.0.3",
     "@vuepress-reco/vuepress-plugin-screenfull": "^1.0.0",
+    "@vuepress-reco/vuepress-plugin-ga": "^1.0.2",
     "@vuepress/plugin-blog": "1.3.0",
     "leancloud-storage": "3.13.2",
     "valine": "1.3.6",

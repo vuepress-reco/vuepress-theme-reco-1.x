@@ -65,6 +65,8 @@
       </p>
     </div>
 
+    <GA></GA>
+
     <slot name="bottom"/>
   </main>
 </template>

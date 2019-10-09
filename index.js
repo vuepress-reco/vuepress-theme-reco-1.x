@@ -22,6 +22,7 @@ module.exports = (options, ctx) => ({
     '@vuepress-reco/loading-page',
     '@vuepress-reco/pagation',
     '@vuepress-reco/screenfull',
+    '@vuepress-reco/ga',
     '@vuepress/active-header-links',
     ['@vuepress/plugin-blog', {
       permalink: '/:regular',
@@ -39,8 +40,8 @@ module.exports = (options, ctx) => ({
           path: '/categories/',
           layout: 'Categories',
           scopeLayout: 'Category'
-        },
-      ],
+        }
+      ]
     }],
     '@vuepress/search',
     '@vuepress/plugin-nprogress',

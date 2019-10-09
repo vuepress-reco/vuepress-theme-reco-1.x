@@ -34,6 +34,7 @@
         </div>
       </div>
     </transition>
+    <GA></GA>
   </div>
 </template>
 
