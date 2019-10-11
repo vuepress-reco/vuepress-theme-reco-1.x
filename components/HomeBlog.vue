@@ -219,6 +219,11 @@ export default {
     align-items: flex-start;
     margin 20px auto 0
     max-width 1126px
+    .abstract-wrapper {
+      .abstract-item:last-child {
+        margin-bottom: 0px;
+      }
+    }
     .blog-list {
       flex auto
     }
