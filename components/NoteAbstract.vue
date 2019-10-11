@@ -39,8 +39,6 @@ export default {
     box-sizing: border-box;
     transition all .3s
     background-color $bgColor
-    &:last-child
-      margin-bottom 0
     &:hover
       box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
     .title
