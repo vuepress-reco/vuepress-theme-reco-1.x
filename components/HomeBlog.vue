@@ -223,6 +223,9 @@ export default {
       flex auto
     }
     .info-wrapper {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 70px;
       transition all .3s
       margin-left 15px;
       flex 0 0 300px
