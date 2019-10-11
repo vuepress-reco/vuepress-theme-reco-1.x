@@ -22,7 +22,7 @@
 
 <script>
 import AccessNumber from './Valine/AccessNumber'
-//引入时间格式化js文件
+// 引入时间格式化js文件
 import { fromatDateTime } from '@theme/util/formatDate.js'
 
 export default {
@@ -58,17 +58,17 @@ export default {
       if (!value) return ''
       // 返回的value的值都是这个样子2019-09-20T18:22:30.000Z
       // 对value进行处理
-      value = value.replace('T', ' ').slice(0,value.lastIndexOf('.'))
+      value = value.replace('T', ' ').slice(0, value.lastIndexOf('.'))
       // 转化后的value 2019-09-20 18:22:30
-      // 判断时分秒是不是 00:00:00 (如果是用户手动输入的00:00:00也会不显示)
+      // 获取到时分秒
       const h = Number(value.substr(11, 2))
       const m = Number(value.substr(14, 2))
       const s = Number(value.substr(17, 2))
-      // 时分秒有一个> 0 就说明用户输入一个非 00:00:00 的时分秒
+      // 判断时分秒是不是 00:00:00 (如果是用户手动输入的00:00:00也会不显示)
       if (h > 0 || m > 0 || s > 0) {
-        
+        // 时分秒有一个> 0 就说明用户输入一个非 00:00:00 的时分秒
         return fromatDateTime(value)
-      }else {
+      } else {
         // 用户没有输入或者输入了 00:00:00
         return new Date(value).toLocaleDateString()
       }
@@ -84,25 +84,23 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-
 .iconfont
   display inline-block
   line-height 1.5rem
   &:not(:last-child)
     margin-right 1rem
   span
-    margin-left .5rem
+    margin-left 0.5rem
 .tags
   .tag-item
-    cursor: pointer;
-    font-family Ubuntu, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif
+    cursor pointer
+    font-family Ubuntu, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif
     &.active
       color $accentColor
     &:hover
       color $accentColor
-
 @media (max-width: $MQMobile)
   .tags
     display block
-    margin-left: 0!important;
+    margin-left 0 !important
 </style>
