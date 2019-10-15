@@ -83,9 +83,14 @@ color-mode(accountColor , colorName)
         button
           border 1px solid accountColor!important
           color accountColor!important;
+    .showBanNiang
+      background-color lighten(accountColor, 50%)!important
     .banniang-container
       .messageBox
         background-color lighten(accountColor, 50%)!important
+      .operation
+        i:hover
+          color lighten(accountColor, 50%)!important
 
     @media (min-width: 765px)
       .nav-item > a:not(.external):hover,
