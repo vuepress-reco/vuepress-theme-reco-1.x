@@ -71,19 +71,18 @@
         </a>
       </span>
       <span>
-        <AccessNumber idVal="/"></AccessNumber>
+        <AccessNumber idVal="/" />
       </span>
     </div>
   </div>
 </template>
 
 <script>
-import AccessNumber from '@theme/components/Valine/AccessNumber'
 import TagList from '@theme/components/TagList.vue'
 import NoteAbstract from '@theme/components/NoteAbstract.vue'
 
 export default {
-  components: { AccessNumber, NoteAbstract, TagList },
+  components: { NoteAbstract, TagList },
   data () {
     return {
       recoShow: false,

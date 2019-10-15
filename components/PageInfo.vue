@@ -5,9 +5,18 @@
       v-if="pageInfo.frontmatter.author || $themeConfig.author || $site.title">
       <span>{{ pageInfo.frontmatter.author || $themeConfig.author || $site.title }}</span>
     </i>
-    <i class="iconfont reco-date" v-if="pageInfo.frontmatter.date"><span>{{ pageInfo.frontmatter.date | formatDate }}</span></i>
-    <AccessNumber v-if="isHome !== true" :idVal="pageInfo.path" :numStyle="numStyle"></AccessNumber>
-    <i class="iconfont reco-tag tags" v-if="pageInfo.frontmatter.tags">
+    <i
+      v-if="pageInfo.frontmatter.date"
+      class="iconfont reco-date">
+      <span>{{ pageInfo.frontmatter.date | formatDate }}</span>
+    </i>
+    <AccessNumber
+      v-if="isHome !== true"
+      :idVal="pageInfo.path"
+      :numStyle="numStyle" />
+    <i
+      v-if="pageInfo.frontmatter.tags"
+      class="iconfont reco-tag tags">
       <span
         v-for="(subItem, subIndex) in pageInfo.frontmatter.tags"
         :key="subIndex"
@@ -21,12 +30,10 @@
 </template>
 
 <script>
-import AccessNumber from './Valine/AccessNumber'
 // 引入时间格式化js文件
 import { fromatDateTime } from '@theme/util/formatDate.js'
 
 export default {
-  components: { AccessNumber },
   // props: ['pageInfo', 'currentTag'],
   props: {
     pageInfo: {
