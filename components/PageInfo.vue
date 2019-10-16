@@ -10,10 +10,13 @@
       class="iconfont reco-date">
       <span>{{ pageInfo.frontmatter.date | formatDate }}</span>
     </i>
-    <AccessNumber
-      v-if="isHome !== true"
-      :idVal="pageInfo.path"
-      :numStyle="numStyle" />
+    <i
+      v-if="$themeConfig.commentsSolution === 'valine' && hideAccessNumber !== true"
+      class="iconfont reco-eye">
+      <AccessNumber
+        :idVal="pageInfo.path"
+        :numStyle="numStyle" />
+    </i>
     <i
       v-if="pageInfo.frontmatter.tags"
       class="iconfont reco-tag tags">
@@ -46,7 +49,7 @@ export default {
       type: String,
       default: ''
     },
-    isHome: {
+    hideAccessNumber: {
       type: Boolean,
       default: false
     }

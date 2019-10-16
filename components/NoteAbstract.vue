@@ -11,7 +11,7 @@
       </div>
       <div class="abstract" v-html="item.excerpt"></div>
       <hr>
-      <PageInfo :pageInfo="item" :isHome="!(isHome !== true)" :currentTag="currentTag"></PageInfo>
+      <PageInfo :pageInfo="item" :hideAccessNumber="!(hideAccessNumber !== true)" :currentTag="currentTag"></PageInfo>
     </div>
   </div>
 </template>
@@ -21,7 +21,7 @@ import PageInfo from './PageInfo'
 
 export default {
   components: { PageInfo },
-  props: ['data', 'currentPage', 'currentTag', 'isHome']
+  props: ['data', 'currentPage', 'currentTag', 'hideAccessNumber']
 }
 </script>
 

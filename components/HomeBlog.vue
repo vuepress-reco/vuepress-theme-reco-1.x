@@ -12,7 +12,7 @@
         <!-- 博客列表 -->
         <note-abstract
           :data="posts"
-          :isHome="true"
+          :hideAccessNumber="true"
           :currentPage="currentPage"></note-abstract>
         <!-- 分页 -->
         <pagation
@@ -70,7 +70,8 @@
           <span v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</span>
         </a>
       </span>
-      <span>
+      <span v-show="$themeConfig.commentsSolution === 'valine'">
+        <i class="iconfont reco-eye"></i>
         <AccessNumber idVal="/" />
       </span>
     </div>
@@ -147,6 +148,7 @@ export default {
     }
   },
   mounted () {
+    console.log(this)
     this.recoShow = true
   },
   methods: {
