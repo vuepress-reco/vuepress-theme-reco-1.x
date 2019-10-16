@@ -228,7 +228,7 @@ function flatten (items, res) {
 @require '../styles/loadMixin.styl'
 
 .page
-  padding-top 6rem
+  padding-top 5rem
   padding-bottom 2rem
   display block
   #time-line {
@@ -238,7 +238,7 @@ function flatten (items, res) {
   .page-title
     max-width: 740px;
     margin: 0 auto;
-    padding: 0rem 2.5rem;
+    padding: 1rem 2.5rem;
   .page-edit
     @extend $wrapper
     padding-top 1rem
