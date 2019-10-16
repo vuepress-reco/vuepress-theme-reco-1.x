@@ -23,16 +23,7 @@ module.exports = (options, ctx) => ({
     '@vuepress-reco/pagation',
     '@vuepress-reco/screenfull',
     '@vuepress-reco/ga',
-    ['@vuepress-reco/comments', {
-      solution: 'valine',
-      options: {
-        appId: 'Q6hMeY2PSaM9FMkXetzoJoU5-gzGzoHsz',
-        appKey: 'iLQlev5jo2Cm5pLcI0z3qhtr',
-        placeholder: '填写邮箱可以收到回复提醒哦！',
-        notify: true,
-        recordIP: true
-      }
-    }],
+    '@vuepress-reco/comments',
     '@vuepress/active-header-links',
     ['@vuepress/plugin-blog', {
       permalink: '/:regular',

@@ -51,7 +51,8 @@
           <span v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</span>
           </a>
       </span>
-      <span>
+      <span v-show="$themeConfig.commentsSolution === 'valine'">
+        <i class="iconfont reco-eye"></i>
         <AccessNumber idVal="/" />
       </span>
     </div>
