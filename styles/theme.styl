@@ -10,6 +10,7 @@
 html, body
   padding 0
   margin 0
+  text-shadow: $textShadow
 body
   font-family Ubuntu, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif
   -webkit-font-smoothing antialiased
@@ -196,7 +197,7 @@ th, td
 
 /************** 滚动条 **************/
 ::-webkit-scrollbar
-  width: 5px;
+  width: 6px;
   height: 5px;
 
 ::-webkit-scrollbar-track-piece
@@ -243,8 +244,8 @@ th, td
   .valine-wrapper
     #valine.v
       .vwrap
-        border-radius: 0
-        border-bottom: 1px solid #ddd
+        background: #f2f2f2
+        box-shadow: $boxShadow
         .vcontrol
           .vsubmit
             background: #fff
@@ -252,28 +253,28 @@ th, td
         padding-left: .6rem
       .vlist
         padding: 0 .6rem
-        border-radius: .2rem
+        border-radius: $borderRadius
         .vcard
           .vimg
-            border-radius: .6rem
-            box-shadow: 0 1px 6px 0 rgba(0,0,0,0.2)
+            border-radius: $borderRadius
+            box-shadow: $boxShadow
             border: none
         .vh
           .vhead
             .vsys
-              box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2)
+              box-shadow: $boxShadow
           .vmeta
             .vat
               background: #f2f2f2
-              box-shadow: 0 1px 4px 0 rgba(0,0,0,0.2)
-              border-radius: .2rem
+              box-shadow: $boxShadow
+              border-radius: $borderRadius
               padding: 0 .4rem
               color: #313131
               border: 1px solid #ededed
           .vcontent
             background: #f2f2f2
-            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.2)
-            border-radius: .2rem
+            box-shadow: $boxShadow
+            border-radius: $borderRadius
             margin-right: 3.6rem
             padding-top: .1rem
             padding-left: .6rem
@@ -284,3 +285,11 @@ th, td
       .info
         padding-right: .6rem
 
+/************** 分页 **************/
+.pagation
+  .pagation-list
+    .jump, .jumpinp input
+      box-shadow: $boxShadow
+
+.search-box input
+  border-radius: $borderRadius

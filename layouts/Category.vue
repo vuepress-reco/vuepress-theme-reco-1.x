@@ -95,6 +95,7 @@ export default {
 <style src="../styles/theme.styl" lang="stylus"></style>
 
 <style lang="stylus" scoped>
+@require '../styles/recoConfig.styl'
 @require '../styles/loadMixin.styl'
 .categories-wrapper
   max-width: 740px;
@@ -108,9 +109,9 @@ export default {
       margin: 4px 8px 10px;
       display: inline-block;
       cursor: pointer;
-      border-radius: 2px;
+      border-radius: $borderRadius
       font-size: 13px;
-      box-shadow 0 1px 4px 0 rgba(0,0,0,0.2)
+      box-shadow $boxShadow
       transition: all .5s
       &:hover, &.active {
         background $accentColor
@@ -136,7 +137,7 @@ export default {
           height 1.2rem
           text-align center
           line-height 1.2rem
-          border-radius 4px
+          border-radius $borderRadius
           background #eee
           font-size .7rem
         }

@@ -94,6 +94,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@require '../styles/recoConfig.styl'
 .theme-container.no-sidebar
   .password-shadow
     padding-left 0
@@ -119,7 +120,7 @@ export default {
     font-size 30px
     box-sizing: border-box;
     padding: 0 10px;
-    text-shadow 0 2px 10px rgba(0,0,0,0.2);
+    text-shadow $textShadow
   }
   .description {
     position: absolute;
@@ -132,13 +133,13 @@ export default {
     font-size 22px
     box-sizing: border-box;
     padding: 0 10px;
-    text-shadow 0 2px 10px rgba(0,0,0,0.2);
+    text-shadow $textShadow
   }
   .inputBox{
     max-width:700px;
     height: 100px;
     background: $accentColor;
-    border-radius: 2px;
+    border-radius: $borderRadius
     position: absolute;
     left 0
     right 0
@@ -191,7 +192,7 @@ export default {
     button{
       width:0px;
       height:98px;
-      border-radius: 2px;
+      border-radius: $borderRadius
       position: absolute;
       border 1px solid $accentColor
       right:1px;
@@ -229,7 +230,7 @@ export default {
       max-width:700px;
       height: 60px;
       background: $accentColor;
-      border-radius: 2px;
+      border-radius: $borderRadius
       position: absolute;
       left 0
       right 0
@@ -282,7 +283,7 @@ export default {
       button{
         width:0px;
         height:58px;
-        border-radius: 2px;
+        border-radius: $borderRadius
         position: absolute;
         border 1px solid $accentColor
         right:1px;
