@@ -148,7 +148,6 @@ export default {
     }
   },
   mounted () {
-    console.log(this)
     this.recoShow = true
   },
   methods: {
@@ -186,6 +185,7 @@ export default {
 </script>
 
 <style lang="stylus">
+@require '../styles/recoConfig.styl'
 @require '../styles/loadMixin.styl'
 
 .home-blog {
@@ -236,11 +236,12 @@ export default {
       margin-left 15px;
       flex 0 0 300px
       height auto;
-      box-shadow 0 2px 10px rgba(0,0,0,0.2);
+      box-shadow $boxShadow;
+      border-radius $borderRadius
       box-sizing border-box
       padding 0 15px
       &:hover {
-        box-shadow: 0 4px 20px 0 rgba(0,0,0,0.2);
+        box-shadow: $boxShadowHover;
       }
       .personal-img {
         display block
@@ -279,8 +280,8 @@ export default {
           margin-bottom .4rem
           padding: .4rem .8rem;
           transition: all .5s
-          border-radius 2px
-          box-shadow 0 1px 4px 0 rgba(0,0,0,0.2)
+          border-radius $borderRadius
+          box-shadow $boxShadow
           &:not(:first-child) {
             border-top: none;
           }
@@ -302,7 +303,7 @@ export default {
               height 1.6rem
               text-align center
               line-height 1.6rem
-              border-radius 4px
+              border-radius $borderRadius
               background #eee
               font-size .6rem
               color $textColor

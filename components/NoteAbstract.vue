@@ -26,6 +26,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@require '../styles/recoConfig.styl'
 
 .abstract-wrapper
   width 100%
@@ -34,13 +35,13 @@ export default {
     padding: 16px 20px;
     width 100%
     overflow: hidden;
-    border-radius: 2px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    border-radius: $borderRadius
+    box-shadow: $boxShadow;
     box-sizing: border-box;
     transition all .3s
     background-color $bgColor
     &:hover
-      box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
+      box-shadow: $boxShadowHover
     .title
       position: relative;
       font-size: 1.28rem;

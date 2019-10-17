@@ -98,6 +98,7 @@ export default {
 </script>
 
 <style lang="stylus">
+@require '../styles/recoConfig.styl'
 @require '../styles/loadMixin.styl'
 
 .home {
@@ -127,7 +128,7 @@ export default {
       color: #fff;
       background-color: $accentColor;
       padding: 0.6rem 1.2rem;
-      border-radius: 4px;
+      border-radius: $borderRadius
       transition: background-color 0.1s ease;
       box-sizing: border-box;
       load-start()

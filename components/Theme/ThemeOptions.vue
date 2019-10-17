@@ -65,6 +65,7 @@ export default {
 </script>
 
 <style lang="stylus">
+@require '../../styles/recoConfig.styl'
 
 .color-theme-options {
 	display: flex;
@@ -72,20 +73,12 @@ export default {
 	li {
 		width: 20%;
 		text-align: center;
-
 		a {
 			width: 15px;
 			height: 15px;
-			border-radius: 2px;
-
+			border-radius: $borderRadius
 			&.default-theme {
 				background-color: $accentColor;
-			}
-
-			for key, value in $themePicker {
-				&.{key}-theme {
-					background-color: value;
-				}
 			}
 		}
 	}

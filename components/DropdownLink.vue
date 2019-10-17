@@ -80,6 +80,8 @@ export default {
 </script>
 
 <style lang="stylus">
+@require '../styles/recoConfig.styl'
+
 .dropdown-wrapper
   cursor pointer
   .dropdown-title
@@ -173,9 +175,9 @@ export default {
       right 0
       background-color #fff
       padding 0.6rem 0
-      box-shadow: 0 4px 20px 0 rgba(0,0,0,.2);
+      box-shadow: $boxShadow;
       text-align left
-      border-radius 0.25rem
+      border-radius $borderRadius
       white-space nowrap
       margin 0
 </style>

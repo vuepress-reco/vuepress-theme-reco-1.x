@@ -45,6 +45,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@require '../styles/recoConfig.styl'
+
 .tags
   margin 30px 0
   span
@@ -53,11 +55,11 @@ export default {
     padding: 4px 8px;
     display: inline-block;
     cursor: pointer;
-    border-radius: 2px;
+    border-radius: $borderRadius
     background: #fff;
     color: #fff;
     font-size: 13px;
-    box-shadow 0 1px 4px 0 rgba(0,0,0,0.2)
+    box-shadow $boxShadow
     transition: all .5s
     &:hover
       transform scale(1.04)

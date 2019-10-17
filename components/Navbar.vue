@@ -87,13 +87,15 @@ function css (el, property) {
 </script>
 
 <style lang="stylus">
+@require '../styles/recoConfig.styl'
+
 $navbar-vertical-padding = 0.7rem
 $navbar-horizontal-padding = 1.5rem
 
 .navbar
   padding $navbar-vertical-padding $navbar-horizontal-padding
   line-height $navbarHeight - 1.4rem
-  box-shadow 0 1px 6px 0 rgba(32,33,36,.28)
+  box-shadow $boxShadow
   a, span, img
     display inline-block
   .logo
