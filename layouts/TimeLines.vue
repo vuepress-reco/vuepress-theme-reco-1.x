@@ -1,5 +1,6 @@
 <template>
 <div>
+  <Common :sidebar="false" :isComment="false"></Common>
   <ul class="timeline-wrapper">
     <li class="desc">Yesterday Once More!</li>
     <li v-for="(item, index) in formatPagesArr" :key="index">
@@ -17,9 +18,11 @@
 </template>
 
 <script>
+import Common from '@theme/components/Common.vue'
 
 export default {
   name: 'TimeLine',
+  components: { Common },
   data () {
     return {
       pages: [],
@@ -104,7 +107,7 @@ export default {
 .timeline-wrapper
   box-sizing border-box
   max-width: 740px;
-  margin: 0 auto;
+  margin: 4rem auto;
   position relative
   list-style none
   &::after {

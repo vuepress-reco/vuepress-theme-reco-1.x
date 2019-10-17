@@ -39,8 +39,8 @@ export default {
     handlePosts () {
       let posts = this.$site.pages
       posts = posts.filter(item => {
-        const { home, isTimeLine, date } = item.frontmatter
-        return !(home == true || isTimeLine == true || date === undefined)
+        const { home, date } = item.frontmatter
+        return !(home == true || date === undefined)
       })
       posts.sort((a, b) => {
         return this._getTimeNum(b) - this._getTimeNum(a)

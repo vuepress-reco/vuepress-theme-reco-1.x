@@ -2,15 +2,13 @@
   <main class="page" :class="recoShow?'reco-show': 'reco-hide'">
     <slot name="top"/>
 
-    <div class="page-title" v-if="!(isTimeLine)">
+    <div class="page-title">
       <h1>{{$page.title}}</h1>
       <hr>
       <PageInfo :pageInfo="$page"></PageInfo>
     </div>
 
     <Content/>
-
-    <TimeLine v-if="isTimeLine"></TimeLine>
 
     <footer class="page-edit">
       <div
@@ -74,10 +72,9 @@
 <script>
 import PageInfo from '@theme/components/PageInfo'
 import { resolvePage, outboundRE, endingSlashRE } from '../util'
-import TimeLine from '@theme/components/TimeLine'
 
 export default {
-  components: { PageInfo, TimeLine },
+  components: { PageInfo },
 
   props: ['sidebarItems'],
 
@@ -89,9 +86,6 @@ export default {
   },
 
   computed: {
-    isTimeLine () {
-      return this.$frontmatter.isTimeLine
-    },
     lastUpdated () {
       return this.$page.lastUpdated
     },
