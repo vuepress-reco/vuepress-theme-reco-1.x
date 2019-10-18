@@ -1,19 +1,20 @@
 <template>
   <div class="tags-wrapper" :class="recoShow?'reco-show': 'reco-hide'">
-    <Common :sidebar="false" :isComment="false"></Common>
-    <TagList :currentTag="currentTag" @getCurrentTag="tagClick"></TagList>
-    <note-abstract
-      class="list"
-      :data="posts"
-      :currentPage="currentPage"
-      :currentTag="currentTag"
-      @currentTag="getCurrentTag"></note-abstract>
+    <Common :sidebar="false" :isComment="false">
+      <TagList :currentTag="currentTag" @getCurrentTag="tagClick"></TagList>
+      <note-abstract
+        class="list"
+        :data="posts"
+        :currentPage="currentPage"
+        :currentTag="currentTag"
+        @currentTag="getCurrentTag"></note-abstract>
 
-    <pagation
-      class="pagation"
-      :total="posts.length"
-      :currentPage="currentPage"
-      @getCurrentPage="getCurrentPage"></pagation>
+      <pagation
+        class="pagation"
+        :total="posts.length"
+        :currentPage="currentPage"
+        @getCurrentPage="getCurrentPage"></pagation>
+    </Common>
   </div>
 </template>
 
