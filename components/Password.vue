@@ -1,6 +1,6 @@
 <template>
   <div class="password-shadow" :class="{'is-home': !isPage}">
-    <Background></Background>
+    <Background />
     <h3 class="title">{{isPage ? $frontmatter.title : $site.title}}</h3>
     <p class="description" v-if="!isPage">{{$site.description}}</p>
     <label class="inputBox" id="box">
@@ -106,9 +106,9 @@ export default {
 .password-shadow {
   width 100vw;
   height 100vh;
-  background #fff
   position relative
   padding-left: 20rem;
+  // background-image: radial-gradient(ellipse farthest-corner at center top,#497EC6 0,#000105 100%);
   .title {
     position: absolute;
     left 0
