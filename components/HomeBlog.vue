@@ -1,6 +1,6 @@
 <template>
   <div class="home-blog" :class="recoShow?'reco-show': 'reco-hide'">
-     <div class="hero" :style="{background: `url(${$frontmatter.bgImage ? $withBase($frontmatter.bgImage) : require('../images/home-bg.jpg')}) center/cover no-repeat`, ...bgImageStyle}">
+    <div class="hero" :style="{background: `url(${$frontmatter.bgImage ? $withBase($frontmatter.bgImage) : require('../images/home-bg.jpg')}) center/cover no-repeat`, ...bgImageStyle}">
       <h1>{{ data.heroText || $title || '午后南杂' }}</h1>
 
       <p class="description">{{ data.tagline || $description || 'Welcome to your vuePress-theme-reco site' }}</p>
@@ -8,37 +8,35 @@
     </div>
 
     <div class="home-blog-wrapper">
-      <div>
+      <div class="blog-list">
         <!-- 博客列表 -->
         <note-abstract
-          class="blog-list"
           :data="posts"
-          :isHome="true"
+          :hideAccessNumber="true"
           :currentPage="currentPage"></note-abstract>
         <!-- 分页 -->
         <pagation
           class="pagation"
           :total="posts.length"
           :currentPage="currentPage"
-          @getCurrentPage="getCurrentPage" /> 
+          @getCurrentPage="getCurrentPage" />
       </div>
-      
       <div class="info-wrapper">
-         <img class="personal-img" :src="$frontmatter.faceImage ? $withBase($frontmatter.faceImage) : require('../images/home-head.png')" alt="hero">
-         <h3 class="name" v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</h3>
-         <div class="num">
-           <div>
-             <h3>{{getPagesLength}}</h3>
-             <h6>文章</h6>
-           </div>
-           <div>
-             <h3>{{$tags.list.length}}</h3>
-             <h6>标签</h6>
-           </div>
-         </div>
-         <hr>
-         <h4><i class="iconfont reco-category"></i> 分类</h4>
-         <ul class="category-wrapper">
+        <img class="personal-img" :src="$frontmatter.faceImage ? $withBase($frontmatter.faceImage) : require('../images/home-head.png')" alt="hero">
+        <h3 class="name" v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</h3>
+        <div class="num">
+          <div>
+            <h3>{{getPagesLength}}</h3>
+            <h6>文章</h6>
+          </div>
+          <div>
+            <h3>{{$tags.list.length}}</h3>
+            <h6>标签</h6>
+          </div>
+        </div>
+        <hr>
+        <h4><i class="iconfont reco-category"></i> 分类</h4>
+        <ul class="category-wrapper">
           <li class="category-item" v-for="(item, index) in this.$categories.list" :key="index">
             <router-link :to="item.path">
               <span class="category-name">{{ item.name }}</span>
@@ -53,39 +51,17 @@
     </div>
 
     <Content class="home-center" custom/>
-
-    <div class="footer">
-      <span>
-        <i class="iconfont reco-theme"></i>
-        <a target="blank" href="https://vuepress-theme-reco.recoluan.com">VuePress-theme-reco</a>
-      </span>
-      <span v-if="$themeConfig.record">
-        <i class="iconfont reco-beian"></i>
-        <a>{{ $themeConfig.record }}</a>
-      </span>
-      <span>
-        <i class="iconfont reco-copyright"></i>
-        <a>
-          <span v-if="$themeConfig.startYear">{{ $themeConfig.startYear }} - </span>
-          {{ year }}
-          &nbsp;&nbsp;
-          <span v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</span>
-        </a>
-      </span>
-      <span>
-        <AccessNumber idVal="/"></AccessNumber>
-      </span>
-    </div>
   </div>
 </template>
 
 <script>
-import AccessNumber from '@theme/components/Valine/AccessNumber'
 import TagList from '@theme/components/TagList.vue'
 import NoteAbstract from '@theme/components/NoteAbstract.vue'
+import mixin from '@theme/mixins/index.js'
 
 export default {
-  components: { AccessNumber, NoteAbstract, TagList },
+  mixins: [mixin],
+  components: { NoteAbstract, TagList },
   data () {
     return {
       recoShow: false,
@@ -97,13 +73,8 @@ export default {
     // 时间降序后的博客列表
     posts () {
       let posts = this.$site.pages
-      posts = posts.filter(item => {
-        const { home, isTimeLine, date } = item.frontmatter
-        return !(home == true || isTimeLine == true || date === undefined)
-      })
-      posts.sort((a, b) => {
-        return this._getTimeNum(b) - this._getTimeNum(a)
-      })
+      posts = this._filterPostData(posts)
+      this._sortPostData(posts)
       return posts
     },
 
@@ -114,9 +85,6 @@ export default {
         num += v.pages.length
       })
       return num
-    },
-    year () {
-      return new Date().getFullYear()
     },
     data () {
       return this.$frontmatter
@@ -164,8 +132,8 @@ export default {
     getPages () {
       let pages = this.$site.pages
       pages = pages.filter(item => {
-        const { home, isTimeLine, date } = item.frontmatter
-        return !(home == true || isTimeLine == true || date === undefined)
+        const { home, date } = item.frontmatter
+        return !(home == true || date === undefined)
       })
       // reverse()是为了按时间最近排序排序
       this.pages = pages.length == 0 ? [] : pages
@@ -181,12 +149,13 @@ export default {
     _setPage (page) {
       this.currentPage = page
       this.$page.currentPage = page
-    },
+    }
   }
 }
 </script>
 
 <style lang="stylus">
+@require '../styles/recoConfig.styl'
 @require '../styles/loadMixin.styl'
 
 .home-blog {
@@ -221,16 +190,28 @@ export default {
     align-items: flex-start;
     margin 20px auto 0
     max-width 1126px
+    .abstract-wrapper {
+      .abstract-item:last-child {
+        margin-bottom: 0px;
+      }
+    }
+    .blog-list {
+      flex auto
+    }
     .info-wrapper {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 70px;
       transition all .3s
       margin-left 15px;
-      width 380px;
+      flex 0 0 300px
       height auto;
-      box-shadow 0 2px 10px rgba(0,0,0,0.2);
+      box-shadow $boxShadow;
+      border-radius $borderRadius
       box-sizing border-box
       padding 0 15px
       &:hover {
-        box-shadow: 0 4px 20px 0 rgba(0,0,0,0.2);
+        box-shadow: $boxShadowHover;
       }
       .personal-img {
         display block
@@ -269,8 +250,8 @@ export default {
           margin-bottom .4rem
           padding: .4rem .8rem;
           transition: all .5s
-          border-radius 2px
-          box-shadow 0 1px 4px 0 rgba(0,0,0,0.2)
+          border-radius $borderRadius
+          box-shadow $boxShadow
           &:not(:first-child) {
             border-top: none;
           }
@@ -292,26 +273,13 @@ export default {
               height 1.6rem
               text-align center
               line-height 1.6rem
-              border-radius 4px
+              border-radius $borderRadius
               background #eee
               font-size .6rem
               color $textColor
             }
           }
         }
-      }
-    }
-  }
-
-  .footer {
-    padding: 2.5rem;
-    border-top: 1px solid $borderColor;
-    text-align: center;
-    color: lighten($textColor, 25%);
-    > span {
-      margin-left 1rem
-      > i {
-        margin-right .5rem
       }
     }
   }
@@ -343,9 +311,6 @@ export default {
     load-start()
     padding 0
   }
-  .footer {
-    load-start()
-  }
 }
 
 .reco-show {
@@ -371,9 +336,6 @@ export default {
   }
   .home-center {
     load-end(0.56s)
-  }
-  .footer {
-    load-end(0.64s)
   }
 }
 
@@ -411,14 +373,6 @@ export default {
       .info-wrapper {
         display none!important
       }
-    }
-  }
-  .footer {
-    text-align: left!important;
-    > span {
-      display block
-      margin-left 0
-      line-height 2rem
     }
   }
 }

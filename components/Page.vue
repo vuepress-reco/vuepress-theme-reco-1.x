@@ -2,15 +2,13 @@
   <main class="page" :class="recoShow?'reco-show': 'reco-hide'">
     <slot name="top"/>
 
-    <div class="page-title" v-if="!(isTimeLine)">
+    <div class="page-title">
       <h1>{{$page.title}}</h1>
       <hr>
       <PageInfo :pageInfo="$page"></PageInfo>
     </div>
 
     <Content/>
-
-    <TimeLine v-if="isTimeLine"></TimeLine>
 
     <footer class="page-edit">
       <div
@@ -65,6 +63,8 @@
       </p>
     </div>
 
+    <GA></GA>
+
     <slot name="bottom"/>
   </main>
 </template>
@@ -72,23 +72,20 @@
 <script>
 import PageInfo from '@theme/components/PageInfo'
 import { resolvePage, outboundRE, endingSlashRE } from '../util'
-import TimeLine from '@theme/components/TimeLine'
 
 export default {
-  components: { PageInfo, TimeLine },
+  components: { PageInfo },
 
   props: ['sidebarItems'],
 
   data () {
     return {
-      recoShow: false
+      recoShow: false,
+      isHasKey: true
     }
   },
 
   computed: {
-    isTimeLine () {
-      return this.$frontmatter.isTimeLine
-    },
     lastUpdated () {
       return this.$page.lastUpdated
     },
@@ -154,7 +151,8 @@ export default {
       return
     }
 
-    this.isHasKey = keys && keys.indexOf(sessionStorage.getItem('key')) > -1
+    this.isHasKey = keys && keys.indexOf(sessionStorage.getItem('pageKey')) > -1
+    this.$parent.isHasPageKey = this.isHasKey
   },
 
   methods: {
@@ -224,7 +222,7 @@ function flatten (items, res) {
 @require '../styles/loadMixin.styl'
 
 .page
-  padding-top 6rem
+  padding-top 5rem
   padding-bottom 2rem
   display block
   #time-line {
@@ -234,7 +232,7 @@ function flatten (items, res) {
   .page-title
     max-width: 740px;
     margin: 0 auto;
-    padding: 0rem 2.5rem;
+    padding: 1rem 2.5rem;
   .page-edit
     @extend $wrapper
     padding-top 1rem

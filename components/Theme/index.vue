@@ -41,6 +41,7 @@ export default {
 </script>
 
 <style lang="stylus">
+@require '../../styles/recoConfig.styl'
 
 .color-picker {
 	position: relative;
@@ -64,7 +65,7 @@ export default {
 		margin: 0;
 		padding: 1em;
 		border: 1px solid $borderColor;
-		border-radius: 4px;
+		border-radius: $borderRadius
 		transform: translateX(-50%);
 		z-index: 150;
 

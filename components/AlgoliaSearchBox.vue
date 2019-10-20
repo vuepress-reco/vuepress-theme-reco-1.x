@@ -60,6 +60,7 @@ export default {
 </script>
 
 <style lang="stylus">
+@require '../styles/recoConfig.styl'
 .algolia-search-wrapper
   & > span
     vertical-align middle
@@ -68,7 +69,7 @@ export default {
     .ds-dropdown-menu
       background-color #fff
       border 1px solid #999
-      border-radius 4px
+      border-radius $borderRadius
       font-size 16px
       margin 6px 0 0
       padding 4px

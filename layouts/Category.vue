@@ -36,8 +36,10 @@
 <script>
 import Common from '@theme/components/Common.vue'
 import NoteAbstract from '@theme/components/NoteAbstract.vue'
+import mixin from '@theme/mixins/index.js'
 
 export default {
+  mixins: [mixin],
   components: { Common, NoteAbstract },
 
   data () {
@@ -51,10 +53,9 @@ export default {
   computed: {
     // 时间降序后的博客列表
     posts () {
-      const posts = this.$currentCategories.pages
-      posts.sort((a, b) => {
-        return this._getTimeNum(b) - this._getTimeNum(a)
-      })
+      let posts = this.$currentCategories.pages
+      posts = this._filterPostData(posts)
+      this._sortPostData(posts)
       this._setPage(1)
       return posts
     },
@@ -95,6 +96,7 @@ export default {
 <style src="../styles/theme.styl" lang="stylus"></style>
 
 <style lang="stylus" scoped>
+@require '../styles/recoConfig.styl'
 @require '../styles/loadMixin.styl'
 .categories-wrapper
   max-width: 740px;
@@ -108,9 +110,9 @@ export default {
       margin: 4px 8px 10px;
       display: inline-block;
       cursor: pointer;
-      border-radius: 2px;
+      border-radius: $borderRadius
       font-size: 13px;
-      box-shadow 0 1px 4px 0 rgba(0,0,0,0.2)
+      box-shadow $boxShadow
       transition: all .5s
       &:hover, &.active {
         background $accentColor
@@ -136,7 +138,7 @@ export default {
           height 1.2rem
           text-align center
           line-height 1.2rem
-          border-radius 4px
+          border-radius $borderRadius
           background #eee
           font-size .7rem
         }

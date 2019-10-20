@@ -22,7 +22,12 @@ module.exports = (options, ctx) => ({
     '@vuepress-reco/loading-page',
     '@vuepress-reco/pagation',
     '@vuepress-reco/screenfull',
+    '@vuepress-reco/ga',
+    '@vuepress-reco/comments',
     '@vuepress/active-header-links',
+    '@vuepress/medium-zoom',
+    '@vuepress/plugin-nprogress',
+    '@vuepress/search',
     ['@vuepress/plugin-blog', {
       permalink: '/:regular',
       frontmatters: [
@@ -40,10 +45,15 @@ module.exports = (options, ctx) => ({
           layout: 'Categories',
           scopeLayout: 'Category'
         },
-      ],
+        {
+          id: 'timeline',
+          keys: ['timeline'],
+          path: '/timeline/',
+          layout: 'TimeLines',
+          scopeLayout: 'TimeLine'
+        }
+      ]
     }],
-    '@vuepress/search',
-    '@vuepress/plugin-nprogress',
     ['container', {
       type: 'tip',
       defaultTitle: {

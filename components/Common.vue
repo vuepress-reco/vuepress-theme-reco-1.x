@@ -30,10 +30,11 @@
         <Password v-if="!isHasPageKey" :isPage="true"></Password>
         <div v-else>
           <slot></slot>
-          <Valine :isComment="isComment"></Valine>
+          <Comments :isShowComments="isComment"/>
         </div>
       </div>
     </transition>
+    <GA></GA>
   </div>
 </template>
 
@@ -42,11 +43,10 @@ import Navbar from '@theme/components/Navbar.vue'
 import Sidebar from '@theme/components/Sidebar.vue'
 import { resolveSidebarItems } from '../util'
 import Password from '@theme/components/Password'
-import Valine from '@theme/components/Valine/'
 import { setTimeout } from 'timers'
 
 export default {
-  components: { Sidebar, Navbar, Password, Valine },
+  components: { Sidebar, Navbar, Password },
 
   props: ['sidebar', 'isComment'],
 
@@ -184,6 +184,23 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.theme-container.no-sidebar
+  .comments-wrapper
+    padding-left 2rem
+
+.comments-wrapper
+  padding 2rem 2rem 2rem 22rem
+  max-width: 740px;
+  margin: 0 auto;
+@media (max-width: $MQNarrow)
+  .theme-container.no-sidebar
+    .comments-wrapper
+      padding-left 2rem
+  .comments-wrapper
+    padding-left: 18.4rem;
+@media (max-width: $MQMobile)
+  .comments-wrapper
+    padding-left: 2rem
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;
 }

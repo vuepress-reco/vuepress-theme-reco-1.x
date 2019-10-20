@@ -10,6 +10,7 @@
 html, body
   padding 0
   margin 0
+  text-shadow: $textShadow
 body
   font-family Ubuntu, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif
   -webkit-font-smoothing antialiased
@@ -113,7 +114,7 @@ h1, h2, h3, h4, h5, h6
     padding-top ($navbarHeight + 1rem)
     margin-bottom 0
     &:first-child
-      margin-top -1.5rem
+      margin-top -3.5rem
       margin-bottom 1rem
       + p, + pre, + .custom-block
         margin-top 2rem
@@ -121,7 +122,7 @@ h1, h2, h3, h4, h5, h6
     opacity: 1
 
 h1
-  font-size 2.2rem
+  font-size 1.95rem
 
 h2
   font-size 1.65rem
@@ -196,7 +197,7 @@ th, td
 
 /************** 滚动条 **************/
 ::-webkit-scrollbar
-  width: 5px;
+  width: 6px;
   height: 5px;
 
 ::-webkit-scrollbar-track-piece
@@ -211,11 +212,11 @@ th, td
 ::-webkit-scrollbar-thumb:horizontal
   width: 5px;
   background-color: rgba(125, 125, 125, 0.7);
-  -webkit-border-radius: 6px;    
+  -webkit-border-radius: 6px;
 
 /************** 流程图的滚动条 **************/
 .vuepress-flowchart
-  overflow: auto  
+  overflow: auto
 
 /************** 腾讯 404 公益 **************/
 
@@ -228,11 +229,68 @@ th, td
     padding: 6px 20px!important
     text-decoration: none!important
     border-radius: 4px
-  }  
+  }
 }
 
 @media screen and (max-width: 720px) {
   .mod_404 .desc {
     margin: 50px 0
-  }  
+  }
 }
+
+/************** 评论功能 **************/
+
+.comments-wrapper
+  .valine-wrapper
+    #valine.v
+      .vwrap
+        background: #f0f2f4
+        // box-shadow: $boxShadow
+        .vcontrol
+          .vsubmit
+            background: #fff
+      .vinfo
+        padding-left: .6rem
+      .vlist
+        padding: 0 .6rem
+        border-radius: $borderRadius
+        .vcard
+          .vimg
+            border-radius: $borderRadius
+            box-shadow: $boxShadow
+            border: none
+        .vh
+          .vhead
+            .vsys
+              box-shadow: $boxShadow
+          .vmeta
+            margin-bottom: 1rem
+            .vat
+              margin-right: .3rem
+              background: #f0f2f4
+              box-shadow: $boxShadow
+              border-radius: $borderRadius
+              padding: 0 .4rem
+              color: #313131
+              border: 1px solid #ededed
+          .vcontent
+            background: #f0f2f4
+            box-shadow: $boxShadow
+            border-radius: $borderRadius
+            margin: 0 .3rem
+            padding: .1rem .6rem .05rem .6rem
+            p .at
+              color: #1abc9c
+      .info
+        padding-right: .6rem
+
+/************** 分页 **************/
+.pagation
+  .pagation-list
+    .jump, .jumpinp input
+      box-shadow: $boxShadow
+
+/************** 搜索框 **************/
+
+.search-box input
+  border-radius: $borderRadius
