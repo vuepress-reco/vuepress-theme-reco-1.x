@@ -57,8 +57,10 @@
 <script>
 import TagList from '@theme/components/TagList.vue'
 import NoteAbstract from '@theme/components/NoteAbstract.vue'
+import mixin from '@theme/mixins/index.js'
 
 export default {
+  mixins: [mixin],
   components: { NoteAbstract, TagList },
   data () {
     return {
@@ -71,13 +73,8 @@ export default {
     // 时间降序后的博客列表
     posts () {
       let posts = this.$site.pages
-      posts = posts.filter(item => {
-        const { home, date } = item.frontmatter
-        return !(home == true || date === undefined)
-      })
-      posts.sort((a, b) => {
-        return this._getTimeNum(b) - this._getTimeNum(a)
-      })
+      posts = this._filterPostData(posts)
+      this._sortPostData(posts)
       return posts
     },
 
