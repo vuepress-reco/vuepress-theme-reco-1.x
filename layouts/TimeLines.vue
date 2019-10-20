@@ -1,18 +1,19 @@
 <template>
 <div>
-  <Common :sidebar="false" :isComment="false"></Common>
-  <ul class="timeline-wrapper">
-    <li class="desc">Yesterday Once More!</li>
-    <li v-for="(item, index) in formatPagesArr" :key="index">
-      <h3 class="year">{{item.year}}</h3>
-      <ul class="year-wrapper">
-        <li v-for="(subItem, subIndex) in item.data" :key="subIndex">
-          <span class="date">{{dateFormat(subItem.frontmatter.date)}}</span>
-          <span class="title" @click="go(subItem.path)">{{subItem.title}}</span>
-        </li>
-      </ul>
-    </li>
-  </ul>
+  <Common :sidebar="false" :isComment="false">
+    <ul class="timeline-wrapper">
+      <li class="desc">Yesterday Once More!</li>
+      <li v-for="(item, index) in formatPagesArr" :key="index">
+        <h3 class="year">{{item.year}}</h3>
+        <ul class="year-wrapper">
+          <li v-for="(subItem, subIndex) in item.data" :key="subIndex">
+            <span class="date">{{dateFormat(subItem.frontmatter.date)}}</span>
+            <span class="title" @click="go(subItem.path)">{{subItem.title}}</span>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </Common>
 </div>
 
 </template>

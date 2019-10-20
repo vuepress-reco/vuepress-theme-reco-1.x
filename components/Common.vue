@@ -197,7 +197,7 @@ export default {
     .comments-wrapper
       padding-left 2rem
   .comments-wrapper
-    padding-left: 16.4rem;
+    padding-left: 18.4rem;
 @media (max-width: $MQMobile)
   .comments-wrapper
     padding-left: 2rem

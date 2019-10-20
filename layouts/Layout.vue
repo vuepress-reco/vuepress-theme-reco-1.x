@@ -1,8 +1,7 @@
 <template>
   <div>
     <Common>
-      <Home v-if="$frontmatter.home && $themeConfig.type !== 'blog'"/>
-      <HomeBlog v-else-if="$frontmatter.home && $themeConfig.type === 'blog'"/>
+      <component  v-if="$frontmatter.home" :is="homeCom"></component>
       <Page
         v-else
         :sidebar-items="sidebarItems">
@@ -35,6 +34,13 @@ export default {
         this.$site,
         this.$localePath
       )
+    },
+    homeCom () {
+      const { type } = this.$themeConfig
+      if (type !== undefined) {
+        return type == 'blog' ? 'HomeBlog': type
+      }
+      return 'Home'
     }
   }
 }
