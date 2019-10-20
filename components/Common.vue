@@ -32,6 +32,7 @@
           <slot></slot>
           <Comments :isShowComments="isComment"/>
         </div>
+        <Footer class="footer" />
       </div>
     </transition>
     <GA></GA>
@@ -40,13 +41,14 @@
 
 <script>
 import Navbar from '@theme/components/Navbar.vue'
+import Footer from '@theme/components/Footer.vue'
 import Sidebar from '@theme/components/Sidebar.vue'
 import { resolveSidebarItems } from '../util'
 import Password from '@theme/components/Password'
 import { setTimeout } from 'timers'
 
 export default {
-  components: { Sidebar, Navbar, Password },
+  components: { Sidebar, Navbar, Password, Footer },
 
   props: ['sidebar', 'isComment'],
 
