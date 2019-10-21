@@ -137,7 +137,7 @@ export default {
         return
       }
 
-      this.isHasPageKey = pageKeys && pageKeys.indexOf(sessionStorage.getItem('pageKey')) > -1
+      this.isHasPageKey = pageKeys && pageKeys.indexOf(sessionStorage.getItem(`pageKey${window.location.pathname}`)) > -1
     },
     toggleSidebar (to) {
       this.isSidebarOpen = typeof to === 'boolean' ? to : !this.isSidebarOpen
