@@ -80,7 +80,7 @@ export default {
         return fromatDateTime(value)
       } else {
         // 用户没有输入或者输入了 00:00:00
-        return new Date(value).toLocaleDateString()
+        return fromatDateTime(value, 'date')
       }
     }
   },
