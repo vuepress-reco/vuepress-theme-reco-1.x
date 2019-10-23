@@ -29,7 +29,6 @@ export default {
   components: { Common, NoteAbstract, TagList },
   data () {
     return {
-      posts: [],
       tags: [],
       currentTag: '全部',
       currentPage: 1,
@@ -39,18 +38,26 @@ export default {
   },
   computed: {
     // 时间降序后的博客列表
-    handlePosts () {
-      let posts = this.$site.pages
+    posts () {
+      const currentTag = this.currentTag
+      let posts = []
+
+      if (currentTag !== '全部') {
+        posts = this.$tags.map[currentTag].pages
+      } else {
+        posts = this.$site.pages
+      }
+
       posts = this._filterPostData(posts)
       this._sortPostData(posts)
+      posts = posts.length == 0 ? [] : posts
+      this._setPage(1)
       return posts
     }
   },
   created () {
     if (this.$tags.list.length > 0) {
-      const currentTag = this.$route.query.tag ? this.$route.query.tag : this.currentTag
-
-      this.getPagesByTags(currentTag)
+      this.currentTag = this.$route.query.tag ? this.$route.query.tag : this.currentTag
     }
   },
 
@@ -60,27 +67,9 @@ export default {
 
   methods: {
 
-    async tagClick (currentTag) {
-      await this.getPagesByTags(currentTag)
-      window.scrollTo(0, 0)
-    },
-
-    // 根据分类获取页面数据
-    getPagesByTags (currentTag) {
+    tagClick (currentTag) {
       this.currentTag = currentTag
-
-      let posts = []
-      if (currentTag !== '全部') {
-        posts = this.$tags.map[currentTag].pages
-        this._sortPostData(posts)
-      } else {
-        posts = this.handlePosts
-      }
-
-      // reverse()是为了按时间最近排序排序
-      this.posts = posts.length == 0 ? [] : posts
-
-      this._setPage(1)
+      window.scrollTo(0, 0)
     },
 
     getCurrentTag (tag) {
