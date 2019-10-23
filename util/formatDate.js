@@ -6,7 +6,8 @@
 */
 
 // 将时间格式化成 YYYY/MM/DD HH:mm:SS
-export const fromatDateTime = (time) => {
+export function fromatDateTime (time, type) {
+  time = time.replace(/-/g, '/')
   const date = new Date(time)
   const Y = date.getFullYear()
   const M = date.getMonth() + 1
@@ -17,5 +18,6 @@ export const fromatDateTime = (time) => {
   m = m > 9 ? m : '0' + m
   let S = date.getSeconds()
   S = S > 9 ? S : '0' + S
-  return Y + '/' + M + '/' + D + ' ' + H + ':' + m + ':' + S
+  const dt = type === 'date' ? Y + '/' + M + '/' + D : Y + '/' + M + '/' + D + ' ' + H + ':' + m + ':' + S
+  return dt
 }
