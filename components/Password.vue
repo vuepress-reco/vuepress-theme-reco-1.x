@@ -1,6 +1,6 @@
 <template>
   <div class="password-shadow" :class="{'is-home': !isPage}">
-    <Background></Background>
+    <Background />
     <h3 class="title">{{isPage ? $frontmatter.title : $site.title}}</h3>
     <p class="description" v-if="!isPage">{{$site.description}}</p>
     <label class="inputBox" id="box">
@@ -52,14 +52,24 @@ export default {
   computed: {
     year () {
       return new Date().getFullYear()
+    },
+    isHasKey () {
+      const keyPage = this.$themeConfig.keyPage
+      const keys = keyPage.keys
+      return keys && keys.indexOf(sessionStorage.getItem('key')) > -1
+    },
+    isHasPageKey () {
+      const pageKeys = this.$frontmatter.keys
+
+      return pageKeys && pageKeys.indexOf(sessionStorage.getItem(`pageKey${window.location.pathname}`)) > -1
     }
   },
   methods: {
     inter () {
       const keyVal = this.key.trim()
-      const key = this.isPage ? 'pageKey' : 'key'
+      const key = this.isPage ? `pageKey${window.location.pathname}` : 'key'
       sessionStorage.setItem(key, keyVal)
-      const isHasKey = this.isPage ? this.isHasPageKey() : this.isHasKey()
+      const isHasKey = this.isPage ? this.isHasPageKey : this.isHasKey
       if (!isHasKey) {
         this.warningText = 'Key Error'
         return
@@ -72,16 +82,6 @@ export default {
       setTimeout(() => {
         window.location.reload()
       }, 800)
-    },
-    isHasKey () {
-      const keyPage = this.$themeConfig.keyPage
-      const keys = keyPage.keys
-      return keys && keys.indexOf(sessionStorage.getItem('key')) > -1
-    },
-    isHasPageKey () {
-      const pageKeys = this.$frontmatter.keys
-
-      return pageKeys && pageKeys.indexOf(sessionStorage.getItem('pageKey')) > -1
     },
     inputFocus () {
       this.warningText = 'Input Your Key'
@@ -106,9 +106,9 @@ export default {
 .password-shadow {
   width 100vw;
   height 100vh;
-  background #fff
   position relative
   padding-left: 20rem;
+  // background-image: radial-gradient(ellipse farthest-corner at center top,#497EC6 0,#000105 100%);
   .title {
     position: absolute;
     left 0

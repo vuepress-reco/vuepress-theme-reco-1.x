@@ -36,8 +36,10 @@
 <script>
 import Common from '@theme/components/Common.vue'
 import NoteAbstract from '@theme/components/NoteAbstract.vue'
+import mixin from '@theme/mixins/index.js'
 
 export default {
+  mixins: [mixin],
   components: { Common, NoteAbstract },
 
   data () {
@@ -51,10 +53,9 @@ export default {
   computed: {
     // 时间降序后的博客列表
     posts () {
-      const posts = this.$currentCategories.pages
-      posts.sort((a, b) => {
-        return this._getTimeNum(b) - this._getTimeNum(a)
-      })
+      let posts = this.$currentCategories.pages
+      posts = this._filterPostData(posts)
+      this._sortPostData(posts)
       this._setPage(1)
       return posts
     },
