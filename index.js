@@ -25,7 +25,9 @@ module.exports = (options, ctx) => ({
     '@vuepress-reco/ga',
     '@vuepress-reco/comments',
     '@vuepress/active-header-links',
-    '@vuepress/medium-zoom',
+    ['@vuepress/medium-zoom', {
+      selector: '.theme-reco-content :not(a) > img'
+    }],
     '@vuepress/plugin-nprogress',
     '@vuepress/search',
     ['@vuepress/plugin-blog', {
