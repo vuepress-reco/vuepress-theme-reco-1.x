@@ -8,7 +8,7 @@
       <PageInfo :pageInfo="$page"></PageInfo>
     </div>
 
-    <Content/>
+    <Content class="theme-reco-content" />
 
     <footer class="page-edit">
       <div
