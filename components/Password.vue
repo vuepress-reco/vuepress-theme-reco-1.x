@@ -52,29 +52,27 @@ export default {
   computed: {
     year () {
       return new Date().getFullYear()
-    },
-    isHasKey () {
-      const keyPage = this.$themeConfig.keyPage
-      const keys = keyPage.keys
-      return keys && keys.indexOf(sessionStorage.getItem('key')) > -1
-    },
-    isHasPageKey () {
-      const pageKeys = this.$frontmatter.keys
-
-      return pageKeys && pageKeys.indexOf(sessionStorage.getItem(`pageKey${window.location.pathname}`)) > -1
     }
   },
   methods: {
     inter () {
-      const keyVal = this.key.trim()
-      const key = this.isPage ? `pageKey${window.location.pathname}` : 'key'
-      sessionStorage.setItem(key, keyVal)
-      const isHasKey = this.isPage ? this.isHasPageKey : this.isHasKey
-      if (!isHasKey) {
+      const {
+        key,
+        isPage,
+        isHasPageKey,
+        isHasKey,
+        $refs: { passwordBtn }
+      } = this
+      const keyVal = key.trim()
+      const pageKey = `pageKey${window.location.pathname}`
+      const keyName = isPage ? pageKey : 'key'
+      sessionStorage.setItem(keyName, keyVal)
+      const isKeyTrue = isPage ? isHasPageKey() : isHasKey()
+      if (!isKeyTrue) {
         this.warningText = 'Key Error'
         return
       }
-      const passwordBtn = this.$refs.passwordBtn
+
       const width = document.getElementById('box').getClientRects()[0].width
 
       passwordBtn.style.width = `${width - 2}px`
@@ -88,6 +86,17 @@ export default {
     },
     inputBlur () {
       this.warningText = 'Konck! Knock!'
+    },
+    isHasKey () {
+      const keyPage = this.$themeConfig.keyPage
+      const keys = keyPage.keys
+      return keys && keys.indexOf(sessionStorage.getItem('key')) > -1
+    },
+    isHasPageKey () {
+      const pageKeys = this.$frontmatter.keys
+      const pageKey = `pageKey${window.location.pathname}`
+
+      return pageKeys && pageKeys.indexOf(sessionStorage.getItem(pageKey)) > -1
     }
   }
 }
