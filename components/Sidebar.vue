@@ -22,6 +22,7 @@ export default {
 
 <style lang="stylus">
 .sidebar
+  transition all ease-in-out
   ul
     padding 0
     margin 0

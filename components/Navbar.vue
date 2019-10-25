@@ -46,7 +46,14 @@ export default {
   data () {
     return {
       linksWrapMaxWidth: null,
-      hasThemes: false
+      hasThemes: false,
+      scroll: {
+        navbarHeight: 0,
+        elmObjs: null,
+        top: 0,
+        upHeight: 0,
+        downHeight: 0
+      }
     }
   },
 
@@ -63,6 +70,11 @@ export default {
       }
     }
     handleLinksWrapWidth()
+
+    if (this.$themeConfig.autoHideNavbar) {
+      this.scroll.elmObjs = this.getScrollElmObjs()
+      window.addEventListener('scroll', this.handleScroll)
+    }
     window.addEventListener('resize', handleLinksWrapWidth, false)
     this.hasThemes = themePicker === undefined ? true : themePicker
   },
@@ -74,6 +86,62 @@ export default {
 
     isAlgoliaSearch () {
       return this.algolia && this.algolia.apiKey && this.algolia.indexName
+    }
+  },
+  methods: {
+    handleScroll () {
+      if (this.scroll === null) return
+      const scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
+      if (scrollTop > this.scroll.top) {
+        this.scroll.downHeight += scrollTop - this.scroll.top
+        this.scroll.upHeight = 0
+        this.scroll.top = scrollTop
+      }
+      else {
+        this.scroll.upHeight += this.scroll.top - scrollTop
+        this.scroll.downHeight = 0
+        this.scroll.top = scrollTop
+      }
+
+      if (this.scroll.downHeight > 150) {
+        this.scroll.elmObjs.map((elmObj) => {
+          const {elm, originTop} = elmObj
+          if (elm !== null) {
+            elm.style.top = originTop - this.scroll.navbarHeight + 'px'
+          }
+        })
+      }
+      else if (this.scroll.upHeight > 150) {
+        this.scroll.elmObjs.map((elmObj) => {
+          const {elm, originTop} = elmObj
+          if (elm !== null) {
+            elm.style.top = originTop + 'px'
+          }
+        })
+      }
+    },
+    getScrollElmObjs () {
+      const navbar = document.querySelector('.navbar')
+      const sidebar = document.querySelector('.sidebar')
+      const infoWrapper = document.querySelector('.info-wrapper')
+      const navbarHeight = navbar.clientHeight
+      this.scroll.navbarHeight = navbarHeight
+      return [
+        {elm: navbar, originTop: 0},
+        {elm: sidebar, originTop: navbarHeight},
+        {elm: infoWrapper, originTop: navbarHeight + 12}
+      ]
+    }
+  },
+  watch: {
+    '$route' (to, from) {
+      if (to.path !== from.path) {
+        // 切换页面重新获取滑动监听元素，防止某些页面特有元素在切换后
+        // 仍为 null ，比如博客主页独有的 info-wrapper
+        if (this.$themeConfig.autoHideNavbar) {
+          this.scroll.elmObjs = this.getScrollElmObjs()
+        }
+      }
     }
   }
 }
@@ -96,6 +164,7 @@ $navbar-horizontal-padding = 1.5rem
   padding $navbar-vertical-padding $navbar-horizontal-padding
   line-height $navbarHeight - 1.4rem
   box-shadow $boxShadow
+  transition all ease-in-out
   a, span, img
     display inline-block
   .logo
