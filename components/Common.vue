@@ -30,7 +30,7 @@
         <Password v-if="!isHasPageKey" :isPage="true"></Password>
         <div v-else>
           <slot></slot>
-          <Comments :isShowComments="isComment"/>
+          <Comments :isShowComments="isShow"/>
         </div>
       </div>
     </transition>
@@ -48,7 +48,16 @@ import { setTimeout } from 'timers'
 export default {
   components: { Sidebar, Navbar, Password },
 
-  props: ['sidebar', 'isComment'],
+  props: {
+    sidebar: {
+      type: Boolean,
+      default: false
+    },
+    isComment: {
+      type: Boolean,
+      default: true
+    }
+  },
 
   data () {
     return {
@@ -60,6 +69,11 @@ export default {
   },
 
   computed: {
+    // 是否显示评论
+    isShow () {
+      const { isShowComments, home } = this.$frontmatter
+      return !(this.isComment == false || isShowComments == false || home == true)
+    },
     shouldShowNavbar () {
       const { themeConfig } = this.$site
       const { frontmatter } = this.$page
