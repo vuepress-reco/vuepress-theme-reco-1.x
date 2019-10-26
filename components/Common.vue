@@ -51,7 +51,7 @@ export default {
   props: {
     sidebar: {
       type: Boolean,
-      default: false
+      default: true
     },
     isComment: {
       type: Boolean,
