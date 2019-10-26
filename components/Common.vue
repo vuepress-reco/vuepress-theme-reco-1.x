@@ -5,8 +5,8 @@
     @touchstart="onTouchStart"
     @touchend="onTouchEnd">
     <transition name="fade">
-      <LoadingPage v-if="firstLoad"></LoadingPage>
-      <Password v-else-if="!isHasKey"></Password>
+      <LoadingPage v-if="firstLoad" />
+      <Password v-else-if="!isHasKey" />
       <div v-else>
         <Navbar
         v-if="shouldShowNavbar"
@@ -30,7 +30,7 @@
         <Password v-if="!isHasPageKey" :isPage="true"></Password>
         <div v-else>
           <slot></slot>
-          <Comments :isShowComments="isComment"/>
+          <Comments :isShowComments="shouldShowComments"/>
         </div>
       </div>
     </transition>
@@ -48,7 +48,16 @@ import { setTimeout } from 'timers'
 export default {
   components: { Sidebar, Navbar, Password },
 
-  props: ['sidebar', 'isComment'],
+  props: {
+    sidebar: {
+      type: Boolean,
+      default: true
+    },
+    isComment: {
+      type: Boolean,
+      default: true
+    }
+  },
 
   data () {
     return {
@@ -60,14 +69,25 @@ export default {
   },
 
   computed: {
+    // 是否显示评论
+    shouldShowComments () {
+      const { isShowComments, home } = this.$frontmatter
+      return !(
+        this.isComment == false ||
+        isShowComments == false ||
+        home == true
+      )
+    },
+
     shouldShowNavbar () {
       const { themeConfig } = this.$site
       const { frontmatter } = this.$page
+
       if (
         frontmatter.navbar === false ||
-        themeConfig.navbar === false) {
-        return false
-      }
+        themeConfig.navbar === false
+      ) return false
+
       return (
         this.$title ||
         themeConfig.logo ||
@@ -174,10 +194,8 @@ export default {
 
   watch: {
     $frontmatter (newVal, oldVal) {
-      if (newVal.home) {
-        this.hasKey()
-        this.hasPageKey()
-      }
+      this.hasKey()
+      this.hasPageKey()
     }
   }
 }
