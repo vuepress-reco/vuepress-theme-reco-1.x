@@ -164,7 +164,7 @@ $navbar-horizontal-padding = 1.5rem
   padding $navbar-vertical-padding $navbar-horizontal-padding
   line-height $navbarHeight - 1.4rem
   box-shadow $boxShadow
-  transition all ease-in-out
+  transition all ease-in-out .3s
   a, span, img
     display inline-block
   .logo
