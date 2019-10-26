@@ -22,7 +22,7 @@ export default {
 
 <style lang="stylus">
 .sidebar
-  transition all ease-in-out
+  transition all ease-in-out .5s
   ul
     padding 0
     margin 0
