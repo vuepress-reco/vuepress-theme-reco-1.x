@@ -1,7 +1,7 @@
 <template>
   <div class="home-blog" :class="recoShow?'reco-show': 'reco-hide'">
     <div class="hero" :style="{background: `url(${$frontmatter.bgImage ? $withBase($frontmatter.bgImage) : require('../images/home-bg.jpg')}) center/cover no-repeat`, ...bgImageStyle}">
-      <h1>{{ homeFrontmatter.heroText || $title || '午后南杂' }}</h1>
+      <h1>{{ $frontmatter.heroText || $title || '午后南杂' }}</h1>
 
       <p class="description">{{ $description || 'Welcome to your vuePress-theme-reco site' }}</p>
       <p class="huawei" v-if="$themeConfig.huawei === true"><i class="iconfont reco-huawei" style="color: #fc2d38"></i>&nbsp;&nbsp;&nbsp;华为，为中华而为之！</p>
@@ -45,7 +45,7 @@
           </li>
         </ul>
         <hr>
-        <h4><i class="iconfont reco-tag"></i> 标签</h4>
+        <h4 v-if="$tags.list.length !== 0"><i class="iconfont reco-tag"></i> 标签</h4>
         <TagList @getCurrentTag="getPagesByTags"></TagList>
       </div>
     </div>
@@ -88,14 +88,11 @@ export default {
     getPagesLength () {
       return this.posts.length
     },
-    homeFrontmatter () {
-      return this.$frontmatter
-    },
     actionLink () {
       const {
         actionLink: link,
         actionText: text
-      } = this.homeFrontmatter
+      } = this.$frontmatter
 
       return {
         link,
@@ -103,7 +100,7 @@ export default {
       }
     },
     heroImageStyle () {
-      return this.homeFrontmatter.heroImageStyle || {
+      return this.$frontmatter.heroImageStyle || {
         maxHeight: '200px',
         margin: '6rem auto 1.5rem'
       }
@@ -116,7 +113,7 @@ export default {
       }
       const {
         bgImageStyle
-      } = this.homeFrontmatter
+      } = this.$frontmatter
 
       return bgImageStyle ? { ...initBgImageStyle, ...bgImageStyle } : initBgImageStyle
     },
