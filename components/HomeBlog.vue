@@ -45,7 +45,7 @@
           </li>
         </ul>
         <hr>
-        <h4><i class="iconfont reco-tag"></i> 标签</h4>
+        <h4 v-if="$tags.list.length !== 0"><i class="iconfont reco-tag"></i> 标签</h4>
         <TagList @getCurrentTag="getPagesByTags"></TagList>
       </div>
     </div>
