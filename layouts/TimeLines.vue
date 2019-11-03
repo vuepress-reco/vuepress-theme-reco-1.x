@@ -54,7 +54,7 @@ export default {
     // 根据分类获取页面数据
     getPages (tag) {
       let pages = this.$site.pages
-      pages = this._filterPostData(pages)
+      pages = this._filterPostData(pages, true)
       // reverse()是为了按时间最近排序排序
       this.pages = pages.length == 0 ? [] : pages
       for (let i = 0, length = pages.length; i < length; i++) {
@@ -107,7 +107,7 @@ export default {
 .timeline-wrapper
   box-sizing border-box
   max-width: 740px;
-  margin: 4rem auto;
+  margin: 8rem auto 4rem;
   position relative
   list-style none
   &::after {

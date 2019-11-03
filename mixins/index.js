@@ -6,10 +6,12 @@ export default {
       const index = Math.floor(Math.random() * tagColorArr.length)
       return tagColorArr[index]
     },
-    _filterPostData (posts) {
+    _filterPostData (posts, isTimeline) {
       posts = posts.filter(item => {
-        const { home, date, publish } = item.frontmatter
-        return !(home == true || date === undefined || publish === false)
+        const { title, frontmatter: { home, date, publish }} = item
+        return isTimeline === true
+          ? !(home == true || title == undefined || date === undefined || publish === false)
+          : !(home == true || title == undefined || publish === false)
       })
       return posts
     },

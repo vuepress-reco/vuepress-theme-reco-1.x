@@ -10,7 +10,6 @@
 html, body
   padding 0
   margin 0
-  text-shadow: $textShadow
 body
   font-family Ubuntu, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif
   -webkit-font-smoothing antialiased
@@ -20,6 +19,7 @@ body
   background-color #fff
 
 .page
+  overflow-x: hidden
   padding-left $sidebarWidth
 
 .navbar
@@ -29,7 +29,6 @@ body
   left 0
   right 0
   height $navbarHeight
-  background-color #fff
   box-sizing border-box
 
 .sidebar-mask
@@ -255,6 +254,8 @@ th, td
         padding: 0 .6rem
         border-radius: $borderRadius
         .vcard
+          .vquote
+            margin-left: 0
           .vimg
             border-radius: $borderRadius
             box-shadow: $boxShadow
@@ -294,3 +295,26 @@ th, td
 
 .search-box input
   border-radius: $borderRadius
+
+/********* 悬浮卡片背景颜色 **********/
+
+.navbar
+  background $backgroundColor
+  .links
+    background $backgroundColor
+
+.home-blog
+  .home-blog-wrapper
+    .info-wrapper
+      background $backgroundColor
+
+.abstract-item
+  background $backgroundColor
+
+.category-wrapper
+  .category-item
+    background $backgroundColor
+
+.pagation
+  .jump
+    background $backgroundColor

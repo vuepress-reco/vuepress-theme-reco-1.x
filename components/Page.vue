@@ -8,7 +8,7 @@
       <PageInfo :pageInfo="$page"></PageInfo>
     </div>
 
-    <Content/>
+    <Content class="theme-reco-content" />
 
     <footer class="page-edit">
       <div
@@ -144,15 +144,6 @@ export default {
 
   mounted () {
     this.recoShow = true
-
-    const keys = this.$frontmatter.keys
-    if (!keys) {
-      this.isHasKey = true
-      return
-    }
-
-    this.isHasKey = keys && keys.indexOf(sessionStorage.getItem('pageKey')) > -1
-    this.$parent.isHasPageKey = this.isHasKey
   },
 
   methods: {
