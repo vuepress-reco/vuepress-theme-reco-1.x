@@ -109,5 +109,4 @@ a.sidebar-link
       font-weight 500
       background transparent
       color $accentColor
-      margin-left .2rem
 </style>

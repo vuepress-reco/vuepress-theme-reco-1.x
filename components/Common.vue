@@ -5,35 +5,37 @@
     @touchstart="onTouchStart"
     @touchend="onTouchEnd">
     <transition name="fade">
-      <LoadingPage v-if="firstLoad" />
-      <Password v-else-if="!isHasKey" />
-      <div v-else>
-        <Navbar
-        v-if="shouldShowNavbar"
-        @toggle-sidebar="toggleSidebar"/>
-
-        <div
-          class="sidebar-mask"
-          @click="toggleSidebar(false)"></div>
-
-        <Sidebar
-          :items="sidebarItems"
-          @toggle-sidebar="toggleSidebar">
-          <slot
-            name="sidebar-top"
-            slot="top"/>
-          <slot
-            name="sidebar-bottom"
-            slot="bottom"/>
-        </Sidebar>
-
-        <Password v-if="!isHasPageKey" :isPage="true"></Password>
-        <div v-else>
-          <slot></slot>
-          <Comments :isShowComments="shouldShowComments"/>
-        </div>
-      </div>
+      <LoadingPage v-show="firstLoad" class="loading-wrapper" />
     </transition>
+    <transition name="fade">  
+      <Password v-show="!isHasKey" class="password-wrapper-out" key="out" />
+    </transition>  
+    <div :class="{ 'hide': firstLoad || !isHasKey }">
+      <Navbar
+      v-if="shouldShowNavbar"
+      @toggle-sidebar="toggleSidebar"/>
+
+      <div
+        class="sidebar-mask"
+        @click="toggleSidebar(false)"></div>
+
+      <Sidebar
+        :items="sidebarItems"
+        @toggle-sidebar="toggleSidebar">
+        <slot
+          name="sidebar-top"
+          slot="top"/>
+        <slot
+          name="sidebar-bottom"
+          slot="bottom"/>
+      </Sidebar>
+
+      <Password v-show="!isHasPageKey" :isPage="true" class="password-wrapper-in" key="in"></Password>
+      <div :class="{ 'hide': !isHasPageKey }">
+        <slot></slot>
+        <Comments :isShowComments="shouldShowComments"/>
+      </div>
+    </div>
     <GA></GA>
   </div>
 </template>
@@ -202,6 +204,37 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.theme-container
+  .loading-wrapper
+    position absolute
+    z-index 22
+    top 0
+    bottom 0
+    left 0
+    right 0
+    margin auto
+    background #fff
+  .password-wrapper-out  
+    position absolute
+    z-index 21
+    top 0
+    bottom 0
+    left 0
+    right 0
+    margin auto
+    background #fff
+  .password-wrapper-in  
+    position absolute
+    z-index 8
+    top 0
+    bottom 0
+    left 0
+    right 0
+    margin auto
+    background #fff
+  .hide
+    height 100vh
+    overflow hidden
 .theme-container.no-sidebar
   .comments-wrapper
     padding-left 2rem
