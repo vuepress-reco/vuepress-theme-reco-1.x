@@ -79,31 +79,35 @@ function renderChildren (h, children, path, route, maxDepth, depth = 1) {
 
 <style lang="stylus">
 .sidebar .sidebar-sub-headers
-  padding-left 1rem
+  padding-left 1.5rem
   font-size 0.95em
 
 a.sidebar-link
   font-size 1em
   font-weight 400
-  display inline-block
+  display block!important
   color $textColor
-  border-left 0.25rem solid transparent
-  padding 0.35rem 1rem 0.35rem 1.25rem
+  padding 0.35rem 1rem 0.35rem .75rem
   line-height 1.4
-  width: 100%
+  margin 0 1rem 0 1.5rem
   box-sizing: border-box
+  border-radius .25rem
   &:hover
     color $accentColor
   &.active
     font-weight 600
-    color $accentColor!important
-    border-left-color $accentColor
+    color #fff
+    background $accentColor
+    // border-left-color $accentColor
   .sidebar-group &
-    padding-left 2rem
+    // padding-left 2rem
   .sidebar-sub-headers &
     padding-top 0.25rem
     padding-bottom 0.25rem
     border-left none
     &.active
       font-weight 500
+      background transparent
+      color $accentColor
+      margin-left .2rem
 </style>
