@@ -1,6 +1,6 @@
 <template>
   <div class="password-shadow" :class="{'is-home': !isPage}">
-    <Background />
+    <!-- <Background /> -->
     <h3 class="title">{{isPage ? $frontmatter.title : $site.title}}</h3>
     <p class="description" v-if="!isPage">{{$site.description}}</p>
     <label class="inputBox" id="box">
@@ -73,7 +73,7 @@ export default {
         return
       }
 
-      const width = document.getElementById('box').getClientRects()[0].width
+      const width = document.getElementById('box').style.width
 
       passwordBtn.style.width = `${width - 2}px`
       passwordBtn.style.opacity = 1
@@ -245,7 +245,7 @@ export default {
       right 0
       top 43%
       margin auto
-      padding-left 20px
+      padding-left 16.4rem
       box-sizing border-box
       opacity 0.9
       input{
@@ -309,6 +309,11 @@ export default {
         z-index: 1;
       }
     }
+  }
+  @media (max-width: $MQNarrow) {
+    .inputBox{
+      padding-left $mobileSidebarWidth
+    }  
   }
 }
 
