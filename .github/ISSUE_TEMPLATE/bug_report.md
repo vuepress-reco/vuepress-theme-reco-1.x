@@ -9,14 +9,12 @@ about: Create a report to help us improve
 
 - [ ] I confirm that this is an issue rather than a question.
 
-<!-- Please ask questions on WeChat group. -->
-
 ## Bug report
 
-#### What is actually happening?
+### What is actually happening?
 
 
-#### Other relevant information
+### Other relevant information
 
 
 - Your OS: 
