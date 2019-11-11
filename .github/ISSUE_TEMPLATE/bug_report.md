@@ -9,6 +9,7 @@ about: Create a report to help us improve
 
 - [ ] I confirm that this is an issue rather than a question.
 
+<!-- Please ask questions on WeChat group. -->
 
 ## Bug report
 
