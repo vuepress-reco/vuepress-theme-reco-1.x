@@ -78,14 +78,14 @@ export default {
     line-height normal
     .ds-dropdown-menu
       background-color #fff
-      border 1px solid #999
       border-radius $borderRadius
-      font-size 16px
+      font-size 15px
       margin 6px 0 0
       padding 4px
       text-align left
+      box-shadow $boxShadow
       &:before
-        border-color #999
+        display none
       [class*=ds-dataset-]
         border none
         padding 0
