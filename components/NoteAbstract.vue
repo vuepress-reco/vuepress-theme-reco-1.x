@@ -12,7 +12,7 @@
     </div>
     <div v-else-if="listLoadType === 'async'" key="async">
       <NoteAbstractItem
-        v-for="(item, index) in currentPageData"
+        v-for="(item) in currentPageData"
         :key="item.path"
         :item="item"
         :currentPage="currentPage"
@@ -31,7 +31,7 @@ export default {
   computed: {
     listLoadType () {
       const valineConfig = this.$themeConfig.valineConfig
-      if (valineConfig && !valineConfig.hideAccessNumber) {
+      if (valineConfig && !valineConfig.hideListAccessNumber) {
         return 'sync'
       } else {
         return 'async'

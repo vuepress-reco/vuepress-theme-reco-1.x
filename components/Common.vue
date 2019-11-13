@@ -105,7 +105,6 @@ export default {
 
   computed: {
     absoluteSecrecy () {
-      console.log(this.$themeConfig.keyPage.absoluteSecrecy)
       return this.$themeConfig.keyPage && this.$themeConfig.keyPage.absoluteSecrecy === true
     },
     // 是否显示评论
