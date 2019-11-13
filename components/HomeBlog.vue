@@ -40,7 +40,7 @@
           <li class="category-item" v-for="(item, index) in this.$categories.list" :key="index">
             <router-link :to="item.path">
               <span class="category-name">{{ item.name }}</span>
-              <span class="post-num">{{ item.pages.length }}</span>
+              <span class="post-num" :style="{ 'backgroundColor': _tagColor() }">{{ item.pages.length }}</span>
             </router-link>
           </li>
         </ul>
@@ -255,18 +255,8 @@ export default {
           transition: all .5s
           border-radius $borderRadius
           box-shadow $boxShadow
-          &:not(:first-child) {
-            border-top: none;
-          }
           &:hover {
-            background #d3d3d3
-            a {
-              color #fff
-              .post-num {
-                background #999
-                color #fff
-              }
-            }
+            transform scale(1.04)
           }
           a {
             display flex
@@ -279,7 +269,7 @@ export default {
               border-radius $borderRadius
               background #eee
               font-size .6rem
-              color $textColor
+              color #fff
             }
           }
         }
