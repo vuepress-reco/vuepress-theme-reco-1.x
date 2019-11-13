@@ -13,22 +13,30 @@
       </span>
       {{item.title}}
     </div>
-    <div @mouseenter="showDetailStatus = true" class="popup-window" v-if="showDetailStatus" :style="popupWindowStyle" ref="popupWindow">
-      <div class="avatar">
-        <img :src="`http://1.gravatar.com/avatar/${getMd5('recoluan@qq.com' || '')}?s=50&amp;d=mm&amp;r=x`" />
-      </div>
-      <div class="info">
-        <div class="title">
-          <h4>{{ detailData.title }}</h4>
-          <a
-            class="btn-go"
-            :style="{ 'backgroundColor': _tagColor() }"
-            :href="detailData.link"
-            target="_blank">GO</a>
+    <transition name="fade">
+      <div
+        @mouseenter="windowEnter"
+        @mouseleave="windowLeave"
+        class="popup-window"
+        v-if="showDetailStatus"
+        :style="popupWindowStyle"
+        ref="popupWindow">
+        <div class="avatar">
+          <img :src="`http://1.gravatar.com/avatar/${getMd5(detailData.email || '')}?s=50&amp;d=mm&amp;r=x`" />
         </div>
-        <p>Enjoy when you can, and endure when you must.</p>
+        <div class="info">
+          <div class="title">
+            <h4>{{ detailData.title }}</h4>
+            <a
+              class="btn-go"
+              :style="{ 'backgroundColor': _tagColor() }"
+              :href="detailData.link"
+              target="_blank">GO</a>
+          </div>
+          <p>{{ detailData.desc }}</p>
+        </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -42,7 +50,9 @@ export default {
     return {
       detailData: {},
       showDetailStatus: false,
-      popupWindowStyle: {}
+      popupWindowStyle: {},
+      btnEnterStatus: false,
+      windowEnterStatus: false
     }
   },
   methods: {
@@ -50,20 +60,63 @@ export default {
       return md5(str)
     },
     showDetail (e, info) {
+      this.btnEnterStatus = true
       const currentDom = e.target
-      const { offsetTop, offsetLeft, clientWidth, clientHeight } = currentDom
-      console.log(clientWidth)
-      const { offsetX, offsetY } = e
+      const { offsetTop, offsetLeft, clientWidth } = currentDom
       this.popupWindowStyle = {
-        left: ((offsetLeft + clientWidth) - 300) / 2 + 'px',
-        top: ((offsetTop + clientHeight) / 2) - 155 + 'px'
+        left: ((offsetLeft + clientWidth / 2) - 300 / 2) + 'px',
+        top: (offsetTop - 150) + 'px'
       }
       this.detailData = info
       this.showDetailStatus = true
+      this.$nextTick(() => {
+        this._adjustPosition()
+      })
     },
     hideDetail () {
-      this.showDetailStatus = false
-      this.detailData = {}
+      // this.btnEnterStatus = false
+      // if (this.windowEnterStatus === false) this.showDetailStatus = false
+    },
+    windowEnter () {
+      this.windowEnterStatus = true
+      this.showDetailStatus = true
+    },
+    windowLeave () {
+      // this.windowEnterStatus = false
+      // if (this.btnEnterStatus === false) this.showDetailStatus = false
+    },
+    _adjustPosition () {
+      const { offsetWidth } = document.body
+      const { x, width } = this.$refs.popupWindow.getBoundingClientRect()
+      const distanceToRight = offsetWidth - (x + width)
+      if (distanceToRight < 0) {
+        const { offsetLeft } = this.$refs.popupWindow
+        this.popupWindowStyle = {
+          ...this.popupWindowStyle,
+          left: offsetLeft + distanceToRight + 'px'
+        }
+      }
+    }
+  },
+  watch: {
+    showDetailStatus (val) {
+      if (val) {
+        let [prevX, prevY, nextX, nextY] = [0, 0, 0, 0]
+
+        window.addEventListener('mouseend', (e) => {
+          prevX = nextX
+          prevY = nextY
+          nextX = e.x
+          nextY = e.y
+          // console.log(prevX, prevY, nextX, nextY)
+          console.log(Math.atan2(nextY - prevY, nextX - prevX))
+          if (Math.atan2(nextY - prevY, nextX - prevX) > -1.75 && Math.atan2(nextY - prevY, nextX - prevX)< -0.75) {
+            this.showDetailStatus = true
+          } else {
+            this.showDetailStatus = false
+          }
+        })
+      }
     }
   }
 }
@@ -136,4 +189,9 @@ export default {
           text-align center
           line-height 1.2rem
           cursor pointer
+
+.fade-enter-active, .fade-leave-active
+  transition opacity .5s
+.fade-enter, .fade-leave-to
+  opacity 0
 </style>
