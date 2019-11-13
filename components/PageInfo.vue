@@ -8,10 +8,10 @@
     <i
       v-if="pageInfo.frontmatter.date"
       class="iconfont reco-date">
-      <span>{{ pageInfo.frontmatter.date | formatDate }}</span>
+      <span>{{ pageInfo.frontmatter.date | formatDate }}{{$themeConfig.commentsSolution}}</span>
     </i>
     <i
-      v-if="$themeConfig.commentsSolution === 'valine' && hideAccessNumber !== true"
+      v-if="hideAccessNumber !== true"
       class="iconfont reco-eye">
       <AccessNumber
         :idVal="pageInfo.path"
