@@ -4,36 +4,70 @@
     :class="pageClasses"
     @touchstart="onTouchStart"
     @touchend="onTouchEnd">
-    <transition name="fade">
-      <LoadingPage v-show="firstLoad" class="loading-wrapper" />
-    </transition>
-    <transition name="fade">
-      <Password v-show="!isHasKey" class="password-wrapper-out" key="out" />
-    </transition>
-    <div :class="{ 'hide': firstLoad || !isHasKey }">
-      <Navbar
-      v-if="shouldShowNavbar"
-      @toggle-sidebar="toggleSidebar"/>
+    <div v-if="absoluteSecrecy">
+      <transition name="fade">
+        <LoadingPage v-if="firstLoad" />
+        <Password v-else-if="!isHasKey" />
+        <div v-else>
+          <Navbar
+          v-if="shouldShowNavbar"
+          @toggle-sidebar="toggleSidebar"/>
 
-      <div
-        class="sidebar-mask"
-        @click="toggleSidebar(false)"></div>
+          <div
+            class="sidebar-mask"
+            @click="toggleSidebar(false)"></div>
 
-      <Sidebar
-        :items="sidebarItems"
-        @toggle-sidebar="toggleSidebar">
-        <slot
-          name="sidebar-top"
-          slot="top"/>
-        <slot
-          name="sidebar-bottom"
-          slot="bottom"/>
-      </Sidebar>
+          <Sidebar
+            :items="sidebarItems"
+            @toggle-sidebar="toggleSidebar">
+            <slot
+              name="sidebar-top"
+              slot="top"/>
+            <slot
+              name="sidebar-bottom"
+              slot="bottom"/>
+          </Sidebar>
 
-      <Password v-show="!isHasPageKey" :isPage="true" class="password-wrapper-in" key="in"></Password>
-      <div :class="{ 'hide': !isHasPageKey }">
-        <slot></slot>
-        <Comments :isShowComments="shouldShowComments"/>
+          <Password v-if="!isHasPageKey" :isPage="true"></Password>
+          <div v-else>
+            <slot></slot>
+            <Comments :isShowComments="shouldShowComments"/>
+          </div>
+        </div>
+      </transition>
+    </div>
+    <div v-else>
+      <transition name="fade">
+        <LoadingPage v-show="firstLoad" class="loading-wrapper" />
+      </transition>
+      <transition name="fade">
+        <Password v-show="!isHasKey" class="password-wrapper-out" key="out" />
+      </transition>
+      <div :class="{ 'hide': firstLoad || !isHasKey }">
+        <Navbar
+        v-if="shouldShowNavbar"
+        @toggle-sidebar="toggleSidebar"/>
+
+        <div
+          class="sidebar-mask"
+          @click="toggleSidebar(false)"></div>
+
+        <Sidebar
+          :items="sidebarItems"
+          @toggle-sidebar="toggleSidebar">
+          <slot
+            name="sidebar-top"
+            slot="top"/>
+          <slot
+            name="sidebar-bottom"
+            slot="bottom"/>
+        </Sidebar>
+
+        <Password v-show="!isHasPageKey" :isPage="true" class="password-wrapper-in" key="in"></Password>
+        <div :class="{ 'hide': !isHasPageKey }">
+          <slot></slot>
+          <Comments :isShowComments="shouldShowComments"/>
+        </div>
       </div>
     </div>
   </div>
@@ -70,6 +104,10 @@ export default {
   },
 
   computed: {
+    absoluteSecrecy () {
+      console.log(this.$themeConfig.keyPage.absoluteSecrecy)
+      return this.$themeConfig.keyPage && this.$themeConfig.keyPage.absoluteSecrecy === true
+    },
     // 是否显示评论
     shouldShowComments () {
       const { isShowComments, home } = this.$frontmatter
