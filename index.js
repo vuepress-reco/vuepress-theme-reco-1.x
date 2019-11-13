@@ -23,7 +23,6 @@ module.exports = (options, ctx) => ({
     '@vuepress-reco/loading-page',
     '@vuepress-reco/pagation',
     '@vuepress-reco/screenfull',
-    '@vuepress-reco/ga',
     '@vuepress-reco/comments',
     '@vuepress/active-header-links',
     ['@vuepress/medium-zoom', {

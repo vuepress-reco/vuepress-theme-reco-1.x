@@ -7,9 +7,9 @@
     <transition name="fade">
       <LoadingPage v-show="firstLoad" class="loading-wrapper" />
     </transition>
-    <transition name="fade">  
+    <transition name="fade">
       <Password v-show="!isHasKey" class="password-wrapper-out" key="out" />
-    </transition>  
+    </transition>
     <div :class="{ 'hide': firstLoad || !isHasKey }">
       <Navbar
       v-if="shouldShowNavbar"
@@ -36,7 +36,6 @@
         <Comments :isShowComments="shouldShowComments"/>
       </div>
     </div>
-    <GA></GA>
   </div>
 </template>
 
@@ -214,7 +213,7 @@ export default {
     right 0
     margin auto
     background #fff
-  .password-wrapper-out  
+  .password-wrapper-out
     position absolute
     z-index 21
     top 0
@@ -223,7 +222,7 @@ export default {
     right 0
     margin auto
     background #fff
-  .password-wrapper-in  
+  .password-wrapper-in
     position absolute
     z-index 8
     top 0
