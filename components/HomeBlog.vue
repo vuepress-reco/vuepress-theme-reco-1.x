@@ -46,7 +46,9 @@
         </ul>
         <hr>
         <h4 v-if="$tags.list.length !== 0"><i class="iconfont reco-tag"></i> 标签</h4>
-        <TagList @getCurrentTag="getPagesByTags"></TagList>
+        <TagList @getCurrentTag="getPagesByTags" />
+        <h4 v-if="$themeConfig.friendLink && $themeConfig.friendLink.length !== 0"><i class="iconfont reco-tag"></i> 友链</h4>
+        <FriendLink />
       </div>
     </div>
 
@@ -56,12 +58,13 @@
 
 <script>
 import TagList from '@theme/components/TagList.vue'
+import FriendLink from '@theme/components/FriendLink.vue'
 import NoteAbstract from '@theme/components/NoteAbstract.vue'
 import mixin from '@theme/mixins/index.js'
 
 export default {
   mixins: [mixin],
-  components: { NoteAbstract, TagList },
+  components: { NoteAbstract, TagList, FriendLink },
   data () {
     return {
       recoShow: false,
