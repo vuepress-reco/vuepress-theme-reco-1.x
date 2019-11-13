@@ -8,7 +8,7 @@
     <i
       v-if="pageInfo.frontmatter.date"
       class="iconfont reco-date">
-      <span>{{ pageInfo.frontmatter.date | formatDate }}{{$themeConfig.commentsSolution}}</span>
+      <span>{{ pageInfo.frontmatter.date | formatDate }}</span>
     </i>
     <i
       v-if="hideAccessNumber !== true"
