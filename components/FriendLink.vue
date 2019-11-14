@@ -2,41 +2,41 @@
   <div class="friend-link-wrapper">
     <div
       class="friend-link-item"
-      v-for="(item, index) in $themeConfig.friendLink"
+      v-for="(item, index) in dataAddColor"
       :key="index"
-      @mouseenter="showDetail($event, item)"
-      @mouseleave="hideDetail"
+      @mouseenter="showDetail($event)"
+      @mouseleave="hideDetail($event)"
       target="_blank">
       <span
         class="list-style"
-        :style="{ 'backgroundColor': _tagColor() }">
+        :style="{ 'backgroundColor': item.color }">
       </span>
       {{item.title}}
-    </div>
-    <transition name="fade">
-      <div
-        @mouseenter="windowEnter"
-        @mouseleave="windowLeave"
-        class="popup-window"
-        v-if="showDetailStatus"
-        :style="popupWindowStyle"
-        ref="popupWindow">
-        <div class="avatar">
-          <img :src="`http://1.gravatar.com/avatar/${getMd5(detailData.email || '')}?s=50&amp;d=mm&amp;r=x`" />
-        </div>
-        <div class="info">
-          <div class="title">
-            <h4>{{ detailData.title }}</h4>
-            <a
-              class="btn-go"
-              :style="{ 'backgroundColor': _tagColor() }"
-              :href="detailData.link"
-              target="_blank">GO</a>
+      <transition name="fade">
+        <div class="popup-window-wrapper">
+          <div
+            class="popup-window"
+            :style="popupWindowStyle"
+            ref="popupWindow">
+            <div class="avatar">
+              <img :src="getImgUrl(item)" />
+            </div>
+            <div class="info">
+              <div class="title">
+                <h4>{{ item.title }}</h4>
+                <a
+                  class="btn-go"
+                  :style="{ 'backgroundColor': item.color }"
+                  :href="item.link"
+                  target="_blank">GO</a>
+              </div>
+              <p v-if="item.desc">{{ item.desc }}</p>
+            </div>
           </div>
-          <p>{{ detailData.desc }}</p>
         </div>
-      </div>
-    </transition>
+
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -48,74 +48,61 @@ export default {
   mixins: [mixin],
   data () {
     return {
-      detailData: {},
-      showDetailStatus: false,
-      popupWindowStyle: {},
-      btnEnterStatus: false,
-      windowEnterStatus: false
+      popupWindowStyle: {}
+    }
+  },
+  computed: {
+    dataAddColor () {
+      let friendLink = this.$themeConfig.friendLink
+      friendLink = friendLink.length > 0 ? friendLink.map(item => ({
+        ...item,
+        color: this._tagColor()
+      })) : []
+      return friendLink
     }
   },
   methods: {
     getMd5 (str) {
       return md5(str)
     },
-    showDetail (e, info) {
-      this.btnEnterStatus = true
+    showDetail (e) {
       const currentDom = e.target
-      const { offsetTop, offsetLeft, clientWidth } = currentDom
+      const popupWindowWrapper = currentDom.querySelector('.popup-window-wrapper')
+      const popupWindow = currentDom.querySelector('.popup-window')
+      popupWindowWrapper.style.display = 'block'
+      const { clientWidth } = currentDom
+      const {
+        clientWidth: windowWidth,
+        clientHeight: windowHeight
+      } = popupWindow
       this.popupWindowStyle = {
-        left: ((offsetLeft + clientWidth / 2) - 300 / 2) + 'px',
-        top: (offsetTop - 150) + 'px'
+        left: (clientWidth - windowWidth) / 2 + 'px',
+        top: -windowHeight + 'px'
       }
-      this.detailData = info
-      this.showDetailStatus = true
       this.$nextTick(() => {
-        this._adjustPosition()
+        this._adjustPosition(currentDom.querySelector('.popup-window'))
       })
     },
-    hideDetail () {
-      // this.btnEnterStatus = false
-      // if (this.windowEnterStatus === false) this.showDetailStatus = false
+    hideDetail (e) {
+      const currentDom = e.target
+      currentDom.querySelector('.popup-window-wrapper').style.display = 'none'
     },
-    windowEnter () {
-      this.windowEnterStatus = true
-      this.showDetailStatus = true
+    getImgUrl (info) {
+      const { avatar, email } = info
+      if (avatar && /^http/.test(avatar)) return avatar
+      if (avatar && !/^http/.test(avatar)) return this.$withBase(avatar)
+      return `http://1.gravatar.com/avatar/${this.getMd5(email || '')}?s=50&amp;d=mm&amp;r=x`
     },
-    windowLeave () {
-      // this.windowEnterStatus = false
-      // if (this.btnEnterStatus === false) this.showDetailStatus = false
-    },
-    _adjustPosition () {
+    _adjustPosition (dom) {
       const { offsetWidth } = document.body
-      const { x, width } = this.$refs.popupWindow.getBoundingClientRect()
+      const { x, width } = dom.getBoundingClientRect()
       const distanceToRight = offsetWidth - (x + width)
       if (distanceToRight < 0) {
-        const { offsetLeft } = this.$refs.popupWindow
+        const { offsetLeft } = dom
         this.popupWindowStyle = {
           ...this.popupWindowStyle,
           left: offsetLeft + distanceToRight + 'px'
         }
-      }
-    }
-  },
-  watch: {
-    showDetailStatus (val) {
-      if (val) {
-        let [prevX, prevY, nextX, nextY] = [0, 0, 0, 0]
-
-        window.addEventListener('mouseend', (e) => {
-          prevX = nextX
-          prevY = nextY
-          nextX = e.x
-          nextY = e.y
-          // console.log(prevX, prevY, nextX, nextY)
-          console.log(Math.atan2(nextY - prevY, nextX - prevX))
-          if (Math.atan2(nextY - prevY, nextX - prevX) > -1.75 && Math.atan2(nextY - prevY, nextX - prevX)< -0.75) {
-            this.showDetailStatus = true
-          } else {
-            this.showDetailStatus = false
-          }
-        })
       }
     }
   }
@@ -153,42 +140,53 @@ export default {
       border-radius .1rem
       background $accentColor
       content ''
-  .popup-window
-    position absolute
-    display flex
-    background #ffffff
-    box-shadow $boxShadow
-    box-sizing border-box
-    padding .4rem
-    width 300px
-    height 150px
-    .avatar
-      margin-right .4rem
-      width 2rem
-      height 2rem
-      border-radius $borderRadius
-      overflow hidden
-      img
-        width 2rem
-        height 2rem
-    .info
-      flex 1
-      .title
+    .popup-window-wrapper
+      display none
+      .popup-window
+        position absolute
         display flex
-        align-items center
-        justify-content space-between
-        height 2rem
-        h4
-          margin .2rem 0
-        .btn-go
-          width 1.4rem
-          height 1.2rem
+        background #ffffff
+        box-shadow $boxShadow
+        border-radius $borderRadius
+        box-sizing border-box
+        padding .8rem 1rem
+        width 300px
+        .avatar
+          margin-right .4rem
+          width 2rem
+          height 2rem
+          flex 0 0 2rem
           border-radius $borderRadius
-          font-size .1rem
-          color #ffffff
-          text-align center
-          line-height 1.2rem
-          cursor pointer
+          overflow hidden
+          img
+            width 2rem
+            height 2rem
+        .info
+          flex 0 0 85%
+          width 85%
+          .title
+            display flex
+            align-items center
+            justify-content space-between
+            height 2rem
+            h4
+              margin .2rem 0
+              flex 0 0 86%
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            .btn-go
+              width 1.4rem
+              height 1.2rem
+              border-radius $borderRadius
+              font-size .1rem
+              color #ffffff
+              text-align center
+              line-height 1.2rem
+              cursor pointer
+              transition all .5s
+              &:hover
+                transform scale(1.1)
 
 .fade-enter-active, .fade-leave-active
   transition opacity .5s
