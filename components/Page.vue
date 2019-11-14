@@ -86,7 +86,7 @@ export default {
   computed: {
     hideAccessNumber () {
       const valineConfig = this.$themeConfig.valineConfig
-      if (valineConfig && !valineConfig.hideListAccessNumber) {
+      if (valineConfig) {
         return false
       } else {
         return true
