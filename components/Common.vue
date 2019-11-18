@@ -79,8 +79,10 @@ import Sidebar from '@theme/components/Sidebar.vue'
 import { resolveSidebarItems } from '../util'
 import Password from '@theme/components/Password'
 import { setTimeout } from 'timers'
+import mixin from '@theme/mixins/index.js'
 
 export default {
+  mixins: [mixin],
   components: { Sidebar, Navbar, Password },
 
   props: {
@@ -167,6 +169,10 @@ export default {
     }
   },
 
+  created () {
+    this.getPostData()
+  },
+
   mounted () {
     this.$router.afterEach(() => {
       this.isSidebarOpen = false
@@ -227,6 +233,23 @@ export default {
         this.firstLoad = false
         if (sessionStorage.getItem('firstLoad') == undefined) sessionStorage.setItem('firstLoad', false)
       }, time)
+    },
+    getPostData () {
+      if (!this.$themeConfig.posts) {
+        const {
+          $categories: { list: articles },
+          _filterPostData,
+          _sortPostData
+        } = this
+
+        let posts = articles.reduce((allData, currnetData) => {
+          return [...allData, ...currnetData.pages]
+        }, [])
+        posts = _filterPostData(posts)
+        _sortPostData(posts)
+
+        this.$themeConfig.posts = posts
+      }
     }
   },
 

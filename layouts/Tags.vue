@@ -45,7 +45,7 @@ export default {
       if (currentTag !== '全部') {
         posts = this.$tags.map[currentTag].pages
       } else {
-        posts = this.$site.pages
+        posts = this.$themeConfig.posts
       }
 
       posts = this._filterPostData(posts)

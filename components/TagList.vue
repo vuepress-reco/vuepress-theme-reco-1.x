@@ -1,7 +1,7 @@
 <template>
   <div class="tags">
     <span
-      v-for="(item, index) in $tags.list"
+      v-for="(item, index) in tags"
       :key="index"
       :class="{'active': item.name == currentTag}"
       :style="{ 'backgroundColor': _tagColor() }"
@@ -20,9 +20,9 @@ export default {
       default: ''
     }
   },
-  data () {
-    return {
-      tags: []
+  computed: {
+    tags () {
+      return [{ name: '全部' }, ...this.$tags.list]
     }
   },
   methods: {
