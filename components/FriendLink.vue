@@ -53,12 +53,15 @@ export default {
   },
   computed: {
     dataAddColor () {
-      let friendLink = this.$themeConfig.friendLink
-      friendLink = friendLink.length > 0 ? friendLink.map(item => ({
-        ...item,
-        color: this._tagColor()
-      })) : []
-      return friendLink
+      let { friendLink } = this.$themeConfig
+      if (friendLink && friendLink.length > 0) {
+        friendLink = friendLink.map(item => ({
+          ...item,
+          color: this._tagColor()
+        }))
+        return friendLink
+      }
+      return []
     }
   },
   methods: {

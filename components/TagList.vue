@@ -1,11 +1,11 @@
 <template>
   <div class="tags">
     <span
-      v-for="(item, index) in $tags.list"
+      v-for="(item, index) in tags"
       :key="index"
       :class="{'active': item.name == currentTag}"
       :style="{ 'backgroundColor': _tagColor() }"
-      @click="tagClick(item.name)">{{item.name}}</span>
+      @click="tagClick(item)">{{item.name}}</span>
   </div>
 </template>
 
@@ -20,9 +20,9 @@ export default {
       default: ''
     }
   },
-  data () {
-    return {
-      tags: []
+  computed: {
+    tags () {
+      return [{ name: '全部', path: '/tag/' }, ...this.$tags.list]
     }
   },
   methods: {

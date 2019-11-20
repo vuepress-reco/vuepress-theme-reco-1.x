@@ -11,13 +11,13 @@
       <div class="blog-list">
         <!-- 博客列表 -->
         <note-abstract
-          :data="posts"
+          :data="$themeConfig.posts"
           :hideAccessNumber="true"
           :currentPage="currentPage"></note-abstract>
         <!-- 分页 -->
         <pagation
           class="pagation"
-          :total="posts.length"
+          :total="$themeConfig.posts.length"
           :currentPage="currentPage"
           @getCurrentPage="getCurrentPage" />
       </div>
@@ -26,7 +26,7 @@
         <h3 class="name" v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</h3>
         <div class="num">
           <div>
-            <h3>{{getPagesLength}}</h3>
+            <h3>{{$themeConfig.posts.length}}</h3>
             <h6>文章</h6>
           </div>
           <div>
@@ -73,24 +73,6 @@ export default {
     }
   },
   computed: {
-    // 时间降序后的博客列表
-    posts () {
-      const {
-        $site: { pages },
-        _filterPostData,
-        _sortPostData
-      } = this
-
-      let posts = pages
-      posts = _filterPostData(posts)
-      _sortPostData(posts)
-
-      return posts
-    },
-    // 分类信息
-    getPagesLength () {
-      return this.posts.length
-    },
     actionLink () {
       const {
         actionLink: link,
@@ -145,7 +127,8 @@ export default {
       // reverse()是为了按时间最近排序排序
       this.pages = pages.length == 0 ? [] : pages
     },
-    getPagesByTags (currentTag) {
+    getPagesByTags (tagInfo) {
+      const currentTag = tagInfo.name
       const base = this.$site.base
       window.location.href = `${base}tag/?tag=${currentTag}`
     },
