@@ -1,14 +1,18 @@
 <template>
-  <div class="tags-wrapper" :class="recoShow?'reco-show': 'reco-hide'">
+  <div class="tag-wrapper" :class="recoShow ?'reco-show' : 'reco-hide'">
+    <!-- 公共布局 -->
     <Common :sidebar="false" :isComment="false">
-      <TagList :currentTag="currentTag" @getCurrentTag="tagClick"></TagList>
+      <!-- 标签集合 -->
+      <TagList class="tags" :currentTag="$currentTags.key" @getCurrentTag="tagClick"></TagList>
+
+      <!-- 博客列表 -->
       <note-abstract
         class="list"
         :data="posts"
         :currentPage="currentPage"
-        :currentTag="currentTag"
-        @currentTag="getCurrentTag"></note-abstract>
+        @currentTag="$currentTags.key"></note-abstract>
 
+      <!-- 分页 -->
       <pagation
         class="pagation"
         :total="posts.length"
@@ -20,33 +24,32 @@
 
 <script>
 import Common from '@theme/components/Common.vue'
-import TagList from '@theme/components/TagList.vue'
 import NoteAbstract from '@theme/components/NoteAbstract.vue'
+import TagList from '@theme/components/TagList.vue'
 import mixin from '@theme/mixins/index.js'
 
 export default {
   mixins: [mixin],
   components: { Common, NoteAbstract, TagList },
+
   data () {
     return {
-      tags: [],
-      currentTag: '全部',
+      // 当前页码
       currentPage: 1,
       recoShow: false,
-      allTagName: '全部'
-    }
-  },
-  computed: {
-    // 时间降序后的博客列表
-    posts () {
-      return this.$themeConfig.posts || this.$site.pages
+      currentTag: '全部',
     }
   },
 
-  created () {
-    if (this.$tags.list.length > 0) {
-      this.currentTag = this.$route.query.tag ? this.$route.query.tag : this.currentTag
-    }
+  computed: {
+    // 时间降序后的博客列表
+    posts () {
+      let posts = this.$currentTags.pages
+      posts = this._filterPostData(posts)
+      this._sortPostData(posts)
+      this._setPage(1)
+      return posts
+    },
   },
 
   mounted () {
@@ -54,15 +57,14 @@ export default {
   },
 
   methods: {
-
-    tagClick (tagInfo) {
-      this.$router.push({ path: tagInfo.path })
-    },
-
+    // 获取当前tag
     getCurrentTag (tag) {
       this.$emit('currentTag', tag)
     },
-
+    tagClick (tagInfo) {
+      this.$router.push({path: tagInfo.path})
+    },
+    // 获取当前页码
     getCurrentPage (page) {
       this._setPage(page)
       setTimeout(() => {
@@ -72,7 +74,7 @@ export default {
     _setPage (page) {
       this.currentPage = page
       this.$page.currentPage = page
-    }
+    },
   }
 }
 </script>
@@ -80,8 +82,9 @@ export default {
 <style src="../styles/theme.styl" lang="stylus"></style>
 
 <style lang="stylus" scoped>
+@require '../styles/recoConfig.styl'
 @require '../styles/loadMixin.styl'
-.tags-wrapper
+.tag-wrapper
   max-width: 740px;
   margin: 0 auto;
   padding: 4.6rem 2.5rem 0;
@@ -103,6 +106,6 @@ export default {
   }
 
 @media (max-width: $MQMobile)
-  .tags-wrapper
-    padding: 5rem 0.6rem 0;
+  .tag-wrapper
+    padding: 4.6rem 1rem 0;
 </style>

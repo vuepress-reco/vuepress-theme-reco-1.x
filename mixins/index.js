@@ -1,3 +1,5 @@
+import { promise } from "when"
+
 export default {
   methods: {
     _tagColor () {
@@ -23,6 +25,27 @@ export default {
     // 获取时间的数字类型
     _getTimeNum (date) {
       return parseInt(new Date(date.frontmatter.date).getTime())
+    },
+    // 获取博客数据
+    _getPostData () {
+      return new Promise(resolve => {
+        if (!this.$themeConfig.posts) {
+          const {
+            $categories: { list: articles },
+            _filterPostData,
+            _sortPostData
+          } = this
+
+          let posts = articles.reduce((allData, currnetData) => {
+            return [...allData, ...currnetData.pages]
+          }, [])
+          posts = _filterPostData(posts)
+          _sortPostData(posts)
+
+          this.$themeConfig.posts = posts
+          resolve(posts)
+        }
+      })
     }
   }
 }

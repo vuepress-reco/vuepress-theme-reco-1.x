@@ -5,7 +5,7 @@
       :key="index"
       :class="{'active': item.name == currentTag}"
       :style="{ 'backgroundColor': _tagColor() }"
-      @click="tagClick(item.name)">{{item.name}}</span>
+      @click="tagClick(item)">{{item.name}}</span>
   </div>
 </template>
 
@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     tags () {
-      return [{ name: '全部' }, ...this.$tags.list]
+      return [{ name: '全部', path: '/tag/' }, ...this.$tags.list]
     }
   },
   methods: {

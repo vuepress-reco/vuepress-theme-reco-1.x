@@ -170,7 +170,7 @@ export default {
   },
 
   created () {
-    this.getPostData()
+    this._getPostData()
   },
 
   mounted () {
@@ -233,23 +233,6 @@ export default {
         this.firstLoad = false
         if (sessionStorage.getItem('firstLoad') == undefined) sessionStorage.setItem('firstLoad', false)
       }, time)
-    },
-    getPostData () {
-      if (!this.$themeConfig.posts) {
-        const {
-          $categories: { list: articles },
-          _filterPostData,
-          _sortPostData
-        } = this
-
-        let posts = articles.reduce((allData, currnetData) => {
-          return [...allData, ...currnetData.pages]
-        }, [])
-        posts = _filterPostData(posts)
-        _sortPostData(posts)
-
-        this.$themeConfig.posts = posts
-      }
     }
   },
 

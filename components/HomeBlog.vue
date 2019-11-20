@@ -127,7 +127,8 @@ export default {
       // reverse()是为了按时间最近排序排序
       this.pages = pages.length == 0 ? [] : pages
     },
-    getPagesByTags (currentTag) {
+    getPagesByTags (tagInfo) {
+      const currentTag = tagInfo.name
       const base = this.$site.base
       window.location.href = `${base}tag/?tag=${currentTag}`
     },
