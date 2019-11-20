@@ -1,5 +1,3 @@
-import { promise } from "when"
-
 export default {
   methods: {
     _tagColor () {
