@@ -4,7 +4,8 @@
   "description": "A simple and beautiful vuepress Blog & Doc theme.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vuepress dev example/docs",
+    "build": "vuepress build example/docs",
     "eslint-ext": "eslint --ext .js,.vue ./",
     "eslint-fix": "eslint --fix --ext .js,.vue ./"
   },
@@ -44,6 +45,7 @@
   "devDependencies": {
     "babel-eslint": "^10.0.3",
     "eslint": "^6.4.0",
-    "eslint-plugin-vue": "^5.2.3"
+    "eslint-plugin-vue": "^5.2.3",
+    "vuepress": "1.2.0"
   }
 }
