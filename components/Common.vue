@@ -4,7 +4,7 @@
     :class="pageClasses"
     @touchstart="onTouchStart"
     @touchend="onTouchEnd">
-    <div v-if="absoluteSecrecy">
+    <div v-if="absoluteEncryption">
       <transition name="fade">
         <LoadingPage v-if="firstLoad" />
         <Password v-else-if="!isHasKey" />
@@ -106,8 +106,8 @@ export default {
   },
 
   computed: {
-    absoluteSecrecy () {
-      return this.$themeConfig.keyPage && this.$themeConfig.keyPage.absoluteSecrecy === true
+    absoluteEncryption () {
+      return this.$themeConfig.keyPage && this.$themeConfig.keyPage.absoluteEncryption === true
     },
     // 是否显示评论
     shouldShowComments () {

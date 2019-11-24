@@ -7,7 +7,6 @@
         :item="item"
         :currentPage="currentPage"
         :currentTag="currentTag"
-        :hideAccessNumber="hideAccessNumber"
         v-show="index >= (currentPage * 10 - 10) && index < currentPage * 10"/>
     </div>
     <div v-else-if="listLoadType === 'async'" key="async">
@@ -31,6 +30,7 @@ export default {
   computed: {
     listLoadType () {
       const valineConfig = this.$themeConfig.valineConfig
+      if (this.$frontmatter.home) return 'async'
       if (valineConfig && !valineConfig.hideListAccessNumber) {
         return 'sync'
       } else {
