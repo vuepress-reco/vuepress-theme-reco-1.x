@@ -51,6 +51,7 @@ export default {
 
   mounted () {
     this.recoShow = true
+    this._setPage(this._getStoragePage())
   },
 
   methods: {
@@ -72,6 +73,7 @@ export default {
     _setPage (page) {
       this.currentPage = page
       this.$page.currentPage = page
+      this._setStoragePage(page)
     }
   }
 }

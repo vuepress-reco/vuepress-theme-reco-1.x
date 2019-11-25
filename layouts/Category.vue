@@ -56,7 +56,6 @@ export default {
       let posts = this.$currentCategories.pages
       this._sortPostData(posts)
       posts = this._filterPostData(posts)
-      this._setPage(1)
       return posts
     },
     // 标题只显示分类名称
@@ -67,6 +66,7 @@ export default {
 
   mounted () {
     this.recoShow = true
+    this._setPage(this._getStoragePage())
   },
 
   methods: {
@@ -84,6 +84,7 @@ export default {
     _setPage (page) {
       this.currentPage = page
       this.$page.currentPage = page
+      this._setStoragePage(page)
     },
     // 获取时间的数字类型
     _getTimeNum (date) {
