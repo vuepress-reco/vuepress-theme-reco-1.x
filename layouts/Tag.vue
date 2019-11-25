@@ -45,11 +45,11 @@ export default {
     // 时间降序后的博客列表
     posts () {
       let posts = this.$currentTags.pages
-      posts = this._filterPostData(posts)
       this._sortPostData(posts)
+      posts = this._filterPostData(posts)
       this._setPage(1)
       return posts
-    },
+    }
   },
 
   mounted () {

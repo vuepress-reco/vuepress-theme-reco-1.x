@@ -1,7 +1,9 @@
 <template>
   <div
     class="abstract-item">
+    <i v-if="item.frontmatter.sticky" class="iconfont reco-place-to-top"></i>
     <div class="title">
+      <i v-if="item.frontmatter.keys" class="iconfont reco-lock"></i>
       <router-link :to="item.path">{{item.title}}</router-link>
     </div>
     <div class="abstract" v-html="item.excerpt"></div>
@@ -27,6 +29,7 @@ export default {
 @require '../styles/recoConfig.styl'
 
 .abstract-item
+  position relative
   margin: 0 auto 20px;
   padding: 16px 20px;
   width 100%
@@ -36,6 +39,13 @@ export default {
   box-sizing: border-box;
   transition all .3s
   background-color $bgColor
+  .reco-place-to-top
+    position absolute
+    top -5px
+    left -3px
+    display inline-block
+    color $accentColor
+    font-size 2.4rem
   &:hover
     box-shadow: $boxShadowHover
   .title
@@ -43,7 +53,12 @@ export default {
     font-size: 1.28rem;
     line-height: 36px;
     display: inline-block;
-    :after
+    a
+      color $textColor
+    .reco-lock
+      font-size 1.28rem
+      color $accentColor
+    &:after
       content: "";
       position: absolute;
       width: 100%;
@@ -55,7 +70,9 @@ export default {
       -webkit-transform: scaleX(0);
       transform: scaleX(0);
       transition: .3s ease-in-out;
-    :hover:after
+    &:hover a
+      color $accentColor
+    &:hover:after
       visibility visible
       -webkit-transform: scaleX(1);
       transform: scaleX(1);
