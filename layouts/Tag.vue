@@ -37,7 +37,7 @@ export default {
       // 当前页码
       currentPage: 1,
       recoShow: false,
-      currentTag: '全部',
+      currentTag: '全部'
     }
   },
 
@@ -45,15 +45,15 @@ export default {
     // 时间降序后的博客列表
     posts () {
       let posts = this.$currentTags.pages
-      posts = this._filterPostData(posts)
       this._sortPostData(posts)
-      this._setPage(1)
+      posts = this._filterPostData(posts)
       return posts
-    },
+    }
   },
 
   mounted () {
     this.recoShow = true
+    this._setPage(this._getStoragePage())
   },
 
   methods: {
@@ -62,7 +62,7 @@ export default {
       this.$emit('currentTag', tag)
     },
     tagClick (tagInfo) {
-      this.$router.push({path: tagInfo.path})
+      this.$router.push({ path: tagInfo.path })
     },
     // 获取当前页码
     getCurrentPage (page) {
@@ -74,7 +74,8 @@ export default {
     _setPage (page) {
       this.currentPage = page
       this.$page.currentPage = page
-    },
+      this._setStoragePage(page)
+    }
   }
 }
 </script>

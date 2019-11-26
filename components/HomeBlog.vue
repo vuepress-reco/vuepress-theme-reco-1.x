@@ -108,6 +108,7 @@ export default {
   },
   mounted () {
     this.recoShow = true
+    this._setPage(this._getStoragePage())
   },
   methods: {
     // 获取当前页码
@@ -128,13 +129,12 @@ export default {
       this.pages = pages.length == 0 ? [] : pages
     },
     getPagesByTags (tagInfo) {
-      const currentTag = tagInfo.name
-      const base = this.$site.base
-      window.location.href = `${base}tag/?tag=${currentTag}`
+      this.$router.push({ path: tagInfo.path })
     },
     _setPage (page) {
       this.currentPage = page
       this.$page.currentPage = page
+      this._setStoragePage(page)
     }
   }
 }

@@ -54,9 +54,8 @@ export default {
     // 时间降序后的博客列表
     posts () {
       let posts = this.$currentCategories.pages
-      posts = this._filterPostData(posts)
       this._sortPostData(posts)
-      this._setPage(1)
+      posts = this._filterPostData(posts)
       return posts
     },
     // 标题只显示分类名称
@@ -67,6 +66,7 @@ export default {
 
   mounted () {
     this.recoShow = true
+    this._setPage(this._getStoragePage())
   },
 
   methods: {
@@ -84,6 +84,7 @@ export default {
     _setPage (page) {
       this.currentPage = page
       this.$page.currentPage = page
+      this._setStoragePage(page)
     },
     // 获取时间的数字类型
     _getTimeNum (date) {

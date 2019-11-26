@@ -7,13 +7,18 @@ export default {
       return tagColorArr[index]
     },
     _filterPostData (posts, isTimeline) {
+      const stickyArr = []
       posts = posts.filter(item => {
-        const { title, frontmatter: { home, date, publish }} = item
+        const { title, frontmatter: { home, date, publish, sticky }} = item
+        if (sticky) {
+          stickyArr.unshift(item)
+          return false
+        }
         return isTimeline === true
           ? !(home == true || title == undefined || date === undefined || publish === false)
           : !(home == true || title == undefined || publish === false)
       })
-      return posts
+      return stickyArr.concat(posts)
     },
     _sortPostData (posts) {
       posts.sort((a, b) => {
@@ -37,13 +42,31 @@ export default {
           let posts = articles.reduce((allData, currnetData) => {
             return [...allData, ...currnetData.pages]
           }, [])
-          posts = _filterPostData(posts)
+
           _sortPostData(posts)
+          posts = _filterPostData(posts)
 
           this.$themeConfig.posts = posts
           resolve(posts)
         }
       })
+    },
+    // 获取当前页码
+    _getStoragePage () {
+      const path = window.location.pathname
+      const currentPage = JSON.parse(sessionStorage.getItem('currentPage'))
+
+      if (currentPage === null || path !== currentPage.path) {
+        sessionStorage.setItem('currentPage', { page: 1, path: '' })
+        return 1
+      }
+
+      return parseInt(currentPage.page)
+    },
+    // 设置当前页码
+    _setStoragePage (page) {
+      const path = window.location.pathname
+      sessionStorage.setItem('currentPage', JSON.stringify({ page, path }))
     }
   }
 }

@@ -18,7 +18,7 @@
             class="popup-window"
             :style="popupWindowStyle"
             ref="popupWindow">
-            <div class="avatar">
+            <div class="logo">
               <img :src="getImgUrl(item)" />
             </div>
             <div class="info">
@@ -91,9 +91,9 @@ export default {
       currentDom.querySelector('.popup-window-wrapper').style.display = 'none'
     },
     getImgUrl (info) {
-      const { avatar, email } = info
-      if (avatar && /^http/.test(avatar)) return avatar
-      if (avatar && !/^http/.test(avatar)) return this.$withBase(avatar)
+      const { logo, email } = info
+      if (logo && /^http/.test(logo)) return logo
+      if (logo && !/^http/.test(logo)) return this.$withBase(logo)
       return `http://1.gravatar.com/avatar/${this.getMd5(email || '')}?s=50&amp;d=mm&amp;r=x`
     },
     _adjustPosition (dom) {
@@ -154,7 +154,7 @@ export default {
         box-sizing border-box
         padding .8rem 1rem
         width 300px
-        .avatar
+        .logo
           margin-right .4rem
           width 2rem
           height 2rem
