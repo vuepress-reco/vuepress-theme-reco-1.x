@@ -18,7 +18,6 @@
 
 <script>
 import PageInfo from './PageInfo'
-
 export default {
   components: { PageInfo },
   props: ['item', 'currentPage', 'currentTag', 'hideAccessNumber']
@@ -27,7 +26,6 @@ export default {
 
 <style lang="stylus" scoped>
 @require '../styles/recoConfig.styl'
-
 .abstract-item
   position relative
   margin: 0 auto 20px;
@@ -83,7 +81,6 @@ export default {
         color $accentColor
       &:hover
         color $accentColor
-
 @media (max-width: $MQMobile)
   .tags
     display block

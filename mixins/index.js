@@ -7,35 +7,34 @@ export default {
       return tagColorArr[index]
     },
     _filterPostData (posts, isTimeline) {
-      const stickyArr = []
       posts = posts.filter(item => {
         const { title, frontmatter: { home, date, publish, sticky }} = item
-        if (sticky) {
-          stickyArr.unshift(item)
-          return false
-        }
         return isTimeline === true
           ? !(home == true || title == undefined || date === undefined || publish === false)
           : !(home == true || title == undefined || publish === false)
       })
-      this._sortstickyArr(stickyArr)
-      return stickyArr.concat(posts)
-    },
-    _sortstickyArr (posts) {
-      if (posts.length > 0) {
-        posts.sort((a, b) => {
-          return b.sticky - a.sticky
-        })
-      }
+      return posts
     },
     _sortPostData (posts) {
       posts.sort((a, b) => {
-        return this._getTimeNum(b) - this._getTimeNum(a)
+        let aSticky = a.frontmatter.sticky, bSticky=b.frontmatter.sticky;
+        if(aSticky && bSticky) {
+          return aSticky == bSticky ? this._compareTime(a,b) : (aSticky - bSticky)
+        } else if(aSticky && !bSticky) {
+          return -1;
+        } else if(!aSticky && bSticky){
+          return 1;
+        }
+        return this._compareTime(a,b)
       })
     },
     // 获取时间的数字类型
     _getTimeNum (date) {
       return parseInt(new Date(date.frontmatter.date).getTime())
+    },
+    // 比对时间
+    _compareTime(a, b) {
+      return this._getTimeNum(b) - this._getTimeNum(a)
     },
     // 获取博客数据
     _getPostData () {
@@ -51,9 +50,9 @@ export default {
             return [...allData, ...currnetData.pages]
           }, [])
 
-          _sortPostData(posts)
           posts = _filterPostData(posts)
-
+          _sortPostData(posts)
+          
           this.$themeConfig.posts = posts
           resolve(posts)
         }
