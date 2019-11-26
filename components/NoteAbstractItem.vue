@@ -1,8 +1,7 @@
 <template>
   <div
     class="abstract-item">
-    <i v-if="item.frontmatter.top" class="top"><img src="../images/top.png"/></i>
-    <!-- <i v-if="item.frontmatter.sticky" class="iconfont reco-place-to-top"></i> -->
+    <i v-if="item.frontmatter.sticky" class="iconfont reco-sticky"></i>
     <div class="title">
       <i v-if="item.frontmatter.keys" class="iconfont reco-lock"></i>
       <router-link :to="item.path">{{item.title}}</router-link>
@@ -19,7 +18,6 @@
 
 <script>
 import PageInfo from './PageInfo'
-
 export default {
   components: { PageInfo },
   props: ['item', 'currentPage', 'currentTag', 'hideAccessNumber']
@@ -28,7 +26,6 @@ export default {
 
 <style lang="stylus" scoped>
 @require '../styles/recoConfig.styl'
-
 .abstract-item
   position relative
   margin: 0 auto 20px;
@@ -40,21 +37,15 @@ export default {
   box-sizing: border-box;
   transition all .3s
   background-color $bgColor
-  position: relative
-  .reco-place-to-top
+  .reco-sticky
     position absolute
-    top -5px
-    left -3px
+    top 0
+    left 0
     display inline-block
     color $accentColor
     font-size 2.4rem
   &:hover
     box-shadow: $boxShadowHover
-  .top
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    left: 0;
   .title
     position: relative;
     font-size: 1.28rem;
@@ -90,7 +81,6 @@ export default {
         color $accentColor
       &:hover
         color $accentColor
-
 @media (max-width: $MQMobile)
   .tags
     display block

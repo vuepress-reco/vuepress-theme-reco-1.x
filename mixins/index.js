@@ -18,18 +18,18 @@ export default {
           ? !(home == true || title == undefined || date === undefined || publish === false)
           : !(home == true || title == undefined || publish === false)
       })
+      this._sortstickyArr(stickyArr)
       return stickyArr.concat(posts)
+    },
+    _sortstickyArr (posts) {
+      if (posts.length > 0) {
+        posts.sort((a, b) => {
+          return b.sticky - a.sticky
+        })
+      }
     },
     _sortPostData (posts) {
       posts.sort((a, b) => {
-        let aTop = a.frontmatter.top, bTop=b.frontmatter.top;
-        if(aTop && bTop) {
-          return aTop == bTop ? (this._getTimeNum(b) - this._getTimeNum(a)) : (aTop - bTop)
-        } else if(aTop && !bTop) {
-          return -1;
-        } else if(!aTop && bTop){
-          return 1;
-        }
         return this._getTimeNum(b) - this._getTimeNum(a)
       })
     },
