@@ -1,6 +1,5 @@
 <template>
   <div class="password-shadow" :class="{'is-home': !isPage}">
-    <!-- <Background /> -->
     <h3 class="title">{{isPage ? $frontmatter.title : $site.title}}</h3>
     <p class="description" v-if="!isPage">{{$site.description}}</p>
     <label class="inputBox" id="box">
@@ -32,10 +31,7 @@
 </template>
 
 <script>
-import Background from '@theme/components/Background'
-
 export default {
-  components: { Background },
   props: {
     isPage: {
       type: Boolean,
@@ -157,6 +153,7 @@ export default {
     padding-left 20px
     box-sizing border-box
     opacity 0.9
+    overflow hidden
     input{
       width:600px;
       height:100%;
@@ -168,6 +165,7 @@ export default {
       outline: none;
       position: absolute;
       bottom:0;
+      left 20px
       opacity 0
       font-size 50px
       &:focus {
@@ -249,7 +247,7 @@ export default {
       box-sizing border-box
       opacity 0.9
       input{
-        width:600px;
+        width: 60%;
         height:100%;
         border:none;
         padding:0;
@@ -313,7 +311,7 @@ export default {
   @media (max-width: $MQNarrow) {
     .inputBox{
       padding-left $mobileSidebarWidth
-    }  
+    }
   }
 }
 
