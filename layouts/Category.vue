@@ -54,8 +54,8 @@ export default {
     // 时间降序后的博客列表
     posts () {
       let posts = this.$currentCategories.pages
-      this._sortPostData(posts)
       posts = this._filterPostData(posts)
+      this._sortPostData(posts)
       return posts
     },
     // 标题只显示分类名称
