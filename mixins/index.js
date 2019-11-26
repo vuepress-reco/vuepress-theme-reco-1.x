@@ -18,7 +18,15 @@ export default {
           ? !(home == true || title == undefined || date === undefined || publish === false)
           : !(home == true || title == undefined || publish === false)
       })
+      this._sortstickyArr(stickyArr)
       return stickyArr.concat(posts)
+    },
+    _sortstickyArr (posts) {
+      if (posts.length > 0) {
+        posts.sort((a, b) => {
+          return b.sticky - a.sticky
+        })
+      }
     },
     _sortPostData (posts) {
       posts.sort((a, b) => {
