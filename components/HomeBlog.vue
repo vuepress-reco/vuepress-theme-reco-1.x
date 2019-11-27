@@ -168,7 +168,6 @@ export default {
       margin: 1.8rem auto;
       font-size: 1.6rem;
       line-height: 1.3;
-      color: lighten($textColor, 20%);
     }
   }
   .home-blog-wrapper {
@@ -192,12 +191,12 @@ export default {
       margin-left 15px;
       flex 0 0 300px
       height auto;
-      box-shadow $boxShadow;
+      box-shadow var(--box-shadow);
       border-radius $borderRadius
       box-sizing border-box
       padding 0 15px
       &:hover {
-        box-shadow: $boxShadowHover;
+        box-shadow: var(--box-shadow-hover);
       }
       .personal-img {
         display block
@@ -207,6 +206,7 @@ export default {
       }
       .name {
         text-align center
+        color var(--text-color)
       }
       .num {
         display flex
@@ -221,13 +221,17 @@ export default {
           h3 {
             line-height auto
             margin 0 0 .6rem
-            color $textColor
+            color var(--text-color)
           }
           h6 {
             line-height auto
+            color var(--text-color)
             margin 0
           }
         }
+      }
+      h4 {
+        color var(--text-color)
       }
       .category-wrapper {
         list-style none
@@ -237,7 +241,7 @@ export default {
           padding: .4rem .8rem;
           transition: all .5s
           border-radius $borderRadius
-          box-shadow $boxShadow
+          box-shadow var(--box-shadow)
           &:hover {
             transform scale(1.04)
           }

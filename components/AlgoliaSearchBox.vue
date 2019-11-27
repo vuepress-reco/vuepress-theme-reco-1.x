@@ -83,7 +83,7 @@ export default {
       margin 6px 0 0
       padding 4px
       text-align left
-      box-shadow $boxShadow
+      box-shadow var(--box-shadow)
       &:before
         display none
       [class*=ds-dataset-]

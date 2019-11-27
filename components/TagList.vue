@@ -49,7 +49,7 @@ export default {
     color: #fff;
     line-height 13px
     font-size: 13px;
-    box-shadow $boxShadow
+    box-shadow var(--box-shadow)
     transition: all .5s
     &:hover
       transform scale(1.04)

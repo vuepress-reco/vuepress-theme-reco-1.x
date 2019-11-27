@@ -161,7 +161,7 @@ export default {
       // make the arrow always down at desktop
       border-left 4px solid transparent
       border-right 4px solid transparent
-      border-top 6px solid $arrowBgColor
+      border-top 6px solid $textColorSub
       border-bottom 0
     .nav-dropdown
       display none
@@ -173,9 +173,9 @@ export default {
       position absolute
       top 100%
       right 0
-      background-color #fff
+      background-color var(--background-color)
       padding 0.6rem 0
-      box-shadow: $boxShadow;
+      box-shadow: var(--box-shadow);
       text-align left
       border-radius $borderRadius
       white-space nowrap

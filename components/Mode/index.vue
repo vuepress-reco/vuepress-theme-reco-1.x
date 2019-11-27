@@ -57,15 +57,9 @@ export default {
 	}
 
 	.color-picker-menu {
-		background-color: #fff;
 		position: absolute;
 		top: 40px;
 		left: 50%;
-		min-width: 125px;
-		margin: 0;
-		padding: 1em;
-    box-shadow $boxShadow;
-		border-radius: $borderRadius;
 		transform: translateX(-50%);
 		z-index: 150;
 		&::before {

@@ -113,7 +113,7 @@ export default {
       cursor: pointer;
       border-radius: $borderRadius
       font-size: 13px;
-      box-shadow $boxShadow
+      box-shadow var(--box-shadow)
       transition: all .5s
       &:hover, &.active {
         background $accentColor

@@ -16,7 +16,7 @@ body
   -moz-osx-font-smoothing grayscale
   font-size 16px
   color $textColor
-  background-color #fff
+  background-color var(--background-color)
 
 .page
   overflow-x: hidden
@@ -149,7 +149,7 @@ p, ul, ol
 
 hr
   border 0
-  border-top 1px solid $borderColor
+  border-top 1px solid var(--border-color)
 
 table
   border-collapse collapse
@@ -188,11 +188,7 @@ th, td
 
 .iconfont
   font-size: 0.9rem;
-  color: #888;
-  // &:not(:first-child)
-  //   margin-left: 1rem
-  // span
-  //   margin-left: .5rem
+  color: $textColorSub;
 
 /************** 滚动条 **************/
 ::-webkit-scrollbar
@@ -244,7 +240,7 @@ th, td
     #valine.v
       .vwrap
         background: #f0f2f4
-        // box-shadow: $boxShadow
+        // box-shadow: var(--box-shadow)
         .vcontrol
           .vsubmit
             background: #fff
@@ -258,25 +254,25 @@ th, td
             margin-left: 0
           .vimg
             border-radius: $borderRadius
-            box-shadow: $boxShadow
+            box-shadow: var(--box-shadow)
             border: none
         .vh
           .vhead
             .vsys
-              box-shadow: $boxShadow
+              box-shadow: var(--box-shadow)
           .vmeta
             margin-bottom: 1rem
             .vat
               margin-right: .3rem
               background: #f0f2f4
-              box-shadow: $boxShadow
+              box-shadow: var(--box-shadow)
               border-radius: $borderRadius
               padding: 0 .4rem
               color: #313131
               border: 1px solid #ededed
           .vcontent
             background: #f0f2f4
-            box-shadow: $boxShadow
+            box-shadow: var(--box-shadow)
             border-radius: $borderRadius
             margin: 0 .3rem
             padding: .1rem .6rem .05rem .6rem
@@ -288,33 +284,44 @@ th, td
 /************** 分页 **************/
 .pagation
   .pagation-list
+    background: var(--background-color)!important
     .jump, .jumpinp input
-      box-shadow: $boxShadow
+      background-color: var(--background-color)
+      color: var(--text-color)
+      box-shadow: var(--box-shadow)
+      border 1px solid var(--border-color)!important
+
+/************** 回到顶部 **************/
+.back-to-ceiling
+  background-color: var(--background-color)!important
+  box-shadow: var(--box-shadow)!important
 
 /************** 搜索框 **************/
 
 .search-box input
   border-radius: $borderRadius
+  background: var(--background-color)
+  border-color: var(--border-color)
 
 /********* 悬浮卡片背景颜色 **********/
 
 .navbar
-  background $backgroundColor
+  background var(--background-color)
   .links
-    background $backgroundColor
+    background var(--background-color)
 
 .home-blog
   .home-blog-wrapper
     .info-wrapper
-      background $backgroundColor
+      background var(--background-color)
 
 .abstract-item
-  background $backgroundColor
+  background var(--background-color)
 
 .category-wrapper
   .category-item
-    background $backgroundColor
+    background var(--background-color)
 
 .pagation
   .jump
-    background $backgroundColor
+    background var(--background-color)

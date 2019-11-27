@@ -1,5 +1,30 @@
-$boxShadow = 0 1px 6px 0 rgba(0, 0, 0, 0.2)
-$boxShadowHover = 0 2px 16px 0 rgba(0, 0, 0, 0.2)
 $textShadow = 0 2px 4px rgba(0, 0, 0, 0.1);
 $borderRadius = .25rem
-$backgroundColor = #fff
+$textColorSub = #888
+
+$backgroundColor ?= #fff
+$backgroundColorDark ?= #25272a
+
+$boxShadow = 0 1px 6px 0 rgba(0, 0, 0, 0.2)
+$boxShadowHover = 0 2px 16px 0 rgba(0, 0, 0, 0.2)
+$boxShadowDark = 0 1px 6px 0 rgba(0, 0, 0, .9)
+$boxShadowHoverDark = 0 2px 26px 0 rgba(0, 0, 0, .9)
+
+$textColor ?= #2c3e50
+$textColorDark ?= #aaa
+
+$borderColor ?= #cfd4db
+$borderColorDark ?= rgba(0, 0, 0, .9)
+
+:root
+  --background-color $backgroundColor
+  --box-shadow $boxShadow
+  --box-shadow-hover $boxShadowHover
+  --text-color $textColor
+  --border-color $borderColor
+  @media (prefers-color-scheme: dark)
+    --background-color $backgroundColorDark
+    --box-shadow $boxShadowDark
+    --box-shadow-hover $boxShadowHoverDark
+    --text-color $textColorDark
+    --border-color $borderColorDark
