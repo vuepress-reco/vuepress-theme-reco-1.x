@@ -5,7 +5,7 @@
 		</a>
 		<transition name="menu-transition" mode="out-in">
 			<div v-show="showMenu" class="color-picker-menu">
-				<ThemeOptions />
+				<ModeOptions />
 			</div>
 		</transition>
 	</div>
@@ -13,7 +13,7 @@
 
 <script>
 import ClickOutside from 'vue-click-outside'
-import ThemeOptions from './ThemeOptions.vue'
+import ModeOptions from './ModeOptions.vue'
 
 export default {
   name: 'UserSettings',
@@ -23,7 +23,7 @@ export default {
   },
 
   components: {
-    ThemeOptions
+    ModeOptions
   },
 
   data () {
@@ -46,7 +46,7 @@ export default {
 .color-picker {
 	position: relative;
 	margin-right: 1em;
-
+  cursor pointer;
 	.color-button {
 		align-items: center;
 		height: 100%;
@@ -61,14 +61,13 @@ export default {
 		position: absolute;
 		top: 40px;
 		left: 50%;
-		min-width: 100px;
+		min-width: 125px;
 		margin: 0;
 		padding: 1em;
-		border: 1px solid $borderColor;
-		border-radius: $borderRadius
+    box-shadow $boxShadow;
+		border-radius: $borderRadius;
 		transform: translateX(-50%);
 		z-index: 150;
-
 		&::before {
 			content: '';
 			position: absolute;
@@ -99,7 +98,7 @@ export default {
 	}
 }
 
-.reco-theme-dark {
+.reco-mode-dark {
 	.color-picker-menu {
 		background-color: $darkPrimaryBg;
 		border-color: $darkBorderColor;
