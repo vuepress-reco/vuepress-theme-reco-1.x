@@ -82,6 +82,9 @@ function renderChildren (h, children, path, route, maxDepth, depth = 1) {
   padding-left 1.5rem
   font-size 0.95em
 
+.sidebar-sub-headers a.sidebar-link
+  margin 0 1rem 0 0.6rem
+
 a.sidebar-link
   font-size 1em
   font-weight 400
