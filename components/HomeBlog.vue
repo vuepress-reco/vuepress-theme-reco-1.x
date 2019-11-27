@@ -321,7 +321,7 @@ export default {
     padding-right: 1.5rem;
     .hero {
       margin 0 -1.5rem
-      height 350px
+      height 450px
       img {
         max-height: 210px;
         margin: 2rem auto 1.2rem;
