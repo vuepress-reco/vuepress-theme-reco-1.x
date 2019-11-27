@@ -62,22 +62,10 @@ export default {
 		left: 50%;
 		transform: translateX(-50%);
 		z-index: 150;
-		&::before {
-			content: '';
-			position: absolute;
-			top: -7px;
-			left: 50%;
-			border-style: solid;
-			border-color: transparent transparent $borderColor;
-			border-width: 0 7px 7px;
-			transform: translateX(-50%);
-		}
-
 		&.menu-transition-enter-active,
 		&.menu-transition-leave-active {
 			transition: all 0.25s ease-in-out;
 		}
-
 		&.menu-transition-enter,
 		&.menu-transition-leave-to {
 			top: 50px;
@@ -88,17 +76,6 @@ export default {
 			list-style-type: none;
 			margin: 0;
 			padding: 0;
-		}
-	}
-}
-
-.reco-mode-dark {
-	.color-picker-menu {
-		background-color: $darkPrimaryBg;
-		border-color: $darkBorderColor;
-
-		&::before {
-			border-bottom-color: $darkBorderColor;
 		}
 	}
 }

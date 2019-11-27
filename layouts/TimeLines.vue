@@ -119,7 +119,7 @@ export default {
     margin-left: -2px;
     width: 4px;
     height: 100%;
-    background: #f5f5f5;
+    background: var(--border-color);
   }
   .desc, .year {
     position: relative;
@@ -135,7 +135,8 @@ export default {
       margin-top: -4px;
       width: 8px;
       height: 8px;
-      background: #ddd;
+      background: var(--background-color);
+      border: 1px solid var(--border-color);
       border-radius: 50%;
     }
   }
@@ -151,7 +152,7 @@ export default {
       display flex
       padding 30px 0 10px
       list-style none
-      border-bottom: 1px dashed #ccc;
+      border-bottom: 1px dashed var(--border-color);
       position relative
       &:hover {
         .date {
@@ -177,9 +178,9 @@ export default {
           width: 6px;
           height: 6px;
           margin-left: -4px;
-          background: #ddd;
+          background: var(--background-color);
           border-radius: 50%;
-          border: 1px solid #fff;
+          border: 1px solid var(--border-color);
           z-index 2
         }
       }
