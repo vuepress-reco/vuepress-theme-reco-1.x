@@ -45,8 +45,8 @@ export default {
     // 时间降序后的博客列表
     posts () {
       let posts = this.$currentTags.pages
-      this._sortPostData(posts)
       posts = this._filterPostData(posts)
+      this._sortPostData(posts)
       return posts
     }
   },
