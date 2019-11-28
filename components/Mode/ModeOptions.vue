@@ -50,6 +50,8 @@ export default {
       } else if (mode.mode === 'auto') {
         setMode()
       }
+      this.$mode = 'de'
+      console.log(this.$mode)
       localStorage.setItem('mode', mode.mode)
       this.currentMode = mode.mode
     },
