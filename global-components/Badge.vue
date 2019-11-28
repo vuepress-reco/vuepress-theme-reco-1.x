@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@require '../styles/recoConfig.styl'
+@require '../styles/mode.styl'
 .badge
   display inline-block
   font-size 14px

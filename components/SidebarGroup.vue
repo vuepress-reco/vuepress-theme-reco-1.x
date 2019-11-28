@@ -76,7 +76,7 @@ export default {
   &:not(.collapsable)
     .sidebar-heading:not(.clickable)
       cursor auto
-      color inherit
+      color var(--text-color)
   // refine styles of nested sidebar groups
   &.is-sub-group
     padding-left 0
@@ -109,7 +109,7 @@ export default {
   margin 0
   border-left 0.25rem solid transparent
   &.open, &:hover
-    color inherit
+    color var(--text-color)
   .arrow
     position relative
     top -0.12em

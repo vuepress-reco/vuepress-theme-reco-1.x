@@ -97,7 +97,7 @@ export default {
 <style src="../styles/theme.styl" lang="stylus"></style>
 
 <style lang="stylus" scoped>
-@require '../styles/recoConfig.styl'
+@require '../styles/mode.styl'
 @require '../styles/loadMixin.styl'
 .categories-wrapper
   max-width: 740px;
@@ -113,7 +113,7 @@ export default {
       cursor: pointer;
       border-radius: $borderRadius
       font-size: 13px;
-      box-shadow $boxShadow
+      box-shadow var(--box-shadow)
       transition: all .5s
       &:hover, &.active {
         background $accentColor

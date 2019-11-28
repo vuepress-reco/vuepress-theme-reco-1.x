@@ -113,7 +113,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@require '../styles/recoConfig.styl'
+@require '../styles/mode.styl'
 
 .friend-link-wrapper
   position relative
@@ -129,7 +129,7 @@ export default {
     border-radius: $borderRadius
     background: #fff;
     font-size: 13px;
-    box-shadow $boxShadow
+    box-shadow var(--box-shadow)
     transition: all .5s
     .list-style
       position absolute
@@ -149,7 +149,7 @@ export default {
         position absolute
         display flex
         background #ffffff
-        box-shadow $boxShadow
+        box-shadow var(--box-shadow)
         border-radius $borderRadius
         box-sizing border-box
         padding .8rem 1rem

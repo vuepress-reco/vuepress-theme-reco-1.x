@@ -37,7 +37,7 @@ export default {
 <style lang="stylus" scoped>
   .footer-wrapper {
     padding: 2.5rem;
-    border-top: 1px solid $borderColor;
+    border-top: 1px solid var(--border-color);
     text-align: center;
     color: lighten($textColor, 25%);
     > span {

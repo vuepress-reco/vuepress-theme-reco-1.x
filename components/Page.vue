@@ -222,14 +222,11 @@ function flatten (items, res) {
   padding-top 5rem
   padding-bottom 2rem
   display block
-  #time-line {
-    margin-top 0
-    padding-top 0
-  }
   .page-title
     max-width: 740px;
     margin: 0 auto;
     padding: 1rem 2.5rem;
+    color var(--text-color)
   .page-edit
     @extend $wrapper
     padding-top 1rem
