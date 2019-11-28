@@ -11,13 +11,13 @@
       <div class="blog-list">
         <!-- 博客列表 -->
         <note-abstract
-          :data="posts"
+          :data="$themeConfig.posts"
           :hideAccessNumber="true"
           :currentPage="currentPage"></note-abstract>
         <!-- 分页 -->
         <pagation
           class="pagation"
-          :total="posts.length"
+          :total="$themeConfig.posts.length"
           :currentPage="currentPage"
           @getCurrentPage="getCurrentPage" />
       </div>
@@ -26,7 +26,7 @@
         <h3 class="name" v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</h3>
         <div class="num">
           <div>
-            <h3>{{getPagesLength}}</h3>
+            <h3>{{$themeConfig.posts.length}}</h3>
             <h6>文章</h6>
           </div>
           <div>
@@ -40,13 +40,15 @@
           <li class="category-item" v-for="(item, index) in this.$categories.list" :key="index">
             <router-link :to="item.path">
               <span class="category-name">{{ item.name }}</span>
-              <span class="post-num">{{ item.pages.length }}</span>
+              <span class="post-num" :style="{ 'backgroundColor': _tagColor() }">{{ item.pages.length }}</span>
             </router-link>
           </li>
         </ul>
         <hr>
         <h4 v-if="$tags.list.length !== 0"><i class="iconfont reco-tag"></i> 标签</h4>
-        <TagList @getCurrentTag="getPagesByTags"></TagList>
+        <TagList @getCurrentTag="getPagesByTags" />
+        <h4 v-if="$themeConfig.friendLink && $themeConfig.friendLink.length !== 0"><i class="iconfont reco-friend"></i> 友链</h4>
+        <FriendLink />
       </div>
     </div>
 
@@ -56,12 +58,13 @@
 
 <script>
 import TagList from '@theme/components/TagList.vue'
+import FriendLink from '@theme/components/FriendLink.vue'
 import NoteAbstract from '@theme/components/NoteAbstract.vue'
 import mixin from '@theme/mixins/index.js'
 
 export default {
   mixins: [mixin],
-  components: { NoteAbstract, TagList },
+  components: { NoteAbstract, TagList, FriendLink },
   data () {
     return {
       recoShow: false,
@@ -70,24 +73,6 @@ export default {
     }
   },
   computed: {
-    // 时间降序后的博客列表
-    posts () {
-      const {
-        $site: { pages },
-        _filterPostData,
-        _sortPostData
-      } = this
-
-      let posts = pages
-      posts = _filterPostData(posts)
-      _sortPostData(posts)
-
-      return posts
-    },
-    // 分类信息
-    getPagesLength () {
-      return this.posts.length
-    },
     actionLink () {
       const {
         actionLink: link,
@@ -123,6 +108,7 @@ export default {
   },
   mounted () {
     this.recoShow = true
+    this._setPage(this._getStoragePage())
   },
   methods: {
     // 获取当前页码
@@ -142,13 +128,13 @@ export default {
       // reverse()是为了按时间最近排序排序
       this.pages = pages.length == 0 ? [] : pages
     },
-    getPagesByTags (currentTag) {
-      const base = this.$site.base
-      window.location.href = `${base}tag/?tag=${currentTag}`
+    getPagesByTags (tagInfo) {
+      this.$router.push({ path: tagInfo.path })
     },
     _setPage (page) {
       this.currentPage = page
       this.$page.currentPage = page
+      this._setStoragePage(page)
     }
   }
 }
@@ -252,18 +238,8 @@ export default {
           transition: all .5s
           border-radius $borderRadius
           box-shadow $boxShadow
-          &:not(:first-child) {
-            border-top: none;
-          }
           &:hover {
-            background #d3d3d3
-            a {
-              color #fff
-              .post-num {
-                background #999
-                color #fff
-              }
-            }
+            transform scale(1.04)
           }
           a {
             display flex
@@ -276,7 +252,7 @@ export default {
               border-radius $borderRadius
               background #eee
               font-size .6rem
-              color $textColor
+              color #fff
             }
           }
         }
@@ -345,7 +321,7 @@ export default {
     padding-right: 1.5rem;
     .hero {
       margin 0 -1.5rem
-      height 350px
+      height 450px
       img {
         max-height: 210px;
         margin: 2rem auto 1.2rem;

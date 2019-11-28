@@ -5,7 +5,7 @@
     <div class="page-title">
       <h1>{{$page.title}}</h1>
       <hr>
-      <PageInfo :pageInfo="$page"></PageInfo>
+      <PageInfo :pageInfo="$page" :hideAccessNumber="hideAccessNumber"></PageInfo>
     </div>
 
     <Content class="theme-reco-content" />
@@ -63,8 +63,6 @@
       </p>
     </div>
 
-    <GA></GA>
-
     <slot name="bottom"/>
   </main>
 </template>
@@ -86,6 +84,14 @@ export default {
   },
 
   computed: {
+    hideAccessNumber () {
+      const valineConfig = this.$themeConfig.valineConfig
+      if (valineConfig) {
+        return false
+      } else {
+        return true
+      }
+    },
     lastUpdated () {
       return this.$page.lastUpdated
     },

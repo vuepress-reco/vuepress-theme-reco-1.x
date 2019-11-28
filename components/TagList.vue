@@ -4,8 +4,8 @@
       v-for="(item, index) in tags"
       :key="index"
       :class="{'active': item.name == currentTag}"
-      :style="{ 'backgroundColor': item.color }"
-      @click="tagClick(item.name)">{{item.name}}</span>
+      :style="{ 'backgroundColor': _tagColor() }"
+      @click="tagClick(item)">{{item.name}}</span>
   </div>
 </template>
 
@@ -20,20 +20,9 @@ export default {
       default: ''
     }
   },
-  data () {
-    return {
-      tags: []
-    }
-  },
-  created () {
-    if (this.$tags.list.length > 0) {
-      const tags = this.$tags.list
-      tags.map(item => {
-        const color = this._tagColor()
-        item.color = color
-        return tags
-      })
-      this.tags = [{ name: '全部', color: this._tagColor() }, ...tags]
+  computed: {
+    tags () {
+      return [{ name: '全部', path: '/tag/' }, ...this.$tags.list]
     }
   },
   methods: {
@@ -58,6 +47,7 @@ export default {
     border-radius: $borderRadius
     background: #fff;
     color: #fff;
+    line-height 13px
     font-size: 13px;
     box-shadow $boxShadow
     transition: all .5s

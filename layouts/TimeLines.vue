@@ -54,6 +54,7 @@ export default {
     // 根据分类获取页面数据
     getPages (tag) {
       let pages = this.$site.pages
+      // 时间轴不进行制定处理
       pages = this._filterPostData(pages, true)
       // reverse()是为了按时间最近排序排序
       this.pages = pages.length == 0 ? [] : pages

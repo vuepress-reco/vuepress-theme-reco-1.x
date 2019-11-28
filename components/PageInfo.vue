@@ -11,7 +11,7 @@
       <span>{{ pageInfo.frontmatter.date | formatDate }}</span>
     </i>
     <i
-      v-if="$themeConfig.commentsSolution === 'valine' && hideAccessNumber !== true"
+      v-if="hideAccessNumber !== true"
       class="iconfont reco-eye">
       <AccessNumber
         :idVal="pageInfo.path"
@@ -86,8 +86,7 @@ export default {
   },
   methods: {
     goTags (tag) {
-      const base = this.$site.base
-      window.location.href = `${base}tag/?tag=${tag}`
+      this.$router.push({ path: `/tags/${tag}/` })
     }
   }
 }
