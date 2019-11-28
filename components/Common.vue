@@ -170,7 +170,6 @@ export default {
   },
 
   created () {
-    console.log(this.$mode)
     this._getPostData()
   },
 
@@ -238,9 +237,6 @@ export default {
   },
 
   watch: {
-    $mode (newVal) {
-      console.log(111, newVal)
-    },
     $frontmatter (newVal, oldVal) {
       this.hasKey()
       this.hasPageKey()

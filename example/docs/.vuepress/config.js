@@ -71,8 +71,5 @@ module.exports = {
   },
   markdown: {
     lineNumbers: true
-  },
-  plugins: [
-    require('./plugins/vuepress-plugin-mode/index')
-  ]
+  }
 }
