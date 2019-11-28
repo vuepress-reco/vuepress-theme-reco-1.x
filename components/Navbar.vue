@@ -84,7 +84,7 @@ function css (el, property) {
 </script>
 
 <style lang="stylus">
-@require '../styles/recoConfig.styl'
+@require '../styles/mode.styl'
 
 $navbar-vertical-padding = 0.7rem
 $navbar-horizontal-padding = 1.5rem

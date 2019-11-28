@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@require '../styles/recoConfig.styl'
+@require '../styles/mode.styl'
 
 .tags
   margin 30px 0

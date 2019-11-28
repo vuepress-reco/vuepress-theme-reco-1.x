@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style lang="stylus">
-@require '../../styles/recoConfig.styl'
+@require '../../styles/mode.styl'
 
 .color-picker {
 	position: relative;

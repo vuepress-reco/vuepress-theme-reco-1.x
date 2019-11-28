@@ -1,7 +1,6 @@
 import modeOptions from './modeOptions'
 
 export function activateMode (mode) {
-  console.log(mode)
   const rootElement = document.querySelector(':root')
   const options = modeOptions[mode]
 
@@ -10,29 +9,6 @@ export function activateMode (mode) {
   }
 }
 
-export function activateDarkMode () {
-  const rootElement = document.querySelector(':root')
-  const darkTheme = {
-    '--background-color': '#25272a',
-    '--box-shadow': '0 1px 6px 0 rgba(0, 0, 0, .9)',
-    '--box-shadow-hover': '0 2px 26px 0 rgba(0, 0, 0, .9)'
-  }
-  for (const k in darkTheme) {
-    rootElement.style.setProperty(k, darkTheme[k])
-  }
-}
-
-export function activateLightMode () {
-  const rootElement = document.querySelector(':root')
-  const lightTheme = {
-    '--background-color': '#fff',
-    '--box-shadow': '0 1px 6px 0 rgba(0, 0, 0, 0.2)',
-    '--box-shadow-hover': '0 2px 16px 0 rgba(0, 0, 0, 0.2)'
-  }
-  for (const k in lightTheme) {
-    rootElement.style.setProperty(k, lightTheme[k])
-  }
-}
 /**
  * Sets a color scheme for the website.
  * If browser supports "prefers-color-scheme" it will respect the setting for light or dark mode

@@ -1,4 +1,4 @@
-@require './recoConfig'
+@require './mode'
 @require './code'
 @require './custom-blocks'
 @require './arrow'
@@ -15,7 +15,7 @@ body
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
   font-size 16px
-  color $textColor
+  color var(--text-color)
   background-color var(--background-color)
 
 .page
@@ -52,7 +52,7 @@ body
   left 0
   bottom 0
   box-sizing border-box
-  border-right 1px solid $borderColor
+  border-right 1px solid var(--border-color)
   overflow-y auto
 
 .content__default:not(.custom)
@@ -93,7 +93,8 @@ kbd
 blockquote
   font-size .9rem
   color #999
-  border-left .25rem solid $accentColor
+  border-left .25rem solid #999
+  background-color var(--border-color)
   margin 0.5rem 0
   padding .25rem 0 .25rem 1rem
   & > p
@@ -126,7 +127,7 @@ h1
 h2
   font-size 1.65rem
   padding-bottom .3rem
-  border-bottom 1px solid $borderColor
+  border-bottom 1px solid var(--border-color)
 
 h3
   font-size 1.35rem
@@ -300,7 +301,7 @@ th, td
 
 .search-box input
   border-radius: $borderRadius
-  background: var(--background-color)
+  background: var(--background-color) url(/assets/img/search.svg) 0.6rem 0.6rem no-repeat
   border-color: var(--border-color)
 
 /********* 悬浮卡片背景颜色 **********/

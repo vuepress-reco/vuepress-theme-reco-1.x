@@ -97,7 +97,7 @@ export default {
 <style src="../styles/theme.styl" lang="stylus"></style>
 
 <style lang="stylus" scoped>
-@require '../styles/recoConfig.styl'
+@require '../styles/mode.styl'
 @require '../styles/loadMixin.styl'
 .categories-wrapper
   max-width: 740px;

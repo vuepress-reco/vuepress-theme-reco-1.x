@@ -141,8 +141,8 @@ export default {
 </script>
 
 <style lang="stylus">
-@require '../styles/recoConfig.styl'
-@require '../styles/loadMixin.styl'
+// @require '../styles/mode.styl'
+// @require '../styles/loadMixin.styl'
 
 .home-blog {
   padding: $navbarHeight 0 0;

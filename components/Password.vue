@@ -99,7 +99,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@require '../styles/recoConfig.styl'
+@require '../styles/mode.styl'
 .theme-container.no-sidebar
   .password-shadow
     padding-left 0

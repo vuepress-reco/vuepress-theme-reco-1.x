@@ -61,7 +61,7 @@ export default {
 </script>
 
 <style lang="stylus">
-@require '../../styles/recoConfig.styl'
+@require '../../styles/mode.styl'
 
 .mode-options
   background-color var(--background-color)
