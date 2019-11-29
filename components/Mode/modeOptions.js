@@ -12,7 +12,7 @@ const modeOptions = {
     '--box-shadow': '0 1px 6px 0 rgba(0, 0, 0, .9)',
     '--box-shadow-hover': '0 2px 26px 0 rgba(0, 0, 0, .9)',
     '--text-color': '#aaa',
-    '--border-color': 'rgba(0, 0, 0, .9)',
+    '--border-color': 'rgba(0, 0, 0, .3)',
     '--bgm-bg-color': 'rgba(0, 0, 0, .7)'
   }
 }

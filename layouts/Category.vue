@@ -11,7 +11,7 @@
           :key="index">
           <router-link :to="item.path">
             <span class="category-name">{{ item.name }}</span>
-            <span class="post-num">{{ item.pages.length }}</span>
+            <span class="post-num" :style="{ 'backgroundColor': _tagColor() }">{{ item.pages.length }}</span>
           </router-link>
         </li>
       </ul>
@@ -146,8 +146,8 @@ export default {
           text-align center
           line-height 1.2rem
           border-radius $borderRadius
-          background #eee
           font-size .7rem
+          color #fff
         }
       }
     }

@@ -165,6 +165,7 @@ export default {
     position absolute
     top 0
     bottom 0
+    z-index 0
     left .6rem
     margin auto
   input
@@ -173,20 +174,20 @@ export default {
     height: 2rem
     color lighten($textColor, 25%)
     display inline-block
-    border 1px solid darken($borderColor, 10%)
-    border-radius 2rem
+    border 1px solid $accentColor
+    border-radius $borderRadius
     font-size 0.9rem
     line-height 2rem
     padding 0 0.5rem 0 2rem
     outline none
     transition all .2s ease
-    background #fff
+    background transparent
     background-size 1rem
     &:focus
       cursor auto
       border-color $accentColor
   .suggestions
-    background #fff
+    background var(--background-color)
     width 20rem
     position absolute
     top 1.5rem
@@ -203,14 +204,14 @@ export default {
     cursor pointer
     a
       white-space normal
-      color lighten($textColor, 35%)
+      color var(--text-color)
       .page-title
         font-weight 600
       .header
         font-size 0.9em
         margin-left 0.25em
     &.focused
-      background-color #f3f4f5
+      background-color var(--border-color)
       a
         color $accentColor
 @media (max-width: $MQNarrow)
@@ -235,8 +236,6 @@ export default {
 @media (max-width: $MQMobile)
   .search-box
     margin-right 0
-    input
-      left 1rem
     .suggestions
       right 0
 @media (max-width: $MQMobileNarrow)
