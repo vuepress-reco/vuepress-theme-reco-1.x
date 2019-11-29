@@ -52,8 +52,8 @@ export default {
   },
 
   mounted () {
-    this.recoShow = true
     this._setPage(this._getStoragePage())
+    this.recoShow = true
   },
 
   methods: {
@@ -75,6 +75,12 @@ export default {
       this.currentPage = page
       this.$page.currentPage = page
       this._setStoragePage(page)
+    }
+  },
+
+  watch: {
+    $route () {
+      this._setPage(this._getStoragePage())
     }
   }
 }

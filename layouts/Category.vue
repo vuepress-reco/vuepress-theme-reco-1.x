@@ -65,8 +65,8 @@ export default {
   },
 
   mounted () {
-    this.recoShow = true
     this._setPage(this._getStoragePage())
+    this.recoShow = true
   },
 
   methods: {
@@ -89,6 +89,12 @@ export default {
     // 获取时间的数字类型
     _getTimeNum (date) {
       return parseInt(new Date(date.frontmatter.date).getTime())
+    }
+  },
+
+  watch: {
+    $route () {
+      this._setPage(this._getStoragePage())
     }
   }
 }
