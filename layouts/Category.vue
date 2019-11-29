@@ -53,7 +53,6 @@ export default {
   computed: {
     // 时间降序后的博客列表
     posts () {
-      this._setPage(this._getStoragePage())
       let posts = this.$currentCategories.pages
       posts = this._filterPostData(posts)
       this._sortPostData(posts)
@@ -66,6 +65,7 @@ export default {
   },
 
   mounted () {
+    this._setPage(this._getStoragePage())
     this.recoShow = true
   },
 
@@ -89,6 +89,12 @@ export default {
     // 获取时间的数字类型
     _getTimeNum (date) {
       return parseInt(new Date(date.frontmatter.date).getTime())
+    }
+  },
+
+  watch: {
+    $route () {
+      this._setPage(this._getStoragePage())
     }
   }
 }
