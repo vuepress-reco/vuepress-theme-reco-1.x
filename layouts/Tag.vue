@@ -44,7 +44,6 @@ export default {
   computed: {
     // 时间降序后的博客列表
     posts () {
-      this._setPage(this._getStoragePage())
       let posts = this.$currentTags.pages
       posts = this._filterPostData(posts)
       this._sortPostData(posts)
@@ -53,6 +52,7 @@ export default {
   },
 
   mounted () {
+    this._setPage(this._getStoragePage())
     this.recoShow = true
   },
 
@@ -75,6 +75,12 @@ export default {
       this.currentPage = page
       this.$page.currentPage = page
       this._setStoragePage(page)
+    }
+  },
+
+  watch: {
+    $route () {
+      this._setPage(this._getStoragePage())
     }
   }
 }
