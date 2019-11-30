@@ -1,7 +1,7 @@
 <template>
   <div class="password-shadow" :class="{'is-home': !isPage}">
-    <h3 class="title">{{isPage ? $frontmatter.title : $site.title}}</h3>
-    <p class="description" v-if="!isPage">{{$site.description}}</p>
+    <h3 class="title">{{isPage ? $frontmatter.title : $site.title || $localeConfig.title}}</h3>
+    <p class="description" v-if="!isPage">{{$site.description || $localeConfig.description}}</p>
     <label class="inputBox" id="box">
       <input
         v-model="key"
@@ -109,51 +109,47 @@ export default {
 }
 
 .password-shadow {
+  position relative
   width 100vw;
   height 100vh;
+  overflow hidden
   position relative
   padding-left: 20rem;
-  // background-image: radial-gradient(ellipse farthest-corner at center top,#497EC6 0,#000105 100%);
+  background #fff
+  background var(--background-color)
+  box-sizing border-box
   .title {
-    position: absolute;
-    left 0
-    right 0
-    top 12%
-    margin auto
+    margin 8rem auto 6rem
+    width 100%
     text-align center
-    color $textColor
     font-size 30px
     box-sizing: border-box;
-    padding: 0 10px;
+    // padding: 0 10px;
     text-shadow $textShadow
+    color $textColor
+    color var(--text-color)
   }
   .description {
-    position: absolute;
-    left 0
-    right 0
-    top 20%
     margin auto
     text-align center
     color $textColor
+    color var(--text-color)
     font-size 22px
     box-sizing: border-box;
     padding: 0 10px;
     text-shadow $textShadow
   }
   .inputBox{
+    position relative
+    display block
     max-width:700px;
     height: 100px;
     background: $accentColor;
     border-radius: $borderRadius
-    position: absolute;
-    left 0
-    right 0
-    top 36%
-    margin auto
+    margin 2rem auto 0
     padding-left 20px
     box-sizing border-box
     opacity 0.9
-    overflow hidden
     input{
       width:600px;
       height:100%;
@@ -202,11 +198,11 @@ export default {
       border-radius: $borderRadius
       position: absolute;
       border 1px solid $accentColor
+      background var(--background-color)
       right:1px;
       top 1px
       border:0;
       padding:0;
-      background: #fff;
       color: $accentColor;
       font-size:18px;
       outline:none;
@@ -221,7 +217,6 @@ export default {
     left 0
     right 0
     bottom 10%
-    margin auto
     padding: 2.5rem;
     text-align: center;
     color: lighten($textColor, 25%);
@@ -242,8 +237,8 @@ export default {
       left 0
       right 0
       top 43%
-      margin auto
-      padding-left 16.4rem
+      margin auto 20px
+      padding-left 0
       box-sizing border-box
       opacity 0.9
       input{
@@ -307,11 +302,18 @@ export default {
         z-index: 1;
       }
     }
+    .footer {
+      margin-left 0
+      
+    }
   }
   @media (max-width: $MQNarrow) {
-    .inputBox{
-      padding-left $mobileSidebarWidth
-    }
+    // .inputBox{
+    //   padding-left $mobileSidebarWidth
+    // }
+    .footer {
+        margin-left 0
+      }
   }
 }
 

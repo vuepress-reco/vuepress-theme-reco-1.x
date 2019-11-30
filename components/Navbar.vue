@@ -23,7 +23,6 @@
       } : {}">
 
       <Mode />
-      <Screenfull class="screenfull" />
       <AlgoliaSearchBox
         v-if="isAlgoliaSearch"
         :options="algolia"/>
@@ -117,9 +116,6 @@ $navbar-horizontal-padding = 1.5rem
     .search-box
       flex: 0 0 auto
       vertical-align top
-    .screenfull
-      margin-top .4rem
-      height 1.6rem
       margin-right 1rem
 
 @media (max-width: $MQMobile)

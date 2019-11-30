@@ -239,11 +239,11 @@ th, td
   .valine-wrapper
     #valine.v
       .vwrap
-        background: #f0f2f4
+        background: var(--code-color)
         // box-shadow: var(--box-shadow)
         .vcontrol
           .vsubmit
-            background: #fff
+            background: var(--code-color)
       .vinfo
         padding-left: .6rem
       .vlist
@@ -252,32 +252,42 @@ th, td
         .vcard
           .vquote
             margin-left: 0
+            border-left: 1px dashed var(--border-color)
           .vimg
             border-radius: $borderRadius
             box-shadow: var(--box-shadow)
             border: none
         .vh
+          border-bottom: 1px dashed var(--border-color)
           .vhead
             .vsys
               box-shadow: var(--box-shadow)
+              background: var(--code-color)
+              color: var(--text-color)
           .vmeta
             margin-bottom: 1rem
             .vat
               margin-right: .3rem
-              background: #f0f2f4
+              background: var(--code-color)
               box-shadow: var(--box-shadow)
               border-radius: $borderRadius
               padding: 0 .4rem
-              color: #313131
-              border: 1px solid #ededed
+              color: var(--text-color)
+              border: 1px solid var(--border-color)
           .vcontent
-            background: #f0f2f4
+            background: var(--code-color)
             box-shadow: var(--box-shadow)
             border-radius: $borderRadius
             margin: 0 .3rem
             padding: .1rem .6rem .05rem .6rem
             p .at
               color: #1abc9c
+            &.expand:before
+              z-index 1
+              background: linear-gradient(180deg, rgba(255,255,255,0),  var(--background-color))
+            &.expand:after
+              background: var(--background-color)
+              color: var(--color-color)
       .info
         padding-right: .6rem
 

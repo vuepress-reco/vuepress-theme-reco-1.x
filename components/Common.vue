@@ -255,7 +255,6 @@ export default {
     left 0
     right 0
     margin auto
-    background #fff
   .password-wrapper-out
     position absolute
     z-index 21
@@ -264,7 +263,6 @@ export default {
     left 0
     right 0
     margin auto
-    background #fff
   .password-wrapper-in
     position absolute
     z-index 8
@@ -273,7 +271,6 @@ export default {
     left 0
     right 0
     margin auto
-    background #fff
   .hide
     height 100vh
     overflow hidden

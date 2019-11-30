@@ -5,7 +5,8 @@ const modeOptions = {
     '--box-shadow-hover': '0 2px 16px 0 rgba(0, 0, 0, 0.2)',
     '--text-color': '#2c3e50',
     '--border-color': '#eaecef',
-    '--bgm-bg-color': 'rgba(255, 255, 255, .7)'
+    '--bgm-bg-color': 'rgba(255, 255, 255, .7)',
+    '--code-color': 'rgba(27, 31, 35, 0.05)'
   },
   dark: {
     '--background-color': '#25272a',
@@ -13,7 +14,8 @@ const modeOptions = {
     '--box-shadow-hover': '0 2px 26px 0 rgba(0, 0, 0, .9)',
     '--text-color': '#aaa',
     '--border-color': 'rgba(0, 0, 0, .3)',
-    '--bgm-bg-color': 'rgba(0, 0, 0, .7)'
+    '--bgm-bg-color': 'rgba(0, 0, 0, .7)',
+    '--code-color': 'rgba(0, 0, 0, .3)'
   }
 }
 
