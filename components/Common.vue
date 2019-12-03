@@ -270,7 +270,6 @@ export default {
     bottom 0
     left 0
     right 0
-    margin auto
   .hide
     height 100vh
     overflow hidden

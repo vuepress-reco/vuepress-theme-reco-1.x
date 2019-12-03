@@ -1,5 +1,5 @@
 <template>
-  <div class="password-shadow" :class="{'is-home': !isPage}">
+  <div class="password-shadow">
     <h3 class="title">{{isPage ? $frontmatter.title : $site.title || $localeConfig.title}}</h3>
     <p class="description" v-if="!isPage">{{$site.description || $localeConfig.description}}</p>
     <label class="inputBox" id="box">
@@ -100,37 +100,25 @@ export default {
 
 <style lang="stylus" scoped>
 @require '../styles/mode.styl'
-.theme-container.no-sidebar
-  .password-shadow
-    padding-left 0
-
-.password-shadow.is-home {
-  padding-left 0
-}
 
 .password-shadow {
-  position relative
-  width 100vw;
-  height 100vh;
   overflow hidden
   position relative
-  padding-left: 20rem;
   background #fff
   background var(--background-color)
   box-sizing border-box
   .title {
-    margin 8rem auto 6rem
+    margin 8rem auto 2rem
     width 100%
     text-align center
     font-size 30px
     box-sizing: border-box;
-    // padding: 0 10px;
     text-shadow $textShadow
     color $textColor
     color var(--text-color)
   }
   .description {
-    margin auto
+    margin 0 auto 6rem
     text-align center
     color $textColor
     color var(--text-color)
@@ -193,6 +181,7 @@ export default {
       font-size 30px
     }
     button{
+      overflow hidden
       width:0px;
       height:98px;
       border-radius: $borderRadius
@@ -304,26 +293,13 @@ export default {
     }
     .footer {
       margin-left 0
-      
+
     }
   }
   @media (max-width: $MQNarrow) {
-    // .inputBox{
-    //   padding-left $mobileSidebarWidth
-    // }
     .footer {
-        margin-left 0
-      }
+      margin-left 0
+    }
   }
 }
-
-// narrow desktop / iPad
-@media (max-width: $MQNarrow)
-  .password-shadow
-    padding-left $mobileSidebarWidth
-
-// wide mobile
-@media (max-width: $MQMobile)
-  .password-shadow
-    padding-left 0
 </style>

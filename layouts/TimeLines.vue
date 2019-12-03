@@ -123,7 +123,7 @@ export default {
   }
   .desc, .year {
     position: relative;
-    color #666
+    color var(--text-color);
     font-size 16px
     &:before {
       content: " ";
@@ -142,7 +142,7 @@ export default {
   }
   .year {
     margin: 80px 0 0px;
-    color #555
+    color var(--text-color);
     font-weight: 700;
     font-size 26px
   }
@@ -168,7 +168,7 @@ export default {
       .date {
         width 40px
         line-height 30px
-        color: #555;
+        color $textColorSub
         font-size 12px
         &::before {
           content: " ";
@@ -186,7 +186,7 @@ export default {
       }
       .title {
         line-height 30px
-        color: #555;
+        color $textColorSub
         font-size 16px
         cursor pointer
       }

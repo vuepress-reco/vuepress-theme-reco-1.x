@@ -49,7 +49,7 @@ module.exports = {
     // 备案号
     record: 'xxxx',
     // 项目开始时间
-    startYear: '2017'
+    startYear: '2017',
     /**
      * 密钥 (if your blog is private)
      */
@@ -68,6 +68,9 @@ module.exports = {
     //   appId: '...',// your appId
     //   appKey: '...', // your appKey
     // }
+    keyPage: {
+      keys: ['123456']
+    }
   },
   markdown: {
     lineNumbers: true

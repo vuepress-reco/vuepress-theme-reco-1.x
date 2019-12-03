@@ -17,9 +17,9 @@ body
   color var(--text-color)
   background-color var(--background-color)
 
-.page
+.page, .password-wrapper-in
   overflow-x: hidden
-  padding-left $sidebarWidth
+  margin-left $sidebarWidth
 
 .navbar
   position fixed
@@ -181,8 +181,8 @@ th, td
   .theme-container.no-sidebar
     .sidebar
       display none
-    .page
-      padding-left 0
+    .page, .password-wrapper-in
+      margin-left 0
 
 @require 'mobile.styl'
 
