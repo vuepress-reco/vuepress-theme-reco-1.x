@@ -69,6 +69,8 @@ export default {
         return
       }
 
+      this.warningText = 'Key Success'
+
       const width = document.getElementById('box').style.width
 
       passwordBtn.style.width = `${width - 2}px`
@@ -128,13 +130,16 @@ export default {
     text-shadow $textShadow
   }
   .inputBox{
-    position relative
+    position absolute
+    top 40%
+    left 0
+    right 0
+    margin auto
     display block
     max-width:700px;
     height: 100px;
     background: $accentColor;
     border-radius: $borderRadius
-    margin 2rem auto 0
     padding-left 20px
     box-sizing border-box
     opacity 0.9

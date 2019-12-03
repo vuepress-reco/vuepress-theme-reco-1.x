@@ -141,9 +141,6 @@ export default {
 </script>
 
 <style lang="stylus">
-// @require '../styles/mode.styl'
-// @require '../styles/loadMixin.styl'
-
 .home-blog {
   padding: $navbarHeight 0 0;
   margin: 0px auto;
@@ -157,11 +154,10 @@ export default {
     h1 {
       margin:7rem auto 1.8rem;
       font-size: 2.5rem;
-      color #fff;
     }
 
     h1, .description, .action, .huawei {
-      color #fff!important
+      color #fff
     }
 
     .description {
