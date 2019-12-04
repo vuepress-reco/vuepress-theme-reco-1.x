@@ -79,6 +79,7 @@ export default {
     text-align: center;
     h1 {
       font-size: 2.5rem;
+      color: var(--text-color);
     }
 
     h1, .description, .action {
@@ -88,7 +89,7 @@ export default {
     .description {
       font-size: 1.6rem;
       line-height: 1.3;
-      color: lighten($textColor, 20%);
+      color: var(--text-color);
     }
 
     .action-button {
@@ -109,7 +110,7 @@ export default {
   }
 
   .features {
-    border-top: 1px solid $borderColor;
+    border-top: 1px solid var(--border-color);;
     padding: 1.2rem 0;
     margin-top: 2.5rem;
     display: flex;
@@ -124,16 +125,12 @@ export default {
     flex-basis: 30%;
     max-width: 30%;
     transition: all .5s
+    color: var(--text-color);
     h2 {
       font-size: 1.6rem;
       font-weight: 500;
       border-bottom: none;
       padding-bottom: 0;
-      color: lighten($textColor, 10%);
-    }
-
-    p {
-      color: lighten($textColor, 20%);
     }
 
     &:hover {

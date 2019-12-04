@@ -1,7 +1,7 @@
-import { compareTime } from '@theme/util'
+import { compareDate } from '@theme/util'
 
 // 过滤博客数据
-export function filterPostData (posts, isTimeline) {
+export function filterPosts (posts, isTimeline) {
   posts = posts.filter(item => {
     const { title, frontmatter: { home, date, publish }} = item
     return isTimeline === true
@@ -12,17 +12,23 @@ export function filterPostData (posts, isTimeline) {
 }
 
 // 排序博客数据
-export function sortPostData (posts) {
-  posts.sort((a, b) => {
-    const aSticky = a.frontmatter.sticky
-    const bSticky = b.frontmatter.sticky
-    if (aSticky && bSticky) {
-      return aSticky == bSticky ? compareTime(a, b) : (aSticky - bSticky)
-    } else if (aSticky && !bSticky) {
+export function sortPostsByStickyAndDate (posts) {
+  posts.sort((prev, next) => {
+    const prevSticky = prev.frontmatter.sticky
+    const nextSticky = next.frontmatter.sticky
+    if (prevSticky && nextSticky) {
+      return prevSticky == nextSticky ? compareDate(prev, next) : (prevSticky - nextSticky)
+    } else if (prevSticky && !nextSticky) {
       return -1
-    } else if (!aSticky && bSticky) {
+    } else if (!prevSticky && nextSticky) {
       return 1
     }
-    return compareTime(a, b)
+    return compareDate(prev, next)
+  })
+}
+
+export function sortPostsByDate (posts) {
+  posts.sort((prev, next) => {
+    return compareDate(prev, next)
   })
 }

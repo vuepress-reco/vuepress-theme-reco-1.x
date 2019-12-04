@@ -37,7 +37,7 @@
 import Common from '@theme/components/Common.vue'
 import NoteAbstract from '@theme/components/NoteAbstract.vue'
 import mixin from '@theme/mixins/index.js'
-import { sortPostData, filterPostData } from '@theme/helpers/postData'
+import { sortPostsByStickyAndDate, filterPosts } from '@theme/helpers/postData'
 
 export default {
   mixins: [mixin],
@@ -55,8 +55,8 @@ export default {
     // 时间降序后的博客列表
     posts () {
       let posts = this.$currentCategories.pages
-      posts = filterPostData(posts)
-      sortPostData(posts)
+      posts = filterPosts(posts)
+      sortPostsByStickyAndDate(posts)
       return posts
     },
     // 标题只显示分类名称

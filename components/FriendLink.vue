@@ -127,7 +127,6 @@ export default {
     display: inline-block;
     cursor: pointer;
     border-radius: $borderRadius
-    background: #fff;
     font-size: 13px;
     box-shadow var(--box-shadow)
     transition: all .5s
@@ -148,7 +147,7 @@ export default {
       .popup-window
         position absolute
         display flex
-        background #ffffff
+        background var(--background-color)
         box-shadow var(--box-shadow)
         border-radius $borderRadius
         box-sizing border-box
