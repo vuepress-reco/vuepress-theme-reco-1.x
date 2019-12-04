@@ -4,14 +4,14 @@
       <TagList :currentTag="currentTag" @getCurrentTag="tagClick"></TagList>
       <note-abstract
         class="list"
-        :data="posts"
+        :data="$recoPosts"
         :currentPage="currentPage"
         :currentTag="currentTag"
         @currentTag="getCurrentTag"></note-abstract>
 
       <pagation
         class="pagation"
-        :total="posts.length"
+        :total="$recoPosts.length"
         :currentPage="currentPage"
         @getCurrentPage="getCurrentPage"></pagation>
     </Common>
@@ -34,12 +34,6 @@ export default {
       currentPage: 1,
       recoShow: false,
       allTagName: '全部'
-    }
-  },
-  computed: {
-    // 时间降序后的博客列表
-    posts () {
-      return this.$themeConfig.posts || this.$site.pages
     }
   },
 

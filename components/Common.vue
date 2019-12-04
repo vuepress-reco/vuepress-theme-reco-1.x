@@ -169,10 +169,6 @@ export default {
     }
   },
 
-  created () {
-    this._getPostData()
-  },
-
   mounted () {
     this.$router.afterEach(() => {
       this.isSidebarOpen = false

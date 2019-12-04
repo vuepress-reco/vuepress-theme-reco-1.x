@@ -11,13 +11,13 @@
       <div class="blog-list">
         <!-- 博客列表 -->
         <note-abstract
-          :data="$themeConfig.posts"
+          :data="$recoPosts"
           :hideAccessNumber="true"
           :currentPage="currentPage"></note-abstract>
         <!-- 分页 -->
         <pagation
           class="pagation"
-          :total="$themeConfig.posts.length"
+          :total="$recoPosts.length"
           :currentPage="currentPage"
           @getCurrentPage="getCurrentPage" />
       </div>
@@ -26,7 +26,7 @@
         <h3 class="name" v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</h3>
         <div class="num">
           <div>
-            <h3>{{$themeConfig.posts.length}}</h3>
+            <h3>{{$recoPosts.length}}</h3>
             <h6>文章</h6>
           </div>
           <div>

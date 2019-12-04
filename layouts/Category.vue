@@ -37,6 +37,7 @@
 import Common from '@theme/components/Common.vue'
 import NoteAbstract from '@theme/components/NoteAbstract.vue'
 import mixin from '@theme/mixins/index.js'
+import { sortPostData, filterPostData } from '@theme/helpers/postData'
 
 export default {
   mixins: [mixin],
@@ -54,8 +55,8 @@ export default {
     // 时间降序后的博客列表
     posts () {
       let posts = this.$currentCategories.pages
-      posts = this._filterPostData(posts)
-      this._sortPostData(posts)
+      posts = filterPostData(posts)
+      sortPostData(posts)
       return posts
     },
     // 标题只显示分类名称
@@ -85,10 +86,6 @@ export default {
       this.currentPage = page
       this.$page.currentPage = page
       this._setStoragePage(page)
-    },
-    // 获取时间的数字类型
-    _getTimeNum (date) {
-      return parseInt(new Date(date.frontmatter.date).getTime())
     }
   },
 

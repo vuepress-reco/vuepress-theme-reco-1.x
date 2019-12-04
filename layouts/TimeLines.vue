@@ -21,6 +21,7 @@
 <script>
 import Common from '@theme/components/Common.vue'
 import mixin from '@theme/mixins/index.js'
+import { filterPostData, sortPostData } from '@theme/helpers/postData'
 
 export default {
   mixins: [mixin],
@@ -55,7 +56,7 @@ export default {
     getPages (tag) {
       let pages = this.$site.pages
       // 时间轴不进行制定处理
-      pages = this._filterPostData(pages, true)
+      pages = filterPostData(pages, true)
       // reverse()是为了按时间最近排序排序
       this.pages = pages.length == 0 ? [] : pages
       for (let i = 0, length = pages.length; i < length; i++) {
@@ -69,7 +70,7 @@ export default {
 
       for (const key in this.formatPages) {
         const data = this.formatPages[key]
-        this._sortPostData(data)
+        sortPostData(data)
         this.formatPagesArr.unshift({
           year: key,
           data
@@ -93,10 +94,6 @@ export default {
     // 跳转
     go (url) {
       this.$router.push({ path: url })
-    },
-    // 获取时间的数字类型
-    _getTimeNum (date) {
-      return parseInt(new Date(date.frontmatter.date).getTime())
     }
   }
 }

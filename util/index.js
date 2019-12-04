@@ -237,3 +237,13 @@ function resolveItem (item, pages, base, groupDepth = 1) {
     }
   }
 }
+
+// 获取时间的数字类型
+export function getTimeNum (date) {
+  return parseInt(new Date(date.frontmatter.date).getTime())
+}
+
+// 比对时间
+export function compareTime (a, b) {
+  return getTimeNum(b) - getTimeNum(a)
+}

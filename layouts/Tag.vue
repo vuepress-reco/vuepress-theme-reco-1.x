@@ -27,6 +27,7 @@ import Common from '@theme/components/Common.vue'
 import NoteAbstract from '@theme/components/NoteAbstract.vue'
 import TagList from '@theme/components/TagList.vue'
 import mixin from '@theme/mixins/index.js'
+import { sortPostData, filterPostData } from '@theme/helpers/postData'
 
 export default {
   mixins: [mixin],
@@ -45,8 +46,8 @@ export default {
     // 时间降序后的博客列表
     posts () {
       let posts = this.$currentTags.pages
-      posts = this._filterPostData(posts)
-      this._sortPostData(posts)
+      posts = filterPostData(posts)
+      sortPostData(posts)
       return posts
     }
   },
