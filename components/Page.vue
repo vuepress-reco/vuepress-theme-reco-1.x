@@ -1,11 +1,11 @@
 <template>
   <main class="page">
     <ModuleTransition>
-      <slot v-if="recoShowMoudle" name="top"/>
+      <slot v-if="recoShowModule" name="top"/>
     </ModuleTransition>
 
     <ModuleTransition delay="0.08">
-      <div v-if="recoShowMoudle" class="page-title">
+      <div v-if="recoShowModule" class="page-title">
         <h1>{{$page.title}}</h1>
         <hr>
         <PageInfo :pageInfo="$page" :hideAccessNumber="hideAccessNumber"></PageInfo>
@@ -13,11 +13,11 @@
     </ModuleTransition>
 
     <ModuleTransition delay="0.16">
-      <Content v-if="recoShowMoudle" class="theme-reco-content" />
+      <Content v-if="recoShowModule" class="theme-reco-content" />
     </ModuleTransition>
 
     <ModuleTransition delay="0.24">
-      <footer v-if="recoShowMoudle" class="page-edit">
+      <footer v-if="recoShowModule" class="page-edit">
         <div
           class="edit-link"
           v-if="editLink"
@@ -74,7 +74,7 @@
     </ModuleTransition>
 
     <ModuleTransition delay="0.40">
-      <slot v-if="recoShowMoudle" name="bottom"/>
+      <slot v-if="recoShowModule" name="bottom"/>
     </ModuleTransition>
   </main>
 </template>

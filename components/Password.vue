@@ -1,37 +1,49 @@
 <template>
   <div class="password-shadow">
-    <h3 class="title">{{isPage ? $frontmatter.title : $site.title || $localeConfig.title}}</h3>
-    <p class="description" v-if="!isPage">{{$site.description || $localeConfig.description}}</p>
-    <label class="inputBox" id="box">
-      <input
-        v-model="key"
-        type="password"
-        @keyup.enter="inter"
-        @focus="inputFocus"
-        @blur="inputBlur">
-      <span>{{warningText}}</span>
-      <button ref="passwordBtn" @click="inter">OK</button>
-    </label>
+    <ModuleTransition>
+      <h3 v-if="recoShowModule" class="title">{{isPage ? $frontmatter.title : $site.title || $localeConfig.title}}</h3>
+    </ModuleTransition>
 
-    <div class="footer">
-      <span>
-        <i class="iconfont reco-theme"></i>
-        <a target="blank" href="https://vuepress-theme-reco.recoluan.com">vuePress-theme-reco</a>
-      </span>
-      <span>
-        <i class="iconfont reco-other"></i>
-        <a>{{ $themeConfig.author || $site.title }}</a>
-      </span>
-      <span>
-        <i class="iconfont reco-copyright"></i>
-        <a>{{ year }}</a>
-      </span>
-    </div>
+    <ModuleTransition delay="0.08">
+      <p class="description" v-if="recoShowModule && !isPage">{{$site.description || $localeConfig.description}}</p>
+    </ModuleTransition>
+
+    <ModuleTransition delay="0.16">
+      <label v-if="recoShowModule" class="inputBox" id="box">
+        <input
+          v-model="key"
+          type="password"
+          @keyup.enter="inter"
+          @focus="inputFocus"
+          @blur="inputBlur">
+        <span>{{warningText}}</span>
+        <button ref="passwordBtn" @click="inter">OK</button>
+      </label>
+    </ModuleTransition>
+
+    <ModuleTransition delay="0.24">
+      <div v-if="recoShowModule" class="footer">
+        <span>
+          <i class="iconfont reco-theme"></i>
+          <a target="blank" href="https://vuepress-theme-reco.recoluan.com">vuePress-theme-reco</a>
+        </span>
+        <span>
+          <i class="iconfont reco-other"></i>
+          <a>{{ $themeConfig.author || $site.title }}</a>
+        </span>
+        <span>
+          <i class="iconfont reco-copyright"></i>
+          <a>{{ year }}</a>
+        </span>
+      </div>
+    </ModuleTransition>
   </div>
 </template>
 
 <script>
+import ModuleTransition from '@theme/components/ModuleTransition'
 export default {
+  components: { ModuleTransition },
   props: {
     isPage: {
       type: Boolean,

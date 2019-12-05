@@ -5,7 +5,7 @@
       <!-- 标签集合 -->
       <ModuleTransition>
         <TagList
-          v-if="recoShowMoudle"
+          v-if="recoShowModule"
           class="tags" 
           :currentTag="$currentTags.key" @getCurrentTag="tagClick"></TagList>
       </ModuleTransition>
@@ -13,7 +13,7 @@
       <!-- 博客列表 -->
       <ModuleTransition delay="0.08">
         <note-abstract
-          v-if="recoShowMoudle"
+          v-if="recoShowModule"
           class="list"
           :data="posts"
           :currentPage="currentPage"
@@ -23,7 +23,7 @@
       <!-- 分页 -->
       <ModuleTransition delay="0.16">
         <pagation
-          v-if="recoShowMoudle"
+          v-if="recoShowModule"
           class="pagation"
           :total="posts.length"
           :currentPage="currentPage"

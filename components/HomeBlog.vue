@@ -5,11 +5,11 @@
       :style="{
         background: `url(${$frontmatter.bgImage ? $withBase($frontmatter.bgImage) : require('../images/home-bg.jpg')}) center/cover no-repeat`, ...bgImageStyle}">
       <ModuleTransition>
-        <h1 v-if="recoShowMoudle">{{ $frontmatter.heroText || $title || '午后南杂' }}</h1>
+        <h1 v-if="recoShowModule">{{ $frontmatter.heroText || $title || '午后南杂' }}</h1>
       </ModuleTransition>
 
       <ModuleTransition delay="0.08">
-        <p v-if="recoShowMoudle" class="description">
+        <p v-if="recoShowModule" class="description">
           {{ $description || 'Welcome to your vuePress-theme-reco site' }}
         </p>
       </ModuleTransition>
@@ -17,14 +17,14 @@
       <ModuleTransition delay="0.16">
         <p 
           class="huawei" 
-          v-if="recoShowMoudle && $themeConfig.huawei === true">
+          v-if="recoShowModule && $themeConfig.huawei === true">
           <i class="iconfont reco-huawei" style="color: #fc2d38"></i>&nbsp;&nbsp;&nbsp;华为，为中华而为之！
         </p>
       </ModuleTransition>
     </div>
 
     <ModuleTransition delay="0.24">
-      <div v-if="recoShowMoudle" class="home-blog-wrapper">
+      <div v-if="recoShowModule" class="home-blog-wrapper">
         <div class="blog-list">
           <!-- 博客列表 -->
           <note-abstract
@@ -71,7 +71,7 @@
     </ModuleTransition>
 
     <ModuleTransition delay="0.36">
-      <Content v-if="recoShowMoudle" class="home-center" custom/>
+      <Content v-if="recoShowModule" class="home-center" custom/>
     </ModuleTransition>
   </div>
 </template>

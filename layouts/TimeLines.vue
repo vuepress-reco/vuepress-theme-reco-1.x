@@ -3,12 +3,12 @@
   <Common :sidebar="false" :isComment="false">
     <ul class="timeline-wrapper">
       <ModuleTransition >
-        <li v-if="recoShowMoudle" class="desc">Yesterday Once More!</li>
+        <li v-if="recoShowModule" class="desc">Yesterday Once More!</li>
       </ModuleTransition> 
       <ModuleTransition 
         :delay="String(0.08 * (index + 1))"
         v-for="(item, index) in $recoPostsForTimeline" :key="index">
-        <li v-if="recoShowMoudle">
+        <li v-if="recoShowModule">
           <h3 class="year">{{item.year}}</h3>
           <ul class="year-wrapper">
             <li v-for="(subItem, subIndex) in item.data" :key="subIndex">
