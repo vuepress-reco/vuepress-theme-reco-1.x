@@ -1,4 +1,4 @@
-import { compareDate } from '@theme/util'
+import { compareDate } from '@theme/helpers/utils'
 
 // 过滤博客数据
 export function filterPosts (posts, isTimeline) {

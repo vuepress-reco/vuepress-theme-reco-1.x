@@ -8,7 +8,7 @@
     <i
       v-if="pageInfo.frontmatter.date"
       class="iconfont reco-date">
-      <span>{{ pageInfo.frontmatter.date | formatDate }}</span>
+      <span>{{ pageInfo.frontmatter.date | formatDateValue }}</span>
     </i>
     <i
       v-if="hideAccessNumber !== true"
@@ -34,7 +34,7 @@
 
 <script>
 // 引入时间格式化js文件
-import { formatDate } from '@theme/util'
+import { formatDate } from '@theme/helpers/utils'
 
 export default {
   // props: ['pageInfo', 'currentTag'],
@@ -64,7 +64,7 @@ export default {
     }
   },
   filters: {
-    formatDate: function (value) {
+    formatDateValue (value) {
       if (!value) return ''
       // 返回的value的值都是这个样子2019-09-20T18:22:30.000Z
       // 对value进行处理

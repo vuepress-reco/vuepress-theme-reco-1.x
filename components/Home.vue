@@ -1,46 +1,52 @@
 <template>
-  <div class="home" :class="recoShow?'reco-show': 'reco-hide'">
+  <div class="home">
     <div class="hero">
-      <img
-        v-if="data.isShowHeroImage !== false"
-        :style="heroImageStyle"
-        :src="data.heroImage ? $withBase(data.heroImage) : require('../images/icon_vuepress_reco.png')"
-        alt="hero">
-
-      <h1 v-if="data.isShowTitleInHome !== false">{{ data.heroText || $title || '午后南杂' }}</h1>
-
-      <p class="description">{{ $description || 'Welcome to your vuePress-theme-reco site' }}</p>
-      <p class="huawei" v-if="$themeConfig.huawei === true">
-        <i class="iconfont reco-huawei" style="color: #fc2d38"></i>
-        &nbsp;&nbsp;&nbsp;华为，为中华而为之！
-      </p>
-
-      <p class="action" v-if="data.actionText && data.actionLink">
-        <NavLink class="action-button" :item="actionLink"/>
-      </p>
+      <ModuleTransition delay="0.08">
+        <img
+          v-if="data.isShowHeroImage !== false && recoShowMoudle"
+          :style="heroImageStyle"
+          :src="data.heroImage ? $withBase(data.heroImage) : require('../images/icon_vuepress_reco.png')"
+          alt="hero">
+      </ModuleTransition>
+      <ModuleTransition delay="0.16">
+        <h1 v-if="data.isShowTitleInHome !== false && recoShowMoudle">{{ data.heroText || $title || '午后南杂' }}</h1>
+      </ModuleTransition>
+      <ModuleTransition delay="0.24">
+        <p v-if="recoShowMoudle" class="description">{{ $description || 'Welcome to your vuePress-theme-reco site' }}</p>
+      </ModuleTransition>
+      <ModuleTransition delay="0.32">
+        <p class="huawei" v-if="$themeConfig.huawei === true && recoShowMoudle">
+          <i class="iconfont reco-huawei" style="color: #fc2d38"></i>
+          &nbsp;&nbsp;&nbsp;华为，为中华而为之！
+        </p>
+      </ModuleTransition>
+      <ModuleTransition delay="0.4">
+        <p class="action" v-if="data.actionText && data.actionLink && recoShowMoudle">
+          <NavLink class="action-button" :item="actionLink"/>
+        </p>
+      </ModuleTransition>
     </div>
 
-    <div class="features" v-if="data.features && data.features.length">
-      <div v-for="(feature, index) in data.features" :key="index" class="feature">
-        <h2>{{ feature.title }}</h2>
-        <p>{{ feature.details }}</p>
+    <ModuleTransition delay="0.4">
+      <div class="features" v-if="data.features && data.features.length && recoShowMoudle">
+        <div v-for="(feature, index) in data.features" :key="index" class="feature">
+          <h2>{{ feature.title }}</h2>
+          <p>{{ feature.details }}</p>
+        </div>
       </div>
-    </div>
-
-    <Content class="home-center" custom/>
+    </ModuleTransition>
+    <ModuleTransition delay="0.48">
+      <Content class="home-center" v-if="recoShowMoudle" custom/>
+    </ModuleTransition>
   </div>
 </template>
 
 <script>
 import NavLink from '@theme/components/NavLink.vue'
+import ModuleTransition from '@theme/components/ModuleTransition.vue'
 
 export default {
-  components: { NavLink },
-  data () {
-    return {
-      recoShow: false
-    }
-  },
+  components: { NavLink, ModuleTransition },
   computed: {
     data () {
       return this.$frontmatter
@@ -59,16 +65,12 @@ export default {
         margin: '6rem auto 1.5rem'
       }
     }
-  },
-  mounted () {
-    this.recoShow = true
   }
 }
 </script>
 
 <style lang="stylus">
 @require '../styles/mode.styl'
-@require '../styles/loadMixin.styl'
 
 .home {
   padding: $navbarHeight 2rem 0;
@@ -138,58 +140,58 @@ export default {
     }
   }
 
-  &.reco-hide {
-  .hero {
-    img {
-      load-start()
-    }
-    .h1 {
-      load-start()
-    }
-    .description {
-      load-start()
-    }
-    .huawei {
-      load-start()
-    }
-    .action-button {
-      load-start()
-    }
-  }
-  .features {
-    load-start()
-  }
-  .home-center {
-    load-start()
-    padding 0
-  }
-}
+//   &.reco-hide {
+//   .hero {
+//     img {
+//       load-start()
+//     }
+//     .h1 {
+//       load-start()
+//     }
+//     .description {
+//       load-start()
+//     }
+//     .huawei {
+//       load-start()
+//     }
+//     .action-button {
+//       load-start()
+//     }
+//   }
+//   .features {
+//     load-start()
+//   }
+//   .home-center {
+//     load-start()
+//     padding 0
+//   }
+// }
 
-  &.reco-show {
-    .hero {
-      img {
-        load-end(0.08s)
-      }
-      .h1 {
-        load-end(0.16s)
-      }
-      .description {
-        load-end(0.24s)
-      }
-      .huawei {
-        load-end(0.32s)
-      }
-      .action-button {
-        load-end(0.4s)
-      }
-    }
-    .features {
-      load-end(0.40s)
-    }
-    .home-center {
-      load-end(0.48s)
-    }
-  }
+//   &.reco-show {
+//     .hero {
+//       img {
+//         load-end(0.08s)
+//       }
+//       .h1 {
+//         load-end(0.16s)
+//       }
+//       .description {
+//         load-end(0.24s)
+//       }
+//       .huawei {
+//         load-end(0.32s)
+//       }
+//       .action-button {
+//         load-end(0.4s)
+//       }
+//     }
+//     .features {
+//       load-end(0.40s)
+//     }
+//     .home-center {
+//       load-end(0.48s)
+//     }
+//   }
 }
 
 @media (max-width: $MQMobile) {

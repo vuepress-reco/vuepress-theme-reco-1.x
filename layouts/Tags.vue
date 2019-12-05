@@ -22,10 +22,10 @@
 import Common from '@theme/components/Common.vue'
 import TagList from '@theme/components/TagList.vue'
 import NoteAbstract from '@theme/components/NoteAbstract.vue'
-import mixin from '@theme/mixins/index.js'
+import pagination from '@theme/mixins/pagination.js'
 
 export default {
-  mixins: [mixin],
+  mixins: [pagination],
   components: { Common, NoteAbstract, TagList },
   data () {
     return {

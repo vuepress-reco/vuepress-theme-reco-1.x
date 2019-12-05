@@ -11,7 +11,7 @@
           :key="index">
           <router-link :to="item.path">
             <span class="category-name">{{ item.name }}</span>
-            <span class="post-num" :style="{ 'backgroundColor': _tagColor() }">{{ item.pages.length }}</span>
+            <span class="post-num" :style="{ 'backgroundColor': getOneColor() }">{{ item.pages.length }}</span>
           </router-link>
         </li>
       </ul>
@@ -36,11 +36,12 @@
 <script>
 import Common from '@theme/components/Common.vue'
 import NoteAbstract from '@theme/components/NoteAbstract.vue'
-import mixin from '@theme/mixins/index.js'
+import pagination from '@theme/mixins/pagination.js'
 import { sortPostsByStickyAndDate, filterPosts } from '@theme/helpers/postData'
+import { getOneColor } from '@theme/helpers/other'
 
 export default {
-  mixins: [mixin],
+  mixins: [pagination],
   components: { Common, NoteAbstract },
 
   data () {
@@ -86,7 +87,8 @@ export default {
       this.currentPage = page
       this.$page.currentPage = page
       this._setStoragePage(page)
-    }
+    },
+    getOneColor
   },
 
   watch: {

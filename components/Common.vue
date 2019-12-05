@@ -76,13 +76,11 @@
 <script>
 import Navbar from '@theme/components/Navbar.vue'
 import Sidebar from '@theme/components/Sidebar.vue'
-import { resolveSidebarItems } from '../util'
+import { resolveSidebarItems } from '@theme/helpers/utils'
 import Password from '@theme/components/Password'
 import { setTimeout } from 'timers'
-import mixin from '@theme/mixins/index.js'
 
 export default {
-  mixins: [mixin],
   components: { Sidebar, Navbar, Password },
 
   props: {

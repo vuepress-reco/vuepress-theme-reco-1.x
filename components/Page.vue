@@ -69,7 +69,7 @@
 
 <script>
 import PageInfo from '@theme/components/PageInfo'
-import { resolvePage, outboundRE, endingSlashRE } from '../util'
+import { resolvePage, outboundRE, endingSlashRE } from '@theme/helpers/utils'
 
 export default {
   components: { PageInfo },

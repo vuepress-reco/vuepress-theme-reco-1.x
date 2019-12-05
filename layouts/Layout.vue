@@ -23,7 +23,7 @@ import HomeBlog from '@theme/components/HomeBlog.vue'
 import Page from '@theme/components/Page.vue'
 import Footer from '@theme/components/Footer.vue'
 import Common from '@theme/components/Common.vue'
-import { resolveSidebarItems } from '../util'
+import { resolveSidebarItems } from '@theme/helpers/utils'
 
 export default {
   components: { HomeBlog, Home, Page, Common, Footer },

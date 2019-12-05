@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import { isActive } from '../util'
+import { isActive } from '@theme/helpers/utils'
 import DropdownTransition from '@theme/components/DropdownTransition.vue'
 
 export default {

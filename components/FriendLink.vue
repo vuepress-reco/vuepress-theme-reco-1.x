@@ -42,10 +42,9 @@
 
 <script>
 import md5 from 'md5'
-import mixin from '@theme/mixins/index.js'
+import { getOneColor } from '@theme/helpers/other'
 
 export default {
-  mixins: [mixin],
   data () {
     return {
       popupWindowStyle: {}
@@ -57,7 +56,7 @@ export default {
       if (friendLink && friendLink.length > 0) {
         friendLink = friendLink.map(item => ({
           ...item,
-          color: this._tagColor()
+          color: getOneColor()
         }))
         return friendLink
       }

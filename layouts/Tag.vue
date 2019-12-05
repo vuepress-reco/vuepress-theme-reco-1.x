@@ -26,11 +26,11 @@
 import Common from '@theme/components/Common.vue'
 import NoteAbstract from '@theme/components/NoteAbstract.vue'
 import TagList from '@theme/components/TagList.vue'
-import mixin from '@theme/mixins/index.js'
+import pagination from '@theme/mixins/pagination.js'
 import { sortPostsByStickyAndDate, filterPosts } from '@theme/helpers/postData'
 
 export default {
-  mixins: [mixin],
+  mixins: [pagination],
   components: { Common, NoteAbstract, TagList },
 
   data () {

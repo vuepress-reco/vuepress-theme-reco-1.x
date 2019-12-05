@@ -32,7 +32,7 @@
 
 <script>
 import DropdownLink from '@theme/components/DropdownLink.vue'
-import { resolveNavLinkItem } from '../util'
+import { resolveNavLinkItem } from '@theme/helpers/utils'
 import NavLink from '@theme/components/NavLink.vue'
 
 export default {
