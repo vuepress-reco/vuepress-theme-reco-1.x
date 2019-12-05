@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import SidebarGroup from '@theme/components/SidebarGroup.vue'
-import SidebarLink from '@theme/components/SidebarLink.vue'
+import SidebarGroup from '@theme/components/SidebarGroup'
+import SidebarLink from '@theme/components/SidebarLink'
 import { isActive } from '@theme/helpers/utils'
 
 export default {

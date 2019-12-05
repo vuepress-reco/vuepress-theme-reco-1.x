@@ -1,26 +1,26 @@
 <template>
   <div class="home">
     <div class="hero">
-      <ModuleTransition delay="0.08">
+      <ModuleTransition>
         <img
           v-if="data.isShowHeroImage !== false && recoShowMoudle"
           :style="heroImageStyle"
           :src="data.heroImage ? $withBase(data.heroImage) : require('../images/icon_vuepress_reco.png')"
           alt="hero">
       </ModuleTransition>
-      <ModuleTransition delay="0.16">
+      <ModuleTransition delay="0.08">
         <h1 v-if="data.isShowTitleInHome !== false && recoShowMoudle">{{ data.heroText || $title || '午后南杂' }}</h1>
       </ModuleTransition>
-      <ModuleTransition delay="0.24">
+      <ModuleTransition delay="0.16">
         <p v-if="recoShowMoudle" class="description">{{ $description || 'Welcome to your vuePress-theme-reco site' }}</p>
       </ModuleTransition>
-      <ModuleTransition delay="0.32">
+      <ModuleTransition delay="0.24">
         <p class="huawei" v-if="$themeConfig.huawei === true && recoShowMoudle">
           <i class="iconfont reco-huawei" style="color: #fc2d38"></i>
           &nbsp;&nbsp;&nbsp;华为，为中华而为之！
         </p>
       </ModuleTransition>
-      <ModuleTransition delay="0.4">
+      <ModuleTransition delay="0.32">
         <p class="action" v-if="data.actionText && data.actionLink && recoShowMoudle">
           <NavLink class="action-button" :item="actionLink"/>
         </p>
@@ -42,8 +42,8 @@
 </template>
 
 <script>
-import NavLink from '@theme/components/NavLink.vue'
-import ModuleTransition from '@theme/components/ModuleTransition.vue'
+import NavLink from '@theme/components/NavLink'
+import ModuleTransition from '@theme/components/ModuleTransition'
 
 export default {
   components: { NavLink, ModuleTransition },

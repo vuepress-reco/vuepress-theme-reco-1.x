@@ -2,16 +2,22 @@
 <div>
   <Common :sidebar="false" :isComment="false">
     <ul class="timeline-wrapper">
-      <li class="desc">Yesterday Once More!</li>
-      <li v-for="(item, index) in $recoPostsForTimeline" :key="index">
-        <h3 class="year">{{item.year}}</h3>
-        <ul class="year-wrapper">
-          <li v-for="(subItem, subIndex) in item.data" :key="subIndex">
-            <span class="date">{{subItem.frontmatter.date | dateFormat}}</span>
-            <span class="title" @click="go(subItem.path)">{{subItem.title}}</span>
-          </li>
-        </ul>
-      </li>
+      <ModuleTransition >
+        <li v-if="recoShowMoudle" class="desc">Yesterday Once More!</li>
+      </ModuleTransition> 
+      <ModuleTransition 
+        :delay="String(0.08 * (index + 1))"
+        v-for="(item, index) in $recoPostsForTimeline" :key="index">
+        <li v-if="recoShowMoudle">
+          <h3 class="year">{{item.year}}</h3>
+          <ul class="year-wrapper">
+            <li v-for="(subItem, subIndex) in item.data" :key="subIndex">
+              <span class="date">{{subItem.frontmatter.date | dateFormat}}</span>
+              <span class="title" @click="go(subItem.path)">{{subItem.title}}</span>
+            </li>
+          </ul>
+        </li>
+      </ModuleTransition>  
     </ul>
   </Common>
 </div>
@@ -19,11 +25,12 @@
 </template>
 
 <script>
-import Common from '@theme/components/Common.vue'
+import Common from '@theme/components/Common'
+import ModuleTransition from '@theme/components/ModuleTransition'
 
 export default {
   name: 'TimeLine',
-  components: { Common },
+  components: { Common, ModuleTransition },
   filters: {
     dateFormat (date, type) {
       function renderTime (date) {

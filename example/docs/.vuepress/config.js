@@ -24,7 +24,7 @@ module.exports = {
         ]
       }
     ],
-    // type: 'blog',
+    type: 'blog',
     // 博客设置
     blogConfig: {
       category: {

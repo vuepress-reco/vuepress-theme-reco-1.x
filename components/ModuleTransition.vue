@@ -16,12 +16,16 @@ export default {
     delay: {
       type: String,
       default: '0'
+    },
+    duration: {
+      type: String,
+      default: '.25'
     }
   },
 
   methods: {
     setStyle (items) {
-      items.style.transition = `all .25s ease-in ${this.delay}s`
+      items.style.transition = `all ${this.duration}s ease-in-out ${this.delay}s`
       items.style.transform = 'translateY(-20px)'
       items.style.opacity = 0
     },

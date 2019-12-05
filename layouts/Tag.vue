@@ -1,43 +1,53 @@
 <template>
-  <div class="tag-wrapper" :class="recoShow ?'reco-show' : 'reco-hide'">
+  <div class="tag-wrapper">
     <!-- 公共布局 -->
     <Common :sidebar="false" :isComment="false">
       <!-- 标签集合 -->
-      <TagList class="tags" :currentTag="$currentTags.key" @getCurrentTag="tagClick"></TagList>
+      <ModuleTransition>
+        <TagList
+          v-if="recoShowMoudle"
+          class="tags" 
+          :currentTag="$currentTags.key" @getCurrentTag="tagClick"></TagList>
+      </ModuleTransition>
 
       <!-- 博客列表 -->
-      <note-abstract
-        class="list"
-        :data="posts"
-        :currentPage="currentPage"
-        @currentTag="$currentTags.key"></note-abstract>
+      <ModuleTransition delay="0.08">
+        <note-abstract
+          v-if="recoShowMoudle"
+          class="list"
+          :data="posts"
+          :currentPage="currentPage"
+          @currentTag="$currentTags.key"></note-abstract>
+      </ModuleTransition>
 
       <!-- 分页 -->
-      <pagation
-        class="pagation"
-        :total="posts.length"
-        :currentPage="currentPage"
-        @getCurrentPage="getCurrentPage"></pagation>
+      <ModuleTransition delay="0.16">
+        <pagation
+          v-if="recoShowMoudle"
+          class="pagation"
+          :total="posts.length"
+          :currentPage="currentPage"
+          @getCurrentPage="getCurrentPage"></pagation>
+      </ModuleTransition>
     </Common>
   </div>
 </template>
 
 <script>
-import Common from '@theme/components/Common.vue'
-import NoteAbstract from '@theme/components/NoteAbstract.vue'
-import TagList from '@theme/components/TagList.vue'
-import pagination from '@theme/mixins/pagination.js'
+import Common from '@theme/components/Common'
+import NoteAbstract from '@theme/components/NoteAbstract'
+import TagList from '@theme/components/TagList'
+import pagination from '@theme/mixins/pagination'
+import ModuleTransition from '@theme/components/ModuleTransition'
 import { sortPostsByStickyAndDate, filterPosts } from '@theme/helpers/postData'
 
 export default {
   mixins: [pagination],
-  components: { Common, NoteAbstract, TagList },
+  components: { Common, NoteAbstract, TagList, ModuleTransition },
 
   data () {
     return {
-      // 当前页码
       currentPage: 1,
-      recoShow: false,
       currentTag: '全部'
     }
   },
@@ -54,7 +64,6 @@ export default {
 
   mounted () {
     this._setPage(this._getStoragePage())
-    this.recoShow = true
   },
 
   methods: {
@@ -91,27 +100,10 @@ export default {
 
 <style lang="stylus" scoped>
 @require '../styles/mode.styl'
-@require '../styles/loadMixin.styl'
 .tag-wrapper
   max-width: 740px;
   margin: 0 auto;
   padding: 4.6rem 2.5rem 0;
-  &.reco-hide {
-    .tags, .list, .pagation {
-      load-start()
-    }
-  }
-  &.reco-show {
-    .tags {
-      load-end(0.08s)
-    }
-    .list {
-      load-end(0.16s)
-    }
-    .pagation {
-      load-end(0.24s)
-    }
-  }
 
 @media (max-width: $MQMobile)
   .tag-wrapper

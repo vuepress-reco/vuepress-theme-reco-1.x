@@ -1,54 +1,61 @@
 <template>
-  <div class="categories-wrapper" :class="recoShow ?'reco-show' : 'reco-hide'">
+  <div class="categories-wrapper">
     <!-- 公共布局 -->
     <Common :sidebar="false" :isComment="false">
       <!-- 分类集合 -->
-      <ul class="category-wrapper">
-        <li
-          class="category-item"
-          :class="title == item.name ? 'active': ''"
-          v-for="(item, index) in this.$categories.list"
-          :key="index">
-          <router-link :to="item.path">
-            <span class="category-name">{{ item.name }}</span>
-            <span class="post-num" :style="{ 'backgroundColor': getOneColor() }">{{ item.pages.length }}</span>
-          </router-link>
-        </li>
-      </ul>
+      <ModuleTransition>
+        <ul v-if="recoShowMoudle" class="category-wrapper">
+          <li
+            class="category-item"
+            :class="title == item.name ? 'active': ''"
+            v-for="(item, index) in this.$categories.list"
+            :key="index">
+            <router-link :to="item.path">
+              <span class="category-name">{{ item.name }}</span>
+              <span class="post-num" :style="{ 'backgroundColor': getOneColor() }">{{ item.pages.length }}</span>
+            </router-link>
+          </li>
+        </ul>
+      </ModuleTransition>
 
       <!-- 博客列表 -->
-      <note-abstract
-        class="list"
-        :data="posts"
-        :currentPage="currentPage"
-        @currentTag="getCurrentTag"></note-abstract>
+      <ModuleTransition delay="0.08">
+        <note-abstract
+          v-if="recoShowMoudle"
+          class="list"
+          :data="posts"
+          :currentPage="currentPage"
+          @currentTag="getCurrentTag"></note-abstract>
+      </ModuleTransition>
 
       <!-- 分页 -->
-      <pagation
-        class="pagation"
-        :total="posts.length"
-        :currentPage="currentPage"
-        @getCurrentPage="getCurrentPage"></pagation>
+      <ModuleTransition delay="0.16">
+        <pagation
+          v-if="recoShowMoudle"
+          class="pagation"
+          :total="posts.length"
+          :currentPage="currentPage"
+          @getCurrentPage="getCurrentPage"></pagation>
+      </ModuleTransition>    
     </Common>
   </div>
 </template>
 
 <script>
-import Common from '@theme/components/Common.vue'
-import NoteAbstract from '@theme/components/NoteAbstract.vue'
-import pagination from '@theme/mixins/pagination.js'
+import Common from '@theme/components/Common'
+import NoteAbstract from '@theme/components/NoteAbstract'
+import ModuleTransition from '@theme/components/ModuleTransition'
+import pagination from '@theme/mixins/pagination'
 import { sortPostsByStickyAndDate, filterPosts } from '@theme/helpers/postData'
 import { getOneColor } from '@theme/helpers/other'
 
 export default {
   mixins: [pagination],
-  components: { Common, NoteAbstract },
+  components: { Common, NoteAbstract, ModuleTransition },
 
   data () {
     return {
-      // 当前页码
-      currentPage: 1,
-      recoShow: false
+      currentPage: 1
     }
   },
 
@@ -68,7 +75,6 @@ export default {
 
   mounted () {
     this._setPage(this._getStoragePage())
-    this.recoShow = true
   },
 
   methods: {
@@ -103,7 +109,6 @@ export default {
 
 <style lang="stylus" scoped>
 @require '../styles/mode.styl'
-@require '../styles/loadMixin.styl'
 .categories-wrapper
   max-width: 740px;
   margin: 0 auto;
@@ -149,20 +154,6 @@ export default {
           color #fff
         }
       }
-    }
-  }
-  &.reco-hide
-    .category-wrapper, .list, .pagation
-      load-start()
-  &.reco-show {
-    .category-wrapper {
-      load-end(0.08s)
-    }
-    .list {
-      load-end(0.16s)
-    }
-    .pagation {
-      load-end(0.24s)
     }
   }
 

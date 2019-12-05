@@ -1,84 +1,96 @@
 <template>
-  <main class="page" :class="recoShow?'reco-show': 'reco-hide'">
-    <slot name="top"/>
+  <main class="page">
+    <ModuleTransition>
+      <slot v-if="recoShowMoudle" name="top"/>
+    </ModuleTransition>
 
-    <div class="page-title">
-      <h1>{{$page.title}}</h1>
-      <hr>
-      <PageInfo :pageInfo="$page" :hideAccessNumber="hideAccessNumber"></PageInfo>
-    </div>
-
-    <Content class="theme-reco-content" />
-
-    <footer class="page-edit">
-      <div
-        class="edit-link"
-        v-if="editLink"
-      >
-        <a
-          :href="editLink"
-          target="_blank"
-          rel="noopener noreferrer"
-        >{{ editLinkText }}</a>
-        <OutboundLink/>
+    <ModuleTransition delay="0.08">
+      <div v-if="recoShowMoudle" class="page-title">
+        <h1>{{$page.title}}</h1>
+        <hr>
+        <PageInfo :pageInfo="$page" :hideAccessNumber="hideAccessNumber"></PageInfo>
       </div>
+    </ModuleTransition>
 
-      <div
-        class="last-updated"
-        v-if="lastUpdated"
-      >
-        <span class="prefix">{{ lastUpdatedText }}: </span>
-        <span class="time">{{ lastUpdated }}</span>
-      </div>
-    </footer>
+    <ModuleTransition delay="0.16">
+      <Content v-if="recoShowMoudle" class="theme-reco-content" />
+    </ModuleTransition>
 
-    <div class="page-nav" v-if="prev || next">
-      <p class="inner">
-        <span
-          v-if="prev"
-          class="prev"
+    <ModuleTransition delay="0.24">
+      <footer v-if="recoShowMoudle" class="page-edit">
+        <div
+          class="edit-link"
+          v-if="editLink"
         >
-          ←
-          <router-link
+          <a
+            :href="editLink"
+            target="_blank"
+            rel="noopener noreferrer"
+          >{{ editLinkText }}</a>
+          <OutboundLink/>
+        </div>
+
+        <div
+          class="last-updated"
+          v-if="lastUpdated"
+        >
+          <span class="prefix">{{ lastUpdatedText }}: </span>
+          <span class="time">{{ lastUpdated }}</span>
+        </div>
+      </footer>
+    </ModuleTransition>
+
+    <ModuleTransition delay="0.32">
+      <div class="page-nav" v-if="recoShowModule && (prev || next)">
+        <p class="inner">
+          <span
             v-if="prev"
             class="prev"
-            :to="prev.path"
           >
-            {{ prev.title || prev.path }}
-          </router-link>
-        </span>
+            ←
+            <router-link
+              v-if="prev"
+              class="prev"
+              :to="prev.path"
+            >
+              {{ prev.title || prev.path }}
+            </router-link>
+          </span>
 
-        <span
-          v-if="next"
-          class="next"
-        >
-          <router-link
+          <span
             v-if="next"
-            :to="next.path"
+            class="next"
           >
-            {{ next.title || next.path }}
-          </router-link>
-          →
-        </span>
-      </p>
-    </div>
+            <router-link
+              v-if="next"
+              :to="next.path"
+            >
+              {{ next.title || next.path }}
+            </router-link>
+            →
+          </span>
+        </p>
+      </div>
+    </ModuleTransition>
 
-    <slot name="bottom"/>
+    <ModuleTransition delay="0.40">
+      <slot v-if="recoShowMoudle" name="bottom"/>
+    </ModuleTransition>
   </main>
 </template>
 
 <script>
 import PageInfo from '@theme/components/PageInfo'
 import { resolvePage, outboundRE, endingSlashRE } from '@theme/helpers/utils'
+import ModuleTransition from '@theme/components/ModuleTransition'
 
 export default {
-  components: { PageInfo },
+  components: { PageInfo, ModuleTransition },
 
   props: ['sidebarItems'],
 
   data () {
     return {
-      recoShow: false,
       isHasKey: true
     }
   },
@@ -148,10 +160,6 @@ export default {
     }
   },
 
-  mounted () {
-    this.recoShow = true
-  },
-
   methods: {
     createEditLink (repo, docsRepo, docsDir, docsBranch, path) {
       const bitbucket = /bitbucket.org/
@@ -216,7 +224,6 @@ function flatten (items, res) {
 
 <style lang="stylus">
 @require '../styles/wrapper.styl'
-@require '../styles/loadMixin.styl'
 
 .page
   padding-top 5rem
@@ -246,12 +253,6 @@ function flatten (items, res) {
       .time
         font-weight 400
         color #aaa
-  &.reco-hide.page {
-    load-start()
-  }
-  &.reco-show.page {
-    load-end(0.08s)
-  }
 
 .page-nav
   @extend $wrapper

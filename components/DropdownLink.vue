@@ -53,8 +53,8 @@
 </template>
 
 <script>
-import NavLink from '@theme/components/NavLink.vue'
-import DropdownTransition from '@theme/components/DropdownTransition.vue'
+import NavLink from '@theme/components/NavLink'
+import DropdownTransition from '@theme/components/DropdownTransition'
 
 export default {
   components: { NavLink, DropdownTransition },

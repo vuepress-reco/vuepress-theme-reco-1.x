@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import SidebarLinks from '@theme/components/SidebarLinks.vue'
-import NavLinks from '@theme/components/NavLinks.vue'
+import SidebarLinks from '@theme/components/SidebarLinks'
+import NavLinks from '@theme/components/NavLinks'
 
 export default {
   name: 'Sidebar',

@@ -5,7 +5,7 @@
 		</a>
 		<transition name="menu-transition" mode="out-in">
 			<div v-show="showMenu" class="color-picker-menu">
-				<ModeOptions />
+				<ModePicker />
 			</div>
 		</transition>
 	</div>
@@ -13,7 +13,7 @@
 
 <script>
 import ClickOutside from 'vue-click-outside'
-import ModeOptions from './ModeOptions.vue'
+import ModePicker from './ModePicker'
 
 export default {
   name: 'UserSettings',
@@ -23,7 +23,7 @@ export default {
   },
 
   components: {
-    ModeOptions
+    ModePicker
   },
 
   data () {

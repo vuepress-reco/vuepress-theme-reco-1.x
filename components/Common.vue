@@ -74,8 +74,8 @@
 </template>
 
 <script>
-import Navbar from '@theme/components/Navbar.vue'
-import Sidebar from '@theme/components/Sidebar.vue'
+import Navbar from '@theme/components/Navbar'
+import Sidebar from '@theme/components/Sidebar'
 import { resolveSidebarItems } from '@theme/helpers/utils'
 import Password from '@theme/components/Password'
 import { setTimeout } from 'timers'
