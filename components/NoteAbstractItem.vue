@@ -6,8 +6,13 @@
       <i v-if="item.frontmatter.keys" class="iconfont reco-lock"></i>
       <router-link :to="item.path">{{item.title}}</router-link>
     </div>
-    <div class="abstract" v-html="item.excerpt"></div>
-    <hr class="hr">
+    <div
+      class="outline"
+      v-if="item.frontmatter.outline"
+      :style="{ backgroundImage: `url(${item.frontmatter.outline})` }">
+    </div>
+    <div class="abstract" v-if="item.excerpt" v-html="item.excerpt"></div>
+    <hr>
     <PageInfo
       :pageInfo="item"
       :hideAccessNumber="!(hideAccessNumber !== true)"
@@ -74,6 +79,16 @@ export default {
       visibility visible
       -webkit-transform: scaleX(1);
       transform: scaleX(1);
+  .outline
+    margin: 8px 0 12px
+    height: 200px
+    background-repeat: no-repeat
+    background-position: center
+    background-size: cover
+  .abstract
+    margin: 8px 0 12px
+    /deep/ div
+      margin: 0
   .tags
     .tag-item
       cursor: pointer;
