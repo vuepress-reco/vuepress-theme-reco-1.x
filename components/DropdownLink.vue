@@ -53,8 +53,8 @@
 </template>
 
 <script>
-import NavLink from '@theme/components/NavLink.vue'
-import DropdownTransition from '@theme/components/DropdownTransition.vue'
+import NavLink from '@theme/components/NavLink'
+import DropdownTransition from '@theme/components/DropdownTransition'
 
 export default {
   components: { NavLink, DropdownTransition },
@@ -98,7 +98,7 @@ export default {
       line-height 1.7rem
       h4
         margin 0.45rem 0 0
-        border-top 1px solid #eee
+        border-top 1px solid var(--border-color)
         padding 0.45rem 1.5rem 0 1.25rem
       .dropdown-subitem-wrapper
         padding 0

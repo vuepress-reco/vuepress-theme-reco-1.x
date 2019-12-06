@@ -23,7 +23,6 @@
       } : {}">
 
       <Mode />
-      <Screenfull class="screenfull" />
       <AlgoliaSearchBox
         v-if="isAlgoliaSearch"
         :options="algolia"/>
@@ -36,8 +35,8 @@
 <script>
 import AlgoliaSearchBox from '@AlgoliaSearchBox'
 import SearchBox from '@SearchBox'
-import SidebarButton from '@theme/components/SidebarButton.vue'
-import NavLinks from '@theme/components/NavLinks.vue'
+import SidebarButton from '@theme/components/SidebarButton'
+import NavLinks from '@theme/components/NavLinks'
 import Mode from '@theme/components/Mode'
 
 export default {
@@ -117,9 +116,6 @@ $navbar-horizontal-padding = 1.5rem
     .search-box
       flex: 0 0 auto
       vertical-align top
-    .screenfull
-      margin-top .4rem
-      height 1.6rem
       margin-right 1rem
 
 @media (max-width: $MQMobile)

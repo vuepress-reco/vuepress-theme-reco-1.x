@@ -1,52 +1,61 @@
 <template>
-  <div class="categories-wrapper" :class="recoShow ?'reco-show' : 'reco-hide'">
+  <div class="categories-wrapper">
     <!-- 公共布局 -->
     <Common :sidebar="false" :isComment="false">
       <!-- 分类集合 -->
-      <ul class="category-wrapper">
-        <li
-          class="category-item"
-          :class="title == item.name ? 'active': ''"
-          v-for="(item, index) in this.$categories.list"
-          :key="index">
-          <router-link :to="item.path">
-            <span class="category-name">{{ item.name }}</span>
-            <span class="post-num">{{ item.pages.length }}</span>
-          </router-link>
-        </li>
-      </ul>
+      <ModuleTransition>
+        <ul v-if="recoShowModule" class="category-wrapper">
+          <li
+            class="category-item"
+            :class="title == item.name ? 'active': ''"
+            v-for="(item, index) in this.$categories.list"
+            :key="index">
+            <router-link :to="item.path">
+              <span class="category-name">{{ item.name }}</span>
+              <span class="post-num" :style="{ 'backgroundColor': getOneColor() }">{{ item.pages.length }}</span>
+            </router-link>
+          </li>
+        </ul>
+      </ModuleTransition>
 
       <!-- 博客列表 -->
-      <note-abstract
-        class="list"
-        :data="posts"
-        :currentPage="currentPage"
-        @currentTag="getCurrentTag"></note-abstract>
+      <ModuleTransition delay="0.08">
+        <note-abstract
+          v-if="recoShowModule"
+          class="list"
+          :data="posts"
+          :currentPage="currentPage"
+          @currentTag="getCurrentTag"></note-abstract>
+      </ModuleTransition>
 
       <!-- 分页 -->
-      <pagation
-        class="pagation"
-        :total="posts.length"
-        :currentPage="currentPage"
-        @getCurrentPage="getCurrentPage"></pagation>
+      <ModuleTransition delay="0.16">
+        <pagation
+          v-if="recoShowModule"
+          class="pagation"
+          :total="posts.length"
+          :currentPage="currentPage"
+          @getCurrentPage="getCurrentPage"></pagation>
+      </ModuleTransition>    
     </Common>
   </div>
 </template>
 
 <script>
-import Common from '@theme/components/Common.vue'
-import NoteAbstract from '@theme/components/NoteAbstract.vue'
-import mixin from '@theme/mixins/index.js'
+import Common from '@theme/components/Common'
+import NoteAbstract from '@theme/components/NoteAbstract'
+import ModuleTransition from '@theme/components/ModuleTransition'
+import pagination from '@theme/mixins/pagination'
+import { sortPostsByStickyAndDate, filterPosts } from '@theme/helpers/postData'
+import { getOneColor } from '@theme/helpers/other'
 
 export default {
-  mixins: [mixin],
-  components: { Common, NoteAbstract },
+  mixins: [pagination],
+  components: { Common, NoteAbstract, ModuleTransition },
 
   data () {
     return {
-      // 当前页码
-      currentPage: 1,
-      recoShow: false
+      currentPage: 1
     }
   },
 
@@ -54,8 +63,8 @@ export default {
     // 时间降序后的博客列表
     posts () {
       let posts = this.$currentCategories.pages
-      posts = this._filterPostData(posts)
-      this._sortPostData(posts)
+      posts = filterPosts(posts)
+      sortPostsByStickyAndDate(posts)
       return posts
     },
     // 标题只显示分类名称
@@ -66,7 +75,6 @@ export default {
 
   mounted () {
     this._setPage(this._getStoragePage())
-    this.recoShow = true
   },
 
   methods: {
@@ -86,10 +94,7 @@ export default {
       this.$page.currentPage = page
       this._setStoragePage(page)
     },
-    // 获取时间的数字类型
-    _getTimeNum (date) {
-      return parseInt(new Date(date.frontmatter.date).getTime())
-    }
+    getOneColor
   },
 
   watch: {
@@ -104,7 +109,6 @@ export default {
 
 <style lang="stylus" scoped>
 @require '../styles/mode.styl'
-@require '../styles/loadMixin.styl'
 .categories-wrapper
   max-width: 740px;
   margin: 0 auto;
@@ -146,24 +150,10 @@ export default {
           text-align center
           line-height 1.2rem
           border-radius $borderRadius
-          background #eee
           font-size .7rem
+          color #fff
         }
       }
-    }
-  }
-  &.reco-hide
-    .category-wrapper, .list, .pagation
-      load-start()
-  &.reco-show {
-    .category-wrapper {
-      load-end(0.08s)
-    }
-    .list {
-      load-end(0.16s)
-    }
-    .pagation {
-      load-end(0.24s)
     }
   }
 

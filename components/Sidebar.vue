@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import SidebarLinks from '@theme/components/SidebarLinks.vue'
-import NavLinks from '@theme/components/NavLinks.vue'
+import SidebarLinks from '@theme/components/SidebarLinks'
+import NavLinks from '@theme/components/NavLinks'
 
 export default {
   name: 'Sidebar',
@@ -30,7 +30,7 @@ export default {
     display inline-block
   .nav-links
     display none
-    border-bottom 1px solid $borderColor
+    border-bottom 1px solid var(--border-color)
     padding 0.5rem 0 0.75rem 0
     a
       font-weight 600

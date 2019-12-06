@@ -4,16 +4,15 @@
       v-for="(item, index) in tags"
       :key="index"
       :class="{'active': item.name == currentTag}"
-      :style="{ 'backgroundColor': _tagColor() }"
+      :style="{ 'backgroundColor': getOneColor() }"
       @click="tagClick(item)">{{item.name}}</span>
   </div>
 </template>
 
 <script>
-import mixin from '@theme/mixins/index.js'
+import { getOneColor } from '@theme/helpers/other'
 
 export default {
-  mixins: [mixin],
   props: {
     currentTag: {
       type: String,
@@ -28,7 +27,8 @@ export default {
   methods: {
     tagClick (tag) {
       this.$emit('getCurrentTag', tag)
-    }
+    },
+    getOneColor
   }
 }
 </script>

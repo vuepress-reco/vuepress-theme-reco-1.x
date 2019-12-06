@@ -1,70 +1,92 @@
 <template>
-  <div class="home-blog" :class="recoShow?'reco-show': 'reco-hide'">
-    <div class="hero" :style="{background: `url(${$frontmatter.bgImage ? $withBase($frontmatter.bgImage) : require('../images/home-bg.jpg')}) center/cover no-repeat`, ...bgImageStyle}">
-      <h1>{{ $frontmatter.heroText || $title || '午后南杂' }}</h1>
+  <div class="home-blog">
+    <div 
+      class="hero" 
+      :style="{
+        background: `url(${$frontmatter.bgImage ? $withBase($frontmatter.bgImage) : require('../images/home-bg.jpg')}) center/cover no-repeat`, ...bgImageStyle}">
+      <ModuleTransition>
+        <h1 v-if="recoShowModule">{{ $frontmatter.heroText || $title || '午后南杂' }}</h1>
+      </ModuleTransition>
 
-      <p class="description">{{ $description || 'Welcome to your vuePress-theme-reco site' }}</p>
-      <p class="huawei" v-if="$themeConfig.huawei === true"><i class="iconfont reco-huawei" style="color: #fc2d38"></i>&nbsp;&nbsp;&nbsp;华为，为中华而为之！</p>
+      <ModuleTransition delay="0.08">
+        <p v-if="recoShowModule" class="description">
+          {{ $description || 'Welcome to your vuePress-theme-reco site' }}
+        </p>
+      </ModuleTransition>
+
+      <ModuleTransition delay="0.16">
+        <p 
+          class="huawei" 
+          v-if="recoShowModule && $themeConfig.huawei === true">
+          <i class="iconfont reco-huawei" style="color: #fc2d38"></i>&nbsp;&nbsp;&nbsp;华为，为中华而为之！
+        </p>
+      </ModuleTransition>
     </div>
 
-    <div class="home-blog-wrapper">
-      <div class="blog-list">
-        <!-- 博客列表 -->
-        <note-abstract
-          :data="$themeConfig.posts"
-          :hideAccessNumber="true"
-          :currentPage="currentPage"></note-abstract>
-        <!-- 分页 -->
-        <pagation
-          class="pagation"
-          :total="$themeConfig.posts.length"
-          :currentPage="currentPage"
-          @getCurrentPage="getCurrentPage" />
-      </div>
-      <div class="info-wrapper">
-        <img class="personal-img" :src="$frontmatter.faceImage ? $withBase($frontmatter.faceImage) : require('../images/home-head.png')" alt="hero">
-        <h3 class="name" v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</h3>
-        <div class="num">
-          <div>
-            <h3>{{$themeConfig.posts.length}}</h3>
-            <h6>文章</h6>
-          </div>
-          <div>
-            <h3>{{$tags.list.length}}</h3>
-            <h6>标签</h6>
-          </div>
+    <ModuleTransition delay="0.24">
+      <div v-if="recoShowModule" class="home-blog-wrapper">
+        <div class="blog-list">
+          <!-- 博客列表 -->
+          <note-abstract
+            :data="$recoPosts"
+            :hideAccessNumber="true"
+            :currentPage="currentPage"></note-abstract>
+          <!-- 分页 -->
+          <pagation
+            class="pagation"
+            :total="$recoPosts.length"
+            :currentPage="currentPage"
+            @getCurrentPage="getCurrentPage" />
         </div>
-        <hr>
-        <h4><i class="iconfont reco-category"></i> 分类</h4>
-        <ul class="category-wrapper">
-          <li class="category-item" v-for="(item, index) in this.$categories.list" :key="index">
-            <router-link :to="item.path">
-              <span class="category-name">{{ item.name }}</span>
-              <span class="post-num" :style="{ 'backgroundColor': _tagColor() }">{{ item.pages.length }}</span>
-            </router-link>
-          </li>
-        </ul>
-        <hr>
-        <h4 v-if="$tags.list.length !== 0"><i class="iconfont reco-tag"></i> 标签</h4>
-        <TagList @getCurrentTag="getPagesByTags" />
-        <h4 v-if="$themeConfig.friendLink && $themeConfig.friendLink.length !== 0"><i class="iconfont reco-friend"></i> 友链</h4>
-        <FriendLink />
+        <div class="info-wrapper">
+          <img class="personal-img" :src="$frontmatter.faceImage ? $withBase($frontmatter.faceImage) : require('../images/home-head.png')" alt="hero">
+          <h3 class="name" v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</h3>
+          <div class="num">
+            <div>
+              <h3>{{$recoPosts.length}}</h3>
+              <h6>文章</h6>
+            </div>
+            <div>
+              <h3>{{$tags.list.length}}</h3>
+              <h6>标签</h6>
+            </div>
+          </div>
+          <hr>
+          <h4><i class="iconfont reco-category"></i> 分类</h4>
+          <ul class="category-wrapper">
+            <li class="category-item" v-for="(item, index) in this.$categories.list" :key="index">
+              <router-link :to="item.path">
+                <span class="category-name">{{ item.name }}</span>
+                <span class="post-num" :style="{ 'backgroundColor': getOneColor() }">{{ item.pages.length }}</span>
+              </router-link>
+            </li>
+          </ul>
+          <hr>
+          <h4 v-if="$tags.list.length !== 0"><i class="iconfont reco-tag"></i> 标签</h4>
+          <TagList @getCurrentTag="getPagesByTags" />
+          <h4 v-if="$themeConfig.friendLink && $themeConfig.friendLink.length !== 0"><i class="iconfont reco-friend"></i> 友链</h4>
+          <FriendLink />
+        </div>
       </div>
-    </div>
+    </ModuleTransition>
 
-    <Content class="home-center" custom/>
+    <ModuleTransition delay="0.36">
+      <Content v-if="recoShowModule" class="home-center" custom/>
+    </ModuleTransition>
   </div>
 </template>
 
 <script>
-import TagList from '@theme/components/TagList.vue'
-import FriendLink from '@theme/components/FriendLink.vue'
-import NoteAbstract from '@theme/components/NoteAbstract.vue'
-import mixin from '@theme/mixins/index.js'
+import TagList from '@theme/components/TagList'
+import FriendLink from '@theme/components/FriendLink'
+import NoteAbstract from '@theme/components/NoteAbstract'
+import pagination from '@theme/mixins/pagination'
+import ModuleTransition from '@theme/components/ModuleTransition'
+import { getOneColor } from '@theme/helpers/other'
 
 export default {
-  mixins: [mixin],
-  components: { NoteAbstract, TagList, FriendLink },
+  mixins: [pagination],
+  components: { NoteAbstract, TagList, FriendLink, ModuleTransition },
   data () {
     return {
       recoShow: false,
@@ -135,15 +157,13 @@ export default {
       this.currentPage = page
       this.$page.currentPage = page
       this._setStoragePage(page)
-    }
+    },
+    getOneColor
   }
 }
 </script>
 
 <style lang="stylus">
-// @require '../styles/mode.styl'
-// @require '../styles/loadMixin.styl'
-
 .home-blog {
   padding: $navbarHeight 0 0;
   margin: 0px auto;
@@ -157,11 +177,10 @@ export default {
     h1 {
       margin:7rem auto 1.8rem;
       font-size: 2.5rem;
-      color #fff;
     }
 
     h1, .description, .action, .huawei {
-      color #fff!important
+      color #fff
     }
 
     .description {
@@ -262,60 +281,6 @@ export default {
         }
       }
     }
-  }
-}
-
-.reco-hide {
-  .hero {
-    img {
-      load-start()
-    }
-    h1 {
-      load-start()
-      color red
-    }
-    .description {
-      load-start()
-    }
-    .huawei {
-      load-start()
-    }
-    .action-button {
-      load-start()
-    }
-  }
-  .home-blog-wrapper {
-    load-start()
-  }
-  .home-center {
-    load-start()
-    padding 0
-  }
-}
-
-.reco-show {
-  .hero {
-    img {
-      load-end(0.08s)
-    }
-    h1 {
-      load-end(0.16s)
-    }
-    .description {
-      load-end(0.24s)
-    }
-    .huawei {
-      load-end(0.32s)
-    }
-    .action-button {
-      load-end(0.4s)
-    }
-  }
-  .home-blog-wrapper {
-    load-end(0.48s)
-  }
-  .home-center {
-    load-end(0.56s)
   }
 }
 

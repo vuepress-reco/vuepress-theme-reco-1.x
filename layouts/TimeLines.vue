@@ -2,16 +2,22 @@
 <div>
   <Common :sidebar="false" :isComment="false">
     <ul class="timeline-wrapper">
-      <li class="desc">Yesterday Once More!</li>
-      <li v-for="(item, index) in formatPagesArr" :key="index">
-        <h3 class="year">{{item.year}}</h3>
-        <ul class="year-wrapper">
-          <li v-for="(subItem, subIndex) in item.data" :key="subIndex">
-            <span class="date">{{dateFormat(subItem.frontmatter.date)}}</span>
-            <span class="title" @click="go(subItem.path)">{{subItem.title}}</span>
-          </li>
-        </ul>
-      </li>
+      <ModuleTransition >
+        <li v-if="recoShowModule" class="desc">Yesterday Once More!</li>
+      </ModuleTransition> 
+      <ModuleTransition 
+        :delay="String(0.08 * (index + 1))"
+        v-for="(item, index) in $recoPostsForTimeline" :key="index">
+        <li v-if="recoShowModule">
+          <h3 class="year">{{item.year}}</h3>
+          <ul class="year-wrapper">
+            <li v-for="(subItem, subIndex) in item.data" :key="subIndex">
+              <span class="date">{{subItem.frontmatter.date | dateFormat}}</span>
+              <span class="title" @click="go(subItem.path)">{{subItem.title}}</span>
+            </li>
+          </ul>
+        </li>
+      </ModuleTransition>  
     </ul>
   </Common>
 </div>
@@ -19,88 +25,34 @@
 </template>
 
 <script>
-import Common from '@theme/components/Common.vue'
-import mixin from '@theme/mixins/index.js'
+import Common from '@theme/components/Common'
+import ModuleTransition from '@theme/components/ModuleTransition'
 
 export default {
-  mixins: [mixin],
   name: 'TimeLine',
-  components: { Common },
-  data () {
-    return {
-      pages: [],
-      tags: [],
-      currentTag: '',
-      currentPage: 1,
-      formatPages: {},
-      formatPagesArr: []
-    }
-  },
-  props: {
-    tag: {
-      type: String,
-      default: ''
-    }
-  },
-  computed: {
-    trueCurrentTag () {
-      return this.currentTag
-    }
-  },
-  created () {
-    this.getPages()
-  },
-  methods: {
-    // 根据分类获取页面数据
-    getPages (tag) {
-      let pages = this.$site.pages
-      // 时间轴不进行制定处理
-      pages = this._filterPostData(pages, true)
-      // reverse()是为了按时间最近排序排序
-      this.pages = pages.length == 0 ? [] : pages
-      for (let i = 0, length = pages.length; i < length; i++) {
-        const page = pages[i]
-        const pageDateYear = this.dateFormat(page.frontmatter.date, 'year')
-        if (this.formatPages[pageDateYear]) this.formatPages[pageDateYear].push(page)
-        else {
-          this.formatPages[pageDateYear] = [page]
-        }
-      }
-
-      for (const key in this.formatPages) {
-        const data = this.formatPages[key]
-        this._sortPostData(data)
-        this.formatPagesArr.unshift({
-          year: key,
-          data
-        })
-      }
-    },
-    renderTime (date) {
-      var dateee = new Date(date).toJSON()
-      return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '').replace(/-/g, '/')
-    },
-    // 时间格式化
+  components: { Common, ModuleTransition },
+  filters: {
     dateFormat (date, type) {
-      date = this.renderTime(date)
+      function renderTime (date) {
+        const dateee = new Date(date).toJSON()
+        return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '').replace(/-/g, '/')
+      }
+      date = renderTime(date)
       const dateObj = new Date(date)
-      const year = dateObj.getFullYear()
       const mon = dateObj.getMonth() + 1
       const day = dateObj.getDate()
-      if (type == 'year') return year
-      else return `${mon}-${day}`
-    },
-    // 跳转
+      return `${mon}-${day}`
+    }
+  },
+  methods: {
     go (url) {
       this.$router.push({ path: url })
-    },
-    // 获取时间的数字类型
-    _getTimeNum (date) {
-      return parseInt(new Date(date.frontmatter.date).getTime())
     }
   }
 }
 </script>
+
+<style src="../styles/theme.styl" lang="stylus"></style>
 
 <style lang="stylus" scoped>
 @require '../styles/wrapper.styl'
@@ -123,7 +75,7 @@ export default {
   }
   .desc, .year {
     position: relative;
-    color #666
+    color var(--text-color);
     font-size 16px
     &:before {
       content: " ";
@@ -142,7 +94,7 @@ export default {
   }
   .year {
     margin: 80px 0 0px;
-    color #555
+    color var(--text-color);
     font-weight: 700;
     font-size 26px
   }
@@ -168,7 +120,7 @@ export default {
       .date {
         width 40px
         line-height 30px
-        color: #555;
+        color $textColorSub
         font-size 12px
         &::before {
           content: " ";
@@ -186,7 +138,7 @@ export default {
       }
       .title {
         line-height 30px
-        color: #555;
+        color $textColorSub
         font-size 16px
         cursor pointer
       }

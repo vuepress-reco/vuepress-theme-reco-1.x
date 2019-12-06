@@ -49,7 +49,7 @@ module.exports = {
     // 备案号
     record: 'xxxx',
     // 项目开始时间
-    startYear: '2017'
+    startYear: '2017',
     /**
      * 密钥 (if your blog is private)
      */
@@ -68,6 +68,23 @@ module.exports = {
     //   appId: '...',// your appId
     //   appKey: '...', // your appKey
     // }
+    keyPage: {
+      keys: ['123456']
+    },
+    friendLink: [
+      {
+        title: '午后南杂',
+        desc: 'Enjoy when you can, and endure when you must.',
+        email: '1156743527@qq.com',
+        link: 'https://www.recoluan.com'
+      },
+      {
+        title: 'vuepress-theme-reco',
+        desc: 'A simple and beautiful vuepress Blog & Doc theme.',
+        avatar: "https://vuepress-theme-reco.recoluan.com/icon_vuepress_reco.png",
+        link: 'https://vuepress-theme-reco.recoluan.com'
+      },
+    ]
   },
   markdown: {
     lineNumbers: true

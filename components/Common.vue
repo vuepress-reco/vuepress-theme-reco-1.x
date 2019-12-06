@@ -74,15 +74,13 @@
 </template>
 
 <script>
-import Navbar from '@theme/components/Navbar.vue'
-import Sidebar from '@theme/components/Sidebar.vue'
-import { resolveSidebarItems } from '../util'
+import Navbar from '@theme/components/Navbar'
+import Sidebar from '@theme/components/Sidebar'
+import { resolveSidebarItems } from '@theme/helpers/utils'
 import Password from '@theme/components/Password'
 import { setTimeout } from 'timers'
-import mixin from '@theme/mixins/index.js'
 
 export default {
-  mixins: [mixin],
   components: { Sidebar, Navbar, Password },
 
   props: {
@@ -169,10 +167,6 @@ export default {
     }
   },
 
-  created () {
-    this._getPostData()
-  },
-
   mounted () {
     this.$router.afterEach(() => {
       this.isSidebarOpen = false
@@ -255,7 +249,6 @@ export default {
     left 0
     right 0
     margin auto
-    background #fff
   .password-wrapper-out
     position absolute
     z-index 21
@@ -264,7 +257,6 @@ export default {
     left 0
     right 0
     margin auto
-    background #fff
   .password-wrapper-in
     position absolute
     z-index 8
@@ -272,8 +264,6 @@ export default {
     bottom 0
     left 0
     right 0
-    margin auto
-    background #fff
   .hide
     height 100vh
     overflow hidden
