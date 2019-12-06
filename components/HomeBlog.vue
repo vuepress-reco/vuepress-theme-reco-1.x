@@ -1,11 +1,19 @@
 <template>
   <div class="home-blog">
-    <div 
-      class="hero" 
-      :style="{
-        background: `url(${$frontmatter.bgImage ? $withBase($frontmatter.bgImage) : require('../images/home-bg.jpg')}) center/cover no-repeat`, ...bgImageStyle}">
+    <div class="hero" :style="{ ...bgImageStyle }">
+      <div
+        class="mask"
+        :style="{
+      background: `url(${$frontmatter.bgImage ? $withBase($frontmatter.bgImage) : require('../images/home-bg.jpg')}) center/cover no-repeat`}"></div>
       <ModuleTransition>
-        <h1 v-if="recoShowModule">{{ $frontmatter.heroText || $title || '午后南杂' }}</h1>
+        <img
+          v-if="$frontmatter.isShowHeroImage !== false && recoShowModule"
+          :style="heroImageStyle"
+          :src="$frontmatter.heroImage ? $withBase($frontmatter.heroImage) : require('../images/icon_vuepress_reco.png')"
+          alt="hero">
+      </ModuleTransition>
+      <ModuleTransition>
+        <h1 v-if="recoShowModule && $frontmatter.isShowTitleInHome !== false">{{ $frontmatter.heroText || $title || '午后南杂' }}</h1>
       </ModuleTransition>
 
       <ModuleTransition delay="0.08">
@@ -15,8 +23,8 @@
       </ModuleTransition>
 
       <ModuleTransition delay="0.16">
-        <p 
-          class="huawei" 
+        <p
+          class="huawei"
           v-if="recoShowModule && $themeConfig.huawei === true">
           <i class="iconfont reco-huawei" style="color: #fc2d38"></i>&nbsp;&nbsp;&nbsp;华为，为中华而为之！
         </p>
@@ -169,6 +177,27 @@ export default {
   margin: 0px auto;
 
   .hero {
+    position relative
+    .mask {
+      position absolute
+      top 0
+      bottom 0
+      left 0
+      right 0
+      z-index 0
+      &:after {
+        display block
+        content ' '
+        background var(--mask-color)
+        position absolute
+        top 0
+        bottom 0
+        left 0
+        right 0
+        z-index 0
+        opacity .2
+      }
+    }
     figure {
       position absolute
       background yellow
@@ -222,6 +251,7 @@ export default {
         margin 2rem auto
         width 8rem
         height 8rem
+        border-radius 50%
       }
       .name {
         text-align center

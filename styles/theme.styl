@@ -238,12 +238,20 @@ th, td
 .comments-wrapper
   .valine-wrapper
     #valine.v
+      .vbtn
+        color: var(--text-color)
+        border: 1px solid var(--border-color)
+        &:hover
+          color: $accentColor
+          border-color: $accentColor
       .vwrap
         background: var(--code-color)
-        // box-shadow: var(--box-shadow)
+        border: 1px dashed var(--border-color)
         .vcontrol
           .vsubmit
             background: var(--code-color)
+        .vheader .vinput
+          border-bottom: 1px dashed var(--border-color)
       .vinfo
         padding-left: .6rem
       .vlist
@@ -254,14 +262,14 @@ th, td
             margin-left: 0
             border-left: 1px dashed var(--border-color)
           .vimg
+            width: 2.8rem;
+            height: 2.8rem;
             border-radius: $borderRadius
-            box-shadow: var(--box-shadow)
             border: none
         .vh
           border-bottom: 1px dashed var(--border-color)
           .vhead
             .vsys
-              box-shadow: var(--box-shadow)
               background: var(--code-color)
               color: var(--text-color)
           .vmeta
@@ -269,14 +277,15 @@ th, td
             .vat
               margin-right: .3rem
               background: var(--code-color)
-              box-shadow: var(--box-shadow)
               border-radius: $borderRadius
               padding: 0 .4rem
               color: var(--text-color)
               border: 1px solid var(--border-color)
+              &:hover
+                color: $accentColor
+                border-color: $accentColor
           .vcontent
             background: var(--code-color)
-            box-shadow: var(--box-shadow)
             border-radius: $borderRadius
             margin: 0 .3rem
             padding: .1rem .6rem .05rem .6rem
