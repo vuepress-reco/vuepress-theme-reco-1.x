@@ -243,6 +243,7 @@ export default {
       border-radius $borderRadius
       box-sizing border-box
       padding 0 15px
+      background var(--background-color)
       &:hover {
         box-shadow: var(--box-shadow-hover);
       }
@@ -291,6 +292,7 @@ export default {
           transition: all .5s
           border-radius $borderRadius
           box-shadow var(--box-shadow)
+          background-color var(--background-color)
           &:hover {
             transform scale(1.04)
           }

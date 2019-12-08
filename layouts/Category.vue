@@ -125,6 +125,7 @@ export default {
       font-size: 13px;
       box-shadow var(--box-shadow)
       transition: all .5s
+      background-color var(--background-color)
       &:hover, &.active {
         background $accentColor
         a span.category-name {
