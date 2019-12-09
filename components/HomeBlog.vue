@@ -7,12 +7,12 @@
       background: `url(${$frontmatter.bgImage ? $withBase($frontmatter.bgImage) : require('../images/home-bg.jpg')}) center/cover no-repeat`}"></div>
       <ModuleTransition>
         <img
-          v-if="recoShowModule && $frontmatter.isShowHeroImage === true"
-          :style="heroImageStyle"
-          :src="$frontmatter.heroImage ? $withBase($frontmatter.heroImage) : require('../images/icon_vuepress_reco.png')"
+          v-if="recoShowModule && $frontmatter.heroImage"
+          :style="heroImageStyle || {}"
+          :src="$withBase($frontmatter.heroImage)"
           alt="hero">
       </ModuleTransition>
-      <ModuleTransition>
+      <ModuleTransition delay="0.04">
         <h1 v-if="$frontmatter.isShowTitleInHome !== false">{{ $frontmatter.heroText || $title || '午后南杂' }}</h1>
       </ModuleTransition>
 
@@ -184,7 +184,7 @@ export default {
       bottom 0
       left 0
       right 0
-      z-index 0
+      z-index -1
       &:after {
         display block
         content ' '
