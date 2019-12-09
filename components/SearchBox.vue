@@ -51,10 +51,6 @@ export default {
   },
   mounted () {
     this.placeholder = this.$site.themeConfig.searchPlaceholder || ''
-    document.addEventListener('keydown', this.onHotkey)
-  },
-  beforeDestroy () {
-    document.removeEventListener('keydown', this.onHotkey)
   },
   computed: {
     showSuggestions () {
@@ -113,12 +109,6 @@ export default {
         }
       }
       return '/'
-    },
-    onHotkey (event) {
-      if (event.srcElement === document.body) {
-        this.$refs.input.focus()
-        event.preventDefault()
-      }
     },
     onUp () {
       if (this.showSuggestions) {
