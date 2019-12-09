@@ -3,31 +3,31 @@
     <div class="hero">
       <ModuleTransition>
         <img
-          v-if="recoShowModule && $frontmatter.isShowHeroImage !== false"
-          :style="heroImageStyle"
-          :src="$frontmatter.heroImage ? $withBase($frontmatter.heroImage) : require('../images/icon_vuepress_reco.png')"
+          v-if="recoShowModule && $frontmatter.heroImage"
+          :style="heroImageStyle || {}"
+          :src="$withBase($frontmatter.heroImage)"
           alt="hero">
       </ModuleTransition>
-      <ModuleTransition delay="0.08">
+      <ModuleTransition delay="0.04">
         <h1 v-if="recoShowModule && $frontmatter.isShowTitleInHome !== false">{{ $frontmatter.heroText || $title || '午后南杂' }}</h1>
       </ModuleTransition>
-      <ModuleTransition delay="0.16">
+      <ModuleTransition delay="0.08">
         <p v-if="recoShowModule" class="description">{{ $description || 'Welcome to your vuePress-theme-reco site' }}</p>
       </ModuleTransition>
-      <ModuleTransition delay="0.24">
+      <ModuleTransition delay="0.16">
         <p class="huawei" v-if="recoShowModule && $themeConfig.huawei === true">
           <i class="iconfont reco-huawei" style="color: #fc2d38"></i>
           &nbsp;&nbsp;&nbsp;华为，为中华而为之！
         </p>
       </ModuleTransition>
-      <ModuleTransition delay="0.32">
+      <ModuleTransition delay="0.24">
         <p class="action" v-if="recoShowModule && $frontmatter.actionText && $frontmatter.actionLink">
           <NavLink class="action-button" :item="actionLink"/>
         </p>
       </ModuleTransition>
     </div>
 
-    <ModuleTransition delay="0.4">
+    <ModuleTransition delay="0.32">
       <div class="features" v-if="recoShowModule && $frontmatter.features && $frontmatter.features.length">
         <div v-for="(feature, index) in $frontmatter.features" :key="index" class="feature">
           <h2>{{ feature.title }}</h2>
@@ -35,7 +35,7 @@
         </div>
       </div>
     </ModuleTransition>
-    <ModuleTransition delay="0.48">
+    <ModuleTransition delay="0.4">
       <Content class="home-center" v-if="recoShowModule" custom/>
     </ModuleTransition>
   </div>
