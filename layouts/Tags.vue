@@ -5,12 +5,12 @@
       <ModuleTransition>
         <TagList
           v-if="recoShowModule"
-          :currentTag="currentTag" 
+          :currentTag="currentTag"
           @getCurrentTag="tagClick"></TagList>
       </ModuleTransition>
 
       <!-- 博客列表 -->
-      <ModuleTransition delay="0.08">    
+      <ModuleTransition delay="0.08">
         <note-abstract
           v-if="recoShowModule"
           class="list"
@@ -39,9 +39,10 @@ import TagList from '@theme/components/TagList'
 import NoteAbstract from '@theme/components/NoteAbstract'
 import pagination from '@theme/mixins/pagination'
 import ModuleTransition from '@theme/components/ModuleTransition'
+import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {
-  mixins: [pagination],
+  mixins: [pagination, moduleTransitonMixin],
   components: { Common, NoteAbstract, TagList, ModuleTransition },
   data () {
     return {

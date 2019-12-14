@@ -36,7 +36,7 @@
           :total="posts.length"
           :currentPage="currentPage"
           @getCurrentPage="getCurrentPage"></pagation>
-      </ModuleTransition>    
+      </ModuleTransition>
     </Common>
   </div>
 </template>
@@ -48,9 +48,10 @@ import ModuleTransition from '@theme/components/ModuleTransition'
 import pagination from '@theme/mixins/pagination'
 import { sortPostsByStickyAndDate, filterPosts } from '@theme/helpers/postData'
 import { getOneColor } from '@theme/helpers/other'
+import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {
-  mixins: [pagination],
+  mixins: [pagination, moduleTransitonMixin],
   components: { Common, NoteAbstract, ModuleTransition },
 
   data () {

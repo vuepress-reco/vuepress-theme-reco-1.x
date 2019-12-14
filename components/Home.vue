@@ -44,8 +44,10 @@
 <script>
 import NavLink from '@theme/components/NavLink'
 import ModuleTransition from '@theme/components/ModuleTransition'
+import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {
+  mixins: [moduleTransitonMixin],
   components: { NavLink, ModuleTransition },
   computed: {
 

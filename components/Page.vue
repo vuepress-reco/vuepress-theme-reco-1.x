@@ -83,8 +83,10 @@
 import PageInfo from '@theme/components/PageInfo'
 import { resolvePage, outboundRE, endingSlashRE } from '@theme/helpers/utils'
 import ModuleTransition from '@theme/components/ModuleTransition'
+import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {
+  mixins: [moduleTransitonMixin],
   components: { PageInfo, ModuleTransition },
 
   props: ['sidebarItems'],

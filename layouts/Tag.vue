@@ -6,8 +6,9 @@
       <ModuleTransition>
         <TagList
           v-if="recoShowModule"
-          class="tags" 
-          :currentTag="$currentTags.key" @getCurrentTag="tagClick"></TagList>
+          class="tags"
+          :currentTag="$currentTags.key"
+          @getCurrentTag="tagClick"></TagList>
       </ModuleTransition>
 
       <!-- 博客列表 -->
@@ -40,9 +41,10 @@ import TagList from '@theme/components/TagList'
 import pagination from '@theme/mixins/pagination'
 import ModuleTransition from '@theme/components/ModuleTransition'
 import { sortPostsByStickyAndDate, filterPosts } from '@theme/helpers/postData'
+import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {
-  mixins: [pagination],
+  mixins: [pagination, moduleTransitonMixin],
   components: { Common, NoteAbstract, TagList, ModuleTransition },
 
   data () {

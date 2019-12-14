@@ -91,9 +91,10 @@ import NoteAbstract from '@theme/components/NoteAbstract'
 import pagination from '@theme/mixins/pagination'
 import ModuleTransition from '@theme/components/ModuleTransition'
 import { getOneColor } from '@theme/helpers/other'
+import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {
-  mixins: [pagination],
+  mixins: [pagination, moduleTransitonMixin],
   components: { NoteAbstract, TagList, FriendLink, ModuleTransition },
   data () {
     return {
