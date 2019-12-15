@@ -1,7 +1,7 @@
 <template>
   <div class="password-shadow">
     <ModuleTransition>
-      <h3 v-if="recoShowModule" class="title">{{isPage ? $frontmatter.title : $site.title || $localeConfig.title}}</h3>
+      <h3 v-show="recoShowModule" class="title">{{isPage ? $frontmatter.title : $site.title || $localeConfig.title}}</h3>
     </ModuleTransition>
 
     <ModuleTransition delay="0.08">
@@ -9,7 +9,7 @@
     </ModuleTransition>
 
     <ModuleTransition delay="0.16">
-      <label v-if="recoShowModule" class="inputBox" id="box">
+      <label v-show="recoShowModule" class="inputBox" id="box">
         <input
           v-model="key"
           type="password"
@@ -22,7 +22,7 @@
     </ModuleTransition>
 
     <ModuleTransition delay="0.24">
-      <div v-if="recoShowModule" class="footer">
+      <div v-show="recoShowModule" class="footer">
         <span>
           <i class="iconfont reco-theme"></i>
           <a target="blank" href="https://vuepress-theme-reco.recoluan.com">vuePress-theme-reco</a>

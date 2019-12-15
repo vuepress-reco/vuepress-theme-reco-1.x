@@ -4,7 +4,7 @@
     <Common :sidebar="false" :isComment="false">
       <!-- 分类集合 -->
       <ModuleTransition>
-        <ul v-if="recoShowModule" class="category-wrapper">
+        <ul v-show="recoShowModule" class="category-wrapper">
           <li
             class="category-item"
             :class="title == item.name ? 'active': ''"
@@ -21,7 +21,7 @@
       <!-- 博客列表 -->
       <ModuleTransition delay="0.08">
         <note-abstract
-          v-if="recoShowModule"
+          v-show="recoShowModule"
           class="list"
           :data="posts"
           :currentPage="currentPage"
@@ -31,7 +31,7 @@
       <!-- 分页 -->
       <ModuleTransition delay="0.16">
         <pagation
-          v-if="recoShowModule"
+          v-show="recoShowModule"
           class="pagation"
           :total="posts.length"
           :currentPage="currentPage"

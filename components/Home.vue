@@ -12,7 +12,7 @@
         <h1 v-if="recoShowModule && $frontmatter.isShowTitleInHome !== false">{{ $frontmatter.heroText || $title || '午后南杂' }}</h1>
       </ModuleTransition>
       <ModuleTransition delay="0.08">
-        <p v-if="recoShowModule" class="description">{{ $description || 'Welcome to your vuePress-theme-reco site' }}</p>
+        <p v-show="recoShowModule" class="description">{{ $description || 'Welcome to your vuePress-theme-reco site' }}</p>
       </ModuleTransition>
       <ModuleTransition delay="0.16">
         <p class="huawei" v-if="recoShowModule && $themeConfig.huawei === true">
@@ -36,7 +36,7 @@
       </div>
     </ModuleTransition>
     <ModuleTransition delay="0.4">
-      <Content class="home-center" v-if="recoShowModule" custom/>
+      <Content class="home-center" v-show="recoShowModule" custom/>
     </ModuleTransition>
   </div>
 </template>
