@@ -71,6 +71,7 @@ export default {
     position: absolute;
     top: 14px;
     left: 0;
+    z-index: -1;
     margin-left: -2px;
     width: 4px;
     height: 100%;
@@ -84,7 +85,7 @@ export default {
       content: " ";
       position: absolute;
       z-index 2;
-      left: -19px;
+      left: -20px;
       top: 50%;
       margin-left: -4px;
       margin-top: -4px;

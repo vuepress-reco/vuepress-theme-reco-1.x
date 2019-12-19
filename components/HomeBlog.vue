@@ -47,19 +47,7 @@
             @getCurrentPage="getCurrentPage" />
         </div>
         <div class="info-wrapper">
-          <img class="personal-img" :src="$frontmatter.faceImage ? $withBase($frontmatter.faceImage) : require('../images/home-head.png')" alt="hero">
-          <h3 class="name" v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</h3>
-          <div class="num">
-            <div>
-              <h3>{{$recoPosts.length}}</h3>
-              <h6>文章</h6>
-            </div>
-            <div>
-              <h3>{{$tags.list.length}}</h3>
-              <h6>标签</h6>
-            </div>
-          </div>
-          <hr>
+          <PersonalInfo/>
           <h4><i class="iconfont reco-category"></i> 分类</h4>
           <ul class="category-wrapper">
             <li class="category-item" v-for="(item, index) in this.$categories.list" :key="index">
@@ -90,12 +78,13 @@ import FriendLink from '@theme/components/FriendLink'
 import NoteAbstract from '@theme/components/NoteAbstract'
 import pagination from '@theme/mixins/pagination'
 import ModuleTransition from '@theme/components/ModuleTransition'
+import PersonalInfo from '@theme/components/PersonalInfo'
 import { getOneColor } from '@theme/helpers/other'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {
   mixins: [pagination, moduleTransitonMixin],
-  components: { NoteAbstract, TagList, FriendLink, ModuleTransition },
+  components: { NoteAbstract, TagList, FriendLink, ModuleTransition, PersonalInfo },
   data () {
     return {
       recoShow: false,
@@ -247,39 +236,6 @@ export default {
       background var(--background-color)
       &:hover {
         box-shadow: var(--box-shadow-hover);
-      }
-      .personal-img {
-        display block
-        margin 2rem auto
-        width 8rem
-        height 8rem
-        border-radius 50%
-      }
-      .name {
-        text-align center
-        color var(--text-color)
-      }
-      .num {
-        display flex
-        margin 0 auto 1rem
-        width 80%
-        > div {
-          text-align center
-          flex auto
-          &:first-child {
-            border-right 1px solid #333
-          }
-          h3 {
-            line-height auto
-            margin 0 0 .6rem
-            color var(--text-color)
-          }
-          h6 {
-            line-height auto
-            color var(--text-color)
-            margin 0
-          }
-        }
       }
       h4 {
         color var(--text-color)

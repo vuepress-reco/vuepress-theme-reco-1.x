@@ -31,7 +31,6 @@
       <!-- 分页 -->
       <ModuleTransition delay="0.16">
         <pagation
-          v-show="recoShowModule"
           class="pagation"
           :total="posts.length"
           :currentPage="currentPage"

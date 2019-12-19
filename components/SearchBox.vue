@@ -221,6 +221,7 @@ export default {
     height 2rem
 @media (max-width: $MQNarrow) and (min-width: $MQMobile)
   .search-box
+    margin-right 0
     .suggestions
       left 0
 @media (max-width: $MQMobile)
