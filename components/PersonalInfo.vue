@@ -13,7 +13,7 @@
     </div>
   </div>
   <hr>
-</div>  
+</div>
 </template>
 
 <style lang="stylus" scoped>
