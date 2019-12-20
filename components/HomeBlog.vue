@@ -1,7 +1,7 @@
 <template>
   <div class="home-blog">
-    <div 
-      class="hero" 
+    <div
+      class="hero"
       :style="{
         background: `url(${$frontmatter.bgImage ? $withBase($frontmatter.bgImage) : require('../images/home-bg.jpg')}) center/cover no-repeat`, ...bgImageStyle}">
       <ModuleTransition>
@@ -15,8 +15,8 @@
       </ModuleTransition>
 
       <ModuleTransition delay="0.16">
-        <p 
-          class="huawei" 
+        <p
+          class="huawei"
           v-if="recoShowModule && $themeConfig.huawei === true">
           <i class="iconfont reco-huawei" style="color: #fc2d38"></i>&nbsp;&nbsp;&nbsp;华为，为中华而为之！
         </p>
@@ -201,6 +201,7 @@ export default {
     }
     .blog-list {
       flex auto
+      width 100%
     }
     .info-wrapper {
       position: -webkit-sticky;
