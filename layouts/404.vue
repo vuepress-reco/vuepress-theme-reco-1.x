@@ -59,7 +59,7 @@ export default {
       border-radius: 4px
 
 @media screen and (max-width: 720px)
-  .mod_404 
+  .mod_404
     .desc
       margin: 50px 0
     .wrapper
