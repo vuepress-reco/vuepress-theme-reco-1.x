@@ -5,15 +5,16 @@
       <!-- 标签集合 -->
       <ModuleTransition>
         <TagList
-          v-if="recoShowModule"
-          class="tags" 
-          :currentTag="$currentTags.key" @getCurrentTag="tagClick"></TagList>
+          v-show="recoShowModule"
+          class="tags"
+          :currentTag="$currentTags.key"
+          @getCurrentTag="tagClick"></TagList>
       </ModuleTransition>
 
       <!-- 博客列表 -->
       <ModuleTransition delay="0.08">
         <note-abstract
-          v-if="recoShowModule"
+          v-show="recoShowModule"
           class="list"
           :data="posts"
           :currentPage="currentPage"
@@ -23,7 +24,6 @@
       <!-- 分页 -->
       <ModuleTransition delay="0.16">
         <pagation
-          v-if="recoShowModule"
           class="pagation"
           :total="posts.length"
           :currentPage="currentPage"
@@ -40,9 +40,10 @@ import TagList from '@theme/components/TagList'
 import pagination from '@theme/mixins/pagination'
 import ModuleTransition from '@theme/components/ModuleTransition'
 import { sortPostsByStickyAndDate, filterPosts } from '@theme/helpers/postData'
+import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {
-  mixins: [pagination],
+  mixins: [pagination, moduleTransitonMixin],
   components: { Common, NoteAbstract, TagList, ModuleTransition },
 
   data () {

@@ -1,15 +1,23 @@
 <template>
   <div class="home-blog">
-    <div
-      class="hero"
-      :style="{
-        background: `url(${$frontmatter.bgImage ? $withBase($frontmatter.bgImage) : require('../images/home-bg.jpg')}) center/cover no-repeat`, ...bgImageStyle}">
+    <div class="hero" :style="{ ...bgImageStyle }">
+      <div
+        class="mask"
+        :style="{
+      background: `url(${$frontmatter.bgImage ? $withBase($frontmatter.bgImage) : require('../images/home-bg.jpg')}) center/cover no-repeat`}"></div>
       <ModuleTransition>
-        <h1 v-if="recoShowModule">{{ $frontmatter.heroText || $title || '午后南杂' }}</h1>
+        <img
+          v-if="recoShowModule && $frontmatter.heroImage"
+          :style="heroImageStyle || {}"
+          :src="$withBase($frontmatter.heroImage)"
+          alt="hero">
+      </ModuleTransition>
+      <ModuleTransition delay="0.04">
+        <h1 v-if="$frontmatter.isShowTitleInHome !== false">{{ $frontmatter.heroText || $title || '午后南杂' }}</h1>
       </ModuleTransition>
 
       <ModuleTransition delay="0.08">
-        <p v-if="recoShowModule" class="description">
+        <p v-show="recoShowModule" class="description">
           {{ $description || 'Welcome to your vuePress-theme-reco site' }}
         </p>
       </ModuleTransition>
@@ -24,7 +32,7 @@
     </div>
 
     <ModuleTransition delay="0.24">
-      <div v-if="recoShowModule" class="home-blog-wrapper">
+      <div v-show="recoShowModule" class="home-blog-wrapper">
         <div class="blog-list">
           <!-- 博客列表 -->
           <note-abstract
@@ -39,19 +47,7 @@
             @getCurrentPage="getCurrentPage" />
         </div>
         <div class="info-wrapper">
-          <img class="personal-img" :src="$frontmatter.faceImage ? $withBase($frontmatter.faceImage) : require('../images/home-head.png')" alt="hero">
-          <h3 class="name" v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</h3>
-          <div class="num">
-            <div>
-              <h3>{{$recoPosts.length}}</h3>
-              <h6>文章</h6>
-            </div>
-            <div>
-              <h3>{{$tags.list.length}}</h3>
-              <h6>标签</h6>
-            </div>
-          </div>
-          <hr>
+          <PersonalInfo/>
           <h4><i class="iconfont reco-category"></i> 分类</h4>
           <ul class="category-wrapper">
             <li class="category-item" v-for="(item, index) in this.$categories.list" :key="index">
@@ -71,7 +67,7 @@
     </ModuleTransition>
 
     <ModuleTransition delay="0.36">
-      <Content v-if="recoShowModule" class="home-center" custom/>
+      <Content v-show="recoShowModule" class="home-center" custom/>
     </ModuleTransition>
   </div>
 </template>
@@ -82,11 +78,13 @@ import FriendLink from '@theme/components/FriendLink'
 import NoteAbstract from '@theme/components/NoteAbstract'
 import pagination from '@theme/mixins/pagination'
 import ModuleTransition from '@theme/components/ModuleTransition'
+import PersonalInfo from '@theme/components/PersonalInfo'
 import { getOneColor } from '@theme/helpers/other'
+import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {
-  mixins: [pagination],
-  components: { NoteAbstract, TagList, FriendLink, ModuleTransition },
+  mixins: [pagination, moduleTransitonMixin],
+  components: { NoteAbstract, TagList, FriendLink, ModuleTransition, PersonalInfo },
   data () {
     return {
       recoShow: false,
@@ -169,6 +167,27 @@ export default {
   margin: 0px auto;
 
   .hero {
+    position relative
+    .mask {
+      position absolute
+      top 0
+      bottom 0
+      left 0
+      right 0
+      z-index -1
+      &:after {
+        display block
+        content ' '
+        background var(--mask-color)
+        position absolute
+        top 0
+        bottom 0
+        left 0
+        right 0
+        z-index 0
+        opacity .2
+      }
+    }
     figure {
       position absolute
       background yellow
@@ -215,40 +234,9 @@ export default {
       border-radius $borderRadius
       box-sizing border-box
       padding 0 15px
+      background var(--background-color)
       &:hover {
         box-shadow: var(--box-shadow-hover);
-      }
-      .personal-img {
-        display block
-        margin 2rem auto
-        width 8rem
-        height 8rem
-      }
-      .name {
-        text-align center
-        color var(--text-color)
-      }
-      .num {
-        display flex
-        margin 0 auto 1rem
-        width 80%
-        > div {
-          text-align center
-          flex auto
-          &:first-child {
-            border-right 1px solid #333
-          }
-          h3 {
-            line-height auto
-            margin 0 0 .6rem
-            color var(--text-color)
-          }
-          h6 {
-            line-height auto
-            color var(--text-color)
-            margin 0
-          }
-        }
       }
       h4 {
         color var(--text-color)
@@ -262,6 +250,7 @@ export default {
           transition: all .5s
           border-radius $borderRadius
           box-shadow var(--box-shadow)
+          background-color var(--background-color)
           &:hover {
             transform scale(1.04)
           }

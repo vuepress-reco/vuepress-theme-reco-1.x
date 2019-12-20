@@ -3,12 +3,13 @@
   <Common :sidebar="false" :isComment="false">
     <ul class="timeline-wrapper">
       <ModuleTransition >
-        <li v-if="recoShowModule" class="desc">Yesterday Once More!</li>
-      </ModuleTransition> 
-      <ModuleTransition 
+        <li v-show="recoShowModule" class="desc">Yesterday Once More!</li>
+      </ModuleTransition>
+      <ModuleTransition
         :delay="String(0.08 * (index + 1))"
-        v-for="(item, index) in $recoPostsForTimeline" :key="index">
-        <li v-if="recoShowModule">
+        v-for="(item, index) in $recoPostsForTimeline"
+        :key="index">
+        <li v-show="recoShowModule">
           <h3 class="year">{{item.year}}</h3>
           <ul class="year-wrapper">
             <li v-for="(subItem, subIndex) in item.data" :key="subIndex">
@@ -17,7 +18,7 @@
             </li>
           </ul>
         </li>
-      </ModuleTransition>  
+      </ModuleTransition>
     </ul>
   </Common>
 </div>
@@ -27,8 +28,10 @@
 <script>
 import Common from '@theme/components/Common'
 import ModuleTransition from '@theme/components/ModuleTransition'
+import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {
+  mixins: [moduleTransitonMixin],
   name: 'TimeLine',
   components: { Common, ModuleTransition },
   filters: {
@@ -68,6 +71,7 @@ export default {
     position: absolute;
     top: 14px;
     left: 0;
+    z-index: -1;
     margin-left: -2px;
     width: 4px;
     height: 100%;
@@ -81,7 +85,7 @@ export default {
       content: " ";
       position: absolute;
       z-index 2;
-      left: -19px;
+      left: -20px;
       top: 50%;
       margin-left: -4px;
       margin-top: -4px;
