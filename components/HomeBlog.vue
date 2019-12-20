@@ -220,6 +220,7 @@ export default {
     }
     .blog-list {
       flex auto
+      width 100%
     }
     .info-wrapper {
       position: -webkit-sticky;
