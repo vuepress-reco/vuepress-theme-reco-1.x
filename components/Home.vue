@@ -3,40 +3,40 @@
     <div class="hero">
       <ModuleTransition>
         <img
-          v-if="data.isShowHeroImage !== false && recoShowModule"
-          :style="heroImageStyle"
-          :src="data.heroImage ? $withBase(data.heroImage) : require('../images/icon_vuepress_reco.png')"
+          v-if="recoShowModule && $frontmatter.heroImage"
+          :style="heroImageStyle || {}"
+          :src="$withBase($frontmatter.heroImage)"
           alt="hero">
       </ModuleTransition>
+      <ModuleTransition delay="0.04">
+        <h1 v-if="recoShowModule && $frontmatter.isShowTitleInHome !== false">{{ $frontmatter.heroText || $title || '午后南杂' }}</h1>
+      </ModuleTransition>
       <ModuleTransition delay="0.08">
-        <h1 v-if="data.isShowTitleInHome !== false && recoShowModule">{{ data.heroText || $title || '午后南杂' }}</h1>
+        <p v-show="recoShowModule" class="description">{{ $description || 'Welcome to your vuePress-theme-reco site' }}</p>
       </ModuleTransition>
       <ModuleTransition delay="0.16">
-        <p v-if="recoShowModule" class="description">{{ $description || 'Welcome to your vuePress-theme-reco site' }}</p>
-      </ModuleTransition>
-      <ModuleTransition delay="0.24">
-        <p class="huawei" v-if="$themeConfig.huawei === true && recoShowModule">
+        <p class="huawei" v-if="recoShowModule && $themeConfig.huawei === true">
           <i class="iconfont reco-huawei" style="color: #fc2d38"></i>
           &nbsp;&nbsp;&nbsp;华为，为中华而为之！
         </p>
       </ModuleTransition>
-      <ModuleTransition delay="0.32">
-        <p class="action" v-if="data.actionText && data.actionLink && recoShowModule">
+      <ModuleTransition delay="0.24">
+        <p class="action" v-if="recoShowModule && $frontmatter.actionText && $frontmatter.actionLink">
           <NavLink class="action-button" :item="actionLink"/>
         </p>
       </ModuleTransition>
     </div>
 
-    <ModuleTransition delay="0.4">
-      <div class="features" v-if="data.features && data.features.length && recoShowModule">
-        <div v-for="(feature, index) in data.features" :key="index" class="feature">
+    <ModuleTransition delay="0.32">
+      <div class="features" v-if="recoShowModule && $frontmatter.features && $frontmatter.features.length">
+        <div v-for="(feature, index) in $frontmatter.features" :key="index" class="feature">
           <h2>{{ feature.title }}</h2>
           <p>{{ feature.details }}</p>
         </div>
       </div>
     </ModuleTransition>
-    <ModuleTransition delay="0.48">
-      <Content class="home-center" v-if="recoShowModule" custom/>
+    <ModuleTransition delay="0.4">
+      <Content class="home-center" v-show="recoShowModule" custom/>
     </ModuleTransition>
   </div>
 </template>
@@ -44,23 +44,22 @@
 <script>
 import NavLink from '@theme/components/NavLink'
 import ModuleTransition from '@theme/components/ModuleTransition'
+import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {
+  mixins: [moduleTransitonMixin],
   components: { NavLink, ModuleTransition },
   computed: {
-    data () {
-      return this.$frontmatter
-    },
 
     actionLink () {
       return {
-        link: this.data.actionLink,
-        text: this.data.actionText
+        link: this.$frontmatter.actionLink,
+        text: this.$frontmatter.actionText
       }
     },
 
     heroImageStyle () {
-      return this.data.heroImageStyle || {
+      return this.$frontmatter.heroImageStyle || {
         maxHeight: '200px',
         margin: '6rem auto 1.5rem'
       }

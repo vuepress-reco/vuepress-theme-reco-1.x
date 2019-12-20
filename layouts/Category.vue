@@ -4,7 +4,7 @@
     <Common :sidebar="false" :isComment="false">
       <!-- 分类集合 -->
       <ModuleTransition>
-        <ul v-if="recoShowModule" class="category-wrapper">
+        <ul v-show="recoShowModule" class="category-wrapper">
           <li
             class="category-item"
             :class="title == item.name ? 'active': ''"
@@ -21,7 +21,7 @@
       <!-- 博客列表 -->
       <ModuleTransition delay="0.08">
         <note-abstract
-          v-if="recoShowModule"
+          v-show="recoShowModule"
           class="list"
           :data="posts"
           :currentPage="currentPage"
@@ -31,12 +31,11 @@
       <!-- 分页 -->
       <ModuleTransition delay="0.16">
         <pagation
-          v-if="recoShowModule"
           class="pagation"
           :total="posts.length"
           :currentPage="currentPage"
           @getCurrentPage="getCurrentPage"></pagation>
-      </ModuleTransition>    
+      </ModuleTransition>
     </Common>
   </div>
 </template>
@@ -48,9 +47,10 @@ import ModuleTransition from '@theme/components/ModuleTransition'
 import pagination from '@theme/mixins/pagination'
 import { sortPostsByStickyAndDate, filterPosts } from '@theme/helpers/postData'
 import { getOneColor } from '@theme/helpers/other'
+import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {
-  mixins: [pagination],
+  mixins: [pagination, moduleTransitonMixin],
   components: { Common, NoteAbstract, ModuleTransition },
 
   data () {
@@ -125,6 +125,7 @@ export default {
       font-size: 13px;
       box-shadow var(--box-shadow)
       transition: all .5s
+      background-color var(--background-color)
       &:hover, &.active {
         background $accentColor
         a span.category-name {

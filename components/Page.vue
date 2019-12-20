@@ -1,11 +1,11 @@
 <template>
   <main class="page">
     <ModuleTransition>
-      <slot v-if="recoShowModule" name="top"/>
+      <slot v-show="recoShowModule" name="top"/>
     </ModuleTransition>
 
     <ModuleTransition delay="0.08">
-      <div v-if="recoShowModule" class="page-title">
+      <div v-show="recoShowModule" class="page-title">
         <h1>{{$page.title}}</h1>
         <hr>
         <PageInfo :pageInfo="$page" :hideAccessNumber="hideAccessNumber"></PageInfo>
@@ -13,11 +13,11 @@
     </ModuleTransition>
 
     <ModuleTransition delay="0.16">
-      <Content v-if="recoShowModule" class="theme-reco-content" />
+      <Content v-show="recoShowModule" class="theme-reco-content" />
     </ModuleTransition>
 
     <ModuleTransition delay="0.24">
-      <footer v-if="recoShowModule" class="page-edit">
+      <footer v-show="recoShowModule" class="page-edit">
         <div
           class="edit-link"
           v-if="editLink"
@@ -74,7 +74,7 @@
     </ModuleTransition>
 
     <ModuleTransition delay="0.40">
-      <slot v-if="recoShowModule" name="bottom"/>
+      <slot v-show="recoShowModule" name="bottom"/>
     </ModuleTransition>
   </main>
 </template>
@@ -83,8 +83,10 @@
 import PageInfo from '@theme/components/PageInfo'
 import { resolvePage, outboundRE, endingSlashRE } from '@theme/helpers/utils'
 import ModuleTransition from '@theme/components/ModuleTransition'
+import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {
+  mixins: [moduleTransitonMixin],
   components: { PageInfo, ModuleTransition },
 
   props: ['sidebarItems'],

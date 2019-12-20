@@ -51,10 +51,6 @@ export default {
   },
   mounted () {
     this.placeholder = this.$site.themeConfig.searchPlaceholder || ''
-    document.addEventListener('keydown', this.onHotkey)
-  },
-  beforeDestroy () {
-    document.removeEventListener('keydown', this.onHotkey)
   },
   computed: {
     showSuggestions () {
@@ -113,12 +109,6 @@ export default {
         }
       }
       return '/'
-    },
-    onHotkey (event) {
-      if (event.srcElement === document.body) {
-        this.$refs.input.focus()
-        event.preventDefault()
-      }
     },
     onUp () {
       if (this.showSuggestions) {
@@ -231,6 +221,7 @@ export default {
     height 2rem
 @media (max-width: $MQNarrow) and (min-width: $MQMobile)
   .search-box
+    margin-right 0
     .suggestions
       left 0
 @media (max-width: $MQMobile)

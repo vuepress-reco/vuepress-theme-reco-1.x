@@ -4,39 +4,7 @@
     :class="pageClasses"
     @touchstart="onTouchStart"
     @touchend="onTouchEnd">
-    <div v-if="absoluteEncryption">
-      <transition name="fade">
-        <LoadingPage v-if="firstLoad" />
-        <Password v-else-if="!isHasKey" />
-        <div v-else>
-          <Navbar
-          v-if="shouldShowNavbar"
-          @toggle-sidebar="toggleSidebar"/>
-
-          <div
-            class="sidebar-mask"
-            @click="toggleSidebar(false)"></div>
-
-          <Sidebar
-            :items="sidebarItems"
-            @toggle-sidebar="toggleSidebar">
-            <slot
-              name="sidebar-top"
-              slot="top"/>
-            <slot
-              name="sidebar-bottom"
-              slot="bottom"/>
-          </Sidebar>
-
-          <Password v-if="!isHasPageKey" :isPage="true"></Password>
-          <div v-else>
-            <slot></slot>
-            <Comments :isShowComments="shouldShowComments"/>
-          </div>
-        </div>
-      </transition>
-    </div>
-    <div v-else>
+    <div v-if="!absoluteEncryption">
       <transition name="fade">
         <LoadingPage v-show="firstLoad" class="loading-wrapper" />
       </transition>
@@ -69,6 +37,38 @@
           <Comments :isShowComments="shouldShowComments"/>
         </div>
       </div>
+    </div>
+    <div v-else>
+      <transition name="fade">
+        <LoadingPage v-if="firstLoad" />
+        <Password v-else-if="!isHasKey" />
+        <div v-else>
+          <Navbar
+          v-if="shouldShowNavbar"
+          @toggle-sidebar="toggleSidebar"/>
+
+          <div
+            class="sidebar-mask"
+            @click="toggleSidebar(false)"></div>
+
+          <Sidebar
+            :items="sidebarItems"
+            @toggle-sidebar="toggleSidebar">
+            <slot
+              name="sidebar-top"
+              slot="top"/>
+            <slot
+              name="sidebar-bottom"
+              slot="bottom"/>
+          </Sidebar>
+
+          <Password v-if="!isHasPageKey" :isPage="true"></Password>
+          <div v-else>
+            <slot></slot>
+            <Comments :isShowComments="shouldShowComments"/>
+          </div>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
