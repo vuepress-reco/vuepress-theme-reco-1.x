@@ -37,7 +37,6 @@
           <!-- 博客列表 -->
           <note-abstract
             :data="$recoPosts"
-            :hideAccessNumber="true"
             :currentPage="currentPage"></note-abstract>
           <!-- 分页 -->
           <pagation

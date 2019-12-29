@@ -59,26 +59,6 @@ module.exports = {
     //   color: '#42b983',
     //   lineColor: '#42b983'
     // },
-
-    /**
-     * valine 设置 (if you need valine comment )
-     */
-
-    // valineConfig: {
-    //   appId: '...',// your appId
-    //   appKey: '...', // your appKey
-    // }
-    vssueConfig: {
-      admins: ['recoluan'],
-      platform: 'github',
-      owner: 'vuepress-reco',
-      repo: 'vuepress-reco.github.io',
-      clientId: '4d81cea3b3d8aac8e88e',
-      clientSecret: 'd23e8556b6d3c85abffbf4b8d853afb2ea08875a',
-    },
-    keyPage: {
-      keys: ['123456']
-    },
     friendLink: [
       {
         title: '午后南杂',

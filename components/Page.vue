@@ -8,7 +8,7 @@
       <div v-show="recoShowModule" class="page-title">
         <h1>{{$page.title}}</h1>
         <hr>
-        <PageInfo :pageInfo="$page" :hideAccessNumber="hideAccessNumber"></PageInfo>
+        <PageInfo :pageInfo="$page" :showAccessNumber="true"></PageInfo>
       </div>
     </ModuleTransition>
 
@@ -98,14 +98,6 @@ export default {
   },
 
   computed: {
-    hideAccessNumber () {
-      const valineConfig = this.$themeConfig.valineConfig
-      if (valineConfig) {
-        return false
-      } else {
-        return true
-      }
-    },
     lastUpdated () {
       return this.$page.lastUpdated
     },
