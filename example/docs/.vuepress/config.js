@@ -11,7 +11,7 @@ module.exports = {
   themeConfig: {
     nav: [
       { text: 'Home', link: '/', icon: 'reco-home' },
-      { text: 'TimeLine', link: '/timeLine/', icon: 'reco-date' },
+      { text: 'TimeLine', link: '/timeline/', icon: 'reco-date' },
       { text: 'Contact',
         icon: 'reco-message',
         items: [
@@ -37,6 +37,7 @@ module.exports = {
       }
     },
     logo: '/head.png',
+    authorAvatar: '/head.png',
     // 搜索设置
     search: true,
     searchMaxSuggestions: 10,
