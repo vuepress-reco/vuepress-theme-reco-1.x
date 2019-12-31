@@ -54,12 +54,9 @@ module.exports = {
     /**
      * 密钥 (if your blog is private)
      */
-
-    // keyPage: {
-    //   keys: ['your password'],
-    //   color: '#42b983',
-    //   lineColor: '#42b983'
-    // },
+    keyPage: {
+      keys: ['123456']
+    },
     friendLink: [
       {
         title: '午后南杂',
