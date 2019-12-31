@@ -74,6 +74,7 @@
 </template>
 
 <script>
+import md5 from 'md5'
 import Navbar from '@theme/components/Navbar'
 import Sidebar from '@theme/components/Sidebar'
 import { resolveSidebarItems } from '@theme/helpers/utils'
@@ -180,22 +181,25 @@ export default {
   methods: {
     hasKey () {
       const keyPage = this.$themeConfig.keyPage
-      if (!keyPage) {
+      if (!keyPage || !keyPage.keys || keyPage.keys.length === 0) {
         this.isHasKey = true
         return
       }
 
-      const keys = keyPage.keys
+      let { keys } = keyPage
+      keys = keys.map(item => md5(item))
       this.isHasKey = keys && keys.indexOf(sessionStorage.getItem('key')) > -1
     },
     hasPageKey () {
-      const pageKeys = this.$frontmatter.keys
-      if (!pageKeys) {
+      let pageKeys = this.$frontmatter.keys
+      if (!pageKeys || pageKeys.length === 0) {
         this.isHasPageKey = true
         return
       }
 
-      this.isHasPageKey = pageKeys && pageKeys.indexOf(sessionStorage.getItem(`pageKey${window.location.pathname}`)) > -1
+      pageKeys = pageKeys.map(item => md5(item))
+
+      this.isHasPageKey = pageKeys.indexOf(sessionStorage.getItem(`pageKey${window.location.pathname}`)) > -1
     },
     toggleSidebar (to) {
       this.isSidebarOpen = typeof to === 'boolean' ? to : !this.isSidebarOpen

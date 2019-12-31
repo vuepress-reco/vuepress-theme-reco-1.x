@@ -11,7 +11,7 @@
       <span>{{ pageInfo.frontmatter.date | formatDateValue }}</span>
     </i>
     <i
-      v-if="hideAccessNumber !== true"
+      v-if="showAccessNumber === true"
       class="iconfont reco-eye">
       <AccessNumber
         :idVal="pageInfo.path"
@@ -37,7 +37,6 @@
 import { formatDate } from '@theme/helpers/utils'
 
 export default {
-  // props: ['pageInfo', 'currentTag'],
   props: {
     pageInfo: {
       type: Object,
@@ -49,7 +48,7 @@ export default {
       type: String,
       default: ''
     },
-    hideAccessNumber: {
+    showAccessNumber: {
       type: Boolean,
       default: false
     }

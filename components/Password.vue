@@ -28,12 +28,13 @@
           <a target="blank" href="https://vuepress-theme-reco.recoluan.com">vuePress-theme-reco</a>
         </span>
         <span>
-          <i class="iconfont reco-other"></i>
-          <a>{{ $themeConfig.author || $site.title }}</a>
-        </span>
-        <span>
           <i class="iconfont reco-copyright"></i>
-          <a>{{ year }}</a>
+          <a>
+            <span v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</span>
+            &nbsp;&nbsp;
+            <span v-if="$themeConfig.startYear">{{ $themeConfig.startYear }} - </span>
+            {{ year }}
+          </a>
         </span>
       </div>
     </ModuleTransition>
@@ -41,6 +42,7 @@
 </template>
 
 <script>
+import md5 from 'md5'
 import ModuleTransition from '@theme/components/ModuleTransition'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
@@ -74,7 +76,7 @@ export default {
         isHasKey,
         $refs: { passwordBtn }
       } = this
-      const keyVal = key.trim()
+      const keyVal = md5(key.trim())
       const pageKey = `pageKey${window.location.pathname}`
       const keyName = isPage ? pageKey : 'key'
       sessionStorage.setItem(keyName, keyVal)
@@ -101,12 +103,12 @@ export default {
       this.warningText = 'Konck! Knock!'
     },
     isHasKey () {
-      const keyPage = this.$themeConfig.keyPage
-      const keys = keyPage.keys
-      return keys && keys.indexOf(sessionStorage.getItem('key')) > -1
+      let { keys } = this.$themeConfig.keyPage
+      keys = keys.map(item => md5(item))
+      return keys.indexOf(sessionStorage.getItem('key')) > -1
     },
     isHasPageKey () {
-      const pageKeys = this.$frontmatter.keys
+      const pageKeys = this.$frontmatter.keys.map(item => md5(item))
       const pageKey = `pageKey${window.location.pathname}`
 
       return pageKeys && pageKeys.indexOf(sessionStorage.getItem(pageKey)) > -1

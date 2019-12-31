@@ -1,12 +1,11 @@
 <template>
   <div class="abstract-wrapper">
     <NoteAbstractItem
-        v-for="(item) in currentPageData"
-        :key="item.path"
-        :item="item"
-        :currentPage="currentPage"
-        :currentTag="currentTag"
-        :hideAccessNumber="true" />
+      v-for="(item) in currentPageData"
+      :key="item.path"
+      :item="item"
+      :currentPage="currentPage"
+      :currentTag="currentTag" />
   </div>
 </template>
 
@@ -15,7 +14,7 @@ import NoteAbstractItem from './NoteAbstractItem'
 
 export default {
   components: { NoteAbstractItem },
-  props: ['data', 'currentPage', 'currentTag', 'hideAccessNumber'],
+  props: ['data', 'currentPage', 'currentTag'],
   computed: {
     currentPageData () {
       const start = this.currentPage * 10 - 10

@@ -11,7 +11,7 @@ module.exports = {
   themeConfig: {
     nav: [
       { text: 'Home', link: '/', icon: 'reco-home' },
-      { text: 'TimeLine', link: '/timeLine/', icon: 'reco-date' },
+      { text: 'TimeLine', link: '/timeline/', icon: 'reco-date' },
       { text: 'Contact',
         icon: 'reco-message',
         items: [
@@ -37,6 +37,7 @@ module.exports = {
       }
     },
     logo: '/head.png',
+    authorAvatar: '/head.png',
     // 搜索设置
     search: true,
     searchMaxSuggestions: 10,
@@ -53,29 +54,6 @@ module.exports = {
     /**
      * 密钥 (if your blog is private)
      */
-
-    // keyPage: {
-    //   keys: ['your password'],
-    //   color: '#42b983',
-    //   lineColor: '#42b983'
-    // },
-
-    /**
-     * valine 设置 (if you need valine comment )
-     */
-
-    // valineConfig: {
-    //   appId: '...',// your appId
-    //   appKey: '...', // your appKey
-    // }
-    vssueConfig: {
-      admins: ['recoluan'],
-      platform: 'github',
-      owner: 'vuepress-reco',
-      repo: 'vuepress-reco.github.io',
-      clientId: '4d81cea3b3d8aac8e88e',
-      clientSecret: 'd23e8556b6d3c85abffbf4b8d853afb2ea08875a',
-    },
     keyPage: {
       keys: ['123456']
     },

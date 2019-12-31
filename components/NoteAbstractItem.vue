@@ -10,7 +10,6 @@
     <hr class="hr">
     <PageInfo
       :pageInfo="item"
-      :hideAccessNumber="!(hideAccessNumber !== true)"
       :currentTag="currentTag">
     </PageInfo>
   </div>
@@ -20,7 +19,7 @@
 import PageInfo from './PageInfo'
 export default {
   components: { PageInfo },
-  props: ['item', 'currentPage', 'currentTag', 'hideAccessNumber']
+  props: ['item', 'currentPage', 'currentTag']
 }
 </script>
 

@@ -97,7 +97,7 @@ export default {
       border-left none
 
 .sidebar-heading
-  color $textColor
+  color var(--text-color)
   transition color .15s ease
   cursor pointer
   font-size 1.1em
@@ -109,7 +109,7 @@ export default {
   margin 0
   border-left 0.25rem solid transparent
   &.open, &:hover
-    color var(--text-color)
+    color $accentColor
   .arrow
     position relative
     top -0.12em
