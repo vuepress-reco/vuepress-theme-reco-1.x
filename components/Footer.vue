@@ -11,10 +11,10 @@
     <span>
       <i class="iconfont reco-copyright"></i>
       <a>
+        <span v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</span>
+        &nbsp;&nbsp;
         <span v-if="$themeConfig.startYear">{{ $themeConfig.startYear }} - </span>
         {{ year }}
-        &nbsp;&nbsp;
-        <span v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</span>
       </a>
     </span>
     <span v-show="$themeConfig.valineConfig !== undefined">

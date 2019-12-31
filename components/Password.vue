@@ -28,12 +28,13 @@
           <a target="blank" href="https://vuepress-theme-reco.recoluan.com">vuePress-theme-reco</a>
         </span>
         <span>
-          <i class="iconfont reco-other"></i>
-          <a>{{ $themeConfig.author || $site.title }}</a>
-        </span>
-        <span>
           <i class="iconfont reco-copyright"></i>
-          <a>{{ year }}</a>
+          <a>
+            <span v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</span>
+            &nbsp;&nbsp;
+            <span v-if="$themeConfig.startYear">{{ $themeConfig.startYear }} - </span>
+            {{ year }}
+          </a>
         </span>
       </div>
     </ModuleTransition>
