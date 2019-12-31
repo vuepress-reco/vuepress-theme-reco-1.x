@@ -13,7 +13,8 @@ module.exports = (options, ctx) => ({
     return {
       '@AlgoliaSearchBox': isAlgoliaSearch
         ? path.resolve(__dirname, 'components/AlgoliaSearchBox.vue')
-        : path.resolve(__dirname, 'noopModule.js')
+        : path.resolve(__dirname, 'noopModule.js'),
+      '@SearchBox': path.resolve(__dirname, 'components/SearchBox.vue')
     }
   },
 
@@ -22,14 +23,12 @@ module.exports = (options, ctx) => ({
     '@vuepress-reco/extract-code',
     '@vuepress-reco/loading-page',
     '@vuepress-reco/pagation',
-    '@vuepress-reco/screenfull',
     '@vuepress-reco/comments',
     '@vuepress/active-header-links',
     ['@vuepress/medium-zoom', {
       selector: '.theme-reco-content :not(a) > img'
     }],
     '@vuepress/plugin-nprogress',
-    '@vuepress/search',
     ['@vuepress/plugin-blog', {
       permalink: '/:regular',
       frontmatters: [

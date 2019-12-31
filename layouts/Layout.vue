@@ -18,12 +18,12 @@
 </template>
 
 <script>
-import Home from '@theme/components/Home.vue'
-import HomeBlog from '@theme/components/HomeBlog.vue'
-import Page from '@theme/components/Page.vue'
-import Footer from '@theme/components/Footer.vue'
-import Common from '@theme/components/Common.vue'
-import { resolveSidebarItems } from '../util'
+import Home from '@theme/components/Home'
+import HomeBlog from '@theme/components/HomeBlog'
+import Page from '@theme/components/Page'
+import Footer from '@theme/components/Footer'
+import Common from '@theme/components/Common'
+import { resolveSidebarItems } from '@theme/helpers/utils'
 
 export default {
   components: { HomeBlog, Home, Page, Common, Footer },

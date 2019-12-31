@@ -7,10 +7,9 @@
       <router-link :to="item.path">{{item.title}}</router-link>
     </div>
     <div class="abstract" v-html="item.excerpt"></div>
-    <hr>
+    <hr class="hr">
     <PageInfo
       :pageInfo="item"
-      :hideAccessNumber="!(hideAccessNumber !== true)"
       :currentTag="currentTag">
     </PageInfo>
   </div>
@@ -20,12 +19,12 @@
 import PageInfo from './PageInfo'
 export default {
   components: { PageInfo },
-  props: ['item', 'currentPage', 'currentTag', 'hideAccessNumber']
+  props: ['item', 'currentPage', 'currentTag']
 }
 </script>
 
 <style lang="stylus" scoped>
-@require '../styles/recoConfig.styl'
+@require '../styles/mode.styl'
 .abstract-item
   position relative
   margin: 0 auto 20px;
@@ -33,10 +32,10 @@ export default {
   width 100%
   overflow: hidden;
   border-radius: $borderRadius
-  box-shadow: $boxShadow;
+  box-shadow: var(--box-shadow);
   box-sizing: border-box;
   transition all .3s
-  background-color $bgColor
+  background-color var(--background-color)
   .reco-sticky
     position absolute
     top 0
@@ -45,14 +44,12 @@ export default {
     color $accentColor
     font-size 2.4rem
   &:hover
-    box-shadow: $boxShadowHover
+    box-shadow: var(--box-shadow-hover)
   .title
     position: relative;
     font-size: 1.28rem;
     line-height: 36px;
     display: inline-block;
-    a
-      color $textColor
     .reco-lock
       font-size 1.28rem
       color $accentColor

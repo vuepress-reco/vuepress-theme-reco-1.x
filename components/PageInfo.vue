@@ -8,10 +8,10 @@
     <i
       v-if="pageInfo.frontmatter.date"
       class="iconfont reco-date">
-      <span>{{ pageInfo.frontmatter.date | formatDate }}</span>
+      <span>{{ pageInfo.frontmatter.date | formatDateValue }}</span>
     </i>
     <i
-      v-if="hideAccessNumber !== true"
+      v-if="showAccessNumber === true"
       class="iconfont reco-eye">
       <AccessNumber
         :idVal="pageInfo.path"
@@ -34,10 +34,9 @@
 
 <script>
 // 引入时间格式化js文件
-import { fromatDateTime } from '@theme/util/formatDate.js'
+import { formatDate } from '@theme/helpers/utils'
 
 export default {
-  // props: ['pageInfo', 'currentTag'],
   props: {
     pageInfo: {
       type: Object,
@@ -49,7 +48,7 @@ export default {
       type: String,
       default: ''
     },
-    hideAccessNumber: {
+    showAccessNumber: {
       type: Boolean,
       default: false
     }
@@ -64,7 +63,7 @@ export default {
     }
   },
   filters: {
-    formatDate: function (value) {
+    formatDateValue (value) {
       if (!value) return ''
       // 返回的value的值都是这个样子2019-09-20T18:22:30.000Z
       // 对value进行处理
@@ -77,10 +76,10 @@ export default {
       // 判断时分秒是不是 00:00:00 (如果是用户手动输入的00:00:00也会不显示)
       if (h > 0 || m > 0 || s > 0) {
         // 时分秒有一个> 0 就说明用户输入一个非 00:00:00 的时分秒
-        return fromatDateTime(value)
+        return formatDate(value)
       } else {
         // 用户没有输入或者输入了 00:00:00
-        return fromatDateTime(value, 'date')
+        return formatDate(value, 'yyyy-MM-dd')
       }
     }
   },

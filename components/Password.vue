@@ -1,37 +1,54 @@
 <template>
-  <div class="password-shadow" :class="{'is-home': !isPage}">
-    <h3 class="title">{{isPage ? $frontmatter.title : $site.title}}</h3>
-    <p class="description" v-if="!isPage">{{$site.description}}</p>
-    <label class="inputBox" id="box">
-      <input
-        v-model="key"
-        type="password"
-        @keyup.enter="inter"
-        @focus="inputFocus"
-        @blur="inputBlur">
-      <span>{{warningText}}</span>
-      <button ref="passwordBtn" @click="inter">OK</button>
-    </label>
+  <div class="password-shadow">
+    <ModuleTransition>
+      <h3 v-show="recoShowModule" class="title">{{isPage ? $frontmatter.title : $site.title || $localeConfig.title}}</h3>
+    </ModuleTransition>
 
-    <div class="footer">
-      <span>
-        <i class="iconfont reco-theme"></i>
-        <a target="blank" href="https://vuepress-theme-reco.recoluan.com">vuePress-theme-reco</a>
-      </span>
-      <span>
-        <i class="iconfont reco-other"></i>
-        <a>{{ $themeConfig.author || $site.title }}</a>
-      </span>
-      <span>
-        <i class="iconfont reco-copyright"></i>
-        <a>{{ year }}</a>
-      </span>
-    </div>
+    <ModuleTransition delay="0.08">
+      <p class="description" v-if="recoShowModule && !isPage">{{$site.description || $localeConfig.description}}</p>
+    </ModuleTransition>
+
+    <ModuleTransition delay="0.16">
+      <label v-show="recoShowModule" class="inputBox" id="box">
+        <input
+          v-model="key"
+          type="password"
+          @keyup.enter="inter"
+          @focus="inputFocus"
+          @blur="inputBlur">
+        <span>{{warningText}}</span>
+        <button ref="passwordBtn" @click="inter">OK</button>
+      </label>
+    </ModuleTransition>
+
+    <ModuleTransition delay="0.24">
+      <div v-show="recoShowModule" class="footer">
+        <span>
+          <i class="iconfont reco-theme"></i>
+          <a target="blank" href="https://vuepress-theme-reco.recoluan.com">vuePress-theme-reco</a>
+        </span>
+        <span>
+          <i class="iconfont reco-copyright"></i>
+          <a>
+            <span v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</span>
+            &nbsp;&nbsp;
+            <span v-if="$themeConfig.startYear">{{ $themeConfig.startYear }} - </span>
+            {{ year }}
+          </a>
+        </span>
+      </div>
+    </ModuleTransition>
   </div>
 </template>
 
 <script>
+import md5 from 'md5'
+import ModuleTransition from '@theme/components/ModuleTransition'
+import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
+
 export default {
+  mixins: [moduleTransitonMixin],
+  components: { ModuleTransition },
   props: {
     isPage: {
       type: Boolean,
@@ -59,7 +76,7 @@ export default {
         isHasKey,
         $refs: { passwordBtn }
       } = this
-      const keyVal = key.trim()
+      const keyVal = md5(key.trim())
       const pageKey = `pageKey${window.location.pathname}`
       const keyName = isPage ? pageKey : 'key'
       sessionStorage.setItem(keyName, keyVal)
@@ -68,6 +85,8 @@ export default {
         this.warningText = 'Key Error'
         return
       }
+
+      this.warningText = 'Key Success'
 
       const width = document.getElementById('box').style.width
 
@@ -84,12 +103,12 @@ export default {
       this.warningText = 'Konck! Knock!'
     },
     isHasKey () {
-      const keyPage = this.$themeConfig.keyPage
-      const keys = keyPage.keys
-      return keys && keys.indexOf(sessionStorage.getItem('key')) > -1
+      let { keys } = this.$themeConfig.keyPage
+      keys = keys.map(item => md5(item))
+      return keys.indexOf(sessionStorage.getItem('key')) > -1
     },
     isHasPageKey () {
-      const pageKeys = this.$frontmatter.keys
+      const pageKeys = this.$frontmatter.keys.map(item => md5(item))
       const pageKey = `pageKey${window.location.pathname}`
 
       return pageKeys && pageKeys.indexOf(sessionStorage.getItem(pageKey)) > -1
@@ -99,61 +118,48 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@require '../styles/recoConfig.styl'
-.theme-container.no-sidebar
-  .password-shadow
-    padding-left 0
-
-.password-shadow.is-home {
-  padding-left 0
-}
+@require '../styles/mode.styl'
 
 .password-shadow {
-  width 100vw;
-  height 100vh;
+  overflow hidden
   position relative
-  padding-left: 20rem;
-  // background-image: radial-gradient(ellipse farthest-corner at center top,#497EC6 0,#000105 100%);
+  background #fff
+  background var(--background-color)
+  box-sizing border-box
   .title {
-    position: absolute;
-    left 0
-    right 0
-    top 12%
-    margin auto
+    margin 8rem auto 2rem
+    width 100%
     text-align center
-    color $textColor
     font-size 30px
     box-sizing: border-box;
-    padding: 0 10px;
     text-shadow $textShadow
+    color $textColor
+    color var(--text-color)
   }
   .description {
-    position: absolute;
-    left 0
-    right 0
-    top 20%
-    margin auto
+    margin 0 auto 6rem
     text-align center
     color $textColor
+    color var(--text-color)
     font-size 22px
     box-sizing: border-box;
     padding: 0 10px;
     text-shadow $textShadow
   }
   .inputBox{
+    position absolute
+    top 40%
+    left 0
+    right 0
+    margin auto
+    display block
     max-width:700px;
     height: 100px;
     background: $accentColor;
     border-radius: $borderRadius
-    position: absolute;
-    left 0
-    right 0
-    top 36%
-    margin auto
     padding-left 20px
     box-sizing border-box
     opacity 0.9
-    overflow hidden
     input{
       width:600px;
       height:100%;
@@ -197,16 +203,17 @@ export default {
       font-size 30px
     }
     button{
+      overflow hidden
       width:0px;
       height:98px;
       border-radius: $borderRadius
       position: absolute;
       border 1px solid $accentColor
+      background var(--background-color)
       right:1px;
       top 1px
       border:0;
       padding:0;
-      background: #fff;
       color: $accentColor;
       font-size:18px;
       outline:none;
@@ -221,7 +228,6 @@ export default {
     left 0
     right 0
     bottom 10%
-    margin auto
     padding: 2.5rem;
     text-align: center;
     color: lighten($textColor, 25%);
@@ -242,8 +248,8 @@ export default {
       left 0
       right 0
       top 43%
-      margin auto
-      padding-left 16.4rem
+      margin auto 20px
+      padding-left 0
       box-sizing border-box
       opacity 0.9
       input{
@@ -307,21 +313,15 @@ export default {
         z-index: 1;
       }
     }
+    .footer {
+      margin-left 0
+
+    }
   }
   @media (max-width: $MQNarrow) {
-    .inputBox{
-      padding-left $mobileSidebarWidth
+    .footer {
+      margin-left 0
     }
   }
 }
-
-// narrow desktop / iPad
-@media (max-width: $MQNarrow)
-  .password-shadow
-    padding-left $mobileSidebarWidth
-
-// wide mobile
-@media (max-width: $MQMobile)
-  .password-shadow
-    padding-left 0
 </style>

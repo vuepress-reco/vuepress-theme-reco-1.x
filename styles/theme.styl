@@ -1,10 +1,9 @@
-@require './recoConfig'
+@require './mode'
 @require './code'
 @require './custom-blocks'
 @require './arrow'
 @require './wrapper'
 @require './toc'
-@require './colorMixin'
 @require './iconfont.css'
 
 html, body
@@ -15,12 +14,12 @@ body
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
   font-size 16px
-  color $textColor
-  background-color #fff
+  color var(--text-color)
+  background-color var(--background-color)
 
-.page
+.page, .password-wrapper-in
   overflow-x: hidden
-  padding-left $sidebarWidth
+  margin-left $sidebarWidth
 
 .navbar
   position fixed
@@ -43,7 +42,7 @@ body
 
 .sidebar
   font-size 16px
-  background-color #fff
+  background-color var(--background-color)
   width $sidebarWidth
   position fixed
   z-index 10
@@ -52,7 +51,7 @@ body
   left 0
   bottom 0
   box-sizing border-box
-  border-right 1px solid $borderColor
+  border-right 1px solid var(--border-color)
   overflow-y auto
 
 .content__default:not(.custom)
@@ -93,7 +92,8 @@ kbd
 blockquote
   font-size .9rem
   color #999
-  border-left .25rem solid $accentColor
+  border-left .25rem solid #999
+  background-color var(--code-color)
   margin 0.5rem 0
   padding .25rem 0 .25rem 1rem
   & > p
@@ -126,7 +126,7 @@ h1
 h2
   font-size 1.65rem
   padding-bottom .3rem
-  border-bottom 1px solid $borderColor
+  border-bottom 1px solid var(--border-color)
 
 h3
   font-size 1.35rem
@@ -149,7 +149,7 @@ p, ul, ol
 
 hr
   border 0
-  border-top 1px solid $borderColor
+  border-top 1px solid var(--border-color)
 
 table
   border-collapse collapse
@@ -158,12 +158,12 @@ table
   overflow-x: auto
 
 tr
-  border-top 1px solid #dfe2e5
+  border-top 1px solid var(--border-color)
   &:nth-child(2n)
-    background-color #f6f8fa
+    background-color var(--code-color)
 
 th, td
-  border 1px solid #dfe2e5
+  border 1px solid var(--border-color)
   padding .6em 1em
 
 .theme-container
@@ -181,18 +181,14 @@ th, td
   .theme-container.no-sidebar
     .sidebar
       display none
-    .page
-      padding-left 0
+    .page, .password-wrapper-in
+      margin-left 0
 
 @require 'mobile.styl'
 
 .iconfont
   font-size: 0.9rem;
-  color: #888;
-  // &:not(:first-child)
-  //   margin-left: 1rem
-  // span
-  //   margin-left: .5rem
+  color: $textColorSub;
 
 /************** 滚动条 **************/
 ::-webkit-scrollbar
@@ -217,104 +213,16 @@ th, td
 .vuepress-flowchart
   overflow: auto
 
-/************** 腾讯 404 公益 **************/
+/************** SW-Update Popup **************/
 
-.mod_404 .desc {
-  .desc_link {
-    display: inline-block
-    // margin: 20px 0
-    background: #424242!important
-    color: #ffffff
-    padding: 6px 20px!important
-    text-decoration: none!important
-    border-radius: 4px
-  }
-}
-
-@media screen and (max-width: 720px) {
-  .mod_404 .desc {
-    margin: 50px 0
-  }
-}
-
-/************** 评论功能 **************/
-
-.comments-wrapper
-  .valine-wrapper
-    #valine.v
-      .vwrap
-        background: #f0f2f4
-        // box-shadow: $boxShadow
-        .vcontrol
-          .vsubmit
-            background: #fff
-      .vinfo
-        padding-left: .6rem
-      .vlist
-        padding: 0 .6rem
-        border-radius: $borderRadius
-        .vcard
-          .vquote
-            margin-left: 0
-          .vimg
-            border-radius: $borderRadius
-            box-shadow: $boxShadow
-            border: none
-        .vh
-          .vhead
-            .vsys
-              box-shadow: $boxShadow
-          .vmeta
-            margin-bottom: 1rem
-            .vat
-              margin-right: .3rem
-              background: #f0f2f4
-              box-shadow: $boxShadow
-              border-radius: $borderRadius
-              padding: 0 .4rem
-              color: #313131
-              border: 1px solid #ededed
-          .vcontent
-            background: #f0f2f4
-            box-shadow: $boxShadow
-            border-radius: $borderRadius
-            margin: 0 .3rem
-            padding: .1rem .6rem .05rem .6rem
-            p .at
-              color: #1abc9c
-      .info
-        padding-right: .6rem
-
-/************** 分页 **************/
-.pagation
-  .pagation-list
-    .jump, .jumpinp input
-      box-shadow: $boxShadow
-
-/************** 搜索框 **************/
-
-.search-box input
-  border-radius: $borderRadius
-
-/********* 悬浮卡片背景颜色 **********/
-
-.navbar
-  background $backgroundColor
-  .links
-    background $backgroundColor
-
-.home-blog
-  .home-blog-wrapper
-    .info-wrapper
-      background $backgroundColor
-
-.abstract-item
-  background $backgroundColor
-
-.category-wrapper
-  .category-item
-    background $backgroundColor
-
-.pagation
-  .jump
-    background $backgroundColor
+.sw-update-popup
+  border: none;
+  border-radius: $borderRadius;
+  box-shadow: var(--box-shadow);
+  color: var(--text-color);
+  > button
+    background: $accentColor;
+    border-radius: $borderRadius;
+    color: var(--text-color);
+    -webkit-tap-highlight-color:rgba(0, 0, 0, 0)
+    border: none;

@@ -4,39 +4,7 @@
     :class="pageClasses"
     @touchstart="onTouchStart"
     @touchend="onTouchEnd">
-    <div v-if="absoluteEncryption">
-      <transition name="fade">
-        <LoadingPage v-if="firstLoad" />
-        <Password v-else-if="!isHasKey" />
-        <div v-else>
-          <Navbar
-          v-if="shouldShowNavbar"
-          @toggle-sidebar="toggleSidebar"/>
-
-          <div
-            class="sidebar-mask"
-            @click="toggleSidebar(false)"></div>
-
-          <Sidebar
-            :items="sidebarItems"
-            @toggle-sidebar="toggleSidebar">
-            <slot
-              name="sidebar-top"
-              slot="top"/>
-            <slot
-              name="sidebar-bottom"
-              slot="bottom"/>
-          </Sidebar>
-
-          <Password v-if="!isHasPageKey" :isPage="true"></Password>
-          <div v-else>
-            <slot></slot>
-            <Comments :isShowComments="shouldShowComments"/>
-          </div>
-        </div>
-      </transition>
-    </div>
-    <div v-else>
+    <div v-if="!absoluteEncryption">
       <transition name="fade">
         <LoadingPage v-show="firstLoad" class="loading-wrapper" />
       </transition>
@@ -70,19 +38,50 @@
         </div>
       </div>
     </div>
+    <div v-else>
+      <transition name="fade">
+        <LoadingPage v-if="firstLoad" />
+        <Password v-else-if="!isHasKey" />
+        <div v-else>
+          <Navbar
+          v-if="shouldShowNavbar"
+          @toggle-sidebar="toggleSidebar"/>
+
+          <div
+            class="sidebar-mask"
+            @click="toggleSidebar(false)"></div>
+
+          <Sidebar
+            :items="sidebarItems"
+            @toggle-sidebar="toggleSidebar">
+            <slot
+              name="sidebar-top"
+              slot="top"/>
+            <slot
+              name="sidebar-bottom"
+              slot="bottom"/>
+          </Sidebar>
+
+          <Password v-if="!isHasPageKey" :isPage="true"></Password>
+          <div v-else>
+            <slot></slot>
+            <Comments :isShowComments="shouldShowComments"/>
+          </div>
+        </div>
+      </transition>
+    </div>
   </div>
 </template>
 
 <script>
-import Navbar from '@theme/components/Navbar.vue'
-import Sidebar from '@theme/components/Sidebar.vue'
-import { resolveSidebarItems } from '../util'
+import md5 from 'md5'
+import Navbar from '@theme/components/Navbar'
+import Sidebar from '@theme/components/Sidebar'
+import { resolveSidebarItems } from '@theme/helpers/utils'
 import Password from '@theme/components/Password'
 import { setTimeout } from 'timers'
-import mixin from '@theme/mixins/index.js'
 
 export default {
-  mixins: [mixin],
   components: { Sidebar, Navbar, Password },
 
   props: {
@@ -169,10 +168,6 @@ export default {
     }
   },
 
-  created () {
-    this._getPostData()
-  },
-
   mounted () {
     this.$router.afterEach(() => {
       this.isSidebarOpen = false
@@ -186,22 +181,25 @@ export default {
   methods: {
     hasKey () {
       const keyPage = this.$themeConfig.keyPage
-      if (!keyPage) {
+      if (!keyPage || !keyPage.keys || keyPage.keys.length === 0) {
         this.isHasKey = true
         return
       }
 
-      const keys = keyPage.keys
+      let { keys } = keyPage
+      keys = keys.map(item => md5(item))
       this.isHasKey = keys && keys.indexOf(sessionStorage.getItem('key')) > -1
     },
     hasPageKey () {
-      const pageKeys = this.$frontmatter.keys
-      if (!pageKeys) {
+      let pageKeys = this.$frontmatter.keys
+      if (!pageKeys || pageKeys.length === 0) {
         this.isHasPageKey = true
         return
       }
 
-      this.isHasPageKey = pageKeys && pageKeys.indexOf(sessionStorage.getItem(`pageKey${window.location.pathname}`)) > -1
+      pageKeys = pageKeys.map(item => md5(item))
+
+      this.isHasPageKey = pageKeys.indexOf(sessionStorage.getItem(`pageKey${window.location.pathname}`)) > -1
     },
     toggleSidebar (to) {
       this.isSidebarOpen = typeof to === 'boolean' ? to : !this.isSidebarOpen
@@ -255,7 +253,6 @@ export default {
     left 0
     right 0
     margin auto
-    background #fff
   .password-wrapper-out
     position absolute
     z-index 21
@@ -264,7 +261,6 @@ export default {
     left 0
     right 0
     margin auto
-    background #fff
   .password-wrapper-in
     position absolute
     z-index 8
@@ -272,8 +268,6 @@ export default {
     bottom 0
     left 0
     right 0
-    margin auto
-    background #fff
   .hide
     height 100vh
     overflow hidden

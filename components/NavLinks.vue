@@ -23,6 +23,7 @@
       class="repo-link"
       target="_blank"
       rel="noopener noreferrer">
+      <i :class="`iconfont reco-${repoLabel.toLowerCase()}`"></i>
       {{ repoLabel }}
       <OutboundLink/>
     </a>
@@ -30,9 +31,9 @@
 </template>
 
 <script>
-import DropdownLink from '@theme/components/DropdownLink.vue'
-import { resolveNavLinkItem } from '../util'
-import NavLink from '@theme/components/NavLink.vue'
+import DropdownLink from '@theme/components/DropdownLink'
+import { resolveNavLinkItem } from '@theme/helpers/utils'
+import NavLink from '@theme/components/NavLink'
 
 export default {
   components: { NavLink, DropdownLink },
@@ -159,7 +160,7 @@ export default {
   display inline-block
   a
     line-height 1.4rem
-    color inherit
+    color var(--text-color)
     &:hover, &.router-link-active
       color $accentColor
       .iconfont
@@ -180,9 +181,6 @@ export default {
       margin-left 0
 
 @media (min-width: $MQMobile)
-  .nav-links a
-    &:hover, &.router-link-active
-      color $textColor
   .nav-item > a:not(.external)
     &:hover, &.router-link-active
       margin-bottom -2px

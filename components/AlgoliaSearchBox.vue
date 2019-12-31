@@ -4,6 +4,7 @@
     class="algolia-search-wrapper search-box"
     role="search"
   >
+    <i class="iconfont reco-search"></i>
     <input
       id="algolia-search-input"
       class="search-query"
@@ -70,33 +71,34 @@ export default {
 </script>
 
 <style lang="stylus">
-@require '../styles/recoConfig.styl'
+@require '../styles/mode.styl'
 .algolia-search-wrapper
   & > span
     vertical-align middle
   .algolia-autocomplete
     line-height normal
     .ds-dropdown-menu
-      background-color #fff
+      background-color var(--background-color)
       border-radius $borderRadius
       font-size 15px
       margin 6px 0 0
       padding 4px
       text-align left
-      box-shadow $boxShadow
+      box-shadow var(--box-shadow)
       &:before
         display none
       [class*=ds-dataset-]
+        background-color var(--background-color)
         border none
         padding 0
       .ds-suggestions
         margin-top 0
       .ds-suggestion
-        border-bottom 1px solid $borderColor
+        border-bottom 1px solid var(--border-color)
     .algolia-docsearch-suggestion--highlight
-      color #2c815b
+      color $accentColor
     .algolia-docsearch-suggestion
-      border-color $borderColor
+      border-color var(--border-color)
       padding 0
       .algolia-docsearch-suggestion--category-header
         padding 5px 10px
@@ -107,22 +109,24 @@ export default {
         .algolia-docsearch-suggestion--highlight
           background rgba(255, 255, 255, 0.6)
       .algolia-docsearch-suggestion--wrapper
+        background var(--background-color)
         padding 0
       .algolia-docsearch-suggestion--title
         font-weight 600
         margin-bottom 0
-        color $textColor
+        color var(--text-color)
       .algolia-docsearch-suggestion--subcategory-column
         vertical-align top
         padding 5px 7px 5px 5px
-        border-color $borderColor
-        background #f1f3f5
+        border-color var(--border-color)
+        background var(--background-color)
         &:after
           display none
       .algolia-docsearch-suggestion--subcategory-column-text
-        color #555
+        color var(--text-color)
     .algolia-docsearch-footer
-      border-color $borderColor
+      border-color var(--border-color)
+      background var(--background-color)
     .ds-cursor .algolia-docsearch-suggestion--content
       background-color #e7edf3 !important
       color $textColor
@@ -153,7 +157,7 @@ export default {
       padding 5px 7px 5px 5px !important
     .algolia-docsearch-suggestion--subcategory-column
       padding 0 !important
-      background white !important
+      background var(--border-color) !important
     .algolia-docsearch-suggestion--subcategory-column-text:after
       content " > "
       font-size 10px

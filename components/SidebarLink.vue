@@ -1,5 +1,5 @@
 <script>
-import { isActive, hashRE, groupHeaders } from '../util'
+import { isActive, hashRE, groupHeaders } from '@theme/helpers/utils'
 
 export default {
   functional: true,
@@ -89,7 +89,7 @@ a.sidebar-link
   font-size 1em
   font-weight 400
   display block!important
-  color $textColor
+  color var(--text-color)
   padding 0.35rem 1rem 0.35rem .75rem
   line-height 1.4
   margin 0 1rem 0 1.5rem

@@ -54,8 +54,8 @@
 </template>
 
 <script>
-import { isActive } from '../util'
-import DropdownTransition from '@theme/components/DropdownTransition.vue'
+import { isActive } from '@theme/helpers/utils'
+import DropdownTransition from '@theme/components/DropdownTransition'
 
 export default {
   name: 'SidebarGroup',
@@ -76,7 +76,7 @@ export default {
   &:not(.collapsable)
     .sidebar-heading:not(.clickable)
       cursor auto
-      color inherit
+      color var(--text-color)
   // refine styles of nested sidebar groups
   &.is-sub-group
     padding-left 0
@@ -97,7 +97,7 @@ export default {
       border-left none
 
 .sidebar-heading
-  color $textColor
+  color var(--text-color)
   transition color .15s ease
   cursor pointer
   font-size 1.1em
@@ -109,7 +109,7 @@ export default {
   margin 0
   border-left 0.25rem solid transparent
   &.open, &:hover
-    color inherit
+    color $accentColor
   .arrow
     position relative
     top -0.12em
