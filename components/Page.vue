@@ -8,7 +8,7 @@
       <div v-show="recoShowModule" class="page-title">
         <h1>{{$page.title}}</h1>
         <hr>
-        <PageInfo :pageInfo="$page" :showAccessNumber="true"></PageInfo>
+        <PageInfo :pageInfo="$page" :showAccessNumber="showAccessNumber"></PageInfo>
       </div>
     </ModuleTransition>
 
@@ -98,6 +98,9 @@ export default {
   },
 
   computed: {
+    showAccessNumber () {
+      return this.$themeConfig.commentsSolution === 'valine'
+    },
     lastUpdated () {
       return this.$page.lastUpdated
     },
