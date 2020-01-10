@@ -65,31 +65,11 @@ yarn build
 
 ## Preview
 
-### Home
-![home.png](./images/1.png)
+![size.png](https://img2018.cnblogs.com/blog/804100/202001/804100-20200108145212697-2145342130.png)
 
-### Home-Blog
-![home.png](./images/home-blog.png)
+![style.png](https://img2018.cnblogs.com/blog/804100/202001/804100-20200108145234008-772192678.png)
 
-
-### Category
-![category.png](./images/2.png)
-
-
-### Tag
-![tag.png](./images/3.png)
-
-
-### Article
-![article.png](./images/4.png)
-
-### Add Password
-
-![password.png](./images/5.png)
-
-### Timeline
-
-![timeline.png](./images/6.png)
+![dark.png](https://img2018.cnblogs.com/blog/804100/202001/804100-20200108145237662-1681040203.png)
 
 ## Contribute
 
