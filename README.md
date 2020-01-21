@@ -72,14 +72,9 @@ yarn build
 
 ![home.png](https://i.loli.net/2020/01/13/nra3kbYSlxojmw4.png)
 
-## Contribute
+## Contributors
 
-**衷心感谢为此项目贡献过宝贵代码的朋友们**
-
-|昵称|贡献记录|
-|:-:|-|
-|[kangxu](https://github.com/kangxukangxu)|[vuepress-theme-reco@0.x](https://github.com/recoluan/vuepress-theme-reco/commit/ec7426a88d50cf8d9f90a7ad9b731a10da7f438b)|
-|[Ekko](https://github.com/danranVm)|[vuepress-theme-reco-demo@1.x](https://github.com/recoluan/vuepress-theme-reco-demo/commit/6d2bbe919e7f6564b8c8173558d197e38e024dc5)|
+[![][contributors-image]][contributors-url]
 
 **衷心感谢美女设计师**
 
