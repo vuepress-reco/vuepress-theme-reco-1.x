@@ -93,7 +93,7 @@ export default {
       const { logo, email } = info
       if (logo && /^http/.test(logo)) return logo
       if (logo && !/^http/.test(logo)) return this.$withBase(logo)
-      return `http://1.gravatar.com/avatar/${this.getMd5(email || '')}?s=50&amp;d=mm&amp;r=x`
+      return `//1.gravatar.com/avatar/${this.getMd5(email || '')}?s=50&amp;d=mm&amp;r=x`
     },
     _adjustPosition (dom) {
       const { offsetWidth } = document.body
