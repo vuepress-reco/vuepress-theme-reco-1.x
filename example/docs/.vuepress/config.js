@@ -38,6 +38,8 @@ module.exports = {
     },
     logo: '/head.png',
     authorAvatar: '/head.png',
+    // 是否在Footer中显示主题名称
+    showThemeName: false,
     // 搜索设置
     search: true,
     searchMaxSuggestions: 10,

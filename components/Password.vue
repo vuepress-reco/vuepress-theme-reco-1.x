@@ -23,7 +23,7 @@
 
     <ModuleTransition delay="0.24">
       <div v-show="recoShowModule" class="footer">
-        <span>
+        <span v-if="$themeConfig.showThemeName === true">
           <i class="iconfont reco-theme"></i>
           <a target="blank" href="https://vuepress-theme-reco.recoluan.com">vuePress-theme-reco</a>
         </span>

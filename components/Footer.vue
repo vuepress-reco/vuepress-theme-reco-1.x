@@ -1,6 +1,6 @@
 <template>
   <div class="footer-wrapper">
-    <span>
+    <span v-if="$themeConfig.showThemeName === true">
       <i class="iconfont reco-theme"></i>
       <a target="blank" href="https://vuepress-theme-reco.recoluan.com">VuePress-theme-reco</a>
     </span>
