@@ -7,7 +7,7 @@ export default {
   mounted () {
     this.recoShowModule = true
   },
-  destoryed () {
+  destroyed () {
     this.recoShowModule = false
   }
 }
