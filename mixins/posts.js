@@ -7,8 +7,8 @@ export default {
         $categories: { list: articles }
       } = this
 
-      let posts = articles.reduce((allData, currnetData) => {
-        return [...allData, ...currnetData.pages]
+      let posts = articles.reduce((allData, currentData) => {
+        return [...allData, ...currentData.pages]
       }, [])
 
       posts = filterPosts(posts)
