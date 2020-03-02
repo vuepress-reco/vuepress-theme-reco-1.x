@@ -22,6 +22,17 @@
     border-color #f26d6d
     .custom-block-title
       color #f26d6d
+  &.right
+    color transparentify($textColor, 0.4)
+    font-size 0.9rem
+    text-align right
+  &.theorem
+    margin 1rem 0
+    padding .1rem 1.5rem
+    border-radius 0.4rem
+    background-color #f0f4f8
+    .title
+      font-weight bold
   &.details
     display block
     position relative
@@ -38,14 +49,3 @@
     summary
       outline none
       cursor pointer
-  &.theorem
-    margin 1rem 0
-    padding .1rem 1.5rem
-    border-radius 0.4rem
-    background-color #f0f4f8
-    .title
-      font-weight bold
-  &.right
-    color transparentify($textColor, 0.4)
-    font-size 0.9rem
-    text-align right
