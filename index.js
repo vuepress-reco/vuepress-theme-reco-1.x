@@ -58,21 +58,21 @@ module.exports = (options, ctx) => ({
     ['container', {
       type: 'tip',
       defaultTitle: {
-        '/': 'TIP',
+        '/': '',
         '/zh/': '提示'
       }
     }],
     ['container', {
       type: 'warning',
       defaultTitle: {
-        '/': 'WARNING',
+        '/': '',
         '/zh/': '注意'
       }
     }],
     ['container', {
       type: 'danger',
       defaultTitle: {
-        '/': 'WARNING',
+        '/': '',
         '/zh/': '警告'
       }
     }],
@@ -83,7 +83,7 @@ module.exports = (options, ctx) => ({
     ['container', {
       type: 'theorem',
       before: info => `<div class="custom-block theorem"><p class="title">${info}</p>`,
-      after: '</div>',
+      after: '</div>'
     }],
     ['container', {
       type: 'details',
