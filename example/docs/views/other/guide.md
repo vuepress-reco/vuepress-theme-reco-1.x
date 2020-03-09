@@ -4,8 +4,6 @@ date: 2019-04-09
 categories:
   - other
   - test
-keys:
-  - '123' 
 ---
 
 ![vuepress](https://img.shields.io/badge/vuepress-0.14.8-brightgreen.svg)
