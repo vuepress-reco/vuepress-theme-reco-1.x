@@ -104,11 +104,11 @@ export default {
     },
     isHasKey () {
       let { keys } = this.$themeConfig.keyPage
-      keys = keys.map(item => md5(item))
+      keys = keys.map(item => item.toLowerCase())
       return keys.indexOf(sessionStorage.getItem('key')) > -1
     },
     isHasPageKey () {
-      const pageKeys = this.$frontmatter.keys.map(item => md5(item))
+      const pageKeys = this.$frontmatter.keys.map(item => item.toLowerCase())
       const pageKey = `pageKey${window.location.pathname}`
 
       return pageKeys && pageKeys.indexOf(sessionStorage.getItem(pageKey)) > -1

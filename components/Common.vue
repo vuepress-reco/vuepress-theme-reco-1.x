@@ -78,7 +78,6 @@
 </template>
 
 <script>
-import md5 from 'md5'
 import Navbar from '@theme/components/Navbar'
 import Sidebar from '@theme/components/Sidebar'
 import { resolveSidebarItems } from '@theme/helpers/utils'
@@ -195,7 +194,7 @@ export default {
       }
 
       let { keys } = keyPage
-      keys = keys.map(item => md5(item))
+      keys = keys.map(item => item.toLowerCase())
       this.isHasKey = keys && keys.indexOf(sessionStorage.getItem('key')) > -1
     },
     hasPageKey () {
@@ -205,7 +204,7 @@ export default {
         return
       }
 
-      pageKeys = pageKeys.map(item => md5(item))
+      pageKeys = pageKeys.map(item => item.toLowerCase())
 
       this.isHasPageKey = pageKeys.indexOf(sessionStorage.getItem(`pageKey${window.location.pathname}`)) > -1
     },
