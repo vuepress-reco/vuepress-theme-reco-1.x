@@ -192,22 +192,19 @@ th, td
 
 /************** 滚动条 **************/
 ::-webkit-scrollbar
-  width: 6px;
+  width: 5px;
   height: 5px;
 
 ::-webkit-scrollbar-track-piece
-  background-color: rgba(0, 0, 0, 0.2);
-  -webkit-border-radius: 6px;
+  // background-color: rgba(0, 0, 0, 0.2);
 
 ::-webkit-scrollbar-thumb:vertical
   height: 5px;
-  background-color: rgba(125, 125, 125, 0.7);
-  -webkit-border-radius: 6px;
+  background-color: $accentColor;
 
 ::-webkit-scrollbar-thumb:horizontal
   width: 5px;
-  background-color: rgba(125, 125, 125, 0.7);
-  -webkit-border-radius: 6px;
+  background-color: $accentColor;
 
 /************** 流程图的滚动条 **************/
 .vuepress-flowchart
@@ -216,10 +213,11 @@ th, td
 /************** SW-Update Popup **************/
 
 .sw-update-popup
-  border-radius: $borderRadius;
-  box-shadow: var(--box-shadow);
-  color: var(--text-color);
-  background: var(--background-color);
+  border-radius: $borderRadius!important;
+  box-shadow: var(--box-shadow)!important;
+  color: var(--text-color)!important;
+  background: var(--background-color)!important;
+  border: none!important;
   > button
     background: $accentColor;
     border-radius: $borderRadius;

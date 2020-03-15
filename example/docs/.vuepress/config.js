@@ -54,9 +54,6 @@ module.exports = {
     /**
      * 密钥 (if your blog is private)
      */
-    keyPage: {
-      keys: ['123456']
-    },
     friendLink: [
       {
         title: '午后南杂',
@@ -73,6 +70,6 @@ module.exports = {
     ]
   },
   markdown: {
-    lineNumbers: true
+    // lineNumbers: true
   }
 }

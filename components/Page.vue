@@ -1,22 +1,18 @@
 <template>
   <main class="page">
     <ModuleTransition>
-      <slot v-show="recoShowModule" name="top"/>
-    </ModuleTransition>
-
-    <ModuleTransition delay="0.08">
-      <div v-show="recoShowModule" class="page-title">
+      <div v-show="recoShowModule && $page.title" class="page-title">
         <h1>{{$page.title}}</h1>
         <hr>
         <PageInfo :pageInfo="$page" :showAccessNumber="showAccessNumber"></PageInfo>
       </div>
     </ModuleTransition>
 
-    <ModuleTransition delay="0.16">
+    <ModuleTransition delay="0.08">
       <Content v-show="recoShowModule" class="theme-reco-content" />
     </ModuleTransition>
 
-    <ModuleTransition delay="0.24">
+    <ModuleTransition delay="0.16">
       <footer v-show="recoShowModule" class="page-edit">
         <div
           class="edit-link"
@@ -40,7 +36,7 @@
       </footer>
     </ModuleTransition>
 
-    <ModuleTransition delay="0.32">
+    <ModuleTransition delay="0.24">
       <div class="page-nav" v-if="recoShowModule && (prev || next)">
         <p class="inner">
           <span
@@ -72,10 +68,6 @@
         </p>
       </div>
     </ModuleTransition>
-
-    <ModuleTransition delay="0.40">
-      <slot v-show="recoShowModule" name="bottom"/>
-    </ModuleTransition>
   </main>
 </template>
 
@@ -99,6 +91,7 @@ export default {
 
   computed: {
     showAccessNumber () {
+      console.log(this)
       return this.$themeConfig.commentsSolution === 'valine'
     },
     lastUpdated () {

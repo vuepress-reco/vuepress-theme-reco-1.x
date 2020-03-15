@@ -13,12 +13,14 @@
           alt="hero">
       </ModuleTransition>
       <ModuleTransition delay="0.04">
-        <h1 v-if="$frontmatter.isShowTitleInHome !== false">{{ $frontmatter.heroText || $title || '午后南杂' }}</h1>
+        <h1 v-if="recoShowModule && $frontmatter.heroText !== null">
+          {{ $frontmatter.heroText || $title || 'vuePress-theme-reco' }}
+        </h1>
       </ModuleTransition>
 
       <ModuleTransition delay="0.08">
-        <p v-show="recoShowModule" class="description">
-          {{ $description || 'Welcome to your vuePress-theme-reco site' }}
+        <p v-if="recoShowModule && $frontmatter.tagline !== null" class="description">
+          {{ $frontmatter.tagline || $description || 'Welcome to your vuePress-theme-reco site' }}
         </p>
       </ModuleTransition>
 

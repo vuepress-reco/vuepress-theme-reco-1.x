@@ -22,7 +22,7 @@
         'max-width': linksWrapMaxWidth + 'px'
       } : {}">
 
-      <Mode />
+      <Mode v-show="$themeConfig.mode !== null" />
       <AlgoliaSearchBox
         v-if="isAlgoliaSearch"
         :options="algolia"/>
@@ -126,5 +126,5 @@ $navbar-horizontal-padding = 1.5rem
     .can-hide
       display none
     .links
-      padding-left 1.5rem
+      padding-left .2rem
 </style>
