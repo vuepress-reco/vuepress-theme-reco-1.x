@@ -31,8 +31,11 @@ export default {
 
   mounted () {
     const mode = localStorage.getItem('mode')
-    this.currentMode = mode === null ? 'auto' : mode
-    if (mode === 'dark') {
+    const { mode: customizeMode } = this.$themeConfig
+    this.currentMode = mode === null ? customizeMode === undefined ? 'auto' : customizeMode : mode
+    if (customizeMode === null) {
+      activateMode('light')
+    } else if (mode === 'dark') {
       activateMode('dark')
     } else if (mode === 'light') {
       activateMode('light')
