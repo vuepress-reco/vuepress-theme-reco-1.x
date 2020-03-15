@@ -34,7 +34,9 @@
         <Password v-show="!isHasPageKey" :isPage="true" class="password-wrapper-in" key="in"></Password>
         <div :class="{ 'hide': !isHasPageKey }">
           <slot></slot>
-          <Comments :isShowComments="shouldShowComments"/>
+          <ModuleTransition delay=".48">
+            <Comments v-show="recoShowModule" :isShowComments="shouldShowComments"/>
+          </ModuleTransition>
         </div>
       </div>
     </div>
@@ -65,7 +67,9 @@
           <Password v-if="!isHasPageKey" :isPage="true"></Password>
           <div v-else>
             <slot></slot>
-            <Comments :isShowComments="shouldShowComments"/>
+            <ModuleTransition delay=".48">
+              <Comments v-show="recoShowModule" :isShowComments="shouldShowComments"/>
+            </ModuleTransition>
           </div>
         </div>
       </transition>
@@ -80,9 +84,13 @@ import Sidebar from '@theme/components/Sidebar'
 import { resolveSidebarItems } from '@theme/helpers/utils'
 import Password from '@theme/components/Password'
 import { setTimeout } from 'timers'
+import ModuleTransition from '@theme/components/ModuleTransition'
+import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {
-  components: { Sidebar, Navbar, Password },
+  mixins: [moduleTransitonMixin],
+
+  components: { Sidebar, Navbar, Password, ModuleTransition },
 
   props: {
     sidebar: {
