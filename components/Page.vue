@@ -91,7 +91,6 @@ export default {
 
   computed: {
     showAccessNumber () {
-      console.log(this)
       return this.$themeConfig.commentsSolution === 'valine'
     },
     lastUpdated () {
@@ -232,14 +231,14 @@ function flatten (items, res) {
     .edit-link
       display inline-block
       a
-        color lighten($textColor, 25%)
+        color $accentColor
         margin-right 0.25rem
     .last-updated
       float right
       font-size 0.9em
       .prefix
         font-weight 500
-        color lighten($textColor, 25%)
+        color $accentColor
       .time
         font-weight 400
         color #aaa

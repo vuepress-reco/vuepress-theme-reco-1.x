@@ -33,25 +33,17 @@ export default {
     const mode = localStorage.getItem('mode')
     const { mode: customizeMode } = this.$themeConfig
     this.currentMode = mode === null ? customizeMode === undefined ? 'auto' : customizeMode : mode
-    if (customizeMode === null) {
-      activateMode('light')
-    } else if (mode === 'dark') {
-      activateMode('dark')
-    } else if (mode === 'light') {
-      activateMode('light')
-    }
+    activateMode(this.currentMode)
   },
 
   methods: {
     selectMode (mode) {
       if (mode.mode === this.currentMode) {
         return
-      } else if (mode.mode === 'dark') {
-        activateMode('dark')
-      } else if (mode.mode === 'light') {
-        activateMode('light')
       } else if (mode.mode === 'auto') {
         setMode()
+      } else {
+        activateMode(mode.mode)
       }
       localStorage.setItem('mode', mode.mode)
       this.currentMode = mode.mode
