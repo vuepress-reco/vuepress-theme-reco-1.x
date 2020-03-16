@@ -161,7 +161,7 @@ export default {
       // make the arrow always down at desktop
       border-left 4px solid transparent
       border-right 4px solid transparent
-      border-top 6px solid $textColorSub
+      border-top 6px solid var(--text-color-sub)
       border-bottom 0
     .nav-dropdown
       display none

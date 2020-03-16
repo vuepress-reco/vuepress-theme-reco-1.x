@@ -29,7 +29,7 @@ export default function setMode () {
     console.log('You specified no preference for a color scheme or your browser does not support it. I schedule dark mode during night time.')
     const now = new Date()
     const hour = now.getHours()
-    if (hour < 4 || hour >= 16) {
+    if (hour < 6 || hour >= 18) {
       activateMode('dark')
     }
   }

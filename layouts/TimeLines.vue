@@ -124,7 +124,7 @@ export default {
       .date {
         width 40px
         line-height 30px
-        color $textColorSub
+        color var(--text-color-sub)
         font-size 12px
         &::before {
           content: " ";
@@ -142,7 +142,7 @@ export default {
       }
       .title {
         line-height 30px
-        color $textColorSub
+        color var(--text-color-sub)
         font-size 16px
         cursor pointer
       }
