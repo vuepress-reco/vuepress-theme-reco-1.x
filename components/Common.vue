@@ -35,7 +35,9 @@
         <div :class="{ 'hide': !isHasPageKey }">
           <slot></slot>
           <ModuleTransition delay=".48">
-            <Comments v-show="recoShowModule" :isShowComments="shouldShowComments"/>
+            <div v-show="recoShowModule">
+              <Comments :isShowComments="shouldShowComments"/>
+            </div>
           </ModuleTransition>
         </div>
       </div>
@@ -67,9 +69,9 @@
           <Password v-if="!isHasPageKey" :isPage="true"></Password>
           <div v-else>
             <slot></slot>
-            <ModuleTransition delay=".48">
-              <Comments v-show="recoShowModule" :isShowComments="shouldShowComments"/>
-            </ModuleTransition>
+            <div v-show="recoShowModule">
+              <Comments :isShowComments="shouldShowComments"/>
+            </div>
           </div>
         </div>
       </transition>
@@ -118,6 +120,11 @@ export default {
     // 是否显示评论
     shouldShowComments () {
       const { isShowComments, home } = this.$frontmatter
+      console.log(this.isComment, isShowComments, home, !(
+        this.isComment == false ||
+        isShowComments == false ||
+        home == true
+      ))
       return !(
         this.isComment == false ||
         isShowComments == false ||
