@@ -10,7 +10,7 @@ const modeOptions = {
     '--default-color-3': 'rgba(255, 255, 255, .3)',
     '--default-color-2': 'rgba(255, 255, 255, .2)',
     '--default-color-1': 'rgba(255, 255, 255, .1)',
-    '--background-color': '#F5F5F5',
+    '--background-color': '#fff',
     '--box-shadow': '0 1px 6px 0 rgba(0, 0, 0, 0.2)',
     '--box-shadow-hover': '0 2px 16px 0 rgba(0, 0, 0, 0.2)',
     '--text-color': '#242424',

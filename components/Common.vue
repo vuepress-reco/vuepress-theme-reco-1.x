@@ -120,11 +120,6 @@ export default {
     // 是否显示评论
     shouldShowComments () {
       const { isShowComments, home } = this.$frontmatter
-      console.log(this.isComment, isShowComments, home, !(
-        this.isComment == false ||
-        isShowComments == false ||
-        home == true
-      ))
       return !(
         this.isComment == false ||
         isShowComments == false ||
