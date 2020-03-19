@@ -68,8 +68,5 @@ module.exports = {
         link: 'https://vuepress-theme-reco.recoluan.com'
       },
     ]
-  },
-  markdown: {
-    // lineNumbers: true
   }
 }
