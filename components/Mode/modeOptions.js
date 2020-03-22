@@ -33,7 +33,7 @@ const modeOptions = {
     '--background-color': '#181818',
     '--box-shadow': '0 1px 6px 0 rgba(0, 0, 0, .9)',
     '--box-shadow-hover': '0 2px 26px 0 rgba(0, 0, 0, .9)',
-    '--text-color': '#E8E8E8',
+    '--text-color': 'rgba(255, 255, 255, .8)',
     '--text-color-sub': '#8B8B8B',
     '--border-color': 'rgba(0, 0, 0, .3)',
     '--code-color': 'rgba(0, 0, 0, .3)',
