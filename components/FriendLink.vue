@@ -124,7 +124,7 @@ export default {
     padding: 4px 8px 4px 20px;
     line-height 20px
     display: inline-block;
-    cursor: pointer;
+    cursor: default;
     border-radius: $borderRadius
     font-size: 13px;
     box-shadow var(--box-shadow)
