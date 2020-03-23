@@ -11,7 +11,7 @@ export default {
         return [...allData, ...currentData.pages]
       }, [])
 
-      posts = filterPosts(posts)
+      posts = filterPosts(posts, false, this.$lang)
       sortPostsByStickyAndDate(posts)
 
       return posts
@@ -20,7 +20,7 @@ export default {
       let pages = this.$recoPosts
       const formatPages = {}
       const formatPagesArr = []
-      pages = filterPosts(pages, true)
+      pages = filterPosts(pages, true, this.$lang)
       this.pages = pages.length == 0 ? [] : pages
       for (let i = 0, length = pages.length; i < length; i++) {
         const page = pages[i]
