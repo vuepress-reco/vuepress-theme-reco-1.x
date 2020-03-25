@@ -36,6 +36,7 @@ module.exports = {
         text: 'Tag' // 默认 “标签”
       }
     },
+    type: 'blog',
     logo: '/head.png',
     authorAvatar: '/head.png',
     // 搜索设置
