@@ -1,8 +1,8 @@
 export default {
   homeBlog: {
-    article: '文章',
-    tag: 'ラベル',
-    category: '分類',
-    friendLink: '友情リンク'
+    article: '記事',
+    tag: 'タグ',
+    category: 'カテゴリー',
+    friendLink: 'お友達リンク'
   }
 }
