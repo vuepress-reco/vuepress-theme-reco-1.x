@@ -31,8 +31,9 @@ export default {
 
   mounted () {
     const mode = localStorage.getItem('mode')
-    const { mode: customizeMode } = this.$themeConfig
-    this.currentMode = mode ?? (customizeMode === null || customizeMode === undefined ? 'auto' : customizeMode)
+    const { mode: customizeMode, modePicker } = this.$themeConfig
+    const themeMode = customizeMode ?? 'auto'
+    this.currentMode = modePicker === false ? themeMode : mode ?? themeMode
     setMode(this.currentMode)
   },
 
