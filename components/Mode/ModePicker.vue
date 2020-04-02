@@ -6,14 +6,14 @@
         v-for="(mode, index) in modeOptions"
         :key="index"
         :class="getClass(mode.mode)"
-        @click="selectMode(mode)"
+        @click="selectMode(mode.mode)"
       >{{ mode.title }}</li>
     </ul>
   </div>
 </template>
 
 <script>
-import setMode, { activateMode } from './setMode'
+import setMode from './setMode'
 
 export default {
   name: 'ModeOptions',
@@ -32,21 +32,17 @@ export default {
   mounted () {
     const mode = localStorage.getItem('mode')
     const { mode: customizeMode } = this.$themeConfig
-    this.currentMode = mode === null ? customizeMode === undefined ? 'auto' : customizeMode : mode
-    activateMode(this.currentMode)
+    this.currentMode = mode ?? (customizeMode === null || customizeMode === undefined ? 'auto' : customizeMode)
+    setMode(this.currentMode)
   },
 
   methods: {
     selectMode (mode) {
-      if (mode.mode === this.currentMode) {
-        return
-      } else if (mode.mode === 'auto') {
-        setMode()
-      } else {
-        activateMode(mode.mode)
+      if (mode !== this.currentMode) {
+        this.currentMode = mode
+        setMode(mode)
+        localStorage.setItem('mode', mode)
       }
-      localStorage.setItem('mode', mode.mode)
-      this.currentMode = mode.mode
     },
     getClass (mode) {
       return mode !== this.currentMode ? mode : `${mode} active`
