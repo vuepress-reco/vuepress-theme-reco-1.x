@@ -32,7 +32,7 @@
           <a>
             <span v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</span>
             &nbsp;&nbsp;
-            <span v-if="$themeConfig.startYear && $themeConfig.startYear != year">{{ $themeConfig.startYear }} - </span>
+            <span v-if="$themeConfig.startYear">{{ $themeConfig.startYear }} - </span>
             {{ year }}
           </a>
         </span>
