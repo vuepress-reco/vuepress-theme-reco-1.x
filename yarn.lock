@@ -1756,10 +1756,6 @@
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@vuepress-reco/vuepress-plugin-extract-code/-/vuepress-plugin-extract-code-1.0.3.tgz#aed545a2ef13f52d92c1c904efc2225c89b99d2c"
 
-"@vuepress-reco/vuepress-plugin-loading-page@1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@vuepress-reco/vuepress-plugin-loading-page/-/vuepress-plugin-loading-page-1.0.5.tgz#384486fa7ab7780b9282bb557ea41431047f081f"
-
 "@vuepress-reco/vuepress-plugin-pagation@1.0.6":
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/@vuepress-reco/vuepress-plugin-pagation/-/vuepress-plugin-pagation-1.0.6.tgz#dab7cb8e8002926b85bbabb6f4aa489d5114f5f9"

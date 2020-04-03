@@ -9,7 +9,8 @@
     "build": "vuepress build example/docs",
     "eslint-ext": "eslint --ext .js,.vue ./",
     "eslint-fix": "eslint --fix --ext .js,.vue ./",
-    "version": "lerna version --conventional-commits"
+    "version": "lerna version --conventional-commits",
+    "bootstrap": "lerna bootstrap"
   },
   "workspaces": [
     "packages/vuepress-theme-reco",
