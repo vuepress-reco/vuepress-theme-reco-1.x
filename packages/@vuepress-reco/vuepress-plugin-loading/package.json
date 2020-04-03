@@ -17,5 +17,6 @@
   "bugs": {
     "url": "https://github.com/vuepress-reco/vuepress-plugin-loading-page/issues"
   },
-  "homepage": "https://vuepress-theme-reco.recoluan.com"
+  "homepage": "https://vuepress-theme-reco.recoluan.com",
+  "gitHead": "9af3ad5ec3618793625949ad0e11dec6bd54a40a"
 }
