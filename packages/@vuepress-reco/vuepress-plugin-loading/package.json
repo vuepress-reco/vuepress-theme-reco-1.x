@@ -1,6 +1,6 @@
 {
   "name": "@vuepress-reco/vuepress-plugin-loading-page",
-  "version": "1.4.0-alpha.4",
+  "version": "1.4.0",
   "description": "Loading page plugin for vuepress-theme-reco or other vuepress theme",
   "keywords": [
     "vuepress-theme-reco",
