@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 
-module.exports = vuepressThemeReco;
+module.exports = vuepressThemeReco
 
-function vuepressThemeReco() {
-    // TODO
+function vuepressThemeReco () {
+  // TODO
 }

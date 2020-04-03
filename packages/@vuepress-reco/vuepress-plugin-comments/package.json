@@ -1,0 +1,31 @@
+{
+  "name": "@vuepress-reco/vuepress-plugin-comments",
+  "version": "1.0.14",
+  "description": "Comments plugin for vuepress-theme-reco or other vuepress theme",
+  "keywords": [
+    "vuepress-theme-reco",
+    "comments",
+    "vuepress"
+  ],
+  "homepage": "https://vuepress-theme-reco.recoluan.com",
+  "bugs": {
+    "url": "https://github.com/vuepress-reco/vuepress-theme-reco/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuepress-reco/vuepress-theme-reco.git"
+  },
+  "license": "MIT",
+  "author": "reco_luan <recoluan@outlook.com>",
+  "main": "index.js",
+  "dependencies": {
+    "@vssue/api-bitbucket-v2": "^1.1.1",
+    "@vssue/api-gitee-v5": "^1.1.1",
+    "@vssue/api-github-v3": "^1.1.2",
+    "@vssue/api-github-v4": "^1.2.0",
+    "@vssue/api-gitlab-v4": "^1.1.1",
+    "leancloud-storage": "^3.13.2",
+    "valine": "^1.3.6",
+    "vssue": "^1.2.2"
+  }
+}

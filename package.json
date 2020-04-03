@@ -1,26 +1,58 @@
 {
   "name": "vuepress-theme-reco",
   "private": true,
-  "main": "index.js",
   "license": "MIT",
-  "scripts": {
-    "lerna": "lerna",
-    "dev": "vuepress dev example/docs",
-    "build": "vuepress build example/docs",
-    "eslint-ext": "eslint --ext .js,.vue ./",
-    "eslint-fix": "eslint --fix --ext .js,.vue ./",
-    "version": "lerna version --conventional-commits",
-    "bootstrap": "lerna bootstrap"
-  },
+  "main": "index.js",
   "workspaces": [
     "packages/vuepress-theme-reco",
     "packages/@vuepress-reco/*"
   ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "build": "vuepress build example/docs",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "commit": "git add . && git-cz",
+    "dev": "vuepress dev example/docs",
+    "eslint-ext": "eslint --ext .js,.vue ./",
+    "eslint-fix": "eslint --fix --ext .js,.vue ./",
+    "prepublish": "lerna publish --dist-tag next",
+    "publish": "yarn changelog && lerna publish",
+    "push": "yarn commit && git push"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,vue}": [
+      "eslint --fix --ext .js,.vue ./",
+      "git add"
+    ],
+    "package.json": [
+      "sort-package-json",
+      "git add"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
+  },
   "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "babel-eslint": "^10.1.0",
+    "commitizen": "^4.0.3",
+    "conventional-changelog-cli": "^2.0.31",
+    "cz-customizable": "^6.2.0",
     "eslint": "^6.8.0",
     "eslint-plugin-vue": "^6.2.2",
+    "husky": "^4.2.3",
     "lerna": "^3.20.2",
+    "lint-staged": "^10.1.1",
+    "sort-package-json": "^1.40.0",
     "vuepress": "^1.4.0"
   },
   "publishConfig": {
