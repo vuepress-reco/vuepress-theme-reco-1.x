@@ -9,10 +9,10 @@
   ],
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "vuepress build example/docs",
+    "build": "vuepress build example",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "commit": "git add . && git-cz",
-    "dev": "vuepress dev example/docs",
+    "dev": "vuepress dev example",
     "eslint-ext": "eslint --ext .js,.vue ./",
     "eslint-fix": "eslint --fix --ext .js,.vue ./",
     "prepublish": "lerna publish --dist-tag next",

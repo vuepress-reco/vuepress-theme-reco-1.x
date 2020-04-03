@@ -7,7 +7,7 @@ module.exports = {
     ['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1,user-scalable=no' }]
   ],
   // theme: 'reco',
-  theme: require.resolve('../../../packages/vuepress-theme-reco'),
+  theme: require.resolve('../../packages/vuepress-theme-reco'),
   themeConfig: {
     nav: [
       { text: 'Home', link: '/', icon: 'reco-home' },
