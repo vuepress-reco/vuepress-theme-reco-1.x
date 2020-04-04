@@ -16,7 +16,7 @@
     "eslint-ext": "eslint --ext .js,.vue ./",
     "eslint-fix": "eslint --fix --ext .js,.vue ./",
     "prepublish": "lerna publish --dist-tag next",
-    "publish": "yarn changelog && lerna publish",
+    "publish": "lerna publish",
     "push": "yarn commit && git push"
   },
   "husky": {
