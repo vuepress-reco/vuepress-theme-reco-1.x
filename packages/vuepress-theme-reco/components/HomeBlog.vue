@@ -133,7 +133,6 @@ export default {
   mounted () {
     this.recoShow = true
     this._setPage(this._getStoragePage())
-    console.log(this)
   },
   methods: {
     // 获取当前页码

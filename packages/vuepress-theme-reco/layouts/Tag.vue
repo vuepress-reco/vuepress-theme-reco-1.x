@@ -1,36 +1,34 @@
 <template>
-  <div class="tag-wrapper">
-    <!-- 公共布局 -->
-    <Common :sidebar="false" :isComment="false">
-      <!-- 标签集合 -->
-      <ModuleTransition>
-        <TagList
-          v-show="recoShowModule"
-          class="tags"
-          :currentTag="$currentTags.key"
-          @getCurrentTag="tagClick"></TagList>
-      </ModuleTransition>
+  <!-- 公共布局 -->
+  <Common class="tag-wrapper" :sidebar="false" :isComment="false">
+    <!-- 标签集合 -->
+    <ModuleTransition>
+      <TagList
+        v-show="recoShowModule"
+        class="tags"
+        :currentTag="$currentTags.key"
+        @getCurrentTag="tagClick"></TagList>
+    </ModuleTransition>
 
-      <!-- 博客列表 -->
-      <ModuleTransition delay="0.08">
-        <note-abstract
-          v-show="recoShowModule"
-          class="list"
-          :data="posts"
-          :currentPage="currentPage"
-          @currentTag="$currentTags.key"></note-abstract>
-      </ModuleTransition>
+    <!-- 博客列表 -->
+    <ModuleTransition delay="0.08">
+      <note-abstract
+        v-show="recoShowModule"
+        class="list"
+        :data="posts"
+        :currentPage="currentPage"
+        @currentTag="$currentTags.key"></note-abstract>
+    </ModuleTransition>
 
-      <!-- 分页 -->
-      <ModuleTransition delay="0.16">
-        <pagation
-          class="pagation"
-          :total="posts.length"
-          :currentPage="currentPage"
-          @getCurrentPage="getCurrentPage"></pagation>
-      </ModuleTransition>
-    </Common>
-  </div>
+    <!-- 分页 -->
+    <ModuleTransition delay="0.16">
+      <pagation
+        class="pagation"
+        :total="posts.length"
+        :currentPage="currentPage"
+        @getCurrentPage="getCurrentPage"></pagation>
+    </ModuleTransition>
+  </Common>
 </template>
 
 <script>
