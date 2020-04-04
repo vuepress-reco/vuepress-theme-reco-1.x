@@ -1,24 +1,4 @@
-# [](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.0...v) (2020-04-04)
-
-
-
-# [](https://github.com/vuepress-reco/vuepress-theme-reco/compare/v1.4.0-alpha.3...v) (2020-04-03)
-
-
-
-# [1.4.0-alpha.3](https://github.com/vuepress-reco/vuepress-theme-reco/compare/v1.4.0-alpha.2...v1.4.0-alpha.3) (2020-04-03)
-
-
-
-# [1.4.0-alpha.2](https://github.com/vuepress-reco/vuepress-theme-reco/compare/v1.4.0-alpha.1...v1.4.0-alpha.2) (2020-04-03)
-
-
-
-# [1.4.0-alpha.1](https://github.com/vuepress-reco/vuepress-theme-reco/compare/v1.4.0-alpha.0...v1.4.0-alpha.1) (2020-04-03)
-
-
-
-# [1.4.0-alpha.0](https://github.com/vuepress-reco/vuepress-theme-reco/compare/8dd5cddc267ad539c11cf652857df862da8eea34...v1.4.0-alpha.0) (2020-04-03)
+# [v1.4.0](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.0...v) (2020-04-04)
 
 
 ### Bug Fixes
