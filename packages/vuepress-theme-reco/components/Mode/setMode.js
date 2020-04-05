@@ -1,6 +1,6 @@
 import modeOptions from './modeOptions'
 
-export function activateMode (mode) {
+function activateMode (mode) {
   const rootElement = document.querySelector(':root')
   const options = modeOptions[mode]
 
@@ -9,23 +9,36 @@ export function activateMode (mode) {
   }
 }
 
+// Dark and Light autoswitches
+const onDark = (e) => e.matches && activateMode('dark')
+const onLight = (e) => e.matches && activateMode('light')
+
+const darkScheme = window.matchMedia('(prefers-color-scheme: dark)')
+const lightScheme = window.matchMedia('(prefers-color-scheme: light)')
+
 /**
  * Sets a color scheme for the website.
- * If browser supports "prefers-color-scheme" it will respect the setting for light or dark mode
+ * If browser supports "prefers-color-scheme", 'auto' mode will respect the setting for light or dark mode
  * otherwise it will set a dark theme during night time
  */
-export default function setMode () {
-  const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-  const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
-  const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
-  const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+export default function setMode (mode = 'auto') {
+  if (mode !== 'auto') {
+    darkScheme.removeListener(onDark)
+    lightScheme.removeListener(onLight)
+    activateMode(mode)
+    return
+  }
 
-  window.matchMedia('(prefers-color-scheme: dark)').addListener(e => e.matches && activateMode('dark'))
-  window.matchMedia('(prefers-color-scheme: light)').addListener(e => e.matches && activateMode('light'))
+  darkScheme.addListener(onDark)
+  lightScheme.addListener(onLight)
+
+  const isDarkMode = darkScheme.matches
+  const isLightMode = lightScheme.matches
 
   if (isDarkMode) activateMode('dark')
   if (isLightMode) activateMode('light')
-  if (isNotSpecified || hasNoSupport) {
+
+  if (!isDarkMode && !isLightMode) {
     console.log('You specified no preference for a color scheme or your browser does not support it. I schedule dark mode during night time.')
     const now = new Date()
     const hour = now.getHours()
