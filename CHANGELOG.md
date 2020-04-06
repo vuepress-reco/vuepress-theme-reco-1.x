@@ -1,4 +1,20 @@
-# [1.4.1-alpha.1](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.0...v1.4.1-alpha.1) (2020-04-04)
+## [1.4.1](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.1-alpha.1...v1.4.1) (2020-04-06)
+
+
+### Bug Fixes
+
+* duplicate year in footer (again) ([23a40b7](https://github.com/recoluan/vuepress-theme-reco/commit/23a40b76a8d382b8a3c9716322ca66acca5347f1))
+* mode listeners not removed (again) ([206fb17](https://github.com/recoluan/vuepress-theme-reco/commit/206fb1700856d0a2b0c0d354ad1ed1995fc83bef))
+* remove package reference ([7c30d24](https://github.com/recoluan/vuepress-theme-reco/commit/7c30d2452a92d4b584e11976d81181ce1192577c))
+
+
+### Features
+
+* add modePicker config (again) ([9e88b96](https://github.com/recoluan/vuepress-theme-reco/commit/9e88b96a3c61af5576ec65dfd033c5162d98a7ff))
+
+
+
+## [1.4.1-alpha.1](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.0...v1.4.1-alpha.1) (2020-04-04)
 
 
 ### Bug Fixes
