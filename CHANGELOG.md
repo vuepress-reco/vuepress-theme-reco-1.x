@@ -1,3 +1,13 @@
+## [1.4.2](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.1...v1.4.2) (2020-04-07)
+
+
+### Bug Fixes
+
+* **vuepress-theme-reco:** fix error about window and some eslint error ([28e234b](https://github.com/recoluan/vuepress-theme-reco/commit/28e234bebac4707d81821dce4dc84253589724a7))
+* **vuepress-theme-reco:** replace '??' to '||' ([447467c](https://github.com/recoluan/vuepress-theme-reco/commit/447467ce911911893a6b0f25fe68eb7666e77310))
+
+
+
 ## [1.4.1](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.1-alpha.1...v1.4.1) (2020-04-06)
 
 
