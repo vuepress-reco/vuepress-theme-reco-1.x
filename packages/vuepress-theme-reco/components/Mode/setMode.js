@@ -9,19 +9,20 @@ function activateMode (mode) {
   }
 }
 
-// Dark and Light autoswitches
-const onDark = (e) => e.matches && activateMode('dark')
-const onLight = (e) => e.matches && activateMode('light')
-
-const darkScheme = window.matchMedia('(prefers-color-scheme: dark)')
-const lightScheme = window.matchMedia('(prefers-color-scheme: light)')
-
 /**
  * Sets a color scheme for the website.
  * If browser supports "prefers-color-scheme", 'auto' mode will respect the setting for light or dark mode
  * otherwise it will set a dark theme during night time
  */
 export default function setMode (mode = 'auto') {
+  // Dark and Light autoswitches
+  // 这里的声明需要挪到 setMode 函数中，否则 windows 会报错
+  const onDark = (e) => e.matches && activateMode('dark')
+  const onLight = (e) => e.matches && activateMode('light')
+
+  const darkScheme = window.matchMedia('(prefers-color-scheme: dark)')
+  const lightScheme = window.matchMedia('(prefers-color-scheme: light)')
+
   if (mode !== 'auto') {
     darkScheme.removeListener(onDark)
     lightScheme.removeListener(onLight)
