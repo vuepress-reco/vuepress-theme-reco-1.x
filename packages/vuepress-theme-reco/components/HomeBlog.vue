@@ -23,17 +23,9 @@
           {{ $frontmatter.tagline || $description || 'Welcome to your vuePress-theme-reco site' }}
         </p>
       </ModuleTransition>
-
-      <ModuleTransition delay="0.16">
-        <p
-          class="huawei"
-          v-if="recoShowModule && $themeConfig.huawei === true">
-          <i class="iconfont reco-huawei" style="color: #fc2d38"></i>&nbsp;&nbsp;&nbsp;华为，为中华而为之！
-        </p>
-      </ModuleTransition>
     </div>
 
-    <ModuleTransition delay="0.24">
+    <ModuleTransition delay="0.16">
       <div v-show="recoShowModule" class="home-blog-wrapper">
         <div class="blog-list">
           <!-- 博客列表 -->
@@ -67,7 +59,7 @@
       </div>
     </ModuleTransition>
 
-    <ModuleTransition delay="0.36">
+    <ModuleTransition delay="0.24">
       <Content v-show="recoShowModule" class="home-center" custom/>
     </ModuleTransition>
   </div>
