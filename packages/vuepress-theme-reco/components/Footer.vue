@@ -13,8 +13,8 @@
       <a>
         <span v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</span>
         &nbsp;&nbsp;
-        <span v-if="$themeConfig.startYear && $themeConfig.startYear != year">{{ $themeConfig.startYear }} - </span>
-        {{ year }}
+        <span v-if="$themeConfig.startYear && $themeConfig.startYear != (new Date().getFullYear())">{{ $themeConfig.startYear }} - </span>
+        {{ new Date().getFullYear() }}
       </a>
     </span>
     <span v-show="$themeConfig.valineConfig !== undefined">
@@ -34,11 +34,6 @@ export default {
   data () {
     return {
       version
-    }
-  },
-  computed: {
-    year () {
-      return new Date().getFullYear()
     }
   }
 }
