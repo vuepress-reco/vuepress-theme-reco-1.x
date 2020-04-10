@@ -22,7 +22,7 @@
         'max-width': linksWrapMaxWidth + 'px'
       } : {}">
 
-      <Mode v-if="$themeConfig.modePicker !== false" />
+      <Mode />
       <AlgoliaSearchBox
         v-if="isAlgoliaSearch"
         :options="algolia"/>
