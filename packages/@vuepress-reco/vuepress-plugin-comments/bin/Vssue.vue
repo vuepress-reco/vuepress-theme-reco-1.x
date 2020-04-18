@@ -59,6 +59,14 @@ export default {
 </script>
 
 <style lang="stylus">
+$vssue-theme-color ?= $accentColor
+$vssue-text-color ?= $textColor
+$vssue-border-color ?= $borderColor
+$vssue-breakpoint-mobile ?= $MQMobile
+
+@import '~vssue/src/styles/index'
+@import '~github-markdown-css/github-markdown.css'
+
 .vssue-wrapper.vssue
   color: #2c3e50
   color: var(--text-color)

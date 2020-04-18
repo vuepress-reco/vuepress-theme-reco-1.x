@@ -94,6 +94,10 @@ export default {
           height: 2.8rem;
           border-radius: .25rem
           border: none
+        .vhead .vnick
+          color $accentColor
+          &::before
+            background $accentColor
       .vh
         border-bottom: none
         .vhead .vsys
@@ -122,7 +126,7 @@ export default {
           margin: 0 .3rem
           padding: .1rem .6rem .05rem .6rem
           p .at
-            color: #1abc9c
+            color: $accentColor
           &.expand:before
             z-index 1
             background: linear-gradient(180deg, rgba(255, 255, 255, 0), #fff)
@@ -137,4 +141,8 @@ export default {
     code, pre, .vbtn
       background var(--background-color)
       color var(--text-color)
+    a
+      color $accentColor
+      &::before
+        background $accentColor
 </style>
