@@ -1,3 +1,12 @@
+## [1.4.4](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.3...v1.4.4) (2020-04-18)
+
+
+### Bug Fixes
+
+* **vuepress-theme-reco:** fix the number of views is not displayed ([7779170](https://github.com/recoluan/vuepress-theme-reco/commit/7779170c687fd663e1dc92fb5f69bf9ee55f40c9))
+
+
+
 ## [1.4.3](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.2...v1.4.3) (2020-04-18)
 
 
