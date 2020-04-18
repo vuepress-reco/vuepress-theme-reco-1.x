@@ -1,5 +1,5 @@
 <template>
-  <Common class="categories-wrapper" :sidebar="false" :isComment="false">
+  <Common class="categories-wrapper" :sidebar="false">
     <!-- 分类集合 -->
     <ModuleTransition>
       <ul v-show="recoShowModule" class="category-wrapper">

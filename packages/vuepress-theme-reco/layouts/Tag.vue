@@ -1,6 +1,6 @@
 <template>
   <!-- 公共布局 -->
-  <Common class="tag-wrapper" :sidebar="false" :isComment="false">
+  <Common class="tag-wrapper" :sidebar="false">
     <!-- 标签集合 -->
     <ModuleTransition>
       <TagList

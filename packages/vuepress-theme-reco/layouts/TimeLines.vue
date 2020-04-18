@@ -1,5 +1,5 @@
 <template>
-  <Common class="timeline-wrapper" :sidebar="false" :isComment="false">
+  <Common class="timeline-wrapper" :sidebar="false">
     <ul class="timeline-content">
       <ModuleTransition >
         <li v-show="recoShowModule" class="desc">Yesterday Once More!</li>
