@@ -69,7 +69,7 @@
       </div>
     </ModuleTransition>
 
-    <ModuleTransition delay="0.24">
+    <ModuleTransition delay="0.32">
       <Comments v-if="recoShowModule" :isShowComments="shouldShowComments"/>
     </ModuleTransition>
   </main>
@@ -104,7 +104,7 @@ export default {
       )
     },
     showAccessNumber () {
-      return this.$themeConfig.commentsSolution === 'valine'
+      return this.$themeConfig.valineConfig !== undefined
     },
     lastUpdated () {
       return this.$page.lastUpdated
