@@ -1,3 +1,16 @@
+## [1.4.3](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.2...v1.4.3) (2020-04-18)
+
+
+### Bug Fixes
+
+* **$SidebarLinks:** fix full path link jump and other questions ([d7e6d16](https://github.com/recoluan/vuepress-theme-reco/commit/d7e6d168b0983ba8c258d64202edd5cdd2db1a8e))
+* **vuepress-plugin-comments:** comment cmpt doesn't inherit $accentColor ([dd43e73](https://github.com/recoluan/vuepress-theme-reco/commit/dd43e736aa3f6268e7340c4cc30a885230f25d2d))
+* **vuepress-theme-reco:** fix eslint errors ([04696fa](https://github.com/recoluan/vuepress-theme-reco/commit/04696fa663a7270218114255be3343ebd75eea54))
+* **vuepress-theme-reco:** mode switching logic with SSR ([46e3590](https://github.com/recoluan/vuepress-theme-reco/commit/46e3590d94e052daeff8933d31a65dd60ad0b654))
+* **vuepress-theme-reco:** ssr-related issues ([f84750b](https://github.com/recoluan/vuepress-theme-reco/commit/f84750b17a6d1b94bf29713eb54657d1175cea99))
+
+
+
 ## [1.4.2](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.1...v1.4.2) (2020-04-07)
 
 
