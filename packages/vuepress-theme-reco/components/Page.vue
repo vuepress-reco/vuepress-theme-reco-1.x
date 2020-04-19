@@ -96,12 +96,9 @@ export default {
   computed: {
     // 是否显示评论
     shouldShowComments () {
-      const { isShowComments, home } = this.$frontmatter
-      return !(
-        this.isComment == false ||
-        isShowComments == false ||
-        home == true
-      )
+      const { isShowComments } = this.$frontmatter
+      const { showComment } = this.$themeConfig.valineConfig || { showComment: true }
+      return (showComment !== false && isShowComments !== false) || (showComment === false && isShowComments === true)
     },
     showAccessNumber () {
       return this.$themeConfig.valineConfig !== undefined

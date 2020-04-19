@@ -2,7 +2,6 @@
   <Common>
     <component v-if="$frontmatter.home" :is="homeCom"/>
     <Page v-else :sidebar-items="sidebarItems"/>
-    <Comments :isShowComments="false"/>
     <Footer v-if="$frontmatter.home" class="footer" />
   </Common>
 </template>
