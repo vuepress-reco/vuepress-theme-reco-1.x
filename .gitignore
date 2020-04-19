@@ -1,2 +1,5 @@
 node_modules
 yarn-error.log
+example/public
+.idea
+.vscode

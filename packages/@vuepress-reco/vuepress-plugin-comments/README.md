@@ -87,6 +87,7 @@ module.exports = {
 - repo: 用来存储评论的 repository
 - clientId: `OAuth App` 的 `client id`
 - clientSecret: `OAuth App` 的 `client secret`（只有在使用某些平台时需要）
+- prefixHost: 默认为false, 若设置为true，则评论和统计的id会加hostname前缀
 
 **`platform` 详解（点击查看[支持的代码托管平台](https://vssue.js.org/zh/guide/supported-platforms.html)）：**
 - github: `@vssue/api-github-v3`

@@ -22,6 +22,7 @@ export default {
   methods: {
     initValine () {
       const Valine = require('valine')
+      const pathPrefix = this.options.prefixHost ? location.hostname : ''
       const valineOptions = {
         el: '#valine',
         placeholder: 'just go go',
@@ -30,7 +31,7 @@ export default {
         avatar: 'retro',
         visitor: true,
         recordIP: false,
-        path: window.location.pathname,
+        path: pathPrefix + window.location.pathname,
         ...this.options
       }
 

@@ -19,7 +19,7 @@
     </span>
     <span v-show="$themeConfig.valineConfig !== undefined">
       <i class="iconfont reco-eye"></i>
-      <AccessNumber idVal="/" />
+      <AccessNumber :idVal="idValue" />
     </span>
     <p class="cyber-security" v-if="$themeConfig.cyberSecurityRecord">
       <img src="https://img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png" alt="">
@@ -34,6 +34,13 @@ export default {
   data () {
     return {
       version
+    }
+  },
+  computed: {
+    idValue () {
+      const isPrefixHost = (this.$themeConfig.valineConfig || {}).prefixHost || false
+      const prefix = isPrefixHost ? location.hostname : ''
+      return prefix + '/'
     }
   }
 }

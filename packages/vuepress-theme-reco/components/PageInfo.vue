@@ -14,7 +14,7 @@
       v-if="showAccessNumber === true"
       class="iconfont reco-eye">
       <AccessNumber
-        :idVal="pageInfo.path"
+        :idVal="idValue"
         :numStyle="numStyle" />
     </i>
     <i
@@ -81,6 +81,13 @@ export default {
         // 用户没有输入或者输入了 00:00:00
         return formatDate(value, 'yyyy-MM-dd')
       }
+    }
+  },
+  computed: {
+    idValue () {
+      const isPrefixHost = (this.$themeConfig.valineConfig || {}).prefixHost || false
+      const prefix = isPrefixHost ? location.hostname : ''
+      return prefix + this.pageInfo.path
     }
   },
   methods: {
