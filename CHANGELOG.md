@@ -1,3 +1,12 @@
+## [1.4.5](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.4...v1.4.5) (2020-04-19)
+
+
+### Bug Fixes
+
+* **vuepress-theme-reco:** fix valine ([bcb6bbd](https://github.com/recoluan/vuepress-theme-reco/commit/bcb6bbd9e581ed25c045612be767ffc019688ef8))
+
+
+
 ## [1.4.4](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.3...v1.4.4) (2020-04-18)
 
 
