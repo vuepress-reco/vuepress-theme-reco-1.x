@@ -6,15 +6,14 @@
         v-for="(mode, index) in modeOptions"
         :key="index"
         :class="getClass(mode.mode)"
-        @click="selectMode(mode)"
+        @click="selectMode(mode.mode)"
       >{{ mode.title }}</li>
     </ul>
   </div>
 </template>
 
 <script>
-import setMode, { activateMode } from './setMode'
-
+import applyMode from './applyMode'
 export default {
   name: 'ModeOptions',
 
@@ -30,23 +29,29 @@ export default {
   },
 
   mounted () {
-    const mode = localStorage.getItem('mode')
-    const { mode: customizeMode } = this.$themeConfig
-    this.currentMode = mode === null ? customizeMode === undefined ? 'auto' : customizeMode : mode
-    activateMode(this.currentMode)
+    // modePicker 开启时默认使用用户主动设置的模式
+    this.currentMode = localStorage.getItem('mode') || this.$themeConfig.mode || 'auto'
+
+    // Dark and Light autoswitches
+    // 为了避免在 server-side 被执行，故在 Vue 组件中设置监听器
+    var that = this
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(() => {
+      that.$data.currentMode === 'auto' && applyMode(that.$data.currentMode)
+    })
+    window.matchMedia('(prefers-color-scheme: light)').addListener(() => {
+      that.$data.currentMode === 'auto' && applyMode(that.$data.currentMode)
+    })
+
+    applyMode(this.currentMode)
   },
 
   methods: {
     selectMode (mode) {
-      if (mode.mode === this.currentMode) {
-        return
-      } else if (mode.mode === 'auto') {
-        setMode()
-      } else {
-        activateMode(mode.mode)
+      if (mode !== this.currentMode) {
+        this.currentMode = mode
+        applyMode(mode)
+        localStorage.setItem('mode', mode)
       }
-      localStorage.setItem('mode', mode.mode)
-      this.currentMode = mode.mode
     },
     getClass (mode) {
       return mode !== this.currentMode ? mode : `${mode} active`

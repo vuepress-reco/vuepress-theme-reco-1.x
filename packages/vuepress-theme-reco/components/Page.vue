@@ -68,6 +68,10 @@
         </p>
       </div>
     </ModuleTransition>
+
+    <ModuleTransition delay="0.32">
+      <Comments v-if="recoShowModule" :isShowComments="shouldShowComments"/>
+    </ModuleTransition>
   </main>
 </template>
 
@@ -90,8 +94,17 @@ export default {
   },
 
   computed: {
+    // 是否显示评论
+    shouldShowComments () {
+      const { isShowComments, home } = this.$frontmatter
+      return !(
+        this.isComment == false ||
+        isShowComments == false ||
+        home == true
+      )
+    },
     showAccessNumber () {
-      return this.$themeConfig.commentsSolution === 'valine'
+      return this.$themeConfig.valineConfig !== undefined
     },
     lastUpdated () {
       return this.$page.lastUpdated
@@ -242,6 +255,8 @@ function flatten (items, res) {
       .time
         font-weight 400
         color #aaa
+  .comments-wrapper
+    @extend $wrapper
 
 .page-nav
   @extend $wrapper

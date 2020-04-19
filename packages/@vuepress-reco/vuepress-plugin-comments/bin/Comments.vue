@@ -2,9 +2,11 @@
   <div
     class="comments-wrapper"
     v-show="isShowComments">
-    <component
-      :is="componentName"
-      :options="options" />
+    <ClientOnly>
+      <component
+        :is="componentName"
+        :options="options" />
+    </ClientOnly>
   </div>
 </template>
 

@@ -17,19 +17,13 @@
         </p>
       </ModuleTransition>
       <ModuleTransition delay="0.16">
-        <p class="huawei" v-if="recoShowModule && $themeConfig.huawei === true">
-          <i class="iconfont reco-huawei" style="color: #fc2d38"></i>
-          &nbsp;&nbsp;&nbsp;华为，为中华而为之！
-        </p>
-      </ModuleTransition>
-      <ModuleTransition delay="0.24">
         <p class="action" v-if="recoShowModule && $frontmatter.actionText && $frontmatter.actionLink">
           <NavLink class="action-button" :item="actionLink"/>
         </p>
       </ModuleTransition>
     </div>
 
-    <ModuleTransition delay="0.32">
+    <ModuleTransition delay="0.24">
       <div class="features" v-if="recoShowModule && $frontmatter.features && $frontmatter.features.length">
         <div v-for="(feature, index) in $frontmatter.features" :key="index" class="feature">
           <h2>{{ feature.title }}</h2>
@@ -37,7 +31,7 @@
         </div>
       </div>
     </ModuleTransition>
-    <ModuleTransition delay="0.4">
+    <ModuleTransition delay="0.32">
       <Content class="home-center" v-show="recoShowModule" custom/>
     </ModuleTransition>
   </div>

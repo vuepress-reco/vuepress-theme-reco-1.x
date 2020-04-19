@@ -10,14 +10,15 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "vuepress build example",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 2",
     "commit": "git add . && git-cz",
     "dev": "vuepress dev example",
     "eslint-ext": "eslint --ext .js,.vue ./",
     "eslint-fix": "eslint --fix --ext .js,.vue ./",
     "prepublish": "lerna publish --dist-tag next",
-    "publish": "yarn changelog && lerna publish",
-    "push": "yarn commit && git push"
+    "publish": "lerna publish",
+    "push": "yarn commit && git push",
+    "update": "yarn upgrade-interactive --latest"
   },
   "husky": {
     "hooks": {
@@ -44,16 +45,16 @@
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "babel-eslint": "^10.1.0",
-    "commitizen": "^4.0.3",
+    "commitizen": "^4.0.4",
     "conventional-changelog-cli": "^2.0.31",
     "cz-customizable": "^6.2.0",
     "eslint": "^6.8.0",
     "eslint-plugin-vue": "^6.2.2",
-    "husky": "^4.2.3",
+    "husky": "^4.2.5",
     "lerna": "^3.20.2",
-    "lint-staged": "^10.1.1",
-    "sort-package-json": "^1.40.0",
-    "vuepress": "^1.4.0"
+    "lint-staged": "^10.1.5",
+    "sort-package-json": "^1.42.0",
+    "vuepress": "^1.4.1"
   },
   "publishConfig": {
     "access": "public"

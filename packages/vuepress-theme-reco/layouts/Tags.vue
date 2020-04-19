@@ -1,35 +1,33 @@
 <template>
-  <div class="tags-wrapper">
-    <Common :sidebar="false" :isComment="false">
-      <!-- 标签集合 -->
-      <ModuleTransition>
-        <TagList
-          v-show="recoShowModule"
-          :currentTag="currentTag"
-          @getCurrentTag="tagClick"></TagList>
-      </ModuleTransition>
+  <Common  class="tags-wrapper" :sidebar="false">
+    <!-- 标签集合 -->
+    <ModuleTransition>
+      <TagList
+        v-show="recoShowModule"
+        :currentTag="currentTag"
+        @getCurrentTag="tagClick"></TagList>
+    </ModuleTransition>
 
-      <!-- 博客列表 -->
-      <ModuleTransition delay="0.08">
-        <note-abstract
-          v-show="recoShowModule"
-          class="list"
-          :data="$recoPosts"
-          :currentPage="currentPage"
-          :currentTag="currentTag"
-          @currentTag="getCurrentTag"></note-abstract>
-      </ModuleTransition>
+    <!-- 博客列表 -->
+    <ModuleTransition delay="0.08">
+      <note-abstract
+        v-show="recoShowModule"
+        class="list"
+        :data="$recoPosts"
+        :currentPage="currentPage"
+        :currentTag="currentTag"
+        @currentTag="getCurrentTag"></note-abstract>
+    </ModuleTransition>
 
-      <!-- 分页 -->
-      <ModuleTransition delay="0.16">
-        <pagation
-          class="pagation"
-          :total="$recoPosts.length"
-          :currentPage="currentPage"
-          @getCurrentPage="getCurrentPage"></pagation>
-      </ModuleTransition>
-    </Common>
-  </div>
+    <!-- 分页 -->
+    <ModuleTransition delay="0.16">
+      <pagation
+        class="pagation"
+        :total="$recoPosts.length"
+        :currentPage="currentPage"
+        @getCurrentPage="getCurrentPage"></pagation>
+    </ModuleTransition>
+  </Common>
 </template>
 
 <script>

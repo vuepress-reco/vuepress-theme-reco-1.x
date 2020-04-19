@@ -1,43 +1,40 @@
 <template>
-  <div class="categories-wrapper">
-    <!-- 公共布局 -->
-    <Common :sidebar="false" :isComment="false">
-      <!-- 分类集合 -->
-      <ModuleTransition>
-        <ul v-show="recoShowModule" class="category-wrapper">
-          <li
-            class="category-item"
-            :class="title == item.name ? 'active': ''"
-            v-for="(item, index) in this.$categories.list"
-            :key="index">
-            <router-link :to="item.path">
-              <span class="category-name">{{ item.name }}</span>
-              <span class="post-num" :style="{ 'backgroundColor': getOneColor() }">{{ item.pages.length }}</span>
-            </router-link>
-          </li>
-        </ul>
-      </ModuleTransition>
+  <Common class="categories-wrapper" :sidebar="false">
+    <!-- 分类集合 -->
+    <ModuleTransition>
+      <ul v-show="recoShowModule" class="category-wrapper">
+        <li
+          class="category-item"
+          :class="title == item.name ? 'active': ''"
+          v-for="(item, index) in this.$categories.list"
+          :key="index">
+          <router-link :to="item.path">
+            <span class="category-name">{{ item.name }}</span>
+            <span class="post-num" :style="{ 'backgroundColor': getOneColor() }">{{ item.pages.length }}</span>
+          </router-link>
+        </li>
+      </ul>
+    </ModuleTransition>
 
-      <!-- 博客列表 -->
-      <ModuleTransition delay="0.08">
-        <note-abstract
-          v-show="recoShowModule"
-          class="list"
-          :data="posts"
-          :currentPage="currentPage"
-          @currentTag="getCurrentTag"></note-abstract>
-      </ModuleTransition>
+    <!-- 博客列表 -->
+    <ModuleTransition delay="0.08">
+      <note-abstract
+        v-show="recoShowModule"
+        class="list"
+        :data="posts"
+        :currentPage="currentPage"
+        @currentTag="getCurrentTag"></note-abstract>
+    </ModuleTransition>
 
-      <!-- 分页 -->
-      <ModuleTransition delay="0.16">
-        <pagation
-          class="pagation"
-          :total="posts.length"
-          :currentPage="currentPage"
-          @getCurrentPage="getCurrentPage"></pagation>
-      </ModuleTransition>
-    </Common>
-  </div>
+    <!-- 分页 -->
+    <ModuleTransition delay="0.16">
+      <pagation
+        class="pagation"
+        :total="posts.length"
+        :currentPage="currentPage"
+        @getCurrentPage="getCurrentPage"></pagation>
+    </ModuleTransition>
+  </Common>
 </template>
 
 <script>

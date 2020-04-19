@@ -34,11 +34,6 @@
         <Password v-show="!isHasPageKey" :isPage="true" class="password-wrapper-in" key="in"></Password>
         <div :class="{ 'hide': !isHasPageKey }">
           <slot></slot>
-          <ModuleTransition delay=".48">
-            <div v-show="recoShowModule">
-              <Comments :isShowComments="shouldShowComments"/>
-            </div>
-          </ModuleTransition>
         </div>
       </div>
     </div>
@@ -69,9 +64,6 @@
           <Password v-if="!isHasPageKey" :isPage="true"></Password>
           <div v-else>
             <slot></slot>
-            <div v-show="recoShowModule">
-              <Comments :isShowComments="shouldShowComments"/>
-            </div>
           </div>
         </div>
       </transition>
@@ -85,20 +77,15 @@ import Sidebar from '@theme/components/Sidebar'
 import { resolveSidebarItems } from '@theme/helpers/utils'
 import Password from '@theme/components/Password'
 import { setTimeout } from 'timers'
-import ModuleTransition from '@theme/components/ModuleTransition'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {
   mixins: [moduleTransitonMixin],
 
-  components: { Sidebar, Navbar, Password, ModuleTransition },
+  components: { Sidebar, Navbar, Password },
 
   props: {
     sidebar: {
-      type: Boolean,
-      default: true
-    },
-    isComment: {
       type: Boolean,
       default: true
     }
@@ -116,15 +103,6 @@ export default {
   computed: {
     absoluteEncryption () {
       return this.$themeConfig.keyPage && this.$themeConfig.keyPage.absoluteEncryption === true
-    },
-    // 是否显示评论
-    shouldShowComments () {
-      const { isShowComments, home } = this.$frontmatter
-      return !(
-        this.isComment == false ||
-        isShowComments == false ||
-        home == true
-      )
     },
 
     shouldShowNavbar () {
@@ -280,23 +258,7 @@ export default {
   .hide
     height 100vh
     overflow hidden
-.theme-container.no-sidebar
-  .comments-wrapper
-    padding-left 2rem
 
-.comments-wrapper
-  padding 2rem 2rem 2rem 22rem
-  max-width: 740px;
-  margin: 0 auto;
-@media (max-width: $MQNarrow)
-  .theme-container.no-sidebar
-    .comments-wrapper
-      padding-left 2rem
-  .comments-wrapper
-    padding-left: 18.4rem;
-@media (max-width: $MQMobile)
-  .comments-wrapper
-    padding-left: 2rem
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;
 }
