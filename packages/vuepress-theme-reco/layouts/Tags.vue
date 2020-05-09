@@ -63,7 +63,9 @@ export default {
   methods: {
 
     tagClick (tagInfo) {
-      this.$router.push({ path: tagInfo.path })
+      if (this.$route.path !== tagInfo.path) {
+        this.$router.push({ path: tagInfo.path })
+      }
     },
 
     getCurrentTag (tag) {

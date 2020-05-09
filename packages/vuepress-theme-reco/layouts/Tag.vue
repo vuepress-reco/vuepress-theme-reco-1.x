@@ -71,7 +71,9 @@ export default {
       this.$emit('currentTag', tag)
     },
     tagClick (tagInfo) {
-      this.$router.push({ path: tagInfo.path })
+      if (this.$route.path !== tagInfo.path) {
+        this.$router.push({ path: tagInfo.path })
+      }
     },
     // 获取当前页码
     getCurrentPage (page) {
