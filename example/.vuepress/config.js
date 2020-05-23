@@ -7,8 +7,27 @@ module.exports = {
     ['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1,user-scalable=no' }]
   ],
   // theme: 'reco',
+  locales: {
+    '/': {
+      lang: 'ja-JP',
+      title: 'VuePress',
+      description: 'Vue-powered Static Site Generator'
+    },
+  },
   theme: require.resolve('../../packages/vuepress-theme-reco'),
   themeConfig: {
+    locales: {
+      '/': {
+        recoLocales: {
+          homeBlog: {
+            article: '美文', // 默认 文章
+            tag: '标识', // 默认 标签
+            category: '类别', // 默认 分类
+            friendLink: '友链' // 默认 友情链接
+          }
+        }
+      }
+    },
     nav: [
       { text: 'Home', link: '/', icon: 'reco-home' },
       { text: 'TimeLine', link: '/timeline/', icon: 'reco-date' },

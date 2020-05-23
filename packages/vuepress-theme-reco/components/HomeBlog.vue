@@ -87,7 +87,7 @@ export default {
   },
   computed: {
     homeBlogCfg () {
-      return this.$recoLocals.homeBlog
+      return this.$recoLocales.homeBlog
     },
     actionLink () {
       const {
