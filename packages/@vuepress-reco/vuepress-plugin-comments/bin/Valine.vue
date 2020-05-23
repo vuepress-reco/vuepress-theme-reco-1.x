@@ -16,12 +16,28 @@ export default {
       }
     }
   },
+  computed: {
+    lang () {
+      const { $lang } = this
+      if (/^zh\-(CN|SG)$/.test($lang)) {
+        return 'zh-CN'
+      }
+      if (/^zh\-(HK|MO|TW)$/.test($lang)) {
+        return 'zh-TW'
+      }
+      if (/^ja\-JP$/.test($lang)) {
+        return 'ja'
+      }
+      return 'en'
+    }
+  },
   mounted: function () {
     this.initValine()
   },
   methods: {
     initValine () {
       const Valine = require('valine')
+      const lang = this.lang
       const valineOptions = {
         el: '#valine',
         placeholder: 'just go go',
@@ -31,6 +47,7 @@ export default {
         visitor: true,
         recordIP: false,
         path: window.location.pathname,
+        lang,
         ...this.options
       }
 
