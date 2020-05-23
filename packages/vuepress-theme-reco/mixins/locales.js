@@ -4,8 +4,8 @@ export default {
   computed: {
     $recoLocales () {
       const recoLocales = this.$themeLocaleConfig.recoLocales
-      if (recoLocales) {
-        return recoLocales
+      if (recoLocales && recoLocales.homeBlog) {
+        return { homeBlog: recoLocales.homeBlog }
       }
       if (/^zh\-(CN|SG)$/.test(this.$lang)) {
         return zhHans
