@@ -17,7 +17,7 @@
         {{ new Date().getFullYear() }}
       </a>
     </span>
-    <span v-show="$themeConfig.valineConfig !== undefined">
+    <span v-show="showAccessNumber">
       <i class="iconfont reco-eye"></i>
       <AccessNumber idVal="/" />
     </span>
@@ -35,6 +35,20 @@ export default {
   data () {
     return {
       version
+    }
+  },
+  computed: {
+    showAccessNumber () {
+      const {
+        $themeConfig: { valineConfig },
+        $themeLocaleConfig: { valineConfig: valineLocalConfig }
+      } = this
+
+      const vc = valineLocalConfig || valineConfig
+      if (vc && vc.visitor != false) {
+        return true
+      }
+      return false
     }
   }
 }

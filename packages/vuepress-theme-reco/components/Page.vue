@@ -101,7 +101,16 @@ export default {
       return (showComment !== false && isShowComments !== false) || (showComment === false && isShowComments === true)
     },
     showAccessNumber () {
-      return this.$themeConfig.valineConfig !== undefined
+      const {
+        $themeConfig: { valineConfig },
+        $themeLocaleConfig: { valineConfig: valineLocalConfig }
+      } = this
+
+      const vc = valineLocalConfig || valineConfig
+      if (vc && vc.visitor != false) {
+        return true
+      }
+      return false
     },
     lastUpdated () {
       return this.$page.lastUpdated
