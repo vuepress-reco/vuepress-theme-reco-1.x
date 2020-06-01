@@ -1,3 +1,25 @@
+# [](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.6...v) (2020-06-01)
+
+
+
+## [1.4.6](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.5...v1.4.6) (2020-06-01)
+
+
+### Bug Fixes
+
+* **vuepress-plugin-pagation:** set perpage number to 10 ([c6041ff](https://github.com/recoluan/vuepress-theme-reco/commit/c6041ffe68a8b51f5440450315e8cf90d7b74577))
+* **vuepress-theme-reco:** fix english grammar errors ([9ffd819](https://github.com/recoluan/vuepress-theme-reco/commit/9ffd819e734e72aa4d1edc3978da2f299eb88731))
+* **vuepress-theme-reco:** fix tag & abstract error ([97d8196](https://github.com/recoluan/vuepress-theme-reco/commit/97d8196225ba2b08ebdb2517479c749c13f3bf63))
+
+
+### Features
+
+* **vuepress-plugin-comments:** add internationalization default config ([0269874](https://github.com/recoluan/vuepress-theme-reco/commit/02698745469334ef8817baa96200583b4e53af8d))
+* **vuepress-plugin-comments:** internationalization ([7cb0bc7](https://github.com/recoluan/vuepress-theme-reco/commit/7cb0bc796dcd0c6ea551948633becfb6521f7503))
+* **vuepress-plugin-pagation:** add internationalization ([657f8ce](https://github.com/recoluan/vuepress-theme-reco/commit/657f8ce1748c7daee0caba11ed51743c20c82e3b))
+
+
+
 ## [1.4.5](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.4...v1.4.5) (2020-04-19)
 
 
