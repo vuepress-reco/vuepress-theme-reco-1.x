@@ -1,7 +1,3 @@
-# [](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.6...v) (2020-06-01)
-
-
-
 ## [1.4.6](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.5...v1.4.6) (2020-06-01)
 
 
