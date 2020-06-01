@@ -20,11 +20,11 @@
   "main": "index.js",
   "dependencies": {
     "@vssue/api-bitbucket-v2": "^1.1.1",
-    "@vssue/api-gitee-v5": "^1.1.1",
-    "@vssue/api-github-v3": "^1.1.2",
+    "@vssue/api-gitee-v5": "^1.4.4",
+    "@vssue/api-github-v3": "^1.4.4",
     "@vssue/api-github-v4": "^1.2.0",
     "@vssue/api-gitlab-v4": "^1.1.1",
-    "valine": "^1.4.4",
-    "vssue": "^1.2.2"
+    "valine": "^1.4.14",
+    "vssue": "^1.4.6"
   }
 }

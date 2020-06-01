@@ -1,6 +1,6 @@
 module.exports = {
   title: "vuepress-theme-reco",
-  description: 'A simple and beautiful vuepress blog theme .',
+  description: 'A simple and beautiful vuepress blog theme.',
   dest: 'example/public',
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
@@ -10,8 +10,8 @@ module.exports = {
   locales: {
     '/': {
       lang: 'ja-JP',
-      title: 'VuePress',
-      description: 'Vue-powered Static Site Generator'
+      title: "vuepress-theme-reco",
+      description: 'A simple and beautiful vuepress blog theme.',
     },
   },
   theme: require.resolve('../../packages/vuepress-theme-reco'),
