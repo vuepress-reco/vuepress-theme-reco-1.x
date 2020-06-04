@@ -34,7 +34,7 @@ const ko = {
 }
 
 export default function pagationLocales (ctx) {
-  const { $lang, $recoLocales: { pagation }} = ctx
+  const { $lang, $recoLocales: { pagation } = {} } = ctx
   if (pagation) {
     return pagation
   }
