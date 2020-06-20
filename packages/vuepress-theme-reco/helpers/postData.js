@@ -3,7 +3,7 @@ import { compareDate } from '@theme/helpers/utils'
 // 过滤博客数据
 export function filterPosts (posts, isTimeline) {
   posts = posts.filter((item, index) => {
-    const { title, frontmatter: { home, date, publish }} = item
+    const { title, frontmatter: { home, date, publish } } = item
     // 过滤多个分类时产生的重复数据
     if (posts.indexOf(item) !== index) {
       return false
