@@ -1,6 +1,7 @@
 <template>
   <div
-    class="abstract-item">
+    class="abstract-item"
+    @click="$router.push(item.path)">
     <i v-if="item.frontmatter.sticky" class="iconfont reco-sticky"></i>
     <div class="title">
       <i v-if="item.frontmatter.keys" class="iconfont reco-lock"></i>
@@ -36,6 +37,7 @@ export default {
   box-sizing: border-box;
   transition all .3s
   background-color var(--background-color)
+  cursor: pointer
   .reco-sticky
     position absolute
     top 0
