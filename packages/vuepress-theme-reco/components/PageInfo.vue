@@ -25,7 +25,7 @@
         :key="subIndex"
         class="tag-item"
         :class="{ 'active': currentTag == subItem }"
-        @click="goTags(subItem)">{{subItem}}</span>
+        @click.stop="goTags(subItem)">{{subItem}}</span>
     </i>
   </div>
 </template>
