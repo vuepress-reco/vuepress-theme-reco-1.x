@@ -87,6 +87,18 @@ module.exports = {
         avatar: "https://vuepress-theme-reco.recoluan.com/icon_vuepress_reco.png",
         link: 'https://vuepress-theme-reco.recoluan.com'
       },
-    ]
+    ],
+    /**
+     * support for
+     * '' | 'default'
+     * 'coy'
+     * 'dark'
+     * 'funky'
+     * 'okaidia'
+     * 'solarizedlight'
+     * 'tomorrow'
+     * 'twilight'
+     */
+    codeTheme: 'tomorrow'
   }
 }

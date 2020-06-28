@@ -39,9 +39,10 @@ import pagination from '@theme/mixins/pagination'
 import ModuleTransition from '@theme/components/ModuleTransition'
 import { sortPostsByStickyAndDate, filterPosts } from '@theme/helpers/postData'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
+import codeTheme from '@theme/mixins/codeTheme'
 
 export default {
-  mixins: [pagination, moduleTransitonMixin],
+  mixins: [pagination, moduleTransitonMixin, codeTheme],
   components: { Common, NoteAbstract, TagList, ModuleTransition },
 
   data () {
@@ -99,7 +100,6 @@ export default {
 
 <style src="../styles/theme.styl" lang="stylus"></style>
 
-<style src="prismjs/themes/prism-tomorrow.css"></style>
 <style lang="stylus" scoped>
 @require '../styles/mode.styl'
 .tag-wrapper
