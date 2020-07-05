@@ -1,6 +1,7 @@
 export default {
   created () {
-    switch (this.$themeConfig.codeTheme) {
+    const { codeTheme = 'tomorrow' } = this.$themeConfig
+    switch (codeTheme) {
       case 'coy':
         import('prismjs/themes/prism-coy.css')
         break
