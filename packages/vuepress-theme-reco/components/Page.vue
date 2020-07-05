@@ -1,5 +1,5 @@
 <template>
-  <main class="page" :style="{ paddingRight: (this.$page.headers || []).length > 0 ? 'auto' : '0' }">
+  <main class="page" :style="pageStyle">
     <ModuleTransition>
       <div v-show="recoShowModule && $page.title" class="page-title">
         <h1>{{$page.title}}</h1>
@@ -170,6 +170,10 @@ export default {
       return (
         this.$themeLocaleConfig.editLinkText || this.$themeConfig.editLinkText || `Edit this page`
       )
+    },
+    pageStyle () {
+      const headers = this.$page.headers || []
+      return headers.length > 0 ? {} : { paddingRight: '0' }
     }
   },
 
