@@ -23,9 +23,9 @@
         <Sidebar
           :items="sidebarItems"
           @toggle-sidebar="toggleSidebar">
-          <slot
-            name="sidebar-top"
-            slot="top"/>
+          <template slot="top">
+            <PersonalInfo />
+          </template>
           <slot
             name="sidebar-bottom"
             slot="bottom"/>
@@ -53,9 +53,9 @@
           <Sidebar
             :items="sidebarItems"
             @toggle-sidebar="toggleSidebar">
-            <slot
-              name="sidebar-top"
-              slot="top"/>
+            <template slot="top">
+              <PersonalInfo />
+            </template>
             <slot
               name="sidebar-bottom"
               slot="bottom"/>
@@ -74,7 +74,7 @@
 <script>
 import Navbar from '@theme/components/Navbar'
 import Sidebar from '@theme/components/Sidebar'
-import { resolveSidebarItems } from '@theme/helpers/utils'
+import PersonalInfo from '@theme/components/PersonalInfo'
 import Password from '@theme/components/Password'
 import { setTimeout } from 'timers'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
@@ -82,12 +82,16 @@ import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 export default {
   mixins: [moduleTransitonMixin],
 
-  components: { Sidebar, Navbar, Password },
+  components: { Sidebar, Navbar, Password, PersonalInfo },
 
   props: {
     sidebar: {
       type: Boolean,
       default: true
+    },
+    sidebarItems: {
+      type: Array,
+      default: () => []
     }
   },
 
@@ -124,22 +128,14 @@ export default {
     },
 
     shouldShowSidebar () {
-      const { frontmatter } = this.$page
-      return (
-        this.sidebar !== false &&
-        !frontmatter.home &&
-        frontmatter.sidebar !== false &&
-        this.sidebarItems.length
-      )
-    },
-
-    sidebarItems () {
-      return resolveSidebarItems(
-        this.$page,
-        this.$page.regularPath,
-        this.$site,
-        this.$localePath
-      )
+      // const { frontmatter } = this.$page
+      // return (
+      //   this.sidebar !== false &&
+      //   !frontmatter.home &&
+      //   frontmatter.sidebar !== false &&
+      //   this.sidebarItems.length
+      // )
+      return this.sidebarItems.length > 0
     },
 
     pageClasses () {
