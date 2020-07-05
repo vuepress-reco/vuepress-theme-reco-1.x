@@ -93,6 +93,7 @@ a.sidebar-link
   color var(--text-color)
   padding 0.35rem 1rem 0.35rem 2.25rem
   line-height 1.4
+  background var(--background-color)
   // margin 0 0 0 1.5rem
   box-sizing: border-box
   &:hover
@@ -100,7 +101,7 @@ a.sidebar-link
   &.active
     font-weight 600
     color $accentColor
-    background lighten($accentColor, 92%)
+    background var(--default-color-8)
     border-right 3px solid $accentColor
   .sidebar-group &
     // padding-left 2rem

@@ -40,12 +40,13 @@ export default {
 .personal-info-wrapper {
   .personal-img {
     display block
-    margin 2rem auto
-    width 8rem
-    height 8rem
+    margin 2rem auto 1rem
+    width 5rem
+    height 5rem
     border-radius 50%
   }
   .name {
+    font-size 1rem
     text-align center
     color var(--text-color)
   }

@@ -95,6 +95,5 @@ module.exports = {
      * 'tomorrow'
      * 'twilight'
      */
-    codeTheme: 'tomorrow'
   }
 }

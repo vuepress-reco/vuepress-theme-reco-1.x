@@ -1,5 +1,5 @@
 <template>
-  <main class="page" :style="{ paddingRight: (this.$page.headers || []).length > 0 ? '14rem' : '0' }">
+  <main class="page" :style="{ paddingRight: (this.$page.headers || []).length > 0 ? 'auto' : '0' }">
     <ModuleTransition>
       <div v-show="recoShowModule && $page.title" class="page-title">
         <h1>{{$page.title}}</h1>
@@ -242,6 +242,7 @@ function flatten (items, res) {
   position relative
   padding-top 5rem
   padding-bottom 2rem
+  padding-right 14rem
   display block
   .side-bar
     position fixed
