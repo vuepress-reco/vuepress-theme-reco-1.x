@@ -88,24 +88,24 @@ export default {
     },
 
     isInViewPortOfOne () {
-      const siderbarScroll = document.getElementsByClassName('sidebar')[0]
+      const sidebarScroll = document.getElementsByClassName('sidebar')[0]
       let el = document.getElementsByClassName('active sidebar-link')[1]
       if (el == null || el == undefined || el.offsetTop == undefined) {
         el = document.getElementsByClassName('active sidebar-link')[0]
       }
       if (el == null || el == undefined || el.offsetTop == undefined) return
 
-      const viewPortHeight = siderbarScroll.clientHeight || window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+      const viewPortHeight = sidebarScroll.clientHeight || window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
       const offsetTop = el.offsetTop
       const offsetBottom = el.offsetTop + el.offsetHeight
-      const scrollTop = siderbarScroll.scrollTop
+      const scrollTop = sidebarScroll.scrollTop
       const bottomVisible = (offsetBottom <= viewPortHeight + scrollTop)
       if (!bottomVisible) {
-        siderbarScroll.scrollTop = (offsetBottom + 5 - viewPortHeight)
+        sidebarScroll.scrollTop = (offsetBottom + 5 - viewPortHeight)
       }
       const topVisible = (offsetTop >= scrollTop)
       if (!topVisible) {
-        siderbarScroll.scrollTop = (offsetTop - 5)
+        sidebarScroll.scrollTop = (offsetTop - 5)
       }
     },
 

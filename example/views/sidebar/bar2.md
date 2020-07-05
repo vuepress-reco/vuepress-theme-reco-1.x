@@ -1,12 +1,8 @@
 ---
-title: sidebar test
-date: 2019-09-21
-sidebarDepth: 5
-tags:
- - tag2
-categories:
- - category1
+title: bar2
 ---
+
+bar2
 
 ## 二级标题1
 

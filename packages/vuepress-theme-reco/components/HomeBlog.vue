@@ -208,7 +208,7 @@ export default {
     display flex
     align-items: flex-start;
     margin 20px auto 0
-    max-width 1126px
+    max-width $homePageWidth
     .blog-list {
       flex auto
       width 0

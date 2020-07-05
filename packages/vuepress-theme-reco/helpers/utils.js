@@ -122,42 +122,49 @@ export function resolveSidebarItems (page, regularPath, site, localePath) {
     ? themeConfig.locales[localePath] || themeConfig
     : themeConfig
 
-  const pageSidebarConfig = page.frontmatter.sidebar || localeConfig.sidebar || themeConfig.sidebar
-  if (pageSidebarConfig === 'auto') {
-    return resolveHeaders(page)
-  }
+  // 计算页面的菜单层级
+  // const pageSidebarConfig = page.frontmatter.sidebar || localeConfig.sidebar || themeConfig.sidebar
+  // if (pageSidebarConfig === 'auto') {
+  //   return resolveHeaders(page)
+  // }
 
+  // const sidebarConfig = localeConfig.sidebar || themeConfig.sidebar
+  // if (!sidebarConfig) {
+  //   return []
+  // } else {
+  //   const { base, config } = resolveMatchingConfig(regularPath, sidebarConfig)
+  //   return config
+  //     ? config.map(item => resolveItem(item, pages, base))
+  //     : []
+  // }
   const sidebarConfig = localeConfig.sidebar || themeConfig.sidebar
-  if (!sidebarConfig) {
-    return []
-  } else {
-    const { base, config } = resolveMatchingConfig(regularPath, sidebarConfig)
-    return config
-      ? config.map(item => resolveItem(item, pages, base))
-      : []
-  }
+
+  const { base, config } = resolveMatchingConfig(regularPath, sidebarConfig)
+  return config
+    ? config.map(item => resolveItem(item, pages, base))
+    : []
 }
 
 /**
  * @param { Page } page
  * @returns { SidebarGroup }
  */
-function resolveHeaders (page) {
-  const headers = groupHeaders(page.headers || [])
-  return [{
-    type: 'group',
-    collapsable: false,
-    title: page.title,
-    path: null,
-    children: headers.map(h => ({
-      type: 'auto',
-      title: h.title,
-      basePath: page.path,
-      path: page.path + '#' + h.slug,
-      children: h.children || []
-    }))
-  }]
-}
+// function resolveHeaders (page) {
+//   const headers = groupHeaders(page.headers || [])
+//   return [{
+//     type: 'group',
+//     collapsable: false,
+//     title: page.title,
+//     path: null,
+//     children: headers.map(h => ({
+//       type: 'auto',
+//       title: h.title,
+//       basePath: page.path,
+//       path: page.path + '#' + h.slug,
+//       children: h.children || []
+//     }))
+//   }]
+// }
 
 export function groupHeaders (headers) {
   // group h3s under h2
