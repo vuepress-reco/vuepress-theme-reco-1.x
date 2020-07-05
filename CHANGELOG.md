@@ -1,3 +1,23 @@
+## [1.5.0](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.7...v1.5.0) (2020-07-05)
+
+
+### Features
+
+* **vuepress-theme-reco:** add sub sidebar ([b9a4f8f](https://github.com/recoluan/vuepress-theme-reco/commit/b9a4f8f377fdec038639aa5441b0eb44c9d4a95a))
+* **vuepress-theme-reco:** 新增代码主题配置 ([10fcc3e](https://github.com/recoluan/vuepress-theme-reco/commit/10fcc3eab11b366f6c8014523fa068debafac05c))
+* **vuepress-theme-reco:** expand NoteAbstractItem clickable area ([978f0de](https://github.com/recoluan/vuepress-theme-reco/commit/978f0de5037d8bc7ab492b0eff22056b666c7afa))
+
+
+
+## [1.4.7](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.6...v1.4.7) (2020-06-04)
+
+
+### Bug Fixes
+
+* **vuepress-theme-reco:** 修复pagation is undefined ([b36262d](https://github.com/vuepress-reco/vuepress-theme-reco/commit/85470c289fc3030bc2b709a2379d09b76e2632c1))
+
+
+
 ## [1.4.6](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.5...v1.4.6) (2020-06-01)
 
 
