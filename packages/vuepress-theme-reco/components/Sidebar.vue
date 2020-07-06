@@ -31,8 +31,9 @@ export default {
     padding 0
     margin 0
     list-style-type none
-    > li
-      background $accentColor
+    &.sidebar-links
+      > li
+        background $accentColor
   a
     display inline-block
   .nav-links
