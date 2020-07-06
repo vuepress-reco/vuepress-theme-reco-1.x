@@ -45,10 +45,9 @@ import pagination from '@theme/mixins/pagination'
 import { sortPostsByStickyAndDate, filterPosts } from '@theme/helpers/postData'
 import { getOneColor } from '@theme/helpers/other'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
-import codeTheme from '@theme/mixins/codeTheme'
 
 export default {
-  mixins: [pagination, moduleTransitonMixin, codeTheme],
+  mixins: [pagination, moduleTransitonMixin],
   components: { Common, NoteAbstract, ModuleTransition },
 
   data () {

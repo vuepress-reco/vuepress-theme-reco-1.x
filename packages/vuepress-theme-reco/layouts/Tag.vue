@@ -39,10 +39,9 @@ import pagination from '@theme/mixins/pagination'
 import ModuleTransition from '@theme/components/ModuleTransition'
 import { sortPostsByStickyAndDate, filterPosts } from '@theme/helpers/postData'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
-import codeTheme from '@theme/mixins/codeTheme'
 
 export default {
-  mixins: [pagination, moduleTransitonMixin, codeTheme],
+  mixins: [pagination, moduleTransitonMixin],
   components: { Common, NoteAbstract, TagList, ModuleTransition },
 
   data () {
