@@ -18,6 +18,7 @@
     "prepublish": "lerna publish --dist-tag next",
     "publish": "lerna publish",
     "push": "yarn commit && git push",
+    "test": "bash scripts/test.sh",
     "update": "yarn upgrade-interactive --latest"
   },
   "husky": {
