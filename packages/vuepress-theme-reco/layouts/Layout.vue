@@ -13,11 +13,9 @@ import Page from '@theme/components/Page'
 import Footer from '@theme/components/Footer'
 import Common from '@theme/components/Common'
 import { resolveSidebarItems } from '@theme/helpers/utils'
-import codeTheme from '@theme/mixins/codeTheme'
 
 export default {
   components: { HomeBlog, Home, Page, Common, Footer },
-  mixins: [codeTheme],
   computed: {
     sidebarItems () {
       return resolveSidebarItems(

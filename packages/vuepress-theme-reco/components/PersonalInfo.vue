@@ -41,8 +41,8 @@ export default {
   .personal-img {
     display block
     margin 2rem auto 1rem
-    width 5rem
-    height 5rem
+    width 6rem
+    height 6rem
     border-radius 50%
   }
   .name {
@@ -56,7 +56,7 @@ export default {
     width 80%
     > div {
       text-align center
-      flex auto
+      flex 0 0 50%
       &:first-child {
         border-right 1px solid #333
       }
