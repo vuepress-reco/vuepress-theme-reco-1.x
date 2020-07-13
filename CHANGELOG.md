@@ -1,4 +1,4 @@
-## [1.5.2](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.7...v1.5.0) (2020-07-05)
+## [1.5.3](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.7...v1.5.0) (2020-07-05)
 
 
 ### Features
