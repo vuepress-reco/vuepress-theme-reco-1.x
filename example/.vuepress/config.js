@@ -40,6 +40,8 @@ module.exports = {
         },
       ]
     },
+    //文章封面图的根地址
+    coverImgBase: "/blogs",
     type: 'blog',
     // 博客设置
     blogConfig: {

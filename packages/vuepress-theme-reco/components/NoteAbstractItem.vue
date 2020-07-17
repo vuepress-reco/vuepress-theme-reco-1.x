@@ -7,6 +7,11 @@
       <i v-if="item.frontmatter.keys" class="iconfont reco-lock"></i>
       <router-link :to="item.path">{{item.title}}</router-link>
     </div>
+    <div v-if="item.frontmatter.cover" class="cover">
+      <img
+        :src="($themeConfig.coverImgBase?$themeConfig.coverImgBase:'') + '/' + item.frontmatter.cover"
+        alt="封面" class="cover-img">
+    </div>
     <div class="abstract" v-html="item.excerpt"></div>
     <hr class="hr">
     <PageInfo
@@ -82,6 +87,13 @@ export default {
         color $accentColor
       &:hover
         color $accentColor
+  .cover
+    width 100%
+    max-height 500px
+    text-align: center;
+    .cover-img
+      max-width 100%
+      max-height 500px
 @media (max-width: $MQMobile)
   .tags
     display block
