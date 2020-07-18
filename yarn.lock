@@ -2457,10 +2457,6 @@ ascli@~1:
 asn1.js@^4.0.0:
   version "4.10.1"
   resolved "https://registry.yarnpkg.com/asn1.js/-/asn1.js-4.10.1.tgz#b9c2bf5805f1e64aadeed6df3a2bfafb5a73f5a0"
-  dependencies:
-    bn.js "^4.0.0"
-    inherits "^2.0.1"
-    minimalistic-assert "^1.0.0"
 
 asn1@~0.2.3:
   version "0.2.4"
@@ -9321,7 +9317,7 @@ smart-buffer@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/smart-buffer/-/smart-buffer-4.1.0.tgz#91605c25d91652f4661ea69ccf45f1b331ca21ba"
 
-smoothscroll-polyfill@^0.4.3:
+smoothscroll-polyfill@^0.4.3, smoothscroll-polyfill@^0.4.4:
   version "0.4.4"
   resolved "https://registry.yarnpkg.com/smoothscroll-polyfill/-/smoothscroll-polyfill-0.4.4.tgz#3a259131dc6930e6ca80003e1cb03b603b69abf8"
 
@@ -10383,8 +10379,6 @@ util.promisify@~1.0.0:
 util@0.10.3:
   version "0.10.3"
   resolved "https://registry.yarnpkg.com/util/-/util-0.10.3.tgz#7afb1afe50805246489e3db7fe0ed379336ac0f9"
-  dependencies:
-    inherits "2.0.1"
 
 util@^0.11.0:
   version "0.11.1"
@@ -10620,6 +10614,13 @@ vuepress-plugin-smooth-scroll@^0.0.3:
   resolved "https://registry.yarnpkg.com/vuepress-plugin-smooth-scroll/-/vuepress-plugin-smooth-scroll-0.0.3.tgz#6eff2d4c186cca917cc9f7df2b0af7de7c8c6438"
   dependencies:
     smoothscroll-polyfill "^0.4.3"
+
+vuepress-plugin-smooth-scroll@^0.0.9:
+  version "0.0.9"
+  resolved "http://r.npm.sankuai.com/vuepress-plugin-smooth-scroll/download/vuepress-plugin-smooth-scroll-0.0.9.tgz#6c5d01db60def3d7b976b53404e56b97da9e8f39"
+  integrity sha1-bF0B22De89e5drU0BOVrl9qejzk=
+  dependencies:
+    smoothscroll-polyfill "^0.4.4"
 
 vuepress@^1.5.0:
   version "1.5.0"

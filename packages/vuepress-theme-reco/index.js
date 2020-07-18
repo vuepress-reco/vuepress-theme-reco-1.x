@@ -54,6 +54,7 @@ module.exports = (options, ctx) => ({
         }
       ]
     }],
+    'vuepress-plugin-smooth-scroll',
     ['container', {
       type: 'tip',
       defaultTitle: {
