@@ -243,6 +243,15 @@ export function compareDate (a, b) {
   return getTimeNum(b) - getTimeNum(a)
 }
 
+// 向 head 中添加 style
+export function addLinkToHead (href) {
+  const iconLink = document.createElement('link')
+  iconLink.rel = 'stylesheet'
+  iconLink.href = href
+
+  document.head.append(iconLink)
+}
+
 function ensureEndingSlash (path) {
   return /(\.html|\/)$/.test(path)
     ? path

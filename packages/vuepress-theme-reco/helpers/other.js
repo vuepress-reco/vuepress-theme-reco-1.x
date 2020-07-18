@@ -1,3 +1,4 @@
+import { addLinkToHead } from './utils'
 export function getOneColor () {
   const tagColorArr = [
     '#e15b64',
@@ -15,4 +16,11 @@ export function getOneColor () {
   ]
   const index = Math.floor(Math.random() * tagColorArr.length)
   return tagColorArr[index]
+}
+
+export function registerCodeThemeCss (theme = 'tomorrow') {
+  const themeArr = ['tomorrow', 'funky', 'okaidia', 'solarizedlight', 'default']
+  const href = `//prismjs.com/themes/prism${themeArr.indexOf(theme) > -1 ? `-${theme}` : ''}.css`
+
+  addLinkToHead(href)
 }

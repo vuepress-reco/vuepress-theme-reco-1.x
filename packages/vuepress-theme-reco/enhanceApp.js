@@ -1,5 +1,7 @@
 import postMixin from '@theme/mixins/posts'
 import localMixin from '@theme/mixins/locales'
+import { addLinkToHead } from '@theme/helpers/utils'
+import { registerCodeThemeCss } from '@theme/helpers/other'
 
 export default ({
   Vue,
@@ -9,16 +11,7 @@ export default ({
   Vue.mixin(postMixin)
   Vue.mixin(localMixin)
   if (!isServer) {
-    _registerCodeThemeCss(siteData.themeConfig.codeTheme)
+    addLinkToHead('//at.alicdn.com/t/font_1030519_2ciwdtb4x65.css')
+    registerCodeThemeCss(siteData.themeConfig.codeTheme)
   }
-}
-
-function _registerCodeThemeCss (theme = 'tomorrow') {
-  const themeArr = ['tomorrow', 'funky', 'okaidia', 'solarizedlight', 'default']
-
-  const link = document.createElement('link')
-  link.rel = 'stylesheet'
-  link.href = `//prismjs.com/themes/prism${themeArr.indexOf(theme) > -1 ? `-${theme}` : ''}.css`
-
-  document.head.append(link)
 }
