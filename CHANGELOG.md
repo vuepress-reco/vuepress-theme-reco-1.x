@@ -1,3 +1,17 @@
+## [1.5.4](https://github.com/recoluan/vuepress-theme-reco/compare/v1.5.3...v1.5.4) (2020-07-19)
+
+
+### Bug Fixes
+
+* **vuepress-plugin-back-to-top:** fit the vuepress-plugin-smooth-scroll ([e025a61](https://github.com/recoluan/vuepress-theme-reco/commit/e025a610b391185264f2e63a2f4d58f10c388b90))
+
+
+### Features
+
+* **vuepress-theme-reco:** add vuepress-plugin-smooth-scroll ([5a3dcd5](https://github.com/recoluan/vuepress-theme-reco/commit/5a3dcd5c25431487caa54298a4a23b92c8f0b55d))
+
+
+
 ## [1.5.3](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.7...v1.5.0) (2020-07-05)
 
 
