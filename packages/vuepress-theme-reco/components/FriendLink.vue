@@ -180,7 +180,7 @@ export default {
               width 1.4rem
               height 1.2rem
               border-radius $borderRadius
-              font-size .1rem
+              font-size 12px
               color #ffffff
               text-align center
               line-height 1.2rem

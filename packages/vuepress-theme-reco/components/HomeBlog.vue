@@ -269,7 +269,7 @@ export default {
               line-height 1.6rem
               border-radius $borderRadius
               background #eee
-              font-size .6rem
+              font-size 13px
               color #fff
             }
           }
