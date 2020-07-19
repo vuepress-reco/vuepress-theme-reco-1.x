@@ -4,13 +4,20 @@
       <div
         class="mask"
         :style="{
-      background: `url(${$frontmatter.bgImage ? $withBase($frontmatter.bgImage) : require('../images/home-bg.jpg')}) center/cover no-repeat`}"></div>
+          background: `
+            url(${$frontmatter.bgImage ?
+            $withBase($frontmatter.bgImage) :
+            require('../images/home-bg.jpg')}) center/cover no-repeat
+          `
+        }"
+      ></div>
       <ModuleTransition>
         <img
           v-if="recoShowModule && $frontmatter.heroImage"
           :style="heroImageStyle || {}"
           :src="$withBase($frontmatter.heroImage)"
-          alt="hero">
+          alt="hero"
+        />
       </ModuleTransition>
       <ModuleTransition delay="0.04">
         <h1 v-if="recoShowModule && $frontmatter.heroText !== null">
@@ -219,20 +226,22 @@ export default {
       }
     }
     .info-wrapper {
-      position: -webkit-sticky;
-      position: sticky;
-      top: 70px;
+      position -webkit-sticky;
+      position sticky;
+      top 70px
+      overflow hidden
       transition all .3s
-      margin-left 15px;
+      margin-top 15px
+      margin-left 15px
       flex 0 0 300px
-      height auto;
-      box-shadow var(--box-shadow);
+      height auto
+      box-shadow var(--box-shadow)
       border-radius $borderRadius
       box-sizing border-box
       padding 0 15px
       background var(--background-color)
       &:hover {
-        box-shadow: var(--box-shadow-hover);
+        box-shadow var(--box-shadow-hover)
       }
       h4 {
         color var(--text-color)
@@ -301,8 +310,16 @@ export default {
       }
     }
     .home-blog-wrapper {
+      display block!important
+      .blog-list {
+        width auto
+      }
       .info-wrapper {
-        display none!important
+        // display none!important
+        margin-left 0
+        .personal-info-wrapper {
+          display none
+        }
       }
     }
   }
@@ -341,8 +358,16 @@ export default {
     }
 
     .home-blog-wrapper {
+      display block!important
+      .blog-list {
+        width auto
+      }
       .info-wrapper {
-        display none!important
+        // display none!important
+        margin-left 0
+        .personal-info-wrapper {
+          display none
+        }
       }
     }
   }
