@@ -229,7 +229,6 @@ export default {
       position -webkit-sticky;
       position sticky;
       top 70px
-      overflow hidden
       transition all .3s
       margin-top 15px
       margin-left 15px
