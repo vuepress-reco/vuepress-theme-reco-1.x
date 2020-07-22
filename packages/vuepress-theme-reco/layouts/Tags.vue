@@ -44,9 +44,9 @@ export default {
   data () {
     return {
       tags: [],
-      currentTag: '全部',
+      currentTag: this.$recoLocales.tag.all,
       currentPage: 1,
-      allTagName: '全部'
+      allTagName: this.$recoLocales.tag.all
     }
   },
 

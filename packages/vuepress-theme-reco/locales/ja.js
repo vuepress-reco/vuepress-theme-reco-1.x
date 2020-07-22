@@ -4,5 +4,8 @@ export default {
     tag: 'ラベル',
     category: '分類',
     friendLink: '友情リンク'
+  },
+  tag: {
+    all: '全部'
   }
 }

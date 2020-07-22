@@ -4,5 +4,8 @@ export default {
     tag: '태그',
     category: '분류',
     friendLink: '링크 참조'
+  },
+  tag: {
+    all: '전체'
   }
 }
