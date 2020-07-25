@@ -4,5 +4,8 @@ export default {
     tag: 'Tag',
     category: 'Category',
     friendLink: 'Friend Link'
+  },
+  tag: {
+    all: 'All'
   }
 }

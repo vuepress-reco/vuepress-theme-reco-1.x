@@ -4,5 +4,8 @@ export default {
     tag: '标签',
     category: '分类',
     friendLink: '友情链接'
+  },
+  tag: {
+    all: '全部'
   }
 }
