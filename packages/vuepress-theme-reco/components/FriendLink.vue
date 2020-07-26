@@ -48,14 +48,14 @@ export default {
   data () {
     return {
       popupWindowStyle: {},
-      isPC:true,
+      isPC: true
     }
   },
-  mounted(){
-    if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-        this.isPC = false
+  mounted () {
+    if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+      this.isPC = false
     } else {
-        this.isPC =  true
+      this.isPC = true
     }
   },
   computed: {
@@ -79,40 +79,40 @@ export default {
       const currentDom = e.target
       const popupWindowWrapper = currentDom.querySelector('.popup-window-wrapper')
       const popupWindow = currentDom.querySelector('.popup-window')
-      let infoWrapper = document.querySelector(".info-wrapper")
+      const infoWrapper = document.querySelector('.info-wrapper')
       popupWindowWrapper.style.display = 'block'
       const { clientWidth } = currentDom
       const {
         clientWidth: windowWidth,
         clientHeight: windowHeight
       } = popupWindow
-      if(this.isPC){
+      if (this.isPC) {
         this.popupWindowStyle = {
           left: (clientWidth - windowWidth) / 2 + 'px',
           top: -windowHeight + 'px'
         }
-        infoWrapper.style.overflow = "visible"
+        infoWrapper.style.overflow = 'visible'
         this.$nextTick(() => {
           this._adjustPosition(currentDom.querySelector('.popup-window'))
         })
-      }else{
-        const getPosition = function (element){ 
-          var dc = document, 
-              rec = element.getBoundingClientRect(), 
-              _x = rec.left,
-              _y = rec.top
-          _x += dc.documentElement.scrollLeft || dc.body.scrollLeft 
+      } else {
+        const getPosition = function (element) {
+          const dc = document
+          const rec = element.getBoundingClientRect()
+          let _x = rec.left
+          let _y = rec.top
+          _x += dc.documentElement.scrollLeft || dc.body.scrollLeft
           _y += dc.documentElement.scrollTop || dc.body.scrollTop
-          return { 
-            left: _x, 
-            top: _y,
+          return {
+            left: _x,
+            top: _y
           }
         }
-        infoWrapper.style.overflow = "hidden"
+        infoWrapper.style.overflow = 'hidden'
         const left = getPosition(currentDom).left - getPosition(infoWrapper).left
         this.popupWindowStyle = {
-          left: (-left  + (infoWrapper.clientWidth - popupWindow.clientWidth)/2 ) + 'px',
-          top: -windowHeight + 'px',
+          left: (-left + (infoWrapper.clientWidth - popupWindow.clientWidth) / 2) + 'px',
+          top: -windowHeight + 'px'
         }
       }
     },

@@ -3,7 +3,6 @@
     <ModuleTransition>
       <div v-show="recoShowModule && $page.title" class="page-title">
         <h1>{{$page.title}}</h1>
-        <hr>
         <PageInfo :pageInfo="$page" :showAccessNumber="showAccessNumber"></PageInfo>
       </div>
     </ModuleTransition>

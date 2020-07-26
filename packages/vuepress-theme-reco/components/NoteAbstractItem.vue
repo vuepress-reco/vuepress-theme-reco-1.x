@@ -8,7 +8,6 @@
       <router-link :to="item.path">{{item.title}}</router-link>
     </div>
     <div class="abstract" v-html="item.excerpt"></div>
-    <hr class="hr">
     <PageInfo
       :pageInfo="item"
       :currentTag="currentTag">
@@ -53,8 +52,10 @@ export default {
   .title
     position: relative;
     font-size: 1.28rem;
-    line-height: 36px;
+    line-height: 46px;
     display: inline-block;
+    a
+      color: var(--text-color);
     .reco-lock
       font-size 1.28rem
       color $accentColor

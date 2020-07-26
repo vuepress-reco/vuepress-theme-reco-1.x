@@ -18,10 +18,10 @@ export default {
     }
   },
   mounted () {
-    window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener('scroll', this.throttle(this.handleScroll, 500))
   },
   beforeDestroy () {
-    window.removeEventListener('scroll', this.handleScroll)
+    window.removeEventListener('scroll', this.throttle(this.handleScroll, 500))
   },
   methods: {
     handleScroll () {
@@ -29,6 +29,25 @@ export default {
     },
     backToTop () {
       window.scrollTo(0, 0)
+    },
+    throttle (func, delay) {
+      let timer = null
+      let startTime = Date.now()
+
+      return function () {
+        const curTime = Date.now()
+        const remaining = delay - (curTime - startTime)
+        const context = this
+        const args = arguments
+
+        clearTimeout(timer)
+        if (remaining <= 0) {
+          func.apply(context, args)
+          startTime = Date.now()
+        } else {
+          timer = setTimeout(func, remaining)
+        }
+      }
     }
   }
 }

@@ -71,6 +71,28 @@ export default {
     isAlgoliaSearch () {
       return this.algolia && this.algolia.apiKey && this.algolia.indexName
     }
+  },
+
+  methods: {
+    throttle (func, delay) {
+      let timer = null
+      let startTime = Date.now()
+
+      return function () {
+        const curTime = Date.now()
+        const remaining = delay - (curTime - startTime)
+        const context = this
+        const args = arguments
+
+        clearTimeout(timer)
+        if (remaining <= 0) {
+          func.apply(context, args)
+          startTime = Date.now()
+        } else {
+          timer = setTimeout(func, remaining)
+        }
+      }
+    }
   }
 }
 
@@ -106,7 +128,6 @@ $navbar-horizontal-padding = 1.5rem
     font-weight 600
     color var(--text-color)
     position relative
-    background var(--background-color)
   .links
     padding-left 1.5rem
     box-sizing border-box
