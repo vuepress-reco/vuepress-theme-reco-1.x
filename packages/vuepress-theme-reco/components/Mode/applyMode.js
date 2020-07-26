@@ -3,10 +3,14 @@ import modeOptions from './modeOptions'
 function render (mode) {
   const rootElement = document.querySelector(':root')
   const options = modeOptions[mode]
+  const opposite = mode === 'dark' ? 'light' : 'dark'
 
   for (const k in options) {
     rootElement.style.setProperty(k, options[k])
   }
+
+  rootElement.classList.remove(opposite)
+  rootElement.classList.add(mode)
 }
 
 /**
