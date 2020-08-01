@@ -1,3 +1,18 @@
+## [1.5.5](https://github.com/recoluan/vuepress-theme-reco/compare/v1.5.4...v1.5.5) (2020-08-01)
+
+
+### Features
+
+* **vuepress-theme-reco:** optimize blog homepage ([ab94806](https://github.com/recoluan/vuepress-theme-reco/commit/ab9480652bfc8374fcf53df7dabee40641779eeb))
+* **vuepress-theme-reco:** add locale for 'All' tag label ([7a71221](https://github.com/recoluan/vuepress-theme-reco/commit/7a7122125b897c4316e32d5135f036184e01fa03))
+
+
+### Performance Improvements
+
+* **vuepress-theme-reco:** optimize the home page and subSidebar ([6fd83e1](https://github.com/recoluan/vuepress-theme-reco/commit/6fd83e1ea295ce398c13523739b0900dedfd06d7))
+
+
+
 ## [1.5.4](https://github.com/recoluan/vuepress-theme-reco/compare/v1.5.3...v1.5.4) (2020-07-19)
 
 
