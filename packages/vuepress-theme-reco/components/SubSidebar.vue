@@ -10,7 +10,14 @@ export default {
   },
   methods: {
     isLinkActive (header) {
-      return isActive(this.$route, this.$page.path + '#' + header.slug)
+      const active = isActive(this.$route, this.$page.path + '#' + header.slug)
+      if (active) {
+        setTimeout(() => {
+          console.log(document.querySelector(`.${header.slug}`))
+          document.querySelector(`.${header.slug}`).scrollIntoView()
+        }, 300)
+      }
+      return active
     }
   },
   render (h) {
@@ -27,7 +34,7 @@ export default {
           attr: { key: header.title }
         }, [
           h('router-link', {
-            class: { 'sidebar-link': true },
+            class: { 'sidebar-link': true, [`${header.slug}`]: true },
             props: { to: `${this.$page.path}#${header.slug}` }
           }, header.title)
         ])

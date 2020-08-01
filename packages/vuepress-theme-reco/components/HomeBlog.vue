@@ -164,6 +164,7 @@ export default {
   padding: 0;
   margin: 0px auto;
   .hero {
+    margin $navbarHeight auto 0
     position relative
     box-sizing border-box
     padding 0 20px

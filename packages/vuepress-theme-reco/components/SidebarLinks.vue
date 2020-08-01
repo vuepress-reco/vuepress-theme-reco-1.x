@@ -54,8 +54,8 @@ export default {
   },
 
   mounted () {
-    this.activationLink()
-    this.isInViewPortOfOne()
+    // this.activationLink()
+    // this.isInViewPortOfOne()
   },
 
   updated: function () {

@@ -72,8 +72,8 @@
       <Comments v-if="recoShowModule" :isShowComments="shouldShowComments"/>
     </ModuleTransition>
 
-    <ModuleTransition delay="0.4">
-      <SubSidebar class="side-bar" />
+    <ModuleTransition delay="0.08">
+      <SubSidebar v-if="recoShowModule" class="side-bar" />
     </ModuleTransition>
   </main>
 </template>
