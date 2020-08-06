@@ -14,6 +14,7 @@
         v-show="recoShowModule"
         class="list"
         :data="$recoPosts"
+        :perPage="getPerPage"
         :currentPage="currentPage"
         :currentTag="currentTag"
         @currentTag="getCurrentTag"></note-abstract>
@@ -24,6 +25,7 @@
       <pagation
         class="pagation"
         :total="$recoPosts.length"
+        :perPage="getPerPage"
         :currentPage="currentPage"
         @getCurrentPage="getCurrentPage"></pagation>
     </ModuleTransition>
@@ -47,6 +49,12 @@ export default {
       currentTag: '',
       currentPage: 1,
       allTagName: ''
+    }
+  },
+
+  computed:{
+    getPerPage(){
+      return (this.$themeConfig.perPage && this.$themeConfig.perPage.tag && this.$themeConfig.perPage.tag > 0) ? this.$themeConfig.perPage.tag : 10
     }
   },
 
