@@ -32,11 +32,13 @@
           <!-- 博客列表 -->
           <note-abstract
             :data="$recoPosts"
+            :perPage="getPerPage"
             :currentPage="currentPage"></note-abstract>
           <!-- 分页 -->
           <pagation
             class="pagation"
             :total="$recoPosts.length"
+            :perPage="getPerPage"
             :currentPage="currentPage"
             @getCurrentPage="getCurrentPage" />
         </div>
@@ -122,6 +124,9 @@ export default {
     },
     heroHeight () {
       return document.querySelector('.hero').clientHeight
+    },
+    getPerPage(){
+      return (this.$themeConfig.perPage && this.$themeConfig.perPage.blog && this.$themeConfig.perPage.blog > 0) ? this.$themeConfig.perPage.blog : 10
     }
   },
   mounted () {
