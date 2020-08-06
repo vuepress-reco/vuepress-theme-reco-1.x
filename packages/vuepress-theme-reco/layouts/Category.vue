@@ -22,6 +22,7 @@
         v-show="recoShowModule"
         class="list"
         :data="posts"
+        :perPage="getPerPage"
         :currentPage="currentPage"
         @currentTag="getCurrentTag"></note-abstract>
     </ModuleTransition>
@@ -31,6 +32,7 @@
       <pagation
         class="pagation"
         :total="posts.length"
+        :perPage="getPerPage"
         :currentPage="currentPage"
         @getCurrentPage="getCurrentPage"></pagation>
     </ModuleTransition>
@@ -67,6 +69,9 @@ export default {
     // 标题只显示分类名称
     title () {
       return this.$currentCategories.key
+    },
+    getPerPage(){
+      return (this.$themeConfig.perPage && this.$themeConfig.perPage.category && this.$themeConfig.perPage.category > 0) ? this.$themeConfig.perPage.category : 10
     }
   },
 
