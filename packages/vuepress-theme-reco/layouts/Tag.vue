@@ -16,6 +16,7 @@
         v-show="recoShowModule"
         class="list"
         :data="posts"
+        :perPage="getPerPage"
         :currentPage="currentPage"
         @currentTag="$currentTags.key"></note-abstract>
     </ModuleTransition>
@@ -25,6 +26,7 @@
       <pagation
         class="pagation"
         :total="posts.length"
+        :perPage="getPerPage"
         :currentPage="currentPage"
         @getCurrentPage="getCurrentPage"></pagation>
     </ModuleTransition>
@@ -58,6 +60,9 @@ export default {
       posts = filterPosts(posts)
       sortPostsByStickyAndDate(posts)
       return posts
+    },
+    getPerPage(){
+      return (this.$themeConfig.perPage && this.$themeConfig.perPage.tag && this.$themeConfig.perPage.tag > 0) ? this.$themeConfig.perPage.tag : 10
     }
   },
 
