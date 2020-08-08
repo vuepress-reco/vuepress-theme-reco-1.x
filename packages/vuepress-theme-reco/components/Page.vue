@@ -171,8 +171,7 @@ export default {
       )
     },
     pageStyle () {
-      const headers = this.$page.headers || []
-      return headers.length > 0 ? {} : { paddingRight: '0' }
+      return this.$showSubSideBar ? {} : { paddingRight: '0' }
     }
   },
 
