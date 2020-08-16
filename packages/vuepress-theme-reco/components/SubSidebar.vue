@@ -4,7 +4,7 @@ import { isActive } from '@theme/helpers/utils'
 export default {
   computed: {
     headers () {
-      return this.showSubSidebar ? this.$page.headers || [] : []
+      return this.$showSubSideBar ? this.$page.headers : []
     }
   },
   methods: {

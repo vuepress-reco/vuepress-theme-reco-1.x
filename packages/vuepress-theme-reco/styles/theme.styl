@@ -64,6 +64,8 @@ body
     border-radius 4px
   img
     max-width 100%
+  *:first-child
+    margin-top 0
 
 .content__default.custom
   padding 0
@@ -111,17 +113,17 @@ h1, h2, h3, h4, h5, h6
   font-weight 500
   line-height 1.25
   .content__default:not(.custom) > &
-    margin-top (0.5rem - $navbarHeight)
-    padding-top ($navbarHeight + 1rem)
+    margin-top (2.1rem - $navbarHeight)
+    padding-top $navbarHeight
     margin-bottom 0
     &:first-child
       margin-top -3.5rem
-      margin-bottom 1rem
-      + p, + pre, + .custom-block
-        margin-top 2rem
 
 h1
+  display none
   font-size 1.6rem
+  &.title
+    display block
 
 h2
   position relative

@@ -1,5 +1,3 @@
----
-title: bar1
----
+# bar test
 
 bar1
