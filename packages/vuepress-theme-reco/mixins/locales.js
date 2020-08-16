@@ -3,23 +3,21 @@ import { zhHans, zhHant, en, ja, ko } from '../locales/index'
 export default {
   computed: {
     $recoLocales () {
-      const recoLocales = this.$themeLocaleConfig.recoLocales
-      if (recoLocales && recoLocales.homeBlog) {
-        return { homeBlog: recoLocales.homeBlog }
-      }
+      const recoLocales = this.$themeLocaleConfig.recoLocales || {}
+
       if (/^zh\-(CN|SG)$/.test(this.$lang)) {
-        return zhHans
+        return { ...zhHans, ...recoLocales }
       }
       if (/^zh\-(HK|MO|TW)$/.test(this.$lang)) {
-        return zhHant
+        return { ...zhHant, ...recoLocales }
       }
       if (/^ja\-JP$/.test(this.$lang)) {
-        return ja
+        return { ...ja, ...recoLocales }
       }
       if (/^ko\-KR$/.test(this.$lang)) {
-        return ko
+        return { ...ko, ...recoLocales }
       }
-      return en
+      return { ...en, ...recoLocales }
     }
   }
 }
