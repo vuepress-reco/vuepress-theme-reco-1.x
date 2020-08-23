@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vuepress-reco/vuepress-theme-reco.git"
+    "url": "git+https://github.com/vuepress-reco/vuepress-plugin-comments.git"
   },
   "license": "MIT",
   "author": "reco_luan <recoluan@outlook.com>",

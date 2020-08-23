@@ -1,0 +1,34 @@
+{
+  "name": "@vuepress-reco/vuepress-plugin-notice",
+  "version": "1.5.5",
+  "description": "notice plugin for vuepress-theme-reco or other vuepress theme",
+  "keywords": [
+    "vuepress-theme-reco",
+    "notice",
+    "vuepress"
+  ],
+  "homepage": "https://vuepress-theme-reco.recoluan.com",
+  "bugs": {
+    "url": "https://github.com/vuepress-reco/vuepress-theme-reco/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuepress-reco/vuepress-plugin-notice.git"
+  },
+  "license": "MIT",
+  "author": "reco_luan <recoluan@outlook.com>",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "publishConfig": {
+    "registry": "http://r.npm.sankuai.com/"
+  }
+}
