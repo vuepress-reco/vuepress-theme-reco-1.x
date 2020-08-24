@@ -2,7 +2,7 @@
   <main class="page" :style="pageStyle">
     <ModuleTransition>
       <div v-show="recoShowModule && $page.title" class="page-title">
-        <h1>{{$page.title}}</h1>
+        <h1 class="title">{{$page.title}}</h1>
         <PageInfo :pageInfo="$page" :showAccessNumber="showAccessNumber"></PageInfo>
       </div>
     </ModuleTransition>
@@ -171,9 +171,12 @@ export default {
       )
     },
     pageStyle () {
-      const headers = this.$page.headers || []
-      return headers.length > 0 ? {} : { paddingRight: '0' }
+      return this.$showSubSideBar ? {} : { paddingRight: '0' }
     }
+  },
+
+  created () {
+    console.log(this)
   },
 
   methods: {
