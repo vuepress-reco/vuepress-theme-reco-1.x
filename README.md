@@ -65,6 +65,8 @@ theme-cli init
 
 **P.S. Thanks to the two beauties for their contributions to the theme logo: Zoey and 冰冰.**
 
+[Join us](https://www.notion.so/vuepress-reco-f8a7a55d18e042929931b612f170dbf4)
+
 ## License
 [MIT](https://github.com/recoluan/vuepress-theme-reco/blob/master/LICENSE)
 
