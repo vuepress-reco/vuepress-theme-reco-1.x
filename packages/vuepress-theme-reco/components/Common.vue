@@ -128,13 +128,6 @@ export default {
     },
 
     shouldShowSidebar () {
-      // const { frontmatter } = this.$page
-      // return (
-      //   this.sidebar !== false &&
-      //   !frontmatter.home &&
-      //   frontmatter.sidebar !== false &&
-      //   this.sidebarItems.length
-      // )
       return this.sidebarItems.length > 0
     },
 

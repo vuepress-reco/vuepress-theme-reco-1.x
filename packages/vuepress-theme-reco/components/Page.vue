@@ -175,10 +175,6 @@ export default {
     }
   },
 
-  created () {
-    console.log(this)
-  },
-
   methods: {
     createEditLink (repo, docsRepo, docsDir, docsBranch, path) {
       const bitbucket = /bitbucket.org/

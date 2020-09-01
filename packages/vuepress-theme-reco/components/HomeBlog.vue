@@ -178,6 +178,7 @@ export default {
     }
 
     h1 {
+      display: block;
       margin:0 auto 1.8rem;
       font-size: 2.5rem;
     }

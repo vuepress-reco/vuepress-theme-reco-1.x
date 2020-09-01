@@ -44,15 +44,14 @@ export default {
     },
     $showSubSideBar () {
       const {
-        $themeConfig: { subSidebar: themeSidebar },
-        $frontmatter: { subSidebar: pageSidebar }
+        $themeConfig: { subSidebar: themeSubSidebar, sidebar: themeSidebar },
+        $frontmatter: { subSidebar: pageSubSidebar, sidebar: pageSidebar }
       } = this
+
       const headers = this.$page.headers || []
 
-      if ((themeSidebar === 'auto' || pageSidebar === 'auto') && headers.length > 0) {
-        return true
-      }
-      return false
+      return [themeSubSidebar, themeSidebar, pageSubSidebar, pageSidebar].indexOf('auto') > -1 &&
+             headers.length > 0
     }
   }
 }
