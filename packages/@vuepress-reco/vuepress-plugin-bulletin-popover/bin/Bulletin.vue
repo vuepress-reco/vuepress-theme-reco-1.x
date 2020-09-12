@@ -1,25 +1,25 @@
 <template>
   <transition name="fade">
-    <div v-if="visible" class="notice-wrapper" :style="{ width }">
-      <h4 class="notice-title">
+    <div v-if="visible" class="bulletin-wrapper" :style="{ width }">
+      <h4 class="bulletin-title">
         <i class="iconfont reco-tongzhi"></i>
-        <span>{{ title || NoticeLocales.notice }}</span>
+        <span>{{ title || bulletinLocales.title }}</span>
         <i class="btn-close" @click="closeNote">
           <svg t="1573745677073" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4448" width="22" height="22"><path d="M512 34.133333a486.4 486.4 0 1 0 486.4 486.4A486.4 486.4 0 0 0 512 34.133333z m209.4848 632.8064l-55.6032 55.466667-151.517867-151.125333-151.517866 151.1168-55.6032-55.466667 151.517866-151.108267L307.242667 364.714667l55.6032-55.466667 151.517866 151.125333 151.517867-151.1168 55.6032 55.466667-151.517867 151.099733z m0 0" p-id="4449"></path></svg>
         </i>
       </h4>
-      <div class="notice-content" v-html="bodyNodes"></div>
+      <div class="bulletin-content" v-html="bodyNodes"></div>
       <hr>
-      <div class="notice-footer" v-html="footerNodes"></div>
+      <div class="bulletin-footer" v-html="footerNodes"></div>
     </div>
   </transition>
 </template>
 
 <script>
-import noticeLocales from './locales'
+import bulletinLocales from './locales'
 
 export default {
-  name: 'Notice',
+  name: 'Bulletin',
   data () {
     return {
       visible: false,
@@ -35,10 +35,11 @@ export default {
       return this.handleNode(this.body).join('')
     },
     footerNodes () {
+      console.log(this.handleNode(this.footer))
       return this.handleNode(this.footer).join('')
     },
-    noticeLocales () {
-      return noticeLocales(this)
+    bulletinLocales () {
+      return bulletinLocales(this)
     }
   },
   mounted () {
@@ -51,6 +52,7 @@ export default {
       sessionStorage.setItem('closeNote', 'true')
     },
     handleNode (nodes) {
+      console.log(nodes)
       if (!Array.isArray(nodes)) {
         let type = nodes.type
         type = type.slice(0, 1).toUpperCase() + type.slice(1)
@@ -76,7 +78,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.notice-wrapper
+.bulletin-wrapper
   position fixed
   top 80px
   right 20px
@@ -87,7 +89,7 @@ export default {
   border-radius .25rem
   background var(--background-color)
   box-shadow var(--box-shadow)
-  .notice-title
+  .bulletin-title
     position relative
     box-sizing border-box
     padding 10px
@@ -108,7 +110,7 @@ export default {
       cursor pointer
       svg
         fill #fff
-  .notice-content
+  .bulletin-content
     box-sizing border-box
     padding 10px 15px 0
     ::v-deep h5
@@ -116,7 +118,7 @@ export default {
       text-align center
     ::v-deep img
       width 100%
-  .notice-footer
+  .bulletin-footer
     padding 16px
     text-align center
     ::v-deep .btn
@@ -132,6 +134,11 @@ export default {
       cursor pointer
       &:not(:first-child)
         margin-left 10px
+    ::v-deep h5
+      margin .2rem 0
+      text-align center
+    ::v-deep img
+      width 100%
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;
 }

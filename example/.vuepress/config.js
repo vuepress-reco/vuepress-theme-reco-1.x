@@ -98,7 +98,7 @@ module.exports = {
      */
   },
   plugins: [
-    ['@vuepress-reco/vuepress-plugin-notice', {
+    ['@vuepress-reco/vuepress-plugin-bulletin-popover', {
       body: [
         {
           type: 'title',
@@ -111,13 +111,16 @@ module.exports = {
         }
       ],
       footer: [
-        [
-          {
-            type: 'button',
-            text: '打赏',
-            link: '/donate'
-          }
-        ]
+        {
+          type: 'button',
+          text: '打赏',
+          link: '/donate'
+        },
+        {
+          type: 'button',
+          text: '打赏',
+          link: '/donate'
+        }
       ]
     }]
   ]

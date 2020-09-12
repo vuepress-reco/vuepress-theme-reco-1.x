@@ -1,24 +1,24 @@
 const zhHans = {
-  notice: '公告'
+  title: '公告'
 }
 
 const zhHant = {
-  notice: '公告'
+  title: '公告'
 }
 
 const en = {
-  notice: 'Notice'
+  title: 'Bulletin'
 }
 
 const ja = {
-  notice: '公告'
+  bulletin: '公告'
 }
 
 const ko = {
-  notice: '공고'
+  title: '공고'
 }
 
-export default function noticeLocales (ctx) {
+export default function bulletinLocales (ctx) {
   const { $lang, $recoLocales: { pagation } = {} } = ctx
   if (pagation) {
     return pagation

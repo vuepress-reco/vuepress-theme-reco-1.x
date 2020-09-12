@@ -10,9 +10,9 @@ module.exports = (options, context) => ({
       FOOTER: footer || []
     }
   },
-  name: '@vuepress-reco/vuepress-plugin-notice',
+  name: '@vuepress-reco/vuepress-plugin-bulletin-popover',
   enhanceAppFiles: [
     path.resolve(__dirname, './bin/enhanceAppFile.js')
   ],
-  globalUIComponents: 'notice'
+  globalUIComponents: 'Bulletin'
 })
