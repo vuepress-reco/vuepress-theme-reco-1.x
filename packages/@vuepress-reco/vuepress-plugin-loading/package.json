@@ -18,5 +18,8 @@
   "license": "MIT",
   "author": "reco_luan <recoluan@outlook.com>",
   "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "gitHead": "c3a1db8487bece9341b6269a0f6ebf910cd5462a"
 }

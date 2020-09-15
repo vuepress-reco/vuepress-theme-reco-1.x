@@ -17,5 +17,8 @@
   },
   "license": "MIT",
   "author": "reco_luan <recoluan@outlook.com>",
-  "main": "index.js"
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  }
 }
