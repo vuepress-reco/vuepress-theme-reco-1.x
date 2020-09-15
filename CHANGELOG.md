@@ -1,3 +1,20 @@
+## [1.5.7](https://github.com/recoluan/vuepress-theme-reco/compare/v1.5.5...v1.5.7) (2020-09-15)
+
+
+### Bug Fixes
+
+* **vuepress-theme-reco:** fix multi-language configuration err ([acb37b3](https://github.com/recoluan/vuepress-theme-reco/commit/acb37b3d4dcaa169f416c5ac3f4d5782865abdc9)), closes [#229](https://github.com/recoluan/vuepress-theme-reco/issues/229)
+* **vuepress-theme-reco:** fix some style problems ([84e9516](https://github.com/recoluan/vuepress-theme-reco/commit/84e9516e64d2d9d4ed2d9df3e2a28bf64dbd6323)), closes [#231](https://github.com/recoluan/vuepress-theme-reco/issues/231)
+
+
+### Features
+
+* **vuepress-plugin-pagation:** set page size by plugin option ([6496869](https://github.com/recoluan/vuepress-theme-reco/commit/6496869ace0ca4571b7ea19a45b77d2764487d5d)), closes [#207](https://github.com/recoluan/vuepress-theme-reco/issues/207)
+* create plugin notice ([c9f251d](https://github.com/recoluan/vuepress-theme-reco/commit/c9f251dae5f757a6cb8a689f382ba3e9ba438f6f))
+* **vuepress-theme-reco:** use subSidebar to control the sub sidebar ([5efa924](https://github.com/recoluan/vuepress-theme-reco/commit/5efa924d7bb926223c571ad1393c2ff32aa6ca7b))
+
+
+
 ## [1.5.5](https://github.com/recoluan/vuepress-theme-reco/compare/v1.5.4...v1.5.5) (2020-08-01)
 
 
