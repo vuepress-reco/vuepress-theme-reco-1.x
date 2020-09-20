@@ -2,7 +2,7 @@ const path = require('path')
 
 // Theme API.
 module.exports = (options, ctx) => ({
-  alias () {
+  alias() {
     const { themeConfig, siteConfig } = ctx
     // resolve algolia
     const isAlgoliaSearch = (
@@ -82,6 +82,10 @@ module.exports = (options, ctx) => ({
     }],
     ['container', {
       type: 'theorem',
+      defaultTitle: {
+        '/': '',
+        '/zh/': '定理'
+      },
       before: info => `<div class="custom-block theorem"><p class="title">${info}</p>`,
       after: '</div>'
     }],
