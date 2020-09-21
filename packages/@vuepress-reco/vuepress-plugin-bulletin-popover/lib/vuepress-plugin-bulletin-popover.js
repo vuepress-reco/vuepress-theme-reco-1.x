@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 
-module.exports = vuepressPluginBulletinPopover;
+module.exports = vuepressPluginBulletinPopover
 
-function vuepressPluginBulletinPopover() {
-    // TODO
+function vuepressPluginBulletinPopover () {
+  // TODO
 }
