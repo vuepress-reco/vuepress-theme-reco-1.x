@@ -2,3 +2,5 @@ node_modules
 yarn-error.log
 .idea
 .DS_Store
+yarn.lock
+package-lock.json
