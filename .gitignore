@@ -3,4 +3,5 @@ yarn-error.log
 .idea
 yarn.lock
 .DS_Store
+.vscode
 package-lock.json
