@@ -57,20 +57,25 @@ module.exports = (options, ctx) => ({
     'vuepress-plugin-smooth-scroll',
     ['container', {
       type: 'tip',
+      defaultTitle: ''
     }],
     ['container', {
       type: 'warning',
+      defaultTitle: ''
     }],
     ['container', {
       type: 'danger',
+      defaultTitle: ''
     }],
     ['container', {
       type: 'right',
+      defaultTitle: ''
     }],
     ['container', {
       type: 'theorem',
       before: info => `<div class="custom-block theorem"><p class="title">${info}</p>`,
-      after: '</div>'
+      after: '</div>',
+      defaultTitle: ''
     }],
     ['container', {
       type: 'details',
