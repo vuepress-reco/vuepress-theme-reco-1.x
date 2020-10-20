@@ -12,7 +12,7 @@ export default {
       const active = isActive(this.$route, this.$page.path + '#' + header.slug)
       if (active) {
         setTimeout(() => {
-          document.querySelector(`.reco-${header.slug}`).scrollIntoView()
+          document.querySelector(`.reco-side-${header.slug}`).scrollIntoView()
         }, 300)
       }
       return active
@@ -32,7 +32,7 @@ export default {
           attr: { key: header.title }
         }, [
           h('router-link', {
-            class: { 'sidebar-link': true, [`reco-${header.slug}`]: true },
+            class: { 'sidebar-link': true, [`reco-side-${header.slug}`]: true },
             props: { to: `${this.$page.path}#${header.slug}` }
           }, header.title)
         ])
