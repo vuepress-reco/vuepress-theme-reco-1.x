@@ -30,7 +30,7 @@
 export default {
   computed: {
     homeBlogCfg () {
-      return this.$recoLocals.homeBlog
+      return this.$recoLocales.homeBlog
     }
   }
 }
@@ -40,12 +40,13 @@ export default {
 .personal-info-wrapper {
   .personal-img {
     display block
-    margin 2rem auto
-    width 8rem
-    height 8rem
+    margin 2rem auto 1rem
+    width 6rem
+    height 6rem
     border-radius 50%
   }
   .name {
+    font-size 1rem
     text-align center
     color var(--text-color)
   }
@@ -55,7 +56,7 @@ export default {
     width 80%
     > div {
       text-align center
-      flex auto
+      flex 0 0 50%
       &:first-child {
         border-right 1px solid #333
       }

@@ -1,9 +1,8 @@
 <template>
-  <main class="page">
+  <main class="page" :style="pageStyle">
     <ModuleTransition>
       <div v-show="recoShowModule && $page.title" class="page-title">
-        <h1>{{$page.title}}</h1>
-        <hr>
+        <h1 class="title">{{$page.title}}</h1>
         <PageInfo :pageInfo="$page" :showAccessNumber="showAccessNumber"></PageInfo>
       </div>
     </ModuleTransition>
@@ -72,6 +71,10 @@
     <ModuleTransition delay="0.32">
       <Comments v-if="recoShowModule" :isShowComments="shouldShowComments"/>
     </ModuleTransition>
+
+    <ModuleTransition delay="0.08">
+      <SubSidebar v-if="recoShowModule" class="side-bar" />
+    </ModuleTransition>
   </main>
 </template>
 
@@ -80,10 +83,11 @@ import PageInfo from '@theme/components/PageInfo'
 import { resolvePage, outboundRE, endingSlashRE } from '@theme/helpers/utils'
 import ModuleTransition from '@theme/components/ModuleTransition'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
+import SubSidebar from '@theme/components/SubSidebar'
 
 export default {
   mixins: [moduleTransitonMixin],
-  components: { PageInfo, ModuleTransition },
+  components: { PageInfo, ModuleTransition, SubSidebar },
 
   props: ['sidebarItems'],
 
@@ -96,15 +100,21 @@ export default {
   computed: {
     // 是否显示评论
     shouldShowComments () {
-      const { isShowComments, home } = this.$frontmatter
-      return !(
-        this.isComment == false ||
-        isShowComments == false ||
-        home == true
-      )
+      const { isShowComments } = this.$frontmatter
+      const { showComment } = this.$themeConfig.valineConfig || { showComment: true }
+      return (showComment !== false && isShowComments !== false) || (showComment === false && isShowComments === true)
     },
     showAccessNumber () {
-      return this.$themeConfig.valineConfig !== undefined
+      const {
+        $themeConfig: { valineConfig },
+        $themeLocaleConfig: { valineConfig: valineLocalConfig }
+      } = this
+
+      const vc = valineLocalConfig || valineConfig
+      if (vc && vc.visitor != false) {
+        return true
+      }
+      return false
     },
     lastUpdated () {
       return this.$page.lastUpdated
@@ -159,6 +169,9 @@ export default {
       return (
         this.$themeLocaleConfig.editLinkText || this.$themeConfig.editLinkText || `Edit this page`
       )
+    },
+    pageStyle () {
+      return this.$showSubSideBar ? {} : { paddingRight: '0' }
     }
   },
 
@@ -228,11 +241,22 @@ function flatten (items, res) {
 @require '../styles/wrapper.styl'
 
 .page
+  position relative
   padding-top 5rem
   padding-bottom 2rem
+  padding-right 14rem
   display block
+  .side-bar
+    position fixed
+    top 10rem
+    bottom 10rem
+    right 2rem
+    overflow-y scroll
+    &::-webkit-scrollbar
+      width: 0
+      height: 0
   .page-title
-    max-width: 740px;
+    max-width: $contentWidth;
     margin: 0 auto;
     padding: 1rem 2.5rem;
     color var(--text-color)
@@ -272,14 +296,18 @@ function flatten (items, res) {
     float right
 
 @media (max-width: $MQMobile)
-  .page-title
-    padding: 0 1rem;
-  .page-edit
-    .edit-link
-      margin-bottom .5rem
-    .last-updated
-      font-size .8em
-      float none
-      text-align left
+  .page
+    padding-right 0
+    .side-bar
+      display none
+    .page-title
+      padding: 0 1rem;
+    .page-edit
+      .edit-link
+        margin-bottom .5rem
+      .last-updated
+        font-size .8em
+        float none
+        text-align left
 
 </style>

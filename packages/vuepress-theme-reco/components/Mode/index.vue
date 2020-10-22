@@ -1,7 +1,7 @@
 <template>
 	<div v-click-outside="hideMenu" class="color-picker" v-if="$themeConfig.modePicker !== false" >
 		<a class="color-button" @click.prevent="showMenu = !showMenu">
-			<i class="iconfont reco-color"></i>
+      <reco-icon icon="reco-color" />
 		</a>
 		<transition name="menu-transition" mode="out-in">
 			<div v-show="showMenu" class="color-picker-menu">
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { RecoIcon } from '@vuepress-reco/core'
 import ClickOutside from 'vue-click-outside'
 import ModePicker from './ModePicker'
 import applyMode from './applyMode'
@@ -24,7 +25,8 @@ export default {
   },
 
   components: {
-    ModePicker
+    ModePicker,
+    RecoIcon
   },
 
   data () {

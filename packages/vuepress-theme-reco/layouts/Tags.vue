@@ -44,13 +44,15 @@ export default {
   data () {
     return {
       tags: [],
-      currentTag: '全部',
+      currentTag: '',
       currentPage: 1,
-      allTagName: '全部'
+      allTagName: ''
     }
   },
 
   created () {
+    this.currentTag = this.$recoLocales.tag.all
+    this.allTagName = this.$recoLocales.tag.all
     if (this.$tags.list.length > 0) {
       this.currentTag = this.$route.query.tag ? this.$route.query.tag : this.currentTag
     }
@@ -63,7 +65,9 @@ export default {
   methods: {
 
     tagClick (tagInfo) {
-      this.$router.push({ path: tagInfo.path })
+      if (this.$route.path !== tagInfo.path) {
+        this.$router.push({ path: tagInfo.path })
+      }
     },
 
     getCurrentTag (tag) {
@@ -85,12 +89,11 @@ export default {
 }
 </script>
 
-<style src="prismjs/themes/prism-tomorrow.css"></style>
 <style src="../styles/theme.styl" lang="stylus"></style>
 
 <style lang="stylus" scoped>
 .tags-wrapper
-  max-width: 740px;
+  max-width: $contentWidth
   margin: 0 auto;
   padding: 4.6rem 2.5rem 0;
 

@@ -1,13 +1,13 @@
 <template>
   <div
-    class="abstract-item">
-    <i v-if="item.frontmatter.sticky" class="iconfont reco-sticky"></i>
+    class="abstract-item"
+    @click="$router.push(item.path)">
+    <reco-icon v-if="item.frontmatter.sticky" icon="reco-sticky" />
     <div class="title">
-      <i v-if="item.frontmatter.keys" class="iconfont reco-lock"></i>
+      <reco-icon v-if="item.frontmatter.keys" icon="reco-lock" />
       <router-link :to="item.path">{{item.title}}</router-link>
     </div>
     <div class="abstract" v-html="item.excerpt"></div>
-    <hr class="hr">
     <PageInfo
       :pageInfo="item"
       :currentTag="currentTag">
@@ -16,9 +16,10 @@
 </template>
 
 <script>
+import { RecoIcon } from '@vuepress-reco/core'
 import PageInfo from './PageInfo'
 export default {
-  components: { PageInfo },
+  components: { PageInfo, RecoIcon },
   props: ['item', 'currentPage', 'currentTag']
 }
 </script>
@@ -36,6 +37,10 @@ export default {
   box-sizing: border-box;
   transition all .3s
   background-color var(--background-color)
+  cursor: pointer;
+  > * {
+    pointer-events: auto;
+  }
   .reco-sticky
     position absolute
     top 0
@@ -48,8 +53,10 @@ export default {
   .title
     position: relative;
     font-size: 1.28rem;
-    line-height: 36px;
+    line-height: 46px;
     display: inline-block;
+    a
+      color: var(--text-color);
     .reco-lock
       font-size 1.28rem
       color $accentColor
@@ -73,7 +80,6 @@ export default {
       transform: scaleX(1);
   .tags
     .tag-item
-      cursor: pointer;
       &.active
         color $accentColor
       &:hover

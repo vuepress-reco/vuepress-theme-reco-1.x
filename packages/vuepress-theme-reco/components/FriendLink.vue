@@ -47,7 +47,15 @@ import { getOneColor } from '@theme/helpers/other'
 export default {
   data () {
     return {
-      popupWindowStyle: {}
+      popupWindowStyle: {},
+      isPC: true
+    }
+  },
+  mounted () {
+    if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+      this.isPC = false
+    } else {
+      this.isPC = true
     }
   },
   computed: {
@@ -71,19 +79,42 @@ export default {
       const currentDom = e.target
       const popupWindowWrapper = currentDom.querySelector('.popup-window-wrapper')
       const popupWindow = currentDom.querySelector('.popup-window')
+      const infoWrapper = document.querySelector('.info-wrapper')
       popupWindowWrapper.style.display = 'block'
       const { clientWidth } = currentDom
       const {
         clientWidth: windowWidth,
         clientHeight: windowHeight
       } = popupWindow
-      this.popupWindowStyle = {
-        left: (clientWidth - windowWidth) / 2 + 'px',
-        top: -windowHeight + 'px'
+      if (this.isPC) {
+        this.popupWindowStyle = {
+          left: (clientWidth - windowWidth) / 2 + 'px',
+          top: -windowHeight + 'px'
+        }
+        infoWrapper.style.overflow = 'visible'
+        this.$nextTick(() => {
+          this._adjustPosition(currentDom.querySelector('.popup-window'))
+        })
+      } else {
+        const getPosition = function (element) {
+          const dc = document
+          const rec = element.getBoundingClientRect()
+          let _x = rec.left
+          let _y = rec.top
+          _x += dc.documentElement.scrollLeft || dc.body.scrollLeft
+          _y += dc.documentElement.scrollTop || dc.body.scrollTop
+          return {
+            left: _x,
+            top: _y
+          }
+        }
+        infoWrapper.style.overflow = 'hidden'
+        const left = getPosition(currentDom).left - getPosition(infoWrapper).left
+        this.popupWindowStyle = {
+          left: (-left + (infoWrapper.clientWidth - popupWindow.clientWidth) / 2) + 'px',
+          top: -windowHeight + 'px'
+        }
       }
-      this.$nextTick(() => {
-        this._adjustPosition(currentDom.querySelector('.popup-window'))
-      })
     },
     hideDetail (e) {
       const currentDom = e.target
@@ -151,7 +182,7 @@ export default {
         border-radius $borderRadius
         box-sizing border-box
         padding .8rem 1rem
-        width 300px
+        width 280px
         .logo
           margin-right .4rem
           width 2rem
@@ -180,7 +211,7 @@ export default {
               width 1.4rem
               height 1.2rem
               border-radius $borderRadius
-              font-size .1rem
+              font-size 12px
               color #ffffff
               text-align center
               line-height 1.2rem

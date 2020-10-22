@@ -71,6 +71,7 @@ export default {
 
 <style lang="stylus">
 .sidebar-group
+  background var(--background-color)
   .sidebar-group
     padding-left 0.5em
   &:not(.collapsable)
@@ -97,23 +98,24 @@ export default {
       border-left none
 
 .sidebar-heading
+  position relative
   color var(--text-color)
   transition color .15s ease
   cursor pointer
-  font-size 1.1em
-  font-weight bold
-  // text-transform uppercase
+  font-size 1em
+  font-weight 500
   padding 0.35rem 1.5rem 0.35rem 1.25rem
   width 100%
   box-sizing border-box
   margin 0
-  border-left 0.25rem solid transparent
   &.open, &:hover
     color $accentColor
   .arrow
-    position relative
-    top -0.12em
-    left 0.5em
+    position absolute
+    top 0
+    bottom 0
+    right 1em
+    margin auto
   &.clickable
     &.active
       font-weight 600

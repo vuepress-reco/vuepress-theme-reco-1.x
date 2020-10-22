@@ -1,0 +1,29 @@
+{
+  "name": "@vuepress-reco/core",
+  "version": "1.5.7",
+  "description": "The core library of vuepress-theme-reco.",
+  "homepage": "https://vuepress-theme-reco.recoluan.com/",
+  "bugs": {
+    "url": "https://github.com/recoluan/vuepress-theme-reco/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/recoluan/vuepress-theme-reco.git"
+  },
+  "license": "MIT",
+  "author": "reco_luan <recoluan@outlook.com>",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "publishConfig": {
+    "registry": "https://registry.yarnpkg.com"
+  }
+}

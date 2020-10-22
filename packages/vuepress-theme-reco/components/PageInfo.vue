@@ -1,42 +1,46 @@
 <template>
   <div>
-    <i
-      class="iconfont reco-account"
-      v-if="pageInfo.frontmatter.author || $themeConfig.author || $site.title">
+    <reco-icon
+      v-if="pageInfo.frontmatter.author || $themeConfig.author || $site.title"
+      icon="reco-account"
+    >
       <span>{{ pageInfo.frontmatter.author || $themeConfig.author || $site.title }}</span>
-    </i>
-    <i
+    </reco-icon>
+    <reco-icon
       v-if="pageInfo.frontmatter.date"
-      class="iconfont reco-date">
+      icon="reco-date"
+    >
       <span>{{ pageInfo.frontmatter.date | formatDateValue }}</span>
-    </i>
-    <i
+    </reco-icon>
+    <reco-icon
       v-if="showAccessNumber === true"
-      class="iconfont reco-eye">
-      <AccessNumber
-        :idVal="pageInfo.path"
-        :numStyle="numStyle" />
-    </i>
-    <i
+      icon="reco-eye"
+    >
+      <AccessNumber :idVal="pageInfo.path" :numStyle="numStyle" />
+    </reco-icon>
+    <reco-icon
       v-if="pageInfo.frontmatter.tags"
-      class="iconfont reco-tag tags">
+      icon="reco-tag"
+      class="tags"
+    >
       <span
         v-for="(subItem, subIndex) in pageInfo.frontmatter.tags"
         :key="subIndex"
         class="tag-item"
         :class="{ 'active': currentTag == subItem }"
-        @click="goTags(subItem)">
-        {{subItem}}
-      </span>
-    </i>
+        @click.stop="goTags(subItem)"
+      >{{subItem}}</span>
+    </reco-icon>
   </div>
 </template>
 
 <script>
 // 引入时间格式化js文件
 import { formatDate } from '@theme/helpers/utils'
+import { RecoIcon } from '@vuepress-reco/core'
 
 export default {
+  components: { RecoIcon },
   props: {
     pageInfo: {
       type: Object,
@@ -85,7 +89,9 @@ export default {
   },
   methods: {
     goTags (tag) {
-      this.$router.push({ path: `/tags/${tag}/` })
+      if (this.$route.path !== `/tag/${tag}/`) {
+        this.$router.push({ path: `/tag/${tag}/` })
+      }
     }
   }
 }
@@ -101,8 +107,8 @@ export default {
     margin-left 0.5rem
 .tags
   .tag-item
-    cursor pointer
     font-family Ubuntu, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif
+    cursor pointer
     &.active
       color $accentColor
     &:hover

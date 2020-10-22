@@ -1,0 +1,1 @@
+export { RecoIcon } from './components/'

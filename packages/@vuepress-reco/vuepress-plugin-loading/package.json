@@ -1,6 +1,6 @@
 {
   "name": "@vuepress-reco/vuepress-plugin-loading-page",
-  "version": "1.4.0",
+  "version": "1.5.7",
   "description": "Loading page plugin for vuepress-theme-reco or other vuepress theme",
   "keywords": [
     "vuepress-theme-reco",
@@ -13,10 +13,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vuepress-reco/vuepress-theme-reco.git"
+    "url": "git+https://github.com/vuepress-reco/vuepress-plugin-loading-page.git"
   },
   "license": "MIT",
   "author": "reco_luan <recoluan@outlook.com>",
   "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "gitHead": "c3a1db8487bece9341b6269a0f6ebf910cd5462a"
 }

@@ -1,0 +1,24 @@
+{
+  "name": "@vuepress-reco/vuepress-plugin-bulletin-popover",
+  "version": "1.5.7",
+  "description": "Bulletin popover plugin for vuepress-theme-reco or other vuepress theme",
+  "keywords": [
+    "vuepress-theme-reco",
+    "bulletin",
+    "vuepress"
+  ],
+  "homepage": "https://vuepress-theme-reco.recoluan.com",
+  "bugs": {
+    "url": "https://github.com/vuepress-reco/vuepress-theme-reco/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuepress-reco/vuepress-plugin-bulletin-popover.git"
+  },
+  "license": "MIT",
+  "author": "reco_luan <recoluan@outlook.com>",
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  }
+}

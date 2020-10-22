@@ -1,8 +1,7 @@
 <template>
   <aside class="sidebar">
-    <PersonalInfo/>
-    <NavLinks/>
     <slot name="top"/>
+    <NavLinks/>
     <SidebarLinks :depth="0" :items="items"/>
     <slot name="bottom"/>
   </aside>
@@ -10,13 +9,12 @@
 
 <script>
 import SidebarLinks from '@theme/components/SidebarLinks'
-import PersonalInfo from '@theme/components/PersonalInfo'
 import NavLinks from '@theme/components/NavLinks'
 
 export default {
   name: 'Sidebar',
 
-  components: { SidebarLinks, NavLinks, PersonalInfo },
+  components: { SidebarLinks, NavLinks },
 
   props: ['items']
 }
@@ -24,12 +22,18 @@ export default {
 
 <style lang="stylus">
 .sidebar
+  &&::-webkit-scrollbar
+    width: 0
+    height: 0
   .personal-info-wrapper
     display none
   ul
     padding 0
     margin 0
     list-style-type none
+    &.sidebar-links
+      > li
+        background $accentColor
   a
     display inline-block
   .nav-links
@@ -46,9 +50,9 @@ export default {
   & > .sidebar-links
     padding 1.5rem 0
     & > li > a.sidebar-link
-      font-size 1.1em
+      font-size 1em
       line-height 1.7
-      font-weight bold
+      font-weight 500
     & > li:not(:first-child)
       margin-top .75rem
 

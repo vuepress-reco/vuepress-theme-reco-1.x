@@ -31,15 +31,16 @@ export default {
     solution () {
       const {
         commentsOptions: { solution: slt },
-        $themeConfig: { valineConfig, vssueConfig }
+        $themeConfig: { valineConfig, vssueConfig },
+        $themeLocaleConfig: { valineConfig: valineLocalConfig, vssueConfig: vssueLocalConfig }
       } = this
 
       let solution = ''
       if (slt !== undefined) {
         solution = slt
-      } else if (valineConfig !== undefined) {
+      } else if (valineLocalConfig !== undefined || valineConfig !== undefined) {
         solution = 'valine'
-      } else if (vssueConfig !== undefined) {
+      } else if (vssueLocalConfig !== undefined || vssueConfig !== undefined) {
         solution = 'vssue'
       }
       return solution
@@ -47,15 +48,16 @@ export default {
     options () {
       const {
         commentsOptions: { options: opt },
-        $themeConfig: { valineConfig, vssueConfig }
+        $themeConfig: { valineConfig, vssueConfig },
+        $themeLocaleConfig: { valineConfig: valineLocalConfig, vssueConfig: vssueLocalConfig }
       } = this
 
       if (opt !== undefined) {
         return opt
-      } else if (valineConfig !== undefined) {
-        return valineConfig
-      } else if (vssueConfig !== undefined) {
-        return vssueConfig
+      } else if (valineLocalConfig !== undefined || valineConfig !== undefined) {
+        return valineLocalConfig || valineConfig
+      } else if (vssueLocalConfig !== undefined || vssueConfig !== undefined) {
+        return vssueLocalConfig || vssueConfig
       }
       return null
     },

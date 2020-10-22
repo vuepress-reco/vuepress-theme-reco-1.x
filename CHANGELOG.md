@@ -1,3 +1,96 @@
+## [1.5.7](https://github.com/recoluan/vuepress-theme-reco/compare/v1.5.5...v1.5.7) (2020-09-15)
+
+
+### Bug Fixes
+
+* **vuepress-theme-reco:** fix multi-language configuration err ([acb37b3](https://github.com/recoluan/vuepress-theme-reco/commit/acb37b3d4dcaa169f416c5ac3f4d5782865abdc9)), closes [#229](https://github.com/recoluan/vuepress-theme-reco/issues/229)
+* **vuepress-theme-reco:** fix some style problems ([84e9516](https://github.com/recoluan/vuepress-theme-reco/commit/84e9516e64d2d9d4ed2d9df3e2a28bf64dbd6323)), closes [#231](https://github.com/recoluan/vuepress-theme-reco/issues/231)
+
+
+### Features
+
+* **vuepress-plugin-pagation:** set page size by plugin option ([6496869](https://github.com/recoluan/vuepress-theme-reco/commit/6496869ace0ca4571b7ea19a45b77d2764487d5d)), closes [#207](https://github.com/recoluan/vuepress-theme-reco/issues/207)
+* create plugin notice ([c9f251d](https://github.com/recoluan/vuepress-theme-reco/commit/c9f251dae5f757a6cb8a689f382ba3e9ba438f6f))
+* **vuepress-theme-reco:** use subSidebar to control the sub sidebar ([5efa924](https://github.com/recoluan/vuepress-theme-reco/commit/5efa924d7bb926223c571ad1393c2ff32aa6ca7b))
+
+
+
+## [1.5.5](https://github.com/recoluan/vuepress-theme-reco/compare/v1.5.4...v1.5.5) (2020-08-01)
+
+
+### Features
+
+* **vuepress-theme-reco:** optimize blog homepage ([ab94806](https://github.com/recoluan/vuepress-theme-reco/commit/ab9480652bfc8374fcf53df7dabee40641779eeb))
+* **vuepress-theme-reco:** add locale for 'All' tag label ([7a71221](https://github.com/recoluan/vuepress-theme-reco/commit/7a7122125b897c4316e32d5135f036184e01fa03))
+
+
+### Performance Improvements
+
+* **vuepress-theme-reco:** optimize the home page and subSidebar ([6fd83e1](https://github.com/recoluan/vuepress-theme-reco/commit/6fd83e1ea295ce398c13523739b0900dedfd06d7))
+
+
+
+## [1.5.4](https://github.com/recoluan/vuepress-theme-reco/compare/v1.5.3...v1.5.4) (2020-07-19)
+
+
+### Bug Fixes
+
+* **vuepress-plugin-back-to-top:** fit the vuepress-plugin-smooth-scroll ([e025a61](https://github.com/recoluan/vuepress-theme-reco/commit/e025a610b391185264f2e63a2f4d58f10c388b90))
+
+
+### Features
+
+* **vuepress-theme-reco:** add vuepress-plugin-smooth-scroll ([5a3dcd5](https://github.com/recoluan/vuepress-theme-reco/commit/5a3dcd5c25431487caa54298a4a23b92c8f0b55d))
+
+
+
+## [1.5.3](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.7...v1.5.0) (2020-07-05)
+
+
+### Features
+
+* **vuepress-theme-reco:** add sub sidebar ([b9a4f8f](https://github.com/recoluan/vuepress-theme-reco/commit/b9a4f8f377fdec038639aa5441b0eb44c9d4a95a))
+* **vuepress-theme-reco:** 新增代码主题配置 ([10fcc3e](https://github.com/recoluan/vuepress-theme-reco/commit/10fcc3eab11b366f6c8014523fa068debafac05c))
+* **vuepress-theme-reco:** expand NoteAbstractItem clickable area ([978f0de](https://github.com/recoluan/vuepress-theme-reco/commit/978f0de5037d8bc7ab492b0eff22056b666c7afa))
+
+
+
+## [1.4.7](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.6...v1.4.7) (2020-06-04)
+
+
+### Bug Fixes
+
+* **vuepress-theme-reco:** 修复pagation is undefined ([b36262d](https://github.com/vuepress-reco/vuepress-theme-reco/commit/85470c289fc3030bc2b709a2379d09b76e2632c1))
+
+
+
+## [1.4.6](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.5...v1.4.6) (2020-06-01)
+
+
+### Bug Fixes
+
+* **vuepress-plugin-pagation:** set perpage number to 10 ([c6041ff](https://github.com/recoluan/vuepress-theme-reco/commit/c6041ffe68a8b51f5440450315e8cf90d7b74577))
+* **vuepress-theme-reco:** fix english grammar errors ([9ffd819](https://github.com/recoluan/vuepress-theme-reco/commit/9ffd819e734e72aa4d1edc3978da2f299eb88731))
+* **vuepress-theme-reco:** fix tag & abstract error ([97d8196](https://github.com/recoluan/vuepress-theme-reco/commit/97d8196225ba2b08ebdb2517479c749c13f3bf63))
+
+
+### Features
+
+* **vuepress-plugin-comments:** add internationalization default config ([0269874](https://github.com/recoluan/vuepress-theme-reco/commit/02698745469334ef8817baa96200583b4e53af8d))
+* **vuepress-plugin-comments:** internationalization ([7cb0bc7](https://github.com/recoluan/vuepress-theme-reco/commit/7cb0bc796dcd0c6ea551948633becfb6521f7503))
+* **vuepress-plugin-pagation:** add internationalization ([657f8ce](https://github.com/recoluan/vuepress-theme-reco/commit/657f8ce1748c7daee0caba11ed51743c20c82e3b))
+
+
+
+## [1.4.5](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.4...v1.4.5) (2020-04-19)
+
+
+### Bug Fixes
+
+* **vuepress-theme-reco:** fix valine ([bcb6bbd](https://github.com/recoluan/vuepress-theme-reco/commit/bcb6bbd9e581ed25c045612be767ffc019688ef8))
+
+
+
 ## [1.4.4](https://github.com/recoluan/vuepress-theme-reco/compare/v1.4.3...v1.4.4) (2020-04-18)
 
 

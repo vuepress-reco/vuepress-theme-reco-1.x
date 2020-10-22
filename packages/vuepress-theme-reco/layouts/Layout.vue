@@ -1,8 +1,7 @@
 <template>
-  <Common>
+  <Common :sidebarItems="sidebarItems">
     <component v-if="$frontmatter.home" :is="homeCom"/>
     <Page v-else :sidebar-items="sidebarItems"/>
-    <Comments :isShowComments="false"/>
     <Footer v-if="$frontmatter.home" class="footer" />
   </Common>
 </template>
@@ -17,7 +16,6 @@ import { resolveSidebarItems } from '@theme/helpers/utils'
 
 export default {
   components: { HomeBlog, Home, Page, Common, Footer },
-
   computed: {
     sidebarItems () {
       return resolveSidebarItems(
@@ -38,5 +36,4 @@ export default {
 }
 </script>
 
-<style src="prismjs/themes/prism-tomorrow.css"></style>
 <style src="../styles/theme.styl" lang="stylus"></style>

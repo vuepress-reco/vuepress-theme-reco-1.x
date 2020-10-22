@@ -12,46 +12,42 @@ export default {
   data () {
     return {
       visible: false,
-      interval: null,
-      isMoving: false,
       /* eslint-disable no-undef */
       customStyle: CUSTOM_STYLE,
       visibilityHeight: VISIBILITY_HEIGHT
     }
   },
   mounted () {
-    window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener('scroll', this.throttle(this.handleScroll, 500))
   },
   beforeDestroy () {
-    window.removeEventListener('scroll', this.handleScroll)
-    if (this.interval) {
-      clearInterval(this.interval)
-    }
+    window.removeEventListener('scroll', this.throttle(this.handleScroll, 500))
   },
   methods: {
     handleScroll () {
       this.visible = window.pageYOffset > this.visibilityHeight
     },
     backToTop () {
-      if (this.isMoving) return
-      const start = window.pageYOffset
-      let i = 0
-      this.isMoving = true
-      this.interval = setInterval(() => {
-        const next = Math.floor(this.easeInOutQuad(10 * i, start, -start, 500))
-        if (next <= 0) {
-          window.scrollTo(0, 0)
-          clearInterval(this.interval)
-          this.isMoving = false
-        } else {
-          window.scrollTo(0, next)
-        }
-        i++
-      }, 16.7)
+      window.scrollTo(0, 0)
     },
-    easeInOutQuad (t, b, c, d) {
-      if ((t /= d / 2) < 1) return c / 2 * t * t + b
-      return -c / 2 * (--t * (t - 2) - 1) + b
+    throttle (func, delay) {
+      let timer = null
+      let startTime = Date.now()
+
+      return function () {
+        const curTime = Date.now()
+        const remaining = delay - (curTime - startTime)
+        const context = this
+        const args = arguments
+
+        clearTimeout(timer)
+        if (remaining <= 0) {
+          func.apply(context, args)
+          startTime = Date.now()
+        } else {
+          timer = setTimeout(func, remaining)
+        }
+      }
     }
   }
 }

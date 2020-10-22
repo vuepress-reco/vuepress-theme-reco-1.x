@@ -1,62 +1,74 @@
 <p align="center"><a href="https://vuejs.org" target="_blank" rel="noopener noreferrer"><img width="150" src="https://i.loli.net/2020/01/13/TPKA1wp6s4ufSm2.png" alt="Vue logo"></a></p>
 
-<p align="center">
-<img src="https://img.shields.io/badge/leancloud--storage-3.13.0-orange.svg">
-<img src="https://img.shields.io/badge/valine-1.3.6-blue.svg">
-<img src="https://img.shields.io/badge/vue--click--outside-1.0.7-blue.svg">
-
-</p>
-
 ## Introduce
 
-1. 这是一个vuepress主题，旨在添加博客所需的分类、标签墙、分页、评论等功能；
-2. 主题追求极简，根据 vuepress 的默认主题修改而成，官方的主题配置仍然适用；
-3. 效果：[午后南杂](https://www.recoluan.com) 
-4. 文档：[vuepress-theme-reco-doc](https://vuepress-theme-reco.recoluan.com)
+1. This is a Vuepress theme, which is designed to add blog categories, tag walls, pagination, comments and other functions required;
+2. The theme is minimalist, modified according to the default theme of Vuepress, and the official theme configuration is still applicable;
+3. Demo：[午后南杂](https://www.recoluan.com) 
+4. Docs：[vuepress-theme-reco-doc](https://vuepress-theme-reco.recoluan.com)、[github source](https://vuepress.github.io)、[zeit source](https://vuepress-reco-doc.now.sh)
 
 ## Quick start
 
 **npx**
 
 ```
-npx @vuepress-reco/theme-cli init my-blog
+npx @vuepress-reco/theme-cli init
 ```
 
 **npm**
 
 ```bash
-# init
 npm install @vuepress-reco/theme-cli -g
-theme-cli init my-blog
 
-# install
-cd my-blog
-npm install
-
-# run
-npm run dev
-
-# build
-npm run build
+theme-cli init
 ```
 
 **yarn**
 
 ```bash
-# init
 yarn global add @vuepress-reco/theme-cli
-theme-cli init my-blog
 
-# install
-cd my-blog
-yarn install
-
-# run
-yarn dev
-
-# build
-yarn build
+theme-cli init
 ```
+
+## Multi-language
+
+|language|language code|
+|:-:|-|
+|Simplified Chinese|`zh-CN`、`zh-SG`|
+|Traditional Chinese|`zh-HK`、`zh-MO`、`zh-TW`|
+|Japanese|`ja-JP`|
+|Korean|`ko-KR`|
+|English|`en-US` and other|
+
+## Update record
+
+[Record](https://github.com/vuepress-reco/vuepress-theme-reco/blob/develop/CHANGELOG.md)
+
+## Contributors
+
+<a style="display: block;margin-top: 10px" href="https://github.com/vuepress-reco/vuepress-theme-reco/graphs/contributors" target="_black">
+  <img 
+    alt="vuepress-theme-reco" 
+    src="https://img.shields.io/github/contributors/vuepress-reco/vuepress-theme-reco?style=for-the-badge&logo=github&label=vuepress-theme-reco" />
+</a>
+
+<br />
+
+<a style="display: block;margin-top: 10px" href="https://github.com/vuepress-reco/vuepress-reco.github.io/graphs/contributors" target="_black">
+  <img 
+    alt="vuepress-reco.github.io" 
+    src="https://img.shields.io/github/contributors/vuepress-reco/vuepress-reco.github.io?style=for-the-badge&logo=github&label=vuepress-reco.github.io" />
+</a>
+
+<br />
+
+**P.S. Thanks to the two beauties for their contributions to the theme logo: Zoey and 冰冰.**
+
+[Join us](https://www.notion.so/vuepress-reco-f8a7a55d18e042929931b612f170dbf4)
+
+## License
+[MIT](https://github.com/recoluan/vuepress-theme-reco/blob/master/LICENSE)
 
 ## Preview
 
@@ -67,22 +79,3 @@ yarn build
 ![dark.png](https://i.loli.net/2020/01/13/Lj6XbwdmDFCYH9k.png)
 
 ![home.png](https://i.loli.net/2020/01/13/nra3kbYSlxojmw4.png)
-
-## Contributors
-
-**衷心感谢为此项目贡献过宝贵代码的朋友们**
-
-|昵称|贡献记录|
-|:-:|-|
-|[kangxu](https://github.com/kangxukangxu)|[vuepress-theme-reco@0.x](https://github.com/recoluan/vuepress-theme-reco/commit/ec7426a88d50cf8d9f90a7ad9b731a10da7f438b)|
-|[Ekko](https://github.com/danranVm)|[vuepress-theme-reco-demo@1.x](https://github.com/recoluan/vuepress-theme-reco-demo/commit/6d2bbe919e7f6564b8c8173558d197e38e024dc5)|
-
-**衷心感谢美女设计师**
-
-|昵称|贡献内容|
-|:-:|-|
-|[Zoey]()|主题图标调整定稿|
-|冰冰|主题图标初稿|
-
-## License
-[MIT](https://github.com/recoluan/vuepress-theme-reco/blob/master/LICENSE)

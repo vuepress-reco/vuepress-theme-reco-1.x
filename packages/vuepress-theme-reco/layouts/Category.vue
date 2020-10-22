@@ -104,11 +104,10 @@ export default {
 
 <style src="../styles/theme.styl" lang="stylus"></style>
 
-<style src="prismjs/themes/prism-tomorrow.css"></style>
 <style lang="stylus" scoped>
 @require '../styles/mode.styl'
 .categories-wrapper
-  max-width: 740px;
+  max-width: $contentWidth;
   margin: 0 auto;
   padding: 4.6rem 2.5rem 0;
   .category-wrapper {

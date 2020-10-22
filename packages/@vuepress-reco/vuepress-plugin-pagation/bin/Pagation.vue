@@ -5,7 +5,7 @@
         class="jump"
         v-show="currentPage > 1"
         @click="goPrev"
-        unselectable="on">Prev</span>
+        unselectable="on">{{pagationLocales.prev}}</span>
       <span
         v-show="efont"
         class="jump"
@@ -29,23 +29,27 @@
       <span
         class="jump"
         v-show="currentPage < pages"
-        @click="goNext">Next</span>
-      <span class="jumppoint">跳转到：</span>
+        @click="goNext">{{pagationLocales.next}}</span>
+      <span class="jumppoint">{{pagationLocales.jump}}</span>
       <span class="jumpinp">
         <input type="text" v-model="changePage">
       </span>
       <span
         class="jump gobtn"
-        @click="jumpPage(changePage)">GO</span>
+        @click="jumpPage(changePage)">{{pagationLocales.go}}</span>
     </div>
   </div>
 </template>
 
 <script>
+import pagationLocales from './locales'
+
 export default {
   data () {
     return {
-      changePage: '' // 跳转页
+      changePage: '', // 跳转页
+      /* eslint-disable no-undef */
+      pageSize: PERPAGE
     }
   },
   props: {
@@ -64,7 +68,8 @@ export default {
   },
   computed: {
     pages () {
-      return Math.ceil(this.total / this.perPage)
+      const pageSize = this.pageSize || this.perPage
+      return Math.ceil(this.total / pageSize)
     },
     show: function () {
       return this.pages && this.pages != 1
@@ -97,6 +102,9 @@ export default {
         left++
       }
       return ar
+    },
+    pagationLocales () {
+      return pagationLocales(this)
     }
   },
   methods: {
@@ -179,5 +187,5 @@ export default {
       &.ellipsis
         padding: 0px 8px;
       &.jumppoint
-        margin-left: 30px;
+        margin: 0 10px 0 30px;
 </style>

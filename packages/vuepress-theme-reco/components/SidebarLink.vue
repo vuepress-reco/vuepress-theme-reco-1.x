@@ -1,5 +1,5 @@
 <script>
-import { isActive, hashRE, groupHeaders } from '@theme/helpers/utils'
+import { isActive } from '@theme/helpers/utils'
 
 export default {
   functional: true,
@@ -29,25 +29,7 @@ export default {
       ? selfActive || item.children.some(c => isActive($route, item.basePath + '#' + c.slug))
       : selfActive
     const link = renderLink(h, item.path, item.title || item.path, active)
-
-    const configDepth = $page.frontmatter.sidebarDepth ||
-      sidebarDepth ||
-      $themeLocaleConfig.sidebarDepth ||
-      $themeConfig.sidebarDepth
-
-    const maxDepth = configDepth == null ? 1 : configDepth
-
-    const displayAllHeaders = $themeLocaleConfig.displayAllHeaders ||
-      $themeConfig.displayAllHeaders
-
-    if (item.type === 'auto') {
-      return [link, renderChildren(h, item.children, item.basePath, $route, maxDepth)]
-    } else if ((active || displayAllHeaders) && item.headers && !hashRE.test(item.path)) {
-      const children = groupHeaders(item.headers)
-      return [link, renderChildren(h, children, item.path, $route, maxDepth)]
-    } else {
-      return link
-    }
+    return link
   }
 }
 
@@ -65,16 +47,16 @@ function renderLink (h, to, text, active) {
   }, text)
 }
 
-function renderChildren (h, children, path, route, maxDepth, depth = 1) {
-  if (!children || depth > maxDepth) return null
-  return h('ul', { class: 'sidebar-sub-headers' }, children.map(c => {
-    const active = isActive(route, path + '#' + c.slug)
-    return h('li', { class: 'sidebar-sub-header' }, [
-      renderLink(h, path + '#' + c.slug, c.title, active),
-      renderChildren(h, c.children, path, route, maxDepth, depth + 1)
-    ])
-  }))
-}
+// function renderChildren (h, children, path, route, maxDepth, depth = 1) {
+//   if (!children || depth > maxDepth) return null
+//   return h('ul', { class: 'sidebar-sub-headers' }, children.map(c => {
+//     const active = isActive(route, path + '#' + c.slug)
+//     return h('li', { class: 'sidebar-sub-header' }, [
+//       renderLink(h, path + '#' + c.slug, c.title, active),
+//       renderChildren(h, c.children, path, route, maxDepth, depth + 1)
+//     ])
+//   }))
+// }
 </script>
 
 <style lang="stylus">
@@ -90,18 +72,18 @@ a.sidebar-link
   font-weight 400
   display block!important
   color var(--text-color)
-  padding 0.35rem 1rem 0.35rem .75rem
-  line-height 1.4
-  margin 0 1rem 0 1.5rem
+  padding 0.35rem 1rem 0.35rem 2.25rem
+  line-height 1.7
+  background var(--background-color)
+  // margin 0 0 0 1.5rem
   box-sizing: border-box
-  border-radius .25rem
   &:hover
     color $accentColor
   &.active
     font-weight 600
-    color #fff
-    background $accentColor
-    // border-left-color $accentColor
+    color $accentColor
+    background var(--default-color-8)
+    border-right 3px solid $accentColor
   .sidebar-group &
     // padding-left 2rem
   .sidebar-sub-headers &

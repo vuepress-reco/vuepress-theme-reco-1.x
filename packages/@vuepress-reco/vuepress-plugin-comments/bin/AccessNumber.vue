@@ -1,5 +1,5 @@
 <template>
-  <span v-if="$themeConfig.valineConfig && $themeConfig.valineConfig.visitor != false" :id="getIdVal(idVal)" class="leancloud-visitors" :data-flag-title="flagTitle">
+  <span :id="getIdVal(idVal)" class="leancloud-visitors" :data-flag-title="flagTitle">
     <a class="leancloud-visitors-count" :style="numStyle"></a>
   </span>
 </template>
