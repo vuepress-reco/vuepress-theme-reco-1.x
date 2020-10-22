@@ -4,7 +4,7 @@
     class="algolia-search-wrapper search-box"
     role="search"
   >
-    <i class="iconfont reco-search"></i>
+    <reco-icon icon="reco-search" />
     <input
       id="algolia-search-input"
       class="search-query"
@@ -14,7 +14,10 @@
 </template>
 
 <script>
+import { RecoIcon } from '@vuepress-reco/core'
+
 export default {
+  components: { RecoIcon },
   props: ['options'],
   data () {
     return {

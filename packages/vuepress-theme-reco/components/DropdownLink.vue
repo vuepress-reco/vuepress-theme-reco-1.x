@@ -8,7 +8,7 @@
       @click="toggle"
     >
       <span class="title">
-        <i :class="`iconfont ${item.icon}`"></i>
+        <reco-icon :icon="`${item.icon}`" />
         {{ item.text }}
       </span>
       <span
@@ -53,11 +53,12 @@
 </template>
 
 <script>
+import { RecoIcon } from '@vuepress-reco/core'
 import NavLink from '@theme/components/NavLink'
 import DropdownTransition from '@theme/components/DropdownTransition'
 
 export default {
-  components: { NavLink, DropdownTransition },
+  components: { NavLink, DropdownTransition, RecoIcon },
 
   data () {
     return {

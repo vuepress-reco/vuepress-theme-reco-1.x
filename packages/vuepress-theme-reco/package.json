@@ -19,6 +19,7 @@
   "author": "reco_luan",
   "main": "index.js",
   "dependencies": {
+    "@vuepress-reco/core": "^1.5.7",
     "@vuepress-reco/vuepress-plugin-back-to-top": "^1.5.7",
     "@vuepress-reco/vuepress-plugin-comments": "^1.5.7",
     "@vuepress-reco/vuepress-plugin-loading-page": "^1.5.7",

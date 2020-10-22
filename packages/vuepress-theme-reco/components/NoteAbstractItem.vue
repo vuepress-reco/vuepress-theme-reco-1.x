@@ -2,9 +2,9 @@
   <div
     class="abstract-item"
     @click="$router.push(item.path)">
-    <i v-if="item.frontmatter.sticky" class="iconfont reco-sticky"></i>
+    <reco-icon v-if="item.frontmatter.sticky" icon="reco-sticky" />
     <div class="title">
-      <i v-if="item.frontmatter.keys" class="iconfont reco-lock"></i>
+      <reco-icon v-if="item.frontmatter.keys" icon="reco-lock" />
       <router-link :to="item.path">{{item.title}}</router-link>
     </div>
     <div class="abstract" v-html="item.excerpt"></div>
@@ -16,9 +16,10 @@
 </template>
 
 <script>
+import { RecoIcon } from '@vuepress-reco/core'
 import PageInfo from './PageInfo'
 export default {
-  components: { PageInfo },
+  components: { PageInfo, RecoIcon },
   props: ['item', 'currentPage', 'currentTag']
 }
 </script>
