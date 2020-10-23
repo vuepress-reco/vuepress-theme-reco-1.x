@@ -37,7 +37,6 @@ export default {
       return this.handleNode(this.body).join('')
     },
     footerNodes () {
-      console.log(this.handleNode(this.footer))
       return this.handleNode(this.footer).join('')
     },
     bulletinLocales () {
@@ -54,7 +53,6 @@ export default {
       sessionStorage.setItem('closeNote', 'true')
     },
     handleNode (nodes) {
-      console.log(nodes)
       if (!Array.isArray(nodes)) {
         let type = nodes.type
         type = type.slice(0, 1).toUpperCase() + type.slice(1)
