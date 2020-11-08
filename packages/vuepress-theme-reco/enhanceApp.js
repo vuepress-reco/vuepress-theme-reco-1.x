@@ -1,12 +1,14 @@
+/* eslint-disable no-proto */
 import postMixin from '@theme/mixins/posts'
 import localMixin from '@theme/mixins/locales'
 import { addLinkToHead, addScriptToHead } from '@theme/helpers/utils'
-import { registerCodeThemeCss } from '@theme/helpers/other'
+import { registerCodeThemeCss, interceptRouterError } from '@theme/helpers/other'
 
 export default ({
   Vue,
   siteData,
-  isServer
+  isServer,
+  router
 }) => {
   Vue.mixin(postMixin)
   Vue.mixin(localMixin)
@@ -15,4 +17,6 @@ export default ({
     addScriptToHead('//kit.fontawesome.com/51b01de608.js')
     registerCodeThemeCss(siteData.themeConfig.codeTheme)
   }
+
+  interceptRouterError(router)
 }
