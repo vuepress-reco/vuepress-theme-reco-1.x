@@ -244,6 +244,7 @@ export default {
           a {
             display flex
             justify-content: space-between
+            align-items: center
             color var(--text-color)
             .post-num {
               width 1.6rem;
