@@ -260,6 +260,17 @@ function flatten (items, res) {
     margin: 0 auto;
     padding: 1rem 2.5rem;
     color var(--text-color)
+  .theme-reco-content h2
+    position relative
+    padding-left 0.8rem
+    &::before
+      position absolute
+      left 0
+      bottom 0
+      display block
+      height 1.8rem
+      content ''
+      border-left 5px solid $accentColor
   .page-edit
     @extend $wrapper
     padding-top 1rem

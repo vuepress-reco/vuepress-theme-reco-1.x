@@ -9,7 +9,12 @@
           alt="hero">
       </ModuleTransition>
       <ModuleTransition delay="0.04">
-        <h1 v-if="recoShowModule && $frontmatter.heroText !== null">{{ $frontmatter.heroText || $title || 'vuePress-theme-reco' }}</h1>
+        <h1
+          v-if="recoShowModule && $frontmatter.heroText !== null"
+          :style="{ marginTop: $frontmatter.heroImage ? '0px' : '140px'}"
+        >
+          {{ $frontmatter.heroText || $title || 'vuePress-theme-reco' }}
+        </h1>
       </ModuleTransition>
       <ModuleTransition delay="0.08">
         <p v-if="recoShowModule && $frontmatter.tagline !== null" class="description">
@@ -95,7 +100,7 @@ export default {
       font-size: 1.2rem;
       color: #fff;
       background-color: $accentColor;
-      padding: 0.6rem 1.2rem;
+      padding: 0.2rem 1.2rem;
       border-radius: $borderRadius
       transition: background-color 0.1s ease;
       box-sizing: border-box;
