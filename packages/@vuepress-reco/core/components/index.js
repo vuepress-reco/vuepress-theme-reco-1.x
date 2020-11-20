@@ -1,3 +1,9 @@
 import RecoIcon from './RecoIcon'
+import ModuleTransition from './ModuleTransition'
+import Donate from "./Donate/index"
 
-export { RecoIcon }
+export {
+    RecoIcon,
+    ModuleTransition,
+    Donate
+}
