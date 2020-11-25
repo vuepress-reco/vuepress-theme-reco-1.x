@@ -12,7 +12,7 @@
   },
   "license": "MIT",
   "author": "reco_luan <recoluan@outlook.com>",
-  "main": "index.js",
+  "main": "lib/index.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -21,7 +21,12 @@
     "lib"
   ],
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "tsc": "tsc"
+  },
+  "dependencies": {
+    "vue": "^2.6.12",
+    "vue-property-decorator": "^9.1.2"
   },
   "publishConfig": {
     "registry": "https://registry.yarnpkg.com"
