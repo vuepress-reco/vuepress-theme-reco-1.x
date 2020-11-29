@@ -37,7 +37,7 @@
 <script>
 // 引入时间格式化js文件
 import { formatDate } from '@theme/helpers/utils'
-import { RecoIcon } from '@vuepress-reco/core'
+import { RecoIcon } from '@vuepress-reco/core/lib/components'
 
 export default {
   components: { RecoIcon },

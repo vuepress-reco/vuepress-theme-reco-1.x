@@ -42,9 +42,8 @@
 </template>
 
 <script>
-import { RecoIcon } from '@vuepress-reco/core'
 import md5 from 'md5'
-import ModuleTransition from '@theme/components/ModuleTransition'
+import { ModuleTransition, RecoIcon } from '@vuepress-reco/core/lib/components'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {

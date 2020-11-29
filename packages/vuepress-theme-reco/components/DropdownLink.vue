@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { RecoIcon } from '@vuepress-reco/core'
+import { RecoIcon } from '@vuepress-reco/core/lib/components'
 import NavLink from '@theme/components/NavLink'
 import DropdownTransition from '@theme/components/DropdownTransition'
 

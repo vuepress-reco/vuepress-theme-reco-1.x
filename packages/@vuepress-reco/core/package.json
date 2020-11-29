@@ -21,8 +21,8 @@
     "lib"
   ],
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1",
-    "tsc": "tsc"
+    "build": "tsc",
+    "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
     "vue": "^2.6.12",

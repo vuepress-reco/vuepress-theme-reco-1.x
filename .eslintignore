@@ -2,3 +2,6 @@ styles/
 images/
 node_modules/
 .cz-config.js
+lib/
+libs/
+dist/

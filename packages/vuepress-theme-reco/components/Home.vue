@@ -44,7 +44,7 @@
 
 <script>
 import NavLink from '@theme/components/NavLink'
-import ModuleTransition from '@theme/components/ModuleTransition'
+import { ModuleTransition } from '@vuepress-reco/core/lib/components'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {

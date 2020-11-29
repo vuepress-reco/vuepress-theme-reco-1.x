@@ -22,7 +22,7 @@
 
 <script>
 import { isExternal, isMailto, isTel, ensureExt } from '@theme/helpers/utils'
-import { RecoIcon } from '@vuepress-reco/core'
+import { RecoIcon } from '@vuepress-reco/core/lib/components'
 
 export default {
   components: { RecoIcon },

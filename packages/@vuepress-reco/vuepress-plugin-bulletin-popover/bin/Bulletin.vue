@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { RecoIcon } from '@vuepress-reco/core'
+import { RecoIcon } from '@vuepress-reco/core/lib/components'
 import bulletinLocales from './locales'
 
 export default {

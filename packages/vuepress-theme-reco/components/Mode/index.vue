@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { RecoIcon } from '@vuepress-reco/core'
+import { RecoIcon } from '@vuepress-reco/core/lib/components'
 import ClickOutside from 'vue-click-outside'
 import ModePicker from './ModePicker'
 import applyMode from './applyMode'

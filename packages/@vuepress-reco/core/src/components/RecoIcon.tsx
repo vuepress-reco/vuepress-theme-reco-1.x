@@ -1,4 +1,4 @@
-import Vue, { VNode } from 'vue'
+import Vue from 'vue'
 import Component from 'vue-class-component'
 
 const ICON_REGEXP = /^(\w+)\-/
@@ -22,8 +22,12 @@ class RecoIcon extends RecoIconProps {
     }
     return ''
   }
-  render (h: any): VNode {
-    return h('i', { class: this.getClass(this.icon) }, this.$slots.default)
+  render () {
+    return (
+      <i class={this.getClass(this.icon)}>
+        {this.$slots.default}
+      </i>
+    )
   }
 }
 

@@ -1,2 +1,3 @@
 import RecoIcon from './RecoIcon'
-export { RecoIcon }
+import ModuleTransition from './ModuleTransition'
+export { RecoIcon, ModuleTransition }

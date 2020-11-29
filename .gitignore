@@ -5,3 +5,6 @@ yarn.lock
 .DS_Store
 .vscode
 package-lock.json
+lib
+libs
+dist

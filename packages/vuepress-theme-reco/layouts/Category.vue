@@ -40,7 +40,7 @@
 <script>
 import Common from '@theme/components/Common'
 import NoteAbstract from '@theme/components/NoteAbstract'
-import ModuleTransition from '@theme/components/ModuleTransition'
+import { ModuleTransition } from '@vuepress-reco/core/lib/components'
 import pagination from '@theme/mixins/pagination'
 import { sortPostsByStickyAndDate, filterPosts } from '@theme/helpers/postData'
 import { getOneColor } from '@theme/helpers/other'
