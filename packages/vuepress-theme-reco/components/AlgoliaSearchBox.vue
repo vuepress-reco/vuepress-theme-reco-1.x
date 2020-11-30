@@ -74,7 +74,6 @@ export default {
 </script>
 
 <style lang="stylus">
-@require '../styles/mode.styl'
 .algolia-search-wrapper
   & > span
     vertical-align middle

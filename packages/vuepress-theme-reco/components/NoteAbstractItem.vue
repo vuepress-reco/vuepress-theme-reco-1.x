@@ -25,7 +25,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@require '../styles/mode.styl'
 .abstract-item
   position relative
   margin: 0 auto 20px;

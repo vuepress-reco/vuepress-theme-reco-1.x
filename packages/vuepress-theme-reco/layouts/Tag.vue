@@ -100,7 +100,7 @@ export default {
 <style src="../styles/theme.styl" lang="stylus"></style>
 
 <style lang="stylus" scoped>
-@require '../styles/mode.styl'
+
 .tag-wrapper
   max-width: $contentWidth;
   margin: 0 auto;

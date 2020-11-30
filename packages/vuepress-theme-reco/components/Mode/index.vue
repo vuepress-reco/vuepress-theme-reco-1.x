@@ -63,8 +63,6 @@ export default {
 </script>
 
 <style lang="stylus">
-@require '../../styles/mode.styl'
-
 .color-picker {
 	position: relative;
 	margin-right: 1em;

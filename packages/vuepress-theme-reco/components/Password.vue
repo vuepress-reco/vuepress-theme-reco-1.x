@@ -118,8 +118,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@require '../styles/mode.styl'
-
 .password-shadow {
   overflow hidden
   position relative

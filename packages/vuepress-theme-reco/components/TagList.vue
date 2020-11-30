@@ -34,8 +34,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@require '../styles/mode.styl'
-
 .tags
   margin 30px 0
   span

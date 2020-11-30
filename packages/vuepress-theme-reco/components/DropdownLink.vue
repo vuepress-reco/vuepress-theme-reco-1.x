@@ -81,8 +81,6 @@ export default {
 </script>
 
 <style lang="stylus">
-@require '../styles/mode.styl'
-
 .dropdown-wrapper
   cursor pointer
   .dropdown-title
