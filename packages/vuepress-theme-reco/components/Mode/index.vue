@@ -3,16 +3,16 @@
 		<a class="color-button" @click.prevent="showMenu = !showMenu">
       <reco-icon icon="reco-color" />
 		</a>
-		<transition name="menu-transition" mode="out-in">
+		<ModuleTransition :transform=" ['translate(-50%, 0)', 'translate(-50%, -10px)']">
 			<div v-show="showMenu" class="color-picker-menu">
 				<ModePicker />
 			</div>
-		</transition>
+		</ModuleTransition>
 	</div>
 </template>
 
 <script>
-import { RecoIcon } from '@vuepress-reco/core/lib/components'
+import { RecoIcon, ModuleTransition } from '@vuepress-reco/core/lib/components'
 import ClickOutside from 'vue-click-outside'
 import ModePicker from './ModePicker'
 import applyMode from './applyMode'
@@ -26,7 +26,8 @@ export default {
 
   components: {
     ModePicker,
-    RecoIcon
+    RecoIcon,
+    ModuleTransition
   },
 
   data () {
@@ -80,17 +81,7 @@ export default {
 		position: absolute;
 		top: 40px;
 		left: 50%;
-		transform: translateX(-50%);
 		z-index: 150;
-		&.menu-transition-enter-active,
-		&.menu-transition-leave-active {
-			transition: all 0.25s ease-in-out;
-		}
-		&.menu-transition-enter,
-		&.menu-transition-leave-to {
-			top: 50px;
-			opacity: 0;
-		}
 
 		ul {
 			list-style-type: none;

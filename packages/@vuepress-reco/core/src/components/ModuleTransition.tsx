@@ -1,8 +1,6 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 
-import '../../stylus/ModuleTransition.styl'
-
 const ModuleTransitionProps = Vue.extend({
   props: {
     delay: {
@@ -12,6 +10,12 @@ const ModuleTransitionProps = Vue.extend({
     duration: {
       type: String,
       default: '.25'
+    },
+    transform: {
+      type: Array,
+      default () {
+        return ['translateY(-20px)', 'translateY(0)']
+      }
     }
   }
 })
@@ -19,13 +23,13 @@ const ModuleTransitionProps = Vue.extend({
 @Component
 class ModuleTransition extends ModuleTransitionProps {
   setStyle (items) {
-    items.style.transition = `all ${this.duration}s ease-in-out ${this.delay}s`
-    items.style.transform = 'translateY(-20px)'
+    items.style.transition = `transform ${this.duration}s ease-in-out ${this.delay}s, opacity ${this.duration}s ease-in-out ${this.delay}s`
+    items.style.transform = this.transform[0]
     items.style.opacity = 0
   }
 
   unsetStyle (items) {
-    items.style.transform = 'translateY(0)'
+    items.style.transform = this.transform[1]
     items.style.opacity = 1
   }
 
@@ -34,13 +38,13 @@ class ModuleTransition extends ModuleTransitionProps {
       <transition
         {
           ...{
-            attrs: {
-              name: 'module'
-            },
+            attrs: { name: 'module' },
             on: {
               enter: this.setStyle,
-              'after-enter': this.unsetStyle,
-              'before-leave': this.setStyle
+              appear: this.setStyle,
+              'before-leave': this.setStyle,
+              'after-appear': this.unsetStyle,
+              'after-enter': this.unsetStyle
             }
           }
         }
