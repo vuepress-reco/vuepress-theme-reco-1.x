@@ -108,7 +108,7 @@ export default {
       &:hover {
         transform scale(1.08)
       }
-      .iconfont {
+      i {
         cursor pointer
         font-size 22px
       }

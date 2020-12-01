@@ -117,7 +117,7 @@ export default {
       return false
     },
     lastUpdated () {
-      return this.$page.lastUpdated
+      return new Date(this.$page.lastUpdated).toLocaleString()
     },
     lastUpdatedText () {
       if (typeof this.$themeLocaleConfig.lastUpdated === 'string') {

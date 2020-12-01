@@ -53,7 +53,7 @@ module.exports = {
       },
       socialLinks: [
         { icon: 'reco-github', link: 'https://github.com/recoluan' },
-        { icon: 'reco-npm', link: 'https://www.npmjs.com/~reco_luan' }
+        { icon: 'fa-camera', link: 'https://www.npmjs.com/~reco_luan' }
       ]
     },
     logo: '/head.png',
