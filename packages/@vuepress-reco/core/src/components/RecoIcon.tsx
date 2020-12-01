@@ -8,6 +8,10 @@ const RecoIconProps = Vue.extend({
     icon: {
       type: String,
       default: ''
+    },
+    link: {
+      type: String,
+      default: ''
     }
   }
 })
@@ -22,9 +26,18 @@ class RecoIcon extends RecoIconProps {
     }
     return ''
   }
+
+  go (link) {
+    if (link === '') return
+    window.open(link)
+  }
+
   render () {
     return (
-      <i class={this.getClass(this.icon)}>
+      <i {...{
+        class: this.getClass(this.icon),
+        on: { click: this.go.bind(this, this.link) }
+      }}>
         {this.$slots.default}
       </i>
     )

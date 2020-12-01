@@ -22,15 +22,36 @@
       <h6>{{homeBlogCfg.tag}}</h6>
     </div>
   </div>
+  <ul class="social-links">
+    <li
+      class="social-item"
+      v-for="(item, index) in socialLinks"
+      :key="index"
+    >
+      <reco-icon :icon="item.icon" :link="item.link" :style="{ color: item.color }" />
+    </li>
+  </ul>
   <hr>
 </div>
 </template>
 
 <script>
+import { RecoIcon } from '@vuepress-reco/core/lib/components'
+import { getOneColor } from '@theme/helpers/other'
+
 export default {
+  components: { RecoIcon },
   computed: {
     homeBlogCfg () {
       return this.$recoLocales.homeBlog
+    },
+    socialLinks () {
+      return this.$themeConfig.blogConfig.socialLinks.map(item => {
+        if (!item.color) {
+          item.color = getOneColor()
+        }
+        return item
+      })
     }
   }
 }
@@ -69,6 +90,27 @@ export default {
         line-height auto
         color var(--text-color)
         margin 0
+      }
+    }
+  }
+  .social-links {
+    box-sizing border-box
+    display flex
+    flex-wrap wrap
+    padding 10px
+    .social-item {
+      width 39px
+      height 36px
+      line-height 36px
+      text-align center
+      list-style none
+      transition transform .3s
+      &:hover {
+        transform scale(1.08)
+      }
+      .iconfont {
+        cursor pointer
+        font-size 22px
       }
     }
   }
