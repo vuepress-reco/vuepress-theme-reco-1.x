@@ -74,10 +74,9 @@ import pagination from '@theme/mixins/pagination'
 import { ModuleTransition, RecoIcon } from '@vuepress-reco/core/lib/components'
 import PersonalInfo from '@theme/components/PersonalInfo'
 import { getOneColor } from '@theme/helpers/other'
-import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {
-  mixins: [pagination, moduleTransitonMixin],
+  mixins: [pagination],
   components: { NoteAbstract, TagList, FriendLink, ModuleTransition, PersonalInfo, RecoIcon },
   data () {
     return {
@@ -87,6 +86,9 @@ export default {
     }
   },
   computed: {
+    recoShowModule () {
+      return this.$parent.recoShowModule
+    },
     homeBlogCfg () {
       return this.$recoLocales.homeBlog
     },

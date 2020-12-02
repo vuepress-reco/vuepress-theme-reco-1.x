@@ -77,11 +77,8 @@ import Sidebar from '@theme/components/Sidebar'
 import PersonalInfo from '@theme/components/PersonalInfo'
 import Password from '@theme/components/Password'
 import { setTimeout } from 'timers'
-import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {
-  mixins: [moduleTransitonMixin],
-
   components: { Sidebar, Navbar, Password, PersonalInfo },
 
   props: {
@@ -92,6 +89,10 @@ export default {
     sidebarItems: {
       type: Array,
       default: () => []
+    },
+    recoShowModule: {
+      type: Boolean,
+      default: false
     }
   },
 

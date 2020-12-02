@@ -44,10 +44,8 @@
 <script>
 import md5 from 'md5'
 import { ModuleTransition, RecoIcon } from '@vuepress-reco/core/lib/components'
-import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {
-  mixins: [moduleTransitonMixin],
   components: { ModuleTransition, RecoIcon },
   props: {
     isPage: {
@@ -63,6 +61,9 @@ export default {
     }
   },
   computed: {
+    recoShowModule () {
+      return this.$parent.recoShowModule
+    },
     year () {
       return new Date().getFullYear()
     }

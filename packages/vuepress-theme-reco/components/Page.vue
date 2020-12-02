@@ -82,11 +82,9 @@
 import PageInfo from '@theme/components/PageInfo'
 import { resolvePage, outboundRE, endingSlashRE } from '@theme/helpers/utils'
 import { ModuleTransition } from '@vuepress-reco/core/lib/components'
-import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 import SubSidebar from '@theme/components/SubSidebar'
 
 export default {
-  mixins: [moduleTransitonMixin],
   components: { PageInfo, ModuleTransition, SubSidebar },
 
   props: ['sidebarItems'],
@@ -98,6 +96,9 @@ export default {
   },
 
   computed: {
+    recoShowModule () {
+      return this.$parent.recoShowModule
+    },
     // 是否显示评论
     shouldShowComments () {
       const { isShowComments } = this.$frontmatter

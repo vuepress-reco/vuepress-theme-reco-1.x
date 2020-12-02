@@ -45,12 +45,13 @@
 <script>
 import NavLink from '@theme/components/NavLink'
 import { ModuleTransition } from '@vuepress-reco/core/lib/components'
-import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {
-  mixins: [moduleTransitonMixin],
   components: { NavLink, ModuleTransition },
   computed: {
+    recoShowModule () {
+      return this.$parent.recoShowModule
+    },
 
     actionLink () {
       return {
