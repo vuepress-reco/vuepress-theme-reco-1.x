@@ -36,25 +36,24 @@
 </template>
 
 <script>
+import { defineComponent, computed } from '@vue/composition-api'
 import { RecoIcon } from '@vuepress-reco/core/lib/components'
 import { getOneColor } from '@theme/helpers/other'
 
-export default {
+export default defineComponent({
   components: { RecoIcon },
-  computed: {
-    homeBlogCfg () {
-      return this.$recoLocales.homeBlog
-    },
-    socialLinks () {
-      return this.$themeConfig.blogConfig.socialLinks.map(item => {
-        if (!item.color) {
-          item.color = getOneColor()
-        }
-        return item
-      })
-    }
+  setup (props, ctx) {
+    const { root: _this } = ctx
+
+    const homeBlogCfg = computed(() => _this.$recoLocales.homeBlog)
+    const socialLinks = computed(() => _this.$themeConfig.blogConfig.socialLinks.map(item => {
+      if (!item.color) item.color = getOneColor()
+      return item
+    }))
+
+    return { homeBlogCfg, socialLinks }
   }
-}
+})
 </script>
 
 <style lang="stylus" scoped>

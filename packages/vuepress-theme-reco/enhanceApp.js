@@ -3,6 +3,7 @@ import postMixin from '@theme/mixins/posts'
 import localMixin from '@theme/mixins/locales'
 import { addLinkToHead, addScriptToHead } from '@theme/helpers/utils'
 import { registerCodeThemeCss, interceptRouterError } from '@theme/helpers/other'
+import VueCompositionAPI from '@vue/composition-api'
 
 export default ({
   Vue,
@@ -10,6 +11,7 @@ export default ({
   isServer,
   router
 }) => {
+  Vue.use(VueCompositionAPI)
   Vue.mixin(postMixin)
   Vue.mixin(localMixin)
   if (!isServer) {
