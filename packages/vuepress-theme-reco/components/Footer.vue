@@ -30,31 +30,25 @@
 </template>
 
 <script>
+import { defineComponent, computed } from '@vue/composition-api'
 import { RecoIcon } from '@vuepress-reco/core/lib/components'
 import { version } from '../package.json'
-export default {
+export default defineComponent({
   components: { RecoIcon },
-
-  data () {
-    return {
-      version
-    }
-  },
-  computed: {
-    showAccessNumber () {
+  setup (props, ctx) {
+    const showAccessNumber = computed(() => {
       const {
         $themeConfig: { valineConfig },
         $themeLocaleConfig: { valineConfig: valineLocalConfig }
-      } = this
+      } = ctx.root
 
       const vc = valineLocalConfig || valineConfig
-      if (vc && vc.visitor != false) {
-        return true
-      }
-      return false
-    }
+
+      return vc && vc.visitor != false
+    })
+    return { version, showAccessNumber }
   }
-}
+})
 </script>
 
 <style lang="stylus" scoped>

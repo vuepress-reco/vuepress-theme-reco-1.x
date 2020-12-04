@@ -1,15 +1,17 @@
 <script>
+import { defineComponent, computed } from '@vue/composition-api'
 import { isActive } from '@theme/helpers/utils'
 
-export default {
-  computed: {
-    headers () {
-      return this.$showSubSideBar ? this.$page.headers : []
-    }
-  },
-  methods: {
-    isLinkActive (header) {
-      const active = isActive(this.$route, this.$page.path + '#' + header.slug)
+export default defineComponent({
+  setup (props, ctx) {
+    const { root } = ctx
+
+    const headers = computed(() => {
+      return root.$showSubSideBar ? root.$page.headers : []
+    })
+
+    const isLinkActive = (header) => {
+      const active = isActive(root.$route, root.$page.path + '#' + header.slug)
       if (active) {
         setTimeout(() => {
           document.querySelector(`.reco-side-${header.slug}`).scrollIntoView()
@@ -17,6 +19,8 @@ export default {
       }
       return active
     }
+
+    return { headers, isLinkActive }
   },
   render (h) {
     return h('ul', {
@@ -39,8 +43,7 @@ export default {
       })
     ])
   }
-}
-
+})
 </script>
 
 <style lang="stylus" scoped>
