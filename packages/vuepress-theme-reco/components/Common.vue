@@ -4,27 +4,19 @@
       <transition name="fade">
         <LoadingPage v-show="firstLoad" class="loading-wrapper" />
       </transition>
+
       <transition name="fade">
         <Password v-show="!isHasKey" class="password-wrapper-out" key="out" />
       </transition>
+
       <div :class="{ 'hide': firstLoad || !isHasKey }">
-        <Navbar
-        v-if="shouldShowNavbar"
-        @toggle-sidebar="toggleSidebar"/>
+        <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar" />
 
-        <div
-          class="sidebar-mask"
-          @click="toggleSidebar(false)"></div>
+        <div class="sidebar-mask" @click="toggleSidebar(false)"></div>
 
-        <Sidebar
-          :items="sidebarItems"
-          @toggle-sidebar="toggleSidebar">
-          <template slot="top">
-            <PersonalInfo />
-          </template>
-          <slot
-            name="sidebar-bottom"
-            slot="bottom"/>
+        <Sidebar :items="sidebarItems" @toggle-sidebar="toggleSidebar">
+          <PersonalInfo slot="top" />
+          <slot name="sidebar-bottom" slot="bottom"/>
         </Sidebar>
 
         <Password v-show="!isHasPageKey" :isPage="true" class="password-wrapper-in" key="in"></Password>
@@ -38,29 +30,17 @@
         <LoadingPage v-if="firstLoad" />
         <Password v-else-if="!isHasKey" />
         <div v-else>
-          <Navbar
-          v-if="shouldShowNavbar"
-          @toggle-sidebar="toggleSidebar"/>
+          <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar"/>
 
-          <div
-            class="sidebar-mask"
-            @click="toggleSidebar(false)"></div>
+          <div class="sidebar-mask" @click="toggleSidebar(false)"></div>
 
-          <Sidebar
-            :items="sidebarItems"
-            @toggle-sidebar="toggleSidebar">
-            <template slot="top">
-              <PersonalInfo />
-            </template>
-            <slot
-              name="sidebar-bottom"
-              slot="bottom"/>
+          <Sidebar :items="sidebarItems" @toggle-sidebar="toggleSidebar">
+            <PersonalInfo slot="top" />
+            <slot name="sidebar-bottom" slot="bottom"/>
           </Sidebar>
 
           <Password v-if="!isHasPageKey" :isPage="true"></Password>
-          <div v-else>
-            <slot></slot>
-          </div>
+          <slot v-else></slot>
         </div>
       </transition>
     </div>
@@ -68,7 +48,7 @@
 </template>
 
 <script>
-import { defineComponent, computed, ref, onMounted, watch, reactive } from '@vue/composition-api'
+import { defineComponent, computed, ref, onMounted } from '@vue/composition-api'
 import Navbar from '@theme/components/Navbar'
 import Sidebar from '@theme/components/Sidebar'
 import PersonalInfo from '@theme/components/PersonalInfo'
@@ -133,6 +113,7 @@ export default defineComponent({
         ...userPageClass
       }
     })
+
     const hasKey = () => {
       const { keyPage } = root.$themeConfig
       if (!keyPage || !keyPage.keys || keyPage.keys.length === 0) {
@@ -178,12 +159,7 @@ export default defineComponent({
       handleLoading()
     })
 
-    watch(reactive(root.$frontmatter), (newVal, oldVal) => {
-      hasKey()
-      hasPageKey()
-    })
-
-    return { isSidebarOpen, absoluteEncryption, shouldShowNavbar, shouldShowSidebar, pageClasses, isHasKey, hasKey, isHasPageKey, toggleSidebar, firstLoad }
+    return { isSidebarOpen, absoluteEncryption, shouldShowNavbar, shouldShowSidebar, pageClasses, hasKey, hasPageKey, isHasKey, isHasPageKey, toggleSidebar, firstLoad }
   },
 
   watch: {
@@ -225,7 +201,7 @@ export default defineComponent({
     overflow hidden
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+  transition: opacity .5s ease-in-out .5s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;

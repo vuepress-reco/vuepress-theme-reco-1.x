@@ -1,18 +1,18 @@
 <template>
   <main class="page" :style="pageStyle">
     <ModuleTransition>
-      <div v-show="recoShowModule && $page.title" class="page-title">
+      <div v-if="recoShowModule && $page.title" class="page-title">
         <h1 class="title">{{$page.title}}</h1>
         <PageInfo :pageInfo="$page" :showAccessNumber="showAccessNumber"></PageInfo>
       </div>
     </ModuleTransition>
 
     <ModuleTransition delay="0.08">
-      <Content v-show="recoShowModule" class="theme-reco-content" />
+      <Content v-if="recoShowModule" class="theme-reco-content" />
     </ModuleTransition>
 
     <ModuleTransition delay="0.16">
-      <footer v-show="recoShowModule" class="page-edit">
+      <footer v-if="recoShowModule" class="page-edit">
         <div
           class="edit-link"
           v-if="editLink"
