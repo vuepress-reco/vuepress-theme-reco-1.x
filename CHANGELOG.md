@@ -1,5 +1,4 @@
-## [1.6.0](https://github.com/recoluan/vuepress-theme-reco/compare/v1.5.7...v1.6.0) (2020-12-11)
-
+## [1.6.1](https://github.com/recoluan/vuepress-theme-reco/compare/v1.6.0...v1.6.1) (2020-12-11)
 
 ### Bug Fixes
 
