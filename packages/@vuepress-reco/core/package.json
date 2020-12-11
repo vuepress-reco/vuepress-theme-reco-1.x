@@ -30,6 +30,6 @@
     "vue-property-decorator": "^9.1.2"
   },
   "publishConfig": {
-    "registry": "https://registry.yarnpkg.com"
+    "access": "public"
   }
 }
