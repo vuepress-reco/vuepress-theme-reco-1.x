@@ -1,0 +1,6 @@
+[submodule "packages/vuepress-reco.github.io"]
+	path = packages/vuepress-reco.github.io
+	url = git@github.com:vuepress-reco/vuepress-reco.github.io.git
+[submodule "packages/theme-cli"]
+	path = packages/theme-cli
+	url = git@github.com:vuepress-reco/theme-cli.git
