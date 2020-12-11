@@ -43,6 +43,10 @@
       "path": "node_modules/cz-customizable"
     }
   },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.9.1",
+    "eslint-plugin-typescript": "^0.14.0"
+  },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",

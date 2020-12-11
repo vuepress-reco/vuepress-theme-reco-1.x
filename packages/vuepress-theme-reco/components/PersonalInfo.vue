@@ -46,7 +46,7 @@ export default defineComponent({
     const { root: _this } = ctx
 
     const homeBlogCfg = computed(() => _this.$recoLocales.homeBlog)
-    const socialLinks = computed(() => _this.$themeConfig.blogConfig.socialLinks.map(item => {
+    const socialLinks = computed(() => (_this.$themeConfig.blogConfig && _this.$themeConfig.blogConfig.socialLinks || []).map(item => {
       if (!item.color) item.color = getOneColor()
       return item
     }))
