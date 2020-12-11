@@ -1,3 +1,25 @@
+## [1.6.0](https://github.com/recoluan/vuepress-theme-reco/compare/v1.5.7...v1.6.0) (2020-12-11)
+
+
+### Bug Fixes
+
+* fix a bug about go back to home page url ([540c336](https://github.com/recoluan/vuepress-theme-reco/commit/540c3365dc0cbe4ee73a20f946b6065e3f7b1227))
+* fix a bug about siderbar display ([b90238c](https://github.com/recoluan/vuepress-theme-reco/commit/b90238c26a2b39fb8ae824044fab6c7658960f04))
+* optimize style ([832d674](https://github.com/recoluan/vuepress-theme-reco/commit/832d67476f79c006f30f1c93017f3a08d018c552))
+* page title ([895eac4](https://github.com/recoluan/vuepress-theme-reco/commit/895eac4983be456f454dcd6f288b07ec51010ffa))
+* **theme-reco:** fix animation ([1a57da8](https://github.com/recoluan/vuepress-theme-reco/commit/1a57da8cd7a28da19ab372949526245aea8169c3))
+* **vuepress-plugin-pagation:** fix invalid bug with perPage ([217abd3](https://github.com/recoluan/vuepress-theme-reco/commit/217abd30acea8c33f6f34a893a275bc7a9a8bbb3)), closes [#265](https://github.com/recoluan/vuepress-theme-reco/issues/265)
+* **vuepress-theme-reco:** fix subSidebar invalid ([6688c86](https://github.com/recoluan/vuepress-theme-reco/commit/6688c866627e3abfb25545f3f7d25a8ecc05e904)), closes [#267](https://github.com/recoluan/vuepress-theme-reco/issues/267)
+* **vuepress-theme-reco:** solve the problem of className ([16b5323](https://github.com/recoluan/vuepress-theme-reco/commit/16b53230d6c9d3f4ef25b1d9674602aa6ab3f948))
+
+
+### Features
+
+* **vuepress-theme-reco:** add social links ([1215e56](https://github.com/recoluan/vuepress-theme-reco/commit/1215e56f77867f441919fe0fc3c55975814d1f93)), closes [#252](https://github.com/recoluan/vuepress-theme-reco/issues/252)
+* **vuepress-theme-reco:** support time localization ([beea671](https://github.com/recoluan/vuepress-theme-reco/commit/beea671c6a0b9027dbde45dbb4243c0f9d1ca268)), closes [#255](https://github.com/recoluan/vuepress-theme-reco/issues/255)
+
+
+
 ## [1.5.7](https://github.com/recoluan/vuepress-theme-reco/compare/v1.5.5...v1.5.7) (2020-09-15)
 
 
