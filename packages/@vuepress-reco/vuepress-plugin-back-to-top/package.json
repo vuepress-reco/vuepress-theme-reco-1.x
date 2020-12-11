@@ -1,6 +1,6 @@
 {
   "name": "@vuepress-reco/vuepress-plugin-back-to-top",
-  "version": "1.5.7",
+  "version": "1.6.0",
   "description": "Back-to-top plugin for vuepress-theme-reco or other vuepress theme",
   "keywords": [
     "vuepress-theme-reco",
