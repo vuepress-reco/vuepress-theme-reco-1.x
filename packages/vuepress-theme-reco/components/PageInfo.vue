@@ -35,9 +35,10 @@
 </template>
 
 <script>
+import { defineComponent, getCurrentInstance } from 'vue-demi'
 import { RecoIcon } from '@vuepress-reco/core/lib/components'
 
-export default {
+export default defineComponent({
   components: { RecoIcon },
   props: {
     pageInfo: {
@@ -55,30 +56,33 @@ export default {
       default: false
     }
   },
-  data () {
-    return {
-      numStyle: {
-        fontSize: '.9rem',
-        fontWeight: 'normal',
-        color: '#999'
+
+  setup (props, ctx) {
+    const instance = getCurrentInstance()
+
+    const numStyle = {
+      fontSize: '.9rem',
+      fontWeight: 'normal',
+      color: '#999'
+    }
+
+    const goTags = (tag) => {
+      if (instance.$route.path !== `/tag/${tag}/`) {
+        instance.$router.push({ path: `/tag/${tag}/` })
       }
     }
+
+    return { numStyle, goTags }
   },
+
   filters: {
     formatDateValue (value) {
       let localDate = new Date(value).toLocaleString()
       if (value.split(' ').length === 1) localDate = localDate.split(' ')[0]
       return localDate
     }
-  },
-  methods: {
-    goTags (tag) {
-      if (this.$route.path !== `/tag/${tag}/`) {
-        this.$router.push({ path: `/tag/${tag}/` })
-      }
-    }
   }
-}
+})
 </script>
 
 <style lang="stylus" scoped>

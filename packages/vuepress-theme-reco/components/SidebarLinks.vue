@@ -22,11 +22,12 @@
 </template>
 
 <script>
+import { defineComponent, ref, getCurrentInstance, toRefs, onUpdated, onMounted } from 'vue-demi'
 import SidebarGroup from '@theme/components/SidebarGroup'
 import SidebarLink from '@theme/components/SidebarLink'
 import { isActive } from '@theme/helpers/utils'
 
-export default {
+export default defineComponent({
   name: 'SidebarLinks',
 
   components: { SidebarGroup, SidebarLink },
@@ -37,57 +38,48 @@ export default {
     'sidebarDepth' // depth of headers to be extracted
   ],
 
-  data () {
-    return {
-      openGroupIndex: 0
+  setup (props, ctx) {
+    const instance = getCurrentInstance()
+
+    const { items } = toRefs(props)
+
+    const openGroupIndex = ref(0)
+
+    const refreshIndex = () => {
+      const index = resolveOpenGroupIndex(
+        instance.$route,
+        items.value
+      )
+      if (index > -1) {
+        openGroupIndex.value = index
+      }
     }
-  },
 
-  created () {
-    this.refreshIndex()
-  },
-
-  watch: {
-    '$route' () {
-      this.refreshIndex()
+    const activationAnchor = () => {
+      // eslint-disable-next-line no-undef
+      const anchors = [].slice.call(document.querySelectorAll(AHL_HEADER_ANCHOR_SELECTOR))
+        .filter(anchor => decodeURIComponent(instance.$route.fullPath).indexOf(decodeURIComponent(anchor.hash)) != -1)
+      if (anchors == null || anchors.length < 1 || anchors[0].offsetTop == undefined) return
+      setTimeout(function () {
+        window.scrollTo(0, anchors[0].offsetTop + 160)
+      }, 100)
     }
-  },
 
-  mounted () {
-    // this.activationLink()
-    // this.isInViewPortOfOne()
-  },
-
-  updated: function () {
-    this.isInViewPortOfOne()
-  },
-
-  methods: {
-    activationLink () {
-      const subtitleName = decodeURIComponent(this.$route.fullPath)
+    const activationLink = () => {
+      const subtitleName = decodeURIComponent(instance.$route.fullPath)
       if (!subtitleName || subtitleName == '') return
       // eslint-disable-next-line no-undef
       const subtitles = [].slice.call(document.querySelectorAll(AHL_SIDEBAR_LINK_SELECTOR))
       for (let i = 0; i < subtitles.length; i++) {
         if (decodeURIComponent(subtitles[i].getAttribute('href')).indexOf(subtitleName) != -1) {
           subtitles[i].click()
-          this.activationAnchor()
+          activationAnchor()
           return
         }
       }
-    },
+    }
 
-    activationAnchor () {
-      // eslint-disable-next-line no-undef
-      const anchors = [].slice.call(document.querySelectorAll(AHL_HEADER_ANCHOR_SELECTOR))
-        .filter(anchor => decodeURIComponent(this.$route.fullPath).indexOf(decodeURIComponent(anchor.hash)) != -1)
-      if (anchors == null || anchors.length < 1 || anchors[0].offsetTop == undefined) return
-      setTimeout(function () {
-        window.scrollTo(0, anchors[0].offsetTop + 160)
-      }, 100)
-    },
-
-    isInViewPortOfOne () {
+    const isInViewPortOfOne = () => {
       const sidebarScroll = document.getElementsByClassName('sidebar')[0]
       let el = document.getElementsByClassName('active sidebar-link')[1]
       if (el == null || el == undefined || el.offsetTop == undefined) {
@@ -107,27 +99,34 @@ export default {
       if (!topVisible) {
         sidebarScroll.scrollTop = (offsetTop - 5)
       }
-    },
+    }
 
-    refreshIndex () {
-      const index = resolveOpenGroupIndex(
-        this.$route,
-        this.items
-      )
-      if (index > -1) {
-        this.openGroupIndex = index
-      }
-    },
+    const toggleGroup = (index) => {
+      instance.openGroupIndex = index === instance.openGroupIndex ? -1 : index
+    }
 
-    toggleGroup (index) {
-      this.openGroupIndex = index === this.openGroupIndex ? -1 : index
-    },
+    const isActive = (page) => {
+      return isActive(instance.$route, page.regularPath)
+    }
 
-    isActive (page) {
-      return isActive(this.$route, page.regularPath)
+    refreshIndex()
+
+    onMounted(() => {
+      activationLink()
+      isInViewPortOfOne()
+    })
+
+    onUpdated(() => isInViewPortOfOne())
+
+    return { openGroupIndex, refreshIndex, toggleGroup, isActive }
+  },
+
+  watch: {
+    '$route' () {
+      this.refreshIndex()
     }
   }
-}
+})
 
 function resolveOpenGroupIndex (route, items) {
   for (let i = 0; i < items.length; i++) {

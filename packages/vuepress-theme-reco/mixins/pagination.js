@@ -6,7 +6,7 @@ export default {
       const currentPage = JSON.parse(sessionStorage.getItem('currentPage'))
 
       if (currentPage === null || path !== currentPage.path) {
-        sessionStorage.setItem('currentPage', { page: 1, path: '' })
+        sessionStorage.setItem('currentPage', JSON.stringify({ page: 1, path: '' }))
         return 1
       }
 

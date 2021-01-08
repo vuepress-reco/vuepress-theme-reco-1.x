@@ -10,20 +10,22 @@
 </template>
 
 <script>
-export default {
+import { defineComponent } from 'vue-demi'
+export default defineComponent({
   name: 'DropdownTransition',
 
-  methods: {
-    setHeight (items) {
-      // explicitly set height so that it can be transitioned
+  setup (props, ctx) {
+    const setHeight = (items) => {
       items.style.height = items.scrollHeight + 'px'
-    },
+    }
 
-    unsetHeight (items) {
+    const unsetHeight = (items) => {
       items.style.height = ''
     }
+
+    return { setHeight, unsetHeight }
   }
-}
+})
 </script>
 
 <style lang="stylus">

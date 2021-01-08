@@ -10,6 +10,9 @@ module.exports = {
   // theme: 'reco',
   theme: require.resolve('../../packages/vuepress-theme-reco'),
   themeConfig: {
+    keyPage: {
+      keys: ['e10adc3949ba59abbe56e057f20f883e'],
+    },
     nav: [
       { text: 'Home', link: '/', icon: 'reco-home' },
       { text: 'TimeLine', link: '/timeline/', icon: 'reco-date' },

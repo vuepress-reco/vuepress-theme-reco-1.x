@@ -30,15 +30,7 @@
       <div v-show="recoShowModule" class="home-blog-wrapper">
         <div class="blog-list">
           <!-- 博客列表 -->
-          <note-abstract
-            :data="$recoPosts"
-            :currentPage="currentPage"></note-abstract>
-          <!-- 分页 -->
-          <pagation
-            class="pagation"
-            :total="$recoPosts.length"
-            :currentPage="currentPage"
-            @getCurrentPage="getCurrentPage" />
+          <note-abstract :data="$recoPosts" @paginationChange="paginationChange" />
         </div>
         <div class="info-wrapper">
           <PersonalInfo/>
@@ -67,98 +59,64 @@
 </template>
 
 <script>
+import { defineComponent, toRefs, reactive, computed, getCurrentInstance, onMounted } from 'vue-demi'
 import TagList from '@theme/components/TagList'
 import FriendLink from '@theme/components/FriendLink'
 import NoteAbstract from '@theme/components/NoteAbstract'
-import pagination from '@theme/mixins/pagination'
 import { ModuleTransition, RecoIcon } from '@vuepress-reco/core/lib/components'
 import PersonalInfo from '@theme/components/PersonalInfo'
 import { getOneColor } from '@theme/helpers/other'
 
-export default {
-  mixins: [pagination],
+export default defineComponent({
   components: { NoteAbstract, TagList, FriendLink, ModuleTransition, PersonalInfo, RecoIcon },
-  data () {
-    return {
-      recoShow: false,
-      currentPage: 1,
-      tags: []
-    }
-  },
-  computed: {
-    recoShowModule () {
-      return this.$parent.recoShowModule
-    },
-    homeBlogCfg () {
-      return this.$recoLocales.homeBlog
-    },
-    actionLink () {
-      const {
-        actionLink: link,
-        actionText: text
-      } = this.$frontmatter
+  setup (props, ctx) {
+    const instance = getCurrentInstance()
 
-      return {
-        link,
-        text
-      }
-    },
-    heroImageStyle () {
-      return this.$frontmatter.heroImageStyle || {}
-    },
-    bgImageStyle () {
+    const state = reactive({
+      recoShow: false,
+      heroHeight: 0
+    })
+
+    const recoShowModule = computed(() => instance && instance.$parent.recoShowModule)
+
+    const homeBlogCfg = computed(() => instance.$recoLocales.homeBlog)
+
+    const heroImageStyle = computed(() => instance.$frontmatter.heroImageStyle || {})
+
+    const bgImageStyle = computed(() => {
+      const url = instance.$frontmatter.bgImage
+        ? instance.$withBase(instance.$frontmatter.bgImage)
+        : require('../../images/bg.svg')
+
       const initBgImageStyle = {
         textAlign: 'center',
         overflow: 'hidden',
-        background: `
-          url(${this.$frontmatter.bgImage
-    ? this.$withBase(this.$frontmatter.bgImage)
-    : require('../images/bg.svg')}) center/cover no-repeat
-        `
+        background: `url(${url}) center/cover no-repeat`
       }
-      const {
-        bgImageStyle
-      } = this.$frontmatter
+
+      const { bgImageStyle } = instance.$frontmatter
 
       return bgImageStyle ? { ...initBgImageStyle, ...bgImageStyle } : initBgImageStyle
-    },
-    heroHeight () {
-      return document.querySelector('.hero').clientHeight
-    }
-  },
-  mounted () {
-    this.recoShow = true
-    this._setPage(this._getStoragePage())
+    })
+
+    onMounted(() => {
+      state.heroHeight = document.querySelector('.hero').clientHeight
+      state.recoShow = true
+    })
+
+    return { recoShowModule, homeBlogCfg, heroImageStyle, bgImageStyle, ...toRefs(state), getOneColor }
   },
   methods: {
-    // 获取当前页码
-    getCurrentPage (page) {
-      this._setPage(page)
+    paginationChange (page) {
       setTimeout(() => {
         window.scrollTo(0, this.heroHeight)
       }, 100)
     },
-    // 根据分类获取页面数据
-    getPages () {
-      let pages = this.$site.pages
-      pages = pages.filter(item => {
-        const { home, date } = item.frontmatter
-        return !(home == true || date === undefined)
-      })
-      // reverse()是为了按时间最近排序排序
-      this.pages = pages.length == 0 ? [] : pages
-    },
     getPagesByTags (tagInfo) {
       this.$router.push({ path: tagInfo.path })
-    },
-    _setPage (page) {
-      this.currentPage = page
-      this.$page.currentPage = page
-      this._setStoragePage(page)
-    },
-    getOneColor
+    }
   }
-}
+})
 </script>
 
 <style lang="stylus">

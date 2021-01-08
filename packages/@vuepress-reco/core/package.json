@@ -27,6 +27,7 @@
   "dependencies": {
     "@vue/composition-api": "^1.0.0-beta.20",
     "vue": "^2.6.12",
+    "vue-demi": "^0.5.3",
     "vue-property-decorator": "^9.1.2"
   },
   "publishConfig": {

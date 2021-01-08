@@ -40,35 +40,44 @@
 </template>
 
 <script>
+import { defineComponent, reactive, toRefs, computed, getCurrentInstance } from 'vue-demi'
 import { RecoIcon } from '@vuepress-reco/core/lib/components'
 
-export default {
+export default defineComponent({
   components: { RecoIcon },
-  data () {
-    return {
+  setup (props, ctx) {
+    const instance = getCurrentInstance()
+
+    const state = reactive({
       query: '',
       focused: false,
       focusIndex: 0,
       placeholder: undefined
-    }
-  },
-  mounted () {
-    this.placeholder = this.$site.themeConfig.searchPlaceholder || ''
-  },
-  computed: {
-    showSuggestions () {
+    })
+
+    const showSuggestions = computed(() => {
       return (
-        this.focused && this.suggestions && this.suggestions.length
+        state.focused && suggestions.value && suggestions.value.length
       )
-    },
-    suggestions () {
-      const query = this.query.trim().toLowerCase()
+    })
+
+    const getPageLocalePath = (page) => {
+      for (const localePath in instance.$site.locales || {}) {
+        if (localePath !== '/' && page.path.indexOf(localePath) === 0) {
+          return localePath
+        }
+      }
+      return '/'
+    }
+
+    const suggestions = computed(() => {
+      const query = state.query.trim().toLowerCase()
       if (!query) {
         return
       }
-      const { pages } = this.$site
-      const max = this.$site.themeConfig.searchMaxSuggestions
-      const localePath = this.$localePath
+      const { pages } = instance.$site
+      const max = instance.$site.themeConfig.searchMaxSuggestions
+      const localePath = instance.$localePath
       const matches = item => (
         item && item.title && item.title.toLowerCase().indexOf(query) > -1
       )
@@ -77,7 +86,7 @@ export default {
         if (res.length >= max) break
         const p = pages[i]
         // filter out results that do not match current locale
-        if (this.getPageLocalePath(p) !== localePath) {
+        if (getPageLocalePath(p) !== localePath) {
           continue
         }
         if (matches(p)) {
@@ -96,57 +105,57 @@ export default {
         }
       }
       return res
-    },
-    // make suggestions align right when there are not enough items
-    alignRight () {
-      const navCount = (this.$site.themeConfig.nav || []).length
-      const repo = this.$site.repo ? 1 : 0
+    })
+
+    const alignRight = computed(() => {
+      const navCount = (instance.$site.themeConfig.nav || []).length
+      const repo = instance.$site.repo ? 1 : 0
       return navCount + repo <= 2
+    })
+
+    const onUp = () => {
+      if (showSuggestions.value) {
+        if (state.focusIndex > 0) {
+          state.focusIndex--
+        } else {
+          state.focusIndex = suggestions.value.length - 1
+        }
+      }
     }
-  },
-  methods: {
-    getPageLocalePath (page) {
-      for (const localePath in this.$site.locales || {}) {
-        if (localePath !== '/' && page.path.indexOf(localePath) === 0) {
-          return localePath
-        }
-      }
-      return '/'
-    },
-    onUp () {
-      if (this.showSuggestions) {
-        if (this.focusIndex > 0) {
-          this.focusIndex--
+
+    const onDown = () => {
+      if (showSuggestions.value) {
+        if (state.focusIndex < suggestions.value.length - 1) {
+          state.focusIndex++
         } else {
-          this.focusIndex = this.suggestions.length - 1
+          state.focusIndex = 0
         }
       }
-    },
-    onDown () {
-      if (this.showSuggestions) {
-        if (this.focusIndex < this.suggestions.length - 1) {
-          this.focusIndex++
-        } else {
-          this.focusIndex = 0
-        }
-      }
-    },
-    go (i) {
-      if (!this.showSuggestions) {
+    }
+
+    const go = (i) => {
+      if (!showSuggestions.value) {
         return
       }
-      this.$router.push(this.suggestions[i].path)
-      this.query = ''
-      this.focusIndex = 0
-    },
-    focus (i) {
-      this.focusIndex = i
-    },
-    unfocus () {
-      this.focusIndex = -1
+      instance.$router.push(suggestions.value[i].path)
+      state.query = ''
+      state.focusIndex = 0
     }
+
+    const focus = (i) => {
+      state.focusIndex = i
+    }
+
+    const unfocus = () => {
+      state.focusIndex = -1
+    }
+
+    return { showSuggestions, suggestions, alignRight, onUp, onDown, focus, unfocus, go, ...toRefs(state) }
+  },
+  mounted () {
+    this.placeholder = this.$site.themeConfig.searchPlaceholder || ''
   }
-}
+})
 </script>
 
 <style lang="stylus">

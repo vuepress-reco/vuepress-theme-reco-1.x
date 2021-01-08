@@ -1,5 +1,7 @@
 <script>
-export default {
+import { defineComponent } from 'vue-demi'
+
+export default defineComponent({
   functional: true,
   props: {
     type: {
@@ -20,7 +22,7 @@ export default {
       }
     }, props.text || slots().default)
   }
-}
+})
 </script>
 
 <style lang="stylus" scoped>

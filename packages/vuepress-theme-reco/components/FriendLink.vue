@@ -41,105 +41,99 @@
 </template>
 
 <script>
+import { defineComponent, getCurrentInstance, reactive, computed } from 'vue-demi'
 import md5 from 'md5'
 import { getOneColor } from '@theme/helpers/other'
 
-export default {
-  data () {
-    return {
-      popupWindowStyle: {},
-      isPC: true
-    }
-  },
-  mounted () {
-    if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-      this.isPC = false
-    } else {
-      this.isPC = true
-    }
-  },
-  computed: {
-    dataAddColor () {
-      let { friendLink } = this.$themeConfig
-      if (friendLink && friendLink.length > 0) {
-        friendLink = friendLink.map(item => ({
-          ...item,
-          color: getOneColor()
-        }))
-        return friendLink
-      }
-      return []
-    }
-  },
-  methods: {
-    getMd5 (str) {
-      return md5(str)
-    },
-    showDetail (e) {
-      const currentDom = e.target
-      const popupWindowWrapper = currentDom.querySelector('.popup-window-wrapper')
-      const popupWindow = currentDom.querySelector('.popup-window')
-      const infoWrapper = document.querySelector('.info-wrapper')
-      popupWindowWrapper.style.display = 'block'
-      const { clientWidth } = currentDom
-      const {
-        clientWidth: windowWidth,
-        clientHeight: windowHeight
-      } = popupWindow
-      if (this.isPC) {
-        this.popupWindowStyle = {
-          left: (clientWidth - windowWidth) / 2 + 'px',
-          top: -windowHeight + 'px'
-        }
-        infoWrapper.style.overflow = 'visible'
-        this.$nextTick(() => {
-          this._adjustPosition(currentDom.querySelector('.popup-window'))
-        })
-      } else {
-        const getPosition = function (element) {
-          const dc = document
-          const rec = element.getBoundingClientRect()
-          let _x = rec.left
-          let _y = rec.top
-          _x += dc.documentElement.scrollLeft || dc.body.scrollLeft
-          _y += dc.documentElement.scrollTop || dc.body.scrollTop
-          return {
-            left: _x,
-            top: _y
-          }
-        }
-        infoWrapper.style.overflow = 'hidden'
-        const left = getPosition(currentDom).left - getPosition(infoWrapper).left
-        this.popupWindowStyle = {
-          left: (-left + (infoWrapper.clientWidth - popupWindow.clientWidth) / 2) + 'px',
-          top: -windowHeight + 'px'
-        }
-      }
-    },
-    hideDetail (e) {
-      const currentDom = e.target
-      currentDom.querySelector('.popup-window-wrapper').style.display = 'none'
-    },
-    getImgUrl (info) {
-      const { logo, email } = info
-      if (logo && /^http/.test(logo)) return logo
-      if (logo && !/^http/.test(logo)) return this.$withBase(logo)
-      return `//1.gravatar.com/avatar/${this.getMd5(email || '')}?s=50&amp;d=mm&amp;r=x`
-    },
-    _adjustPosition (dom) {
-      const { offsetWidth } = document.body
-      const { x, width } = dom.getBoundingClientRect()
-      const distanceToRight = offsetWidth - (x + width)
-      if (distanceToRight < 0) {
-        const { offsetLeft } = dom
-        this.popupWindowStyle = {
-          ...this.popupWindowStyle,
-          left: offsetLeft + distanceToRight + 'px'
-        }
-      }
+const useDetail = () => {
+  const instance = getCurrentInstance()
+  const isPC = !/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)
+
+  const popupWindowStyle = reactive({
+    left: 0,
+    top: 0
+  })
+
+  const adjustPosition = (dom) => {
+    const { offsetWidth } = document.body
+    const { x, width } = dom.getBoundingClientRect()
+    const distanceToRight = offsetWidth - (x + width)
+
+    if (distanceToRight < 0) {
+      const { offsetLeft } = dom
+      popupWindowStyle.left = offsetLeft + distanceToRight + 'px'
     }
   }
+
+  const showDetail = (e) => {
+    const currentDom = e.target
+    const popupWindowWrapper = currentDom.querySelector('.popup-window-wrapper')
+    popupWindowWrapper.style.display = 'block'
+    const popupWindow = currentDom.querySelector('.popup-window')
+    const infoWrapper = document.querySelector('.info-wrapper')
+    const { clientWidth } = currentDom
+    const { clientWidth: windowWidth, clientHeight: windowHeight } = popupWindow
+
+    if (isPC) {
+      popupWindowStyle.left = (clientWidth - windowWidth) / 2 + 'px'
+      popupWindowStyle.top = -windowHeight + 'px'
+
+      infoWrapper.style.overflow = 'visible'
+
+      instance.$nextTick(() => {
+        adjustPosition(popupWindow)
+      })
+    } else {
+      const getPosition = function (element) {
+        const dc = document
+        const rec = element.getBoundingClientRect()
+        let _x = rec.left
+        let _y = rec.top
+        _x += dc.documentElement.scrollLeft || dc.body.scrollLeft
+        _y += dc.documentElement.scrollTop || dc.body.scrollTop
+        return { left: _x, top: _y }
+      }
+
+      infoWrapper.style.overflow = 'hidden'
+      const left = getPosition(currentDom).left - getPosition(infoWrapper).left
+
+      popupWindowStyle.left = (-left + (infoWrapper.clientWidth - popupWindow.clientWidth) / 2) + 'px'
+      popupWindowStyle.top = -windowHeight + 'px'
+    }
+  }
+
+  const hideDetail = (e) => {
+    const currentDom = e.target.querySelector('.popup-window-wrapper')
+    currentDom.style.display = 'none'
+  }
+
+  return { popupWindowStyle, showDetail, hideDetail }
 }
+
+export default defineComponent({
+  setup (props, ctx) {
+    const instance = getCurrentInstance()
+
+    const { popupWindowStyle, showDetail, hideDetail } = useDetail()
+
+    const dataAddColor = computed(() => {
+      const { friendLink = [] } = instance && instance.$themeConfig
+      return friendLink.map(item => {
+        item.color = getOneColor()
+        return item
+      })
+    })
+
+    const getImgUrl = (info) => {
+      const { logo = '', email = '' } = info
+      if (logo && /^http/.test(logo)) return logo
+      if (logo && !/^http/.test(logo)) return instance.$withBase(logo)
+      return `//1.gravatar.com/avatar/${md5(email || '')}?s=50&amp;d=mm&amp;r=x`
+    }
+
+    return { dataAddColor, popupWindowStyle, showDetail, hideDetail, getImgUrl }
+  }
+})
 </script>
 
 <style lang="stylus" scoped>

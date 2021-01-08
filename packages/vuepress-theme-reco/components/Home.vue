@@ -43,31 +43,28 @@
 </template>
 
 <script>
+import { defineComponent, computed, getCurrentInstance } from 'vue-demi'
 import NavLink from '@theme/components/NavLink'
 import { ModuleTransition } from '@vuepress-reco/core/lib/components'
 
-export default {
+export default defineComponent({
   components: { NavLink, ModuleTransition },
-  computed: {
-    recoShowModule () {
-      return this.$parent.recoShowModule
-    },
 
-    actionLink () {
-      return {
-        link: this.$frontmatter.actionLink,
-        text: this.$frontmatter.actionText
-      }
-    },
+  setup (props, ctx) {
+    const instance = getCurrentInstance()
+    const recoShowModule = computed(() => instance && instance.$parent.recoShowModule)
+    const actionLink = computed(() => instance && {
+      link: instance.$frontmatter.actionLink,
+      text: instance.$frontmatter.actionText
+    })
+    const heroImageStyle = computed(() => instance.$frontmatter.heroImageStyle || {
+      maxHeight: '200px',
+      margin: '6rem auto 1.5rem'
+    })
 
-    heroImageStyle () {
-      return this.$frontmatter.heroImageStyle || {
-        maxHeight: '200px',
-        margin: '6rem auto 1.5rem'
-      }
-    }
+    return { recoShowModule, actionLink, heroImageStyle }
   }
-}
+})
 </script>
 
 <style lang="stylus">

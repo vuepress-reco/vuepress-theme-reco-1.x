@@ -30,6 +30,7 @@
     "docsearch.js": "2.6.3",
     "md5": "2.2.1",
     "vue-click-outside": "1.1.0",
+    "vue-demi": "^0.5.3",
     "vuepress-plugin-smooth-scroll": "^0.0.9"
   },
   "gitHead": "c3a1db8487bece9341b6269a0f6ebf910cd5462a",

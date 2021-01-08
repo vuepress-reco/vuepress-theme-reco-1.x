@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { defineComponent, computed, ref, onMounted } from '@vue/composition-api'
+import { defineComponent, computed, ref, onMounted } from 'vue-demi'
 import Navbar from '@theme/components/Navbar'
 import Sidebar from '@theme/components/Sidebar'
 import PersonalInfo from '@theme/components/PersonalInfo'

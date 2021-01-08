@@ -21,10 +21,11 @@
 </template>
 
 <script>
+import { defineComponent, computed, toRefs, getCurrentInstance } from 'vue-demi'
 import { isExternal, isMailto, isTel, ensureExt } from '@theme/helpers/utils'
 import { RecoIcon } from '@vuepress-reco/core/lib/components'
 
-export default {
+export default defineComponent({
   components: { RecoIcon },
 
   props: {
@@ -33,23 +34,21 @@ export default {
     }
   },
 
-  computed: {
-    link () {
-      return ensureExt(this.item.link)
-    },
+  setup (props, ctx) {
+    const instance = getCurrentInstance()
 
-    exact () {
-      if (this.$site.locales) {
-        return Object.keys(this.$site.locales).some(rootLink => rootLink === this.link)
+    const { item } = toRefs(props)
+
+    const link = computed(() => ensureExt(item.value.link))
+
+    const exact = computed(() => {
+      if (instance.$site.locales) {
+        return Object.keys(instance.$site.locales).some(rootLink => rootLink === link.value)
       }
-      return this.link === '/'
-    }
-  },
+      return link.value === '/'
+    })
 
-  methods: {
-    isExternal,
-    isMailto,
-    isTel
+    return { link, exact, isExternal, isMailto, isTel }
   }
-}
+})
 </script>

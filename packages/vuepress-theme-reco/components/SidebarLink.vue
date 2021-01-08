@@ -1,7 +1,8 @@
 <script>
+import { defineComponent } from 'vue-demi'
 import { isActive } from '@theme/helpers/utils'
 
-export default {
+export default defineComponent({
   functional: true,
 
   props: ['item', 'sidebarDepth'],
@@ -31,7 +32,7 @@ export default {
     const link = renderLink(h, item.path, item.title || item.path, active)
     return link
   }
-}
+})
 
 function renderLink (h, to, text, active) {
   return h('router-link', {

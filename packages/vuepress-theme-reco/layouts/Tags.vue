@@ -14,18 +14,8 @@
         v-show="recoShowModule"
         class="list"
         :data="$recoPosts"
-        :currentPage="currentPage"
-        :currentTag="currentTag"
-        @currentTag="getCurrentTag"></note-abstract>
-    </ModuleTransition>
-
-    <!-- 分页 -->
-    <ModuleTransition delay="0.16">
-      <pagation
-        class="pagation"
-        :total="$recoPosts.length"
-        :currentPage="currentPage"
-        @getCurrentPage="getCurrentPage"></pagation>
+        @paginationChange="paginationChange"
+      ></note-abstract>
     </ModuleTransition>
   </Common>
 </template>
@@ -34,18 +24,16 @@
 import Common from '@theme/components/Common'
 import TagList from '@theme/components/TagList'
 import NoteAbstract from '@theme/components/NoteAbstract'
-import pagination from '@theme/mixins/pagination'
 import { ModuleTransition } from '@vuepress-reco/core/lib/components'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {
-  mixins: [pagination, moduleTransitonMixin],
+  mixins: [moduleTransitonMixin],
   components: { Common, NoteAbstract, TagList, ModuleTransition },
   data () {
     return {
       tags: [],
       currentTag: '',
-      currentPage: 1,
       allTagName: ''
     }
   },
@@ -58,32 +46,16 @@ export default {
     }
   },
 
-  mounted () {
-    this._setPage(this._getStoragePage())
-  },
-
   methods: {
-
     tagClick (tagInfo) {
       if (this.$route.path !== tagInfo.path) {
         this.$router.push({ path: tagInfo.path })
       }
     },
-
-    getCurrentTag (tag) {
-      this.$emit('currentTag', tag)
-    },
-
-    getCurrentPage (page) {
-      this._setPage(page)
+    paginationChange (page) {
       setTimeout(() => {
         window.scrollTo(0, 0)
       }, 100)
-    },
-    _setPage (page) {
-      this.currentPage = page
-      this.$page.currentPage = page
-      this._setStoragePage(page)
     }
   }
 }

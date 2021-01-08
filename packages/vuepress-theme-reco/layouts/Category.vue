@@ -22,17 +22,8 @@
         v-show="recoShowModule"
         class="list"
         :data="posts"
-        :currentPage="currentPage"
-        @currentTag="getCurrentTag"></note-abstract>
-    </ModuleTransition>
-
-    <!-- 分页 -->
-    <ModuleTransition delay="0.16">
-      <pagation
-        class="pagation"
-        :total="posts.length"
-        :currentPage="currentPage"
-        @getCurrentPage="getCurrentPage"></pagation>
+        @paginationChange="paginationChange"
+      ></note-abstract>
     </ModuleTransition>
   </Common>
 </template>
@@ -41,20 +32,13 @@
 import Common from '@theme/components/Common'
 import NoteAbstract from '@theme/components/NoteAbstract'
 import { ModuleTransition } from '@vuepress-reco/core/lib/components'
-import pagination from '@theme/mixins/pagination'
 import { sortPostsByStickyAndDate, filterPosts } from '@theme/helpers/postData'
 import { getOneColor } from '@theme/helpers/other'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {
-  mixins: [pagination, moduleTransitonMixin],
+  mixins: [moduleTransitonMixin],
   components: { Common, NoteAbstract, ModuleTransition },
-
-  data () {
-    return {
-      currentPage: 1
-    }
-  },
 
   computed: {
     // 时间降序后的博客列表
@@ -70,34 +54,17 @@ export default {
     }
   },
 
-  mounted () {
-    this._setPage(this._getStoragePage())
-  },
-
   methods: {
     // 获取当前tag
     getCurrentTag (tag) {
       this.$emit('currentTag', tag)
     },
-    // 获取当前页码
-    getCurrentPage (page) {
-      this._setPage(page)
+    paginationChange (page) {
       setTimeout(() => {
         window.scrollTo(0, 0)
       }, 100)
     },
-    _setPage (page) {
-      this.currentPage = page
-      this.$page.currentPage = page
-      this._setStoragePage(page)
-    },
     getOneColor
-  },
-
-  watch: {
-    $route () {
-      this._setPage(this._getStoragePage())
-    }
   }
 }
 </script>

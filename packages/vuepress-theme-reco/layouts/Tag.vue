@@ -16,17 +16,8 @@
         v-show="recoShowModule"
         class="list"
         :data="posts"
-        :currentPage="currentPage"
-        @currentTag="$currentTags.key"></note-abstract>
-    </ModuleTransition>
-
-    <!-- 分页 -->
-    <ModuleTransition delay="0.16">
-      <pagation
-        class="pagation"
-        :total="posts.length"
-        :currentPage="currentPage"
-        @getCurrentPage="getCurrentPage"></pagation>
+        :currentTag="$currentTags.key"
+        @paginationChange="paginationChange"></note-abstract>
     </ModuleTransition>
   </Common>
 </template>
@@ -35,18 +26,16 @@
 import Common from '@theme/components/Common'
 import NoteAbstract from '@theme/components/NoteAbstract'
 import TagList from '@theme/components/TagList'
-import pagination from '@theme/mixins/pagination'
 import { ModuleTransition } from '@vuepress-reco/core/lib/components'
 import { sortPostsByStickyAndDate, filterPosts } from '@theme/helpers/postData'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
 export default {
-  mixins: [pagination, moduleTransitonMixin],
+  mixins: [moduleTransitonMixin],
   components: { Common, NoteAbstract, TagList, ModuleTransition },
 
   data () {
     return {
-      currentPage: 1,
       currentTag: '全部'
     }
   },
@@ -61,10 +50,6 @@ export default {
     }
   },
 
-  mounted () {
-    this._setPage(this._getStoragePage())
-  },
-
   methods: {
     // 获取当前tag
     getCurrentTag (tag) {
@@ -75,23 +60,10 @@ export default {
         this.$router.push({ path: tagInfo.path })
       }
     },
-    // 获取当前页码
-    getCurrentPage (page) {
-      this._setPage(page)
+    paginationChange (page) {
       setTimeout(() => {
         window.scrollTo(0, 0)
       }, 100)
-    },
-    _setPage (page) {
-      this.currentPage = page
-      this.$page.currentPage = page
-      this._setStoragePage(page)
-    }
-  },
-
-  watch: {
-    $route () {
-      this._setPage(this._getStoragePage())
     }
   }
 }

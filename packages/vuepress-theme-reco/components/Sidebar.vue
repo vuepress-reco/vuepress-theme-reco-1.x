@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from 'vue-demi'
 import SidebarLinks from '@theme/components/SidebarLinks'
 import NavLinks from '@theme/components/NavLinks'
 

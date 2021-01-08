@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { defineComponent, computed } from '@vue/composition-api'
+import { defineComponent, computed } from 'vue-demi'
 import { RecoIcon } from '@vuepress-reco/core/lib/components'
 import { getOneColor } from '@theme/helpers/other'
 
