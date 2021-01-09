@@ -1,4 +1,4 @@
-npm run build
+yarn build:example
 
 cd example/public
 

@@ -13,13 +13,13 @@
     "build:example": "vuepress build example",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 2",
     "commit": "git add . && git-cz",
+    "deploy:example": "bash scripts/deploy.sh",
     "dev": "vuepress dev example",
     "eslint-ext": "eslint --ext .js,.vue ./",
     "eslint-fix": "eslint --fix --ext .js,.vue ./",
     "prepublish": "lerna publish --dist-tag next",
-    "publish": "lerna publish",
+    "publish": "yarn build && lerna publish",
     "push": "yarn commit && git push",
-    "test": "bash scripts/test.sh",
     "update": "yarn upgrade-interactive --latest"
   },
   "husky": {

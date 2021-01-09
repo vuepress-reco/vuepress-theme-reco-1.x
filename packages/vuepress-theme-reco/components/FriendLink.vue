@@ -34,20 +34,19 @@
             </div>
           </div>
         </div>
-
       </transition>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, getCurrentInstance, reactive, computed } from 'vue-demi'
+import { defineComponent, getCurrentInstance, reactive, computed, ref, onMounted } from 'vue-demi'
 import md5 from 'md5'
 import { getOneColor } from '@theme/helpers/other'
 
 const useDetail = () => {
   const instance = getCurrentInstance()
-  const isPC = !/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)
+  const isPC = ref(true)
 
   const popupWindowStyle = reactive({
     left: 0,
@@ -106,6 +105,10 @@ const useDetail = () => {
     const currentDom = e.target.querySelector('.popup-window-wrapper')
     currentDom.style.display = 'none'
   }
+
+  onMounted(() => {
+    isPC.value = !/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)
+  })
 
   return { popupWindowStyle, showDetail, hideDetail }
 }
