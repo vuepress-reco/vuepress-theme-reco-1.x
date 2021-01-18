@@ -24,7 +24,7 @@ class RecoIcon extends RecoIconProps {
         return args[1] === 'reco' ? `iconfont ${args[0]}` : `${args[1]} ${args[0]}`
       })
     }
-    return ''
+    return icon
   }
 
   go (link) {
