@@ -102,16 +102,18 @@ export default defineComponent({
         root.$themeLocaleConfig.nav
       )
     })
+
     const pageClasses = computed(() => {
-      const userPageClass = root.$frontmatter.pageClass
-      return {
-        ...{
-          'no-navbar': !shouldShowNavbar.value,
-          'sidebar-open': isSidebarOpen.value,
-          'no-sidebar': !shouldShowSidebar.value
-        },
-        ...userPageClass
+      const classValue = {
+        'no-navbar': !shouldShowNavbar.value,
+        'sidebar-open': isSidebarOpen.value,
+        'no-sidebar': !shouldShowSidebar.value
       }
+
+      const { pageClass: userPageClass } = root.$frontmatter || {}
+      if (userPageClass) classValue[userPageClass] = true
+
+      return classValue
     })
 
     const hasKey = () => {

@@ -9,10 +9,14 @@ module.exports = {
   base: '/reco-example-test/',
   // theme: 'reco',
   theme: require.resolve('../../packages/vuepress-theme-reco'),
-  themeConfig: {
-    keyPage: {
-      keys: ['e10adc3949ba59abbe56e057f20f883e'],
+  locales: {
+    // 键名是该语言所属的子路径
+    // 作为特例，默认语言可以使用 '/' 作为其路径。
+    '/': {
+      lang: 'zh-CN',
     },
+  },
+  themeConfig: {
     nav: [
       { text: 'Home', link: '/', icon: 'reco-home' },
       { text: 'TimeLine', link: '/timeline/', icon: 'reco-date' },
