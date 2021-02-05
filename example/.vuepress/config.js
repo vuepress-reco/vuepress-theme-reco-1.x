@@ -17,6 +17,7 @@ module.exports = {
     },
   },
   themeConfig: {
+    lastUpdated: false,
     nav: [
       { text: 'Home', link: '/', icon: 'reco-home' },
       { text: 'TimeLine', link: '/timeline/', icon: 'reco-date' },
@@ -72,7 +73,7 @@ module.exports = {
     subSidebar: 'auto',
     sidebarDepth: 4,
     // 最后更新时间
-    lastUpdated: 'Last Updated',
+    // lastUpdated: 'Last Updated',
     // 作者
     author: 'reco_luan',
     // 备案号

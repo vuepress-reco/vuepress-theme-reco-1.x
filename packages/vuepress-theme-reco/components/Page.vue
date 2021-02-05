@@ -97,7 +97,8 @@ export default defineComponent({
     })
 
     const lastUpdated = computed(() => {
-      return new Date(instance.$page.lastUpdated).toLocaleString()
+      if (instance.$themeConfig.lastUpdated === false) return false
+      return instance.$page.lastUpdated
     })
 
     const lastUpdatedText = computed(() => {

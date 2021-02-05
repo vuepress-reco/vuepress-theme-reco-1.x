@@ -3,7 +3,6 @@ import { filterPosts, sortPostsByStickyAndDate, sortPostsByDate } from '../helpe
 export default {
   computed: {
     $recoPosts () {
-      console.log(this.$site.pages)
       let posts = this.$site.pages
 
       posts = filterPosts(posts, false)
