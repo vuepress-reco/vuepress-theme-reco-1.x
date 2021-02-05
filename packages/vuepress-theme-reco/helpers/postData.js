@@ -8,7 +8,7 @@ export function filterPosts (posts, isTimeline) {
     if (posts.indexOf(item) !== index) {
       return false
     } else {
-      const someConditions = home == true || title == undefined || publish === false
+      const someConditions = home === true || title == undefined || publish === false
       const boo = isTimeline === true
         ? !(someConditions || date === undefined)
         : !someConditions

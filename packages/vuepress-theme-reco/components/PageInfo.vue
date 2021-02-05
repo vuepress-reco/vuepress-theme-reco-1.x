@@ -10,7 +10,7 @@
       v-if="pageInfo.frontmatter.date"
       icon="reco-date"
     >
-      <span>{{ pageInfo.frontmatter.date | formatDateValue }}</span>
+      <span>{{ formatDateValue(pageInfo.frontmatter.date) }}</span>
     </reco-icon>
     <reco-icon
       v-if="showAccessNumber === true"
@@ -72,15 +72,11 @@ export default defineComponent({
       }
     }
 
-    return { numStyle, goTags }
-  },
-
-  filters: {
-    formatDateValue (value) {
-      let localDate = new Date(value).toLocaleString()
-      if (value.split(' ').length === 1) localDate = localDate.split(' ')[0]
-      return localDate
+    const formatDateValue = (value) => {
+      return new Intl.DateTimeFormat(instance.$lang).format(new Date(value))
     }
+
+    return { numStyle, goTags, formatDateValue }
   }
 })
 </script>

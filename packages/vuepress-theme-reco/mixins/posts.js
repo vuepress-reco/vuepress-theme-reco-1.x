@@ -3,13 +3,8 @@ import { filterPosts, sortPostsByStickyAndDate, sortPostsByDate } from '../helpe
 export default {
   computed: {
     $recoPosts () {
-      const {
-        $categories: { list: articles }
-      } = this
-
-      let posts = articles.reduce((allData, currentData) => {
-        return [...allData, ...currentData.pages]
-      }, [])
+      console.log(this.$site.pages)
+      let posts = this.$site.pages
 
       posts = filterPosts(posts, false)
       sortPostsByStickyAndDate(posts)
