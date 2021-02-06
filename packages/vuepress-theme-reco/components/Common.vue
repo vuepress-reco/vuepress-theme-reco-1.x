@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { defineComponent, computed, ref, onMounted } from 'vue-demi'
+import { defineComponent, computed, ref, onMounted, toRefs } from 'vue-demi'
 import Navbar from '@theme/components/Navbar'
 import Sidebar from '@theme/components/Sidebar'
 import PersonalInfo from '@theme/components/PersonalInfo'
@@ -67,7 +67,7 @@ export default defineComponent({
       type: Array,
       default: () => []
     },
-    recoShowModule: {
+    showModule: {
       type: Boolean,
       default: false
     }
@@ -154,6 +154,16 @@ export default defineComponent({
       }, time)
     }
 
+    // 首次渲染时，recoShowModule 直接为 true，否则锚点失效
+    const { showModule } = toRefs(props)
+    const recoShowModule = computed(() => {
+      if (firstLoad.value) {
+        return true
+      } else {
+        return showModule.value
+      }
+    })
+
     onMounted(() => {
       initRouterHandler()
       hasKey()
@@ -161,7 +171,7 @@ export default defineComponent({
       handleLoading()
     })
 
-    return { isSidebarOpen, absoluteEncryption, shouldShowNavbar, shouldShowSidebar, pageClasses, hasKey, hasPageKey, isHasKey, isHasPageKey, toggleSidebar, firstLoad }
+    return { isSidebarOpen, absoluteEncryption, shouldShowNavbar, shouldShowSidebar, pageClasses, hasKey, hasPageKey, isHasKey, isHasPageKey, toggleSidebar, firstLoad, recoShowModule }
   },
 
   watch: {

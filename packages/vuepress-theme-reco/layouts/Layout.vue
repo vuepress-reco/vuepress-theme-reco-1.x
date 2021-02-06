@@ -1,5 +1,5 @@
 <template>
-  <Common :sidebarItems="sidebarItems" :recoShowModule="recoShowModule">
+  <Common :sidebarItems="sidebarItems" :showModule="recoShowModule">
     <component v-if="$frontmatter.home" :is="homeCom"/>
     <Page v-else :sidebar-items="sidebarItems"/>
     <Footer v-if="$frontmatter.home" class="footer" />

@@ -8,7 +8,8 @@
     </ModuleTransition>
 
     <ModuleTransition delay="0.08">
-      <Content v-if="recoShowModule" class="theme-reco-content" />
+      <!-- 这里使用 v-show，否则影响 SSR -->
+      <Content v-show="recoShowModule" class="theme-reco-content" />
     </ModuleTransition>
 
     <ModuleTransition delay="0.16">
