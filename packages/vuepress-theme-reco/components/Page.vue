@@ -266,7 +266,7 @@ function flatten (items, res) {
     &::before
       position absolute
       left 0
-      bottom 0
+      top 3.5rem
       display block
       height 1.8rem
       content ''
