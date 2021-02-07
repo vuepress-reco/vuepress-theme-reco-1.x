@@ -2,7 +2,7 @@
   <Common class="timeline-wrapper" :sidebar="false">
     <ul class="timeline-content">
       <ModuleTransition >
-        <li v-show="recoShowModule" class="desc">Yesterday Once More!</li>
+        <li v-show="recoShowModule" class="desc">{{$recoLocales.timeLineMsg}}</li>
       </ModuleTransition>
       <ModuleTransition
         :delay="String(0.08 * (index + 1))"
@@ -12,7 +12,7 @@
           <h3 class="year">{{item.year}}</h3>
           <ul class="year-wrapper">
             <li v-for="(subItem, subIndex) in item.data" :key="subIndex">
-              <span class="date">{{subItem.frontmatter.date | dateFormat}}</span>
+              <span class="date">{{dateFormat(subItem.frontmatter.date)}}</span>
               <span class="title" @click="go(subItem.path)">{{subItem.title}}</span>
             </li>
           </ul>
@@ -23,16 +23,23 @@
 </template>
 
 <script>
+import { defineComponent, getCurrentInstance } from 'vue-demi'
 import Common from '@theme/components/Common'
 import { ModuleTransition } from '@vuepress-reco/core/lib/components'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
-export default {
-  mixins: [moduleTransitonMixin],
+export default defineComponent({
   name: 'TimeLine',
+  mixins: [moduleTransitonMixin],
   components: { Common, ModuleTransition },
-  filters: {
-    dateFormat (date, type) {
+  setup (props, ctx) {
+    const instance = getCurrentInstance()
+
+    const go = (url) => {
+      instance.$router.push({ path: url })
+    }
+
+    const dateFormat = (date, type) => {
       function renderTime (date) {
         const dateee = new Date(date).toJSON()
         return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '').replace(/-/g, '/')
@@ -43,13 +50,10 @@ export default {
       const day = dateObj.getDate()
       return `${mon}-${day}`
     }
-  },
-  methods: {
-    go (url) {
-      this.$router.push({ path: url })
-    }
+
+    return { go, dateFormat }
   }
-}
+})
 </script>
 
 <style src="../styles/theme.styl" lang="stylus"></style>

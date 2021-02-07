@@ -34,7 +34,7 @@
         </div>
         <div class="info-wrapper">
           <PersonalInfo/>
-          <h4><reco-icon icon="reco-category" /> {{homeBlogCfg.category}}</h4>
+          <h4><reco-icon icon="reco-category" /> {{$recoLocales.category}}</h4>
           <ul class="category-wrapper">
             <li class="category-item" v-for="(item, index) in this.$categories.list" :key="index">
               <router-link :to="item.path">
@@ -44,9 +44,9 @@
             </li>
           </ul>
           <hr>
-          <h4 v-if="$tags.list.length !== 0"><reco-icon icon="reco-tag" /> {{homeBlogCfg.tag}}</h4>
+          <h4 v-if="$tags.list.length !== 0"><reco-icon icon="reco-tag" /> {{$recoLocales.tag}}</h4>
           <TagList @getCurrentTag="getPagesByTags" />
-          <h4 v-if="$themeConfig.friendLink && $themeConfig.friendLink.length !== 0"><reco-icon icon="reco-friend" /> {{homeBlogCfg.friendLink}}</h4>
+          <h4 v-if="$themeConfig.friendLink && $themeConfig.friendLink.length !== 0"><reco-icon icon="reco-friend" /> {{$recoLocales.friendLink}}</h4>
           <FriendLink />
         </div>
       </div>
@@ -79,8 +79,6 @@ export default defineComponent({
 
     const recoShowModule = computed(() => instance && instance.$parent.recoShowModule)
 
-    const homeBlogCfg = computed(() => instance.$recoLocales.homeBlog)
-
     const heroImageStyle = computed(() => instance.$frontmatter.heroImageStyle || {})
 
     const bgImageStyle = computed(() => {
@@ -104,7 +102,7 @@ export default defineComponent({
       state.recoShow = true
     })
 
-    return { recoShowModule, homeBlogCfg, heroImageStyle, bgImageStyle, ...toRefs(state), getOneColor }
+    return { recoShowModule, heroImageStyle, bgImageStyle, ...toRefs(state), getOneColor }
   },
   methods: {
     paginationChange (page) {

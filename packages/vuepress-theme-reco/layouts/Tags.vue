@@ -4,7 +4,7 @@
     <ModuleTransition>
       <TagList
         v-show="recoShowModule"
-        :currentTag="currentTag"
+        :currentTag="$recoLocales.all"
         @getCurrentTag="tagClick"></TagList>
     </ModuleTransition>
 
@@ -21,44 +21,35 @@
 </template>
 
 <script>
+import { defineComponent, getCurrentInstance } from 'vue-demi'
 import Common from '@theme/components/Common'
 import TagList from '@theme/components/TagList'
 import NoteAbstract from '@theme/components/NoteAbstract'
 import { ModuleTransition } from '@vuepress-reco/core/lib/components'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
-export default {
+export default defineComponent({
   mixins: [moduleTransitonMixin],
   components: { Common, NoteAbstract, TagList, ModuleTransition },
-  data () {
-    return {
-      tags: [],
-      currentTag: '',
-      allTagName: ''
-    }
-  },
 
-  created () {
-    this.currentTag = this.$recoLocales.tag.all
-    this.allTagName = this.$recoLocales.tag.all
-    if (this.$tags.list.length > 0) {
-      this.currentTag = this.$route.query.tag ? this.$route.query.tag : this.currentTag
-    }
-  },
+  setup (props, ctx) {
+    const instance = getCurrentInstance()
 
-  methods: {
-    tagClick (tagInfo) {
-      if (this.$route.path !== tagInfo.path) {
-        this.$router.push({ path: tagInfo.path })
+    const tagClick = (tagInfo) => {
+      if (instance.$route.path !== tagInfo.path) {
+        instance.$router.push({ path: tagInfo.path })
       }
-    },
-    paginationChange (page) {
+    }
+
+    const paginationChange = (page) => {
       setTimeout(() => {
         window.scrollTo(0, 0)
       }, 100)
     }
+
+    return { tagClick, paginationChange }
   }
-}
+})
 </script>
 
 <style src="../styles/theme.styl" lang="stylus"></style>

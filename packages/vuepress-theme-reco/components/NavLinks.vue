@@ -99,7 +99,7 @@ export default defineComponent({
             item.text = item.name
             return item
           }),
-          text: category.text || '分类',
+          text: category.text || instance.$recoLocales.category,
           type: 'links',
           icon: 'reco-category'
         })
@@ -109,7 +109,7 @@ export default defineComponent({
         const tag = blogConfig.tag
         userNav.value.splice(parseInt(tag.location || 3) - 1, 0, {
           link: '/tag/',
-          text: tag.text || '标签',
+          text: tag.text || instance.$recoLocales.tag,
           type: 'links',
           icon: 'reco-tag'
         })

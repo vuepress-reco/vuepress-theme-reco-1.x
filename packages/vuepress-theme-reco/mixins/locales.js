@@ -1,4 +1,4 @@
-import { zhHans, zhHant, en, ja, ko } from '../locales/index'
+import { zhHans, zhHant, en, ja, ko, es } from '../locales/index'
 
 export default {
   computed: {
@@ -16,6 +16,9 @@ export default {
       }
       if (/^ko\-KR$/.test(this.$lang)) {
         return { ...ko, ...recoLocales }
+      }
+      if (/^es(\-[A-Z]+)?$/.test(this.$lang)) {
+        return { ...es, ...recoLocales }
       }
       return { ...en, ...recoLocales }
     }

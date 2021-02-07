@@ -30,17 +30,18 @@
 </template>
 
 <script>
-import { defineComponent, computed } from 'vue-demi'
+import { defineComponent, computed, getCurrentInstance } from 'vue-demi'
 import { RecoIcon } from '@vuepress-reco/core/lib/components'
 import { version } from '../package.json'
 export default defineComponent({
   components: { RecoIcon },
   setup (props, ctx) {
+    const instance = getCurrentInstance()
     const showAccessNumber = computed(() => {
       const {
         $themeConfig: { valineConfig },
         $themeLocaleConfig: { valineConfig: valineLocalConfig }
-      } = ctx.root
+      } = instance
 
       const vc = valineLocalConfig || valineConfig
 

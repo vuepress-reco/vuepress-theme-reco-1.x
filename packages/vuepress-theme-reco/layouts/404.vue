@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { defineComponent, computed, getCurrentInstance, onMounted } from 'vue-demi'
 const msgs = [
   `There's nothing here.`,
   `How did we get here?`,
@@ -16,28 +17,32 @@ const msgs = [
   `Looks like we've got some broken links.`
 ]
 
-export default {
-  computed: {
-    noFoundPageByTencent () {
-      return this.$themeConfig.noFoundPageByTencent !== false
-    }
-  },
-  mounted () {
-    if (this.noFoundPageByTencent) {
-      const dom = document.createElement('script')
-      dom.setAttribute('homePageName', '回到首页')
-      dom.setAttribute('homePageUrl', this.$site.base)
-      dom.setAttribute('src', '//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js')
+export default defineComponent({
+  setup (props, ctx) {
+    const instance = getCurrentInstance()
 
-      document.body.append(dom)
-    }
-  },
-  methods: {
-    getMsg () {
+    const noFoundPageByTencent = computed(() => {
+      return this.$themeConfig.noFoundPageByTencent !== false
+    })
+
+    const getMsg = () => {
       return msgs[Math.floor(Math.random() * msgs.length)]
     }
+
+    onMounted(() => {
+      if (noFoundPageByTencent.value) {
+        const dom = document.createElement('script')
+        dom.setAttribute('homePageName', '回到首页')
+        dom.setAttribute('homePageUrl', instance.$site.base)
+        dom.setAttribute('src', '//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js')
+
+        document.body.append(dom)
+      }
+    })
+
+    return { noFoundPageByTencent, getMsg }
   }
-}
+})
 </script>
 
 <style src="../styles/theme.styl" lang="stylus"></style>

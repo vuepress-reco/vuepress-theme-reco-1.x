@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { defineComponent, computed, ref, onMounted, toRefs } from 'vue-demi'
+import { defineComponent, computed, ref, onMounted, toRefs, getCurrentInstance } from 'vue-demi'
 import Navbar from '@theme/components/Navbar'
 import Sidebar from '@theme/components/Sidebar'
 import PersonalInfo from '@theme/components/PersonalInfo'
@@ -74,7 +74,7 @@ export default defineComponent({
   },
 
   setup (props, ctx) {
-    const { root } = ctx
+    const instance = getCurrentInstance()
 
     const isSidebarOpen = ref(false)
     const isHasKey = ref(true)
@@ -83,11 +83,11 @@ export default defineComponent({
 
     const shouldShowSidebar = computed(() => props.sidebarItems.length > 0)
     const absoluteEncryption = computed(() => {
-      return root.$themeConfig.keyPage && root.$themeConfig.keyPage.absoluteEncryption === true
+      return instance.$themeConfig.keyPage && instance.$themeConfig.keyPage.absoluteEncryption === true
     })
     const shouldShowNavbar = computed(() => {
-      const { themeConfig } = root.$site
-      const { frontmatter } = root.$page
+      const { themeConfig } = instance.$site
+      const { frontmatter } = instance.$page
 
       if (
         frontmatter.navbar === false ||
@@ -95,11 +95,11 @@ export default defineComponent({
       ) return false
 
       return (
-        root.$title ||
+        instance.$title ||
         themeConfig.logo ||
         themeConfig.repo ||
         themeConfig.nav ||
-        root.$themeLocaleConfig.nav
+        instance.$themeLocaleConfig.nav
       )
     })
 
@@ -110,14 +110,14 @@ export default defineComponent({
         'no-sidebar': !shouldShowSidebar.value
       }
 
-      const { pageClass: userPageClass } = root.$frontmatter || {}
+      const { pageClass: userPageClass } = instance.$frontmatter || {}
       if (userPageClass) classValue[userPageClass] = true
 
       return classValue
     })
 
     const hasKey = () => {
-      const { keyPage } = root.$themeConfig
+      const { keyPage } = instance.$themeConfig
       if (!keyPage || !keyPage.keys || keyPage.keys.length === 0) {
         isHasKey.value = true
         return
@@ -128,12 +128,12 @@ export default defineComponent({
       isHasKey.value = keys && keys.indexOf(sessionStorage.getItem('key')) > -1
     }
     const initRouterHandler = () => {
-      root.$router.afterEach(() => {
+      instance.$router.afterEach(() => {
         isSidebarOpen.value = false
       })
     }
     const hasPageKey = () => {
-      let pageKeys = root.$frontmatter.keys
+      let pageKeys = instance.$frontmatter.keys
       if (!pageKeys || pageKeys.length === 0) {
         isHasPageKey.value = true
         return
@@ -147,7 +147,7 @@ export default defineComponent({
       isSidebarOpen.value = typeof to === 'boolean' ? to : !isSidebarOpen.value
     }
     const handleLoading = () => {
-      const time = root.$frontmatter.home && sessionStorage.getItem('firstLoad') == undefined ? 1000 : 0
+      const time = instance.$frontmatter.home && sessionStorage.getItem('firstLoad') == undefined ? 1000 : 0
       setTimeout(() => {
         firstLoad.value = false
         if (sessionStorage.getItem('firstLoad') == undefined) sessionStorage.setItem('firstLoad', false)

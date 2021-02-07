@@ -1,17 +1,17 @@
 <script>
-import { defineComponent, computed } from 'vue-demi'
+import { defineComponent, computed, getCurrentInstance } from 'vue-demi'
 import { isActive } from '@theme/helpers/utils'
 
 export default defineComponent({
   setup (props, ctx) {
-    const { root } = ctx
+    const instance = getCurrentInstance()
 
     const headers = computed(() => {
-      return root.$showSubSideBar ? root.$page.headers : []
+      return instance.$showSubSideBar ? instance.$page.headers : []
     })
 
     const isLinkActive = (header) => {
-      const active = isActive(root.$route, root.$page.path + '#' + header.slug)
+      const active = isActive(instance.$route, instance.$page.path + '#' + header.slug)
       if (active) {
         setTimeout(() => {
           document.querySelector(`.reco-side-${header.slug}`).scrollIntoView()

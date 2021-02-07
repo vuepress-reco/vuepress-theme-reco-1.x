@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { defineComponent, computed } from 'vue-demi'
+import { defineComponent, computed, getCurrentInstance } from 'vue-demi'
 import { getOneColor } from '@theme/helpers/other'
 
 export default defineComponent({
@@ -21,9 +21,9 @@ export default defineComponent({
     }
   },
   setup (props, ctx) {
-    const { root: _this } = ctx
+    const instance = getCurrentInstance()
     const tags = computed(() => {
-      return [{ name: _this.$recoLocales.tag.all, path: '/tag/' }, ..._this.$tags.list]
+      return [{ name: instance.$recoLocales.all, path: '/tag/' }, ...instance.$tags.list]
     })
     const tagClick = tag => {
       ctx.emit('getCurrentTag', tag)

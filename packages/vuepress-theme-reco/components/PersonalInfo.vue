@@ -15,11 +15,11 @@
   <div class="num">
     <div>
       <h3>{{$recoPosts.length}}</h3>
-      <h6>{{homeBlogCfg.article}}</h6>
+      <h6>{{$recoLocales.article}}</h6>
     </div>
     <div>
       <h3>{{$tags.list.length}}</h3>
-      <h6>{{homeBlogCfg.tag}}</h6>
+      <h6>{{$recoLocales.tag}}</h6>
     </div>
   </div>
   <ul class="social-links">
@@ -36,22 +36,20 @@
 </template>
 
 <script>
-import { defineComponent, computed } from 'vue-demi'
+import { defineComponent, computed, getCurrentInstance } from 'vue-demi'
 import { RecoIcon } from '@vuepress-reco/core/lib/components'
 import { getOneColor } from '@theme/helpers/other'
 
 export default defineComponent({
   components: { RecoIcon },
   setup (props, ctx) {
-    const { root: _this } = ctx
-
-    const homeBlogCfg = computed(() => _this.$recoLocales.homeBlog)
-    const socialLinks = computed(() => (_this.$themeConfig.blogConfig && _this.$themeConfig.blogConfig.socialLinks || []).map(item => {
+    const instance = getCurrentInstance()
+    const socialLinks = computed(() => (instance.$themeConfig.blogConfig && instance.$themeConfig.blogConfig.socialLinks || []).map(item => {
       if (!item.color) item.color = getOneColor()
       return item
     }))
 
-    return { homeBlogCfg, socialLinks }
+    return { socialLinks }
   }
 })
 </script>

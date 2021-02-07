@@ -53,11 +53,11 @@ module.exports = {
     blogConfig: {
       category: {
         location: 2, // 在导航栏菜单中所占的位置，默认2
-        text: 'Categories' // 默认 “分类”
+        // text: 'Categories' // 默认 “分类”
       },
       tag: {
         location: 3, // 在导航栏菜单中所占的位置，默认3
-        text: 'Tags' // 默认 “标签”
+        // text: 'Tags' // 默认 “标签”
       },
       socialLinks: [
         { icon: 'reco-github', link: 'https://github.com/recoluan' },

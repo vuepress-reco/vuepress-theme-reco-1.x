@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import { defineComponent, computed, getCurrentInstance } from 'vue-demi'
 import Common from '@theme/components/Common'
 import NoteAbstract from '@theme/components/NoteAbstract'
 import { ModuleTransition } from '@vuepress-reco/core/lib/components'
@@ -36,37 +37,37 @@ import { sortPostsByStickyAndDate, filterPosts } from '@theme/helpers/postData'
 import { getOneColor } from '@theme/helpers/other'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 
-export default {
+export default defineComponent({
   mixins: [moduleTransitonMixin],
   components: { Common, NoteAbstract, ModuleTransition },
 
-  computed: {
-    // 时间降序后的博客列表
-    posts () {
-      let posts = this.$currentCategories.pages
+  setup (props, ctx) {
+    const instance = getCurrentInstance()
+
+    const posts = computed(() => {
+      let posts = instance.$currentCategories.pages
       posts = filterPosts(posts)
       sortPostsByStickyAndDate(posts)
       return posts
-    },
-    // 标题只显示分类名称
-    title () {
-      return this.$currentCategories.key
-    }
-  },
+    })
 
-  methods: {
-    // 获取当前tag
-    getCurrentTag (tag) {
-      this.$emit('currentTag', tag)
-    },
-    paginationChange (page) {
+    const title = computed(() => {
+      return instance.$currentCategories.key
+    })
+
+    const getCurrentTag = (tag) => {
+      ctx.emit('currentTag', tag)
+    }
+
+    const paginationChange = (page) => {
       setTimeout(() => {
         window.scrollTo(0, 0)
       }, 100)
-    },
-    getOneColor
+    }
+
+    return { posts, title, getCurrentTag, paginationChange, getOneColor }
   }
-}
+})
 </script>
 
 <style src="../styles/theme.styl" lang="stylus"></style>
