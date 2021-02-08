@@ -2,6 +2,7 @@
   <div class="tags">
     <span
       v-for="(item, index) in tags"
+      v-show="!item.pages || (item.pages && item.pages.length > 0)"
       :key="index"
       :class="{'active': item.name == currentTag}"
       :style="{ 'backgroundColor': getOneColor() }"
@@ -23,8 +24,9 @@ export default defineComponent({
   setup (props, ctx) {
     const instance = getCurrentInstance()
     const tags = computed(() => {
-      return [{ name: instance.$recoLocales.all, path: '/tag/' }, ...instance.$tags.list]
+      return [{ name: instance.$recoLocales.all, path: '/tag/' }, ...instance.$tagesList]
     })
+
     const tagClick = tag => {
       ctx.emit('getCurrentTag', tag)
     }

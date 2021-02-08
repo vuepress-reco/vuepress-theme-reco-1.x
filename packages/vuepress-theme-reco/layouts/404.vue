@@ -22,7 +22,7 @@ export default defineComponent({
     const instance = getCurrentInstance()
 
     const noFoundPageByTencent = computed(() => {
-      return this.$themeConfig.noFoundPageByTencent !== false
+      return instance.$themeConfig.noFoundPageByTencent !== false
     })
 
     const getMsg = () => {

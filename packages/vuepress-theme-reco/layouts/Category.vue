@@ -6,7 +6,8 @@
         <li
           class="category-item"
           :class="title == item.name ? 'active': ''"
-          v-for="(item, index) in this.$categories.list"
+          v-for="(item, index) in $categoriesList"
+          v-show="item.pages.length > 0"
           :key="index">
           <router-link :to="item.path">
             <span class="category-name">{{ item.name }}</span>

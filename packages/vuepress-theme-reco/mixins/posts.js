@@ -36,6 +36,22 @@ export default {
 
       return formatPagesArr
     },
+    $categoriesList () {
+      return this.$categories.list.map(category => {
+        category.pages = category.pages.filter(page => {
+          return page.frontmatter.publish !== false
+        })
+        return category
+      })
+    },
+    $tagesList () {
+      return this.$tags.list.map(tag => {
+        tag.pages = tag.pages.filter(page => {
+          return page.frontmatter.publish !== false
+        })
+        return tag
+      })
+    },
     $showSubSideBar () {
       const {
         $themeConfig: { subSidebar: themeSubSidebar, sidebar: themeSidebar },
