@@ -138,8 +138,8 @@ export default defineComponent({
       return ''
     })
 
-    const repoLabel = () => {
-      if (!instance.repoLink) return
+    const repoLabel = computed(() => {
+      if (!instance.repoLink) return ''
       if (instance.$themeConfig.repoLabel) {
         return instance.$themeConfig.repoLabel
       }
@@ -154,7 +154,7 @@ export default defineComponent({
       }
 
       return 'Source'
-    }
+    })
 
     return { userNav, nav, userLinks, repoLink, repoLabel }
   }

@@ -6,7 +6,7 @@
       </transition>
 
       <transition name="fade">
-        <Password v-show="!isHasKey" class="password-wrapper-out" key="out" />
+        <Password v-show="!firstLoad && !isHasKey" class="password-wrapper-out" key="out" />
       </transition>
 
       <div :class="{ 'hide': firstLoad || !isHasKey }">
@@ -211,6 +211,7 @@ export default defineComponent({
   .hide
     height 100vh
     overflow hidden
+    opacity 0
 
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s ease-in-out .5s;
