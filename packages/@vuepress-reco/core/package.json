@@ -1,6 +1,6 @@
 {
   "name": "@vuepress-reco/core",
-  "version": "1.6.0",
+  "version": "1.6.2",
   "description": "The core library of vuepress-theme-reco.",
   "homepage": "https://vuepress-theme-reco.recoluan.com/",
   "bugs": {

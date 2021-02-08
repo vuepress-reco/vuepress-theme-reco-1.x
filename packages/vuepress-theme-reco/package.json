@@ -1,6 +1,6 @@
 {
   "name": "vuepress-theme-reco",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "A simple and beautiful vuepress Blog & Doc theme.",
   "keywords": [
     "vuepress",
@@ -20,7 +20,7 @@
   "main": "index.js",
   "dependencies": {
     "@vue/composition-api": "^1.0.0-beta.20",
-    "@vuepress-reco/core": "^1.6.0",
+    "@vuepress-reco/core": "^1.6.2",
     "@vuepress-reco/vuepress-plugin-back-to-top": "^1.6.0",
     "@vuepress-reco/vuepress-plugin-comments": "^1.6.0",
     "@vuepress-reco/vuepress-plugin-loading-page": "^1.6.0",
