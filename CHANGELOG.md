@@ -1,3 +1,16 @@
+# [](https://github.com/recoluan/vuepress-theme-reco/compare/v1.6.5...v) (2021-02-12)
+
+
+
+## [1.6.5](https://github.com/recoluan/vuepress-theme-reco/compare/v1.6.4...v1.6.5) (2021-02-12)
+
+
+### Bug Fixes
+
+* **vuepress-theme-reco:** fix content display error ([1da9000](https://github.com/recoluan/vuepress-theme-reco/commit/1da900081a78eedb06acaa82f77af677c665b5f9))
+
+
+
 ## [1.6.1](https://github.com/recoluan/vuepress-theme-reco/compare/v1.6.0...v1.6.1) (2020-12-11)
 
 ### Bug Fixes
