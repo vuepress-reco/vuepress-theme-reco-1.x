@@ -23,16 +23,20 @@ export default defineComponent({
     const instance = getCurrentInstance()
 
     const sidebarItems = computed(() => {
-      return resolveSidebarItems(
-        instance.$page,
-        instance.$page.regularPath,
-        instance.$site,
-        instance.$localePath
-      )
+      if (instance.$page) {
+        return resolveSidebarItems(
+          instance.$page,
+          instance.$page.regularPath,
+          instance.$site,
+          instance.$localePath
+        )
+      } else {
+        return []
+      }
     })
 
     const homeCom = computed(() => {
-      const { type } = instance.$themeConfig
+      const { type } = instance.$themeConfig || {}
       if (type !== undefined) {
         return type == 'blog' ? 'HomeBlog' : type
       }
