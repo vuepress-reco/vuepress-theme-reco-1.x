@@ -2,7 +2,7 @@
 import postMixin from '@theme/mixins/posts'
 import localMixin from '@theme/mixins/locales'
 import { addLinkToHead, addScriptToHead } from '@theme/helpers/utils'
-import { registerCodeThemeCss, interceptRouterError } from '@theme/helpers/other'
+import { registerCodeThemeCss, interceptRouterError, fixRouterError404 } from '@theme/helpers/other'
 import { install } from 'vue-demi'
 
 export default ({
@@ -21,4 +21,5 @@ export default ({
   }
 
   interceptRouterError(router)
+  fixRouterError404(router)
 }
