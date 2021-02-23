@@ -22,7 +22,7 @@ export default defineComponent({
     }
   },
   setup (props, ctx) {
-    const instance = getCurrentInstance()
+    const instance = getCurrentInstance().proxy
     const tags = computed(() => {
       return [{ name: instance.$recoLocales.all, path: '/tag/' }, ...instance.$tagesList]
     })

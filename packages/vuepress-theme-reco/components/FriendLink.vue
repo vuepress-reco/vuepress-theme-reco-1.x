@@ -45,7 +45,7 @@ import md5 from 'md5'
 import { getOneColor } from '@theme/helpers/other'
 
 const useDetail = () => {
-  const instance = getCurrentInstance()
+  const instance = getCurrentInstance().proxy
   const isPC = ref(true)
 
   const popupWindowStyle = reactive({
@@ -115,7 +115,7 @@ const useDetail = () => {
 
 export default defineComponent({
   setup (props, ctx) {
-    const instance = getCurrentInstance()
+    const instance = getCurrentInstance().proxy
 
     const { popupWindowStyle, showDetail, hideDetail } = useDetail()
 

@@ -36,7 +36,7 @@ export default defineComponent({
   components: { NavLink, DropdownLink, RecoIcon },
 
   setup (props, ctx) {
-    const instance = getCurrentInstance()
+    const instance = getCurrentInstance().proxy
 
     const userNav = computed(() => {
       return instance.$themeLocaleConfig.nav || instance.$themeConfig.nav || []

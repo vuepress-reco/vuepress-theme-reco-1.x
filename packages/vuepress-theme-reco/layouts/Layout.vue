@@ -20,7 +20,7 @@ export default defineComponent({
   mixins: [moduleTransitonMixin],
   components: { HomeBlog, Home, Page, Common, Footer },
   setup (props, ctx) {
-    const instance = getCurrentInstance()
+    const instance = getCurrentInstance().proxy
 
     const sidebarItems = computed(() => {
       if (instance.$page) {

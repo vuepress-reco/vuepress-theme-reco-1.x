@@ -36,7 +36,7 @@ import { version } from '../package.json'
 export default defineComponent({
   components: { RecoIcon },
   setup (props, ctx) {
-    const instance = getCurrentInstance()
+    const instance = getCurrentInstance().proxy
     const showAccessNumber = computed(() => {
       const {
         $themeConfig: { valineConfig },

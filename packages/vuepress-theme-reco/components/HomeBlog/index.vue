@@ -70,7 +70,7 @@ import { getOneColor } from '@theme/helpers/other'
 export default defineComponent({
   components: { NoteAbstract, TagList, FriendLink, ModuleTransition, PersonalInfo, RecoIcon },
   setup (props, ctx) {
-    const instance = getCurrentInstance()
+    const instance = getCurrentInstance().proxy
 
     const state = reactive({
       recoShow: false,

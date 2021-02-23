@@ -44,7 +44,7 @@ export default defineComponent({
   components: { SidebarButton, NavLinks, SearchBox, AlgoliaSearchBox, Mode },
 
   setup (props, ctx) {
-    const instance = getCurrentInstance()
+    const instance = getCurrentInstance().proxy
     const linksWrapMaxWidth = ref(null)
 
     const algolia = computed(() => {

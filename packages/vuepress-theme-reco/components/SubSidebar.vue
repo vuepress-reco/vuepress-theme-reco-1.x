@@ -4,7 +4,7 @@ import { isActive } from '@theme/helpers/utils'
 
 export default defineComponent({
   setup (props, ctx) {
-    const instance = getCurrentInstance()
+    const instance = getCurrentInstance().proxy
 
     const headers = computed(() => {
       return instance.$showSubSideBar ? instance.$page.headers : []
