@@ -23,7 +23,7 @@ export default defineComponent({
   props: ['options'],
 
   setup (props, ctx) {
-    const instance = getCurrentInstance()
+    const instance = getCurrentInstance().proxy
 
     const placeholder = ref(undefined)
 

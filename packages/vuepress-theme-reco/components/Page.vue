@@ -72,7 +72,7 @@ export default defineComponent({
   props: ['sidebarItems'],
 
   setup (props, ctx) {
-    const instance = getCurrentInstance()
+    const instance = getCurrentInstance().proxy
 
     const { sidebarItems } = toRefs(props)
 

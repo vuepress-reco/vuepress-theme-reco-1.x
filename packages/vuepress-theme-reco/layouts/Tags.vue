@@ -33,7 +33,7 @@ export default defineComponent({
   components: { Common, NoteAbstract, TagList, ModuleTransition },
 
   setup (props, ctx) {
-    const instance = getCurrentInstance()
+    const instance = getCurrentInstance().proxy
 
     const tagClick = (tagInfo) => {
       if (instance.$route.path !== tagInfo.path) {

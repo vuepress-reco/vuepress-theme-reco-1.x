@@ -43,7 +43,7 @@ export default defineComponent({
   components: { Common, NoteAbstract, ModuleTransition },
 
   setup (props, ctx) {
-    const instance = getCurrentInstance()
+    const instance = getCurrentInstance().proxy
 
     const posts = computed(() => {
       let posts = instance.$currentCategories.pages

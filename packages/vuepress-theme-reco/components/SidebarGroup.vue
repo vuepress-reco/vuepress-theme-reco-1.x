@@ -64,7 +64,7 @@ export default defineComponent({
   components: { DropdownTransition },
 
   setup (props, ctx) {
-    const instance = getCurrentInstance()
+    const instance = getCurrentInstance().proxy
 
     instance.$options.components.SidebarLinks = require('./SidebarLinks.vue').default
 

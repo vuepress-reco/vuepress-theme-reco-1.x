@@ -43,7 +43,7 @@ import { getOneColor } from '@theme/helpers/other'
 export default defineComponent({
   components: { RecoIcon },
   setup (props, ctx) {
-    const instance = getCurrentInstance()
+    const instance = getCurrentInstance().proxy
     const socialLinks = computed(() => (instance.$themeConfig.blogConfig && instance.$themeConfig.blogConfig.socialLinks || []).map(item => {
       if (!item.color) item.color = getOneColor()
       return item

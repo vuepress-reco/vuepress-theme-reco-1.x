@@ -46,7 +46,7 @@ import { RecoIcon } from '@vuepress-reco/core/lib/components'
 export default defineComponent({
   components: { RecoIcon },
   setup (props, ctx) {
-    const instance = getCurrentInstance()
+    const instance = getCurrentInstance().proxy
 
     const state = reactive({
       query: '',

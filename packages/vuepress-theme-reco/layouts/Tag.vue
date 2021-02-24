@@ -36,7 +36,7 @@ export default defineComponent({
   components: { Common, NoteAbstract, TagList, ModuleTransition },
 
   setup (props, ctx) {
-    const instance = getCurrentInstance()
+    const instance = getCurrentInstance().proxy
 
     // 时间降序后的博客列表
     const posts = computed(() => {

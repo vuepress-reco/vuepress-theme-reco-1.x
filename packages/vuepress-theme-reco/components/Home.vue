@@ -51,7 +51,7 @@ export default defineComponent({
   components: { NavLink, ModuleTransition },
 
   setup (props, ctx) {
-    const instance = getCurrentInstance()
+    const instance = getCurrentInstance().proxy
     const recoShowModule = computed(() => instance && instance.$parent.recoShowModule)
     const actionLink = computed(() => instance && {
       link: instance.$frontmatter.actionLink,

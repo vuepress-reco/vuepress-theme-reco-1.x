@@ -33,7 +33,7 @@ export default defineComponent({
   mixins: [moduleTransitonMixin],
   components: { Common, ModuleTransition },
   setup (props, ctx) {
-    const instance = getCurrentInstance()
+    const instance = getCurrentInstance().proxy
 
     const go = (url) => {
       instance.$router.push({ path: url })

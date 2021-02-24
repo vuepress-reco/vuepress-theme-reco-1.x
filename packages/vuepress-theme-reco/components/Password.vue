@@ -56,7 +56,7 @@ export default defineComponent({
     }
   },
   setup (props, ctx) {
-    const instance = getCurrentInstance()
+    const instance = getCurrentInstance().proxy
 
     const year = new Date().getFullYear()
 
