@@ -1,4 +1,11 @@
-# [](https://github.com/recoluan/vuepress-theme-reco/compare/v1.6.5...v) (2021-02-12)
+## [1.6.6-alpha.0](https://github.com/recoluan/vuepress-theme-reco/compare/v1.6.5...v1.6.6-alpha.0) (2021-02-24)
+
+
+### Bug Fixes
+
+* **vuepress-theme-reco:** fix bug of non-ASCII file names cause 404 ([8fefc9f](https://github.com/recoluan/vuepress-theme-reco/commit/8fefc9f9adb82412ef273a8474b7428659f24839)), closes [#276](https://github.com/recoluan/vuepress-theme-reco/issues/276) [#281](https://github.com/recoluan/vuepress-theme-reco/issues/281)
+* **vuepress-theme-reco:** vuecomponsition-api接口升级方式修改 ([898e610](https://github.com/recoluan/vuepress-theme-reco/commit/898e61031f0516017ee4e1e04d187ecf06591ffc)), closes [#315](https://github.com/recoluan/vuepress-theme-reco/issues/315)
+* restore the display of the sub sidebar ([8a8e70c](https://github.com/recoluan/vuepress-theme-reco/commit/8a8e70c6c2f7c2fe730559e36fd59f739614b089))
 
 
 
