@@ -8,9 +8,9 @@
   >
   <h3
     class="name"
-    v-if="$themeConfig.author || $site.title"
+    v-if="$themeConfig.author"
   >
-    {{ $themeConfig.author || $site.title }}
+    {{ $themeConfig.author }}
   </h3>
   <div class="num">
     <div>

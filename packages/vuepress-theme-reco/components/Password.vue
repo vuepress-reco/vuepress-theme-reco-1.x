@@ -30,7 +30,7 @@
         <span>
           <reco-icon icon="reco-copyright" />
           <a>
-            <span v-if="$themeConfig.author || $site.title">{{ $themeConfig.author || $site.title }}</span>
+            <span v-if="$themeConfig.author">{{ $themeConfig.author }}</span>
             &nbsp;&nbsp;
             <span v-if="$themeConfig.startYear && $themeConfig.startYear != year">{{ $themeConfig.startYear }} - </span>
             {{ year }}

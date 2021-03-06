@@ -1,10 +1,10 @@
 <template>
   <div>
     <reco-icon
-      v-if="pageInfo.frontmatter.author || $themeConfig.author || $site.title"
+      v-if="pageInfo.frontmatter.author || $themeConfig.author"
       icon="reco-account"
     >
-      <span>{{ pageInfo.frontmatter.author || $themeConfig.author || $site.title }}</span>
+      <span>{{ pageInfo.frontmatter.author || $themeConfig.author }}</span>
     </reco-icon>
     <reco-icon
       v-if="pageInfo.frontmatter.date"
