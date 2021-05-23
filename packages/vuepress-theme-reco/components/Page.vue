@@ -60,11 +60,12 @@
 </template>
 
 <script>
-import { defineComponent, computed, getCurrentInstance, toRefs } from 'vue-demi'
+import { defineComponent, computed, toRefs } from 'vue-demi'
 import PageInfo from '@theme/components/PageInfo'
 import { resolvePage, outboundRE, endingSlashRE } from '@theme/helpers/utils'
 import { ModuleTransition } from '@vuepress-reco/core/lib/components'
 import SubSidebar from '@theme/components/SubSidebar'
+import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
   components: { PageInfo, ModuleTransition, SubSidebar },
@@ -72,7 +73,7 @@ export default defineComponent({
   props: ['sidebarItems'],
 
   setup (props, ctx) {
-    const instance = getCurrentInstance().proxy
+    const instance = useInstance()
 
     const { sidebarItems } = toRefs(props)
 

@@ -33,18 +33,19 @@
 </template>
 
 <script>
-import { defineComponent, ref, onMounted, getCurrentInstance, computed } from 'vue-demi'
+import { defineComponent, ref, onMounted, computed } from 'vue-demi'
 import AlgoliaSearchBox from '@AlgoliaSearchBox'
 import SearchBox from '@SearchBox'
 import SidebarButton from '@theme/components/SidebarButton'
 import NavLinks from '@theme/components/NavLinks'
 import Mode from '@theme/components/Mode'
+import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
   components: { SidebarButton, NavLinks, SearchBox, AlgoliaSearchBox, Mode },
 
   setup (props, ctx) {
-    const instance = getCurrentInstance().proxy
+    const instance = useInstance()
     const linksWrapMaxWidth = ref(null)
 
     const algolia = computed(() => {

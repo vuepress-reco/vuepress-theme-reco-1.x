@@ -30,20 +30,21 @@
 </template>
 
 <script>
-import { defineComponent, computed, getCurrentInstance } from 'vue-demi'
+import { defineComponent, computed } from 'vue-demi'
 import Common from '@theme/components/Common'
 import NoteAbstract from '@theme/components/NoteAbstract'
 import { ModuleTransition } from '@vuepress-reco/core/lib/components'
 import { sortPostsByStickyAndDate, filterPosts } from '@theme/helpers/postData'
 import { getOneColor } from '@theme/helpers/other'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
+import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
   mixins: [moduleTransitonMixin],
   components: { Common, NoteAbstract, ModuleTransition },
 
   setup (props, ctx) {
-    const instance = getCurrentInstance().proxy
+    const instance = useInstance()
 
     const posts = computed(() => {
       let posts = instance.$currentCategories.pages

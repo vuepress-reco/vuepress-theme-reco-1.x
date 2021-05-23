@@ -17,9 +17,10 @@
 </template>
 
 <script>
-import { defineComponent, ref, toRefs, computed, getCurrentInstance, onMounted } from 'vue-demi'
+import { defineComponent, ref, toRefs, computed, onMounted } from 'vue-demi'
 import pagination from '@theme/mixins/pagination'
 import NoteAbstractItem from './NoteAbstractItem'
+import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
   mixins: [pagination],
@@ -27,7 +28,7 @@ export default defineComponent({
   props: ['data', 'currentTag'],
 
   setup (props, ctx) {
-    const instance = getCurrentInstance().proxy
+    const instance = useInstance()
 
     const { data } = toRefs(props)
 

@@ -43,15 +43,16 @@
 </template>
 
 <script>
-import { defineComponent, computed, getCurrentInstance } from 'vue-demi'
+import { defineComponent, computed } from 'vue-demi'
 import NavLink from '@theme/components/NavLink'
 import { ModuleTransition } from '@vuepress-reco/core/lib/components'
+import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
   components: { NavLink, ModuleTransition },
 
   setup (props, ctx) {
-    const instance = getCurrentInstance().proxy
+    const instance = useInstance()
     const recoShowModule = computed(() => instance && instance.$parent.recoShowModule)
     const actionLink = computed(() => instance && {
       link: instance.$frontmatter.actionLink,

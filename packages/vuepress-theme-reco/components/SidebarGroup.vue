@@ -54,9 +54,10 @@
 </template>
 
 <script>
-import { defineComponent, getCurrentInstance } from 'vue-demi'
+import { defineComponent } from 'vue-demi'
 import { isActive } from '@theme/helpers/utils'
 import DropdownTransition from '@theme/components/DropdownTransition'
+import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
   name: 'SidebarGroup',
@@ -64,7 +65,7 @@ export default defineComponent({
   components: { DropdownTransition },
 
   setup (props, ctx) {
-    const instance = getCurrentInstance().proxy
+    const instance = useInstance()
 
     instance.$options.components.SidebarLinks = require('./SidebarLinks.vue').default
 

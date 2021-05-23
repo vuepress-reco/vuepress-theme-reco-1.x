@@ -48,12 +48,13 @@
 </template>
 
 <script>
-import { defineComponent, computed, ref, onMounted, toRefs, getCurrentInstance } from 'vue-demi'
+import { defineComponent, computed, ref, onMounted, toRefs } from 'vue-demi'
 import Navbar from '@theme/components/Navbar'
 import Sidebar from '@theme/components/Sidebar'
 import PersonalInfo from '@theme/components/PersonalInfo'
 import Password from '@theme/components/Password'
 import { setTimeout } from 'timers'
+import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
   components: { Sidebar, Navbar, Password, PersonalInfo },
@@ -74,7 +75,7 @@ export default defineComponent({
   },
 
   setup (props, ctx) {
-    const instance = getCurrentInstance().proxy
+    const instance = useInstance()
 
     const isSidebarOpen = ref(false)
     const isHasKey = ref(true)

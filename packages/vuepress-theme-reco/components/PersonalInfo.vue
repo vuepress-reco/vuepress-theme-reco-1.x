@@ -36,14 +36,15 @@
 </template>
 
 <script>
-import { defineComponent, computed, getCurrentInstance } from 'vue-demi'
+import { defineComponent, computed } from 'vue-demi'
 import { RecoIcon } from '@vuepress-reco/core/lib/components'
 import { getOneColor } from '@theme/helpers/other'
+import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
   components: { RecoIcon },
   setup (props, ctx) {
-    const instance = getCurrentInstance().proxy
+    const instance = useInstance()
     const socialLinks = computed(() => (instance.$themeConfig.blogConfig && instance.$themeConfig.blogConfig.socialLinks || []).map(item => {
       if (!item.color) item.color = getOneColor()
       return item

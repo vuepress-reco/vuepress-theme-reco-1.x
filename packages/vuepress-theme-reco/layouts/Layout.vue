@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { defineComponent, computed, getCurrentInstance } from 'vue-demi'
+import { defineComponent, computed } from 'vue-demi'
 import Home from '@theme/components/Home'
 import HomeBlog from '@theme/components/HomeBlog'
 import Page from '@theme/components/Page'
@@ -15,20 +15,21 @@ import Footer from '@theme/components/Footer'
 import Common from '@theme/components/Common'
 import { resolveSidebarItems } from '@theme/helpers/utils'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
+import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
   mixins: [moduleTransitonMixin],
   components: { HomeBlog, Home, Page, Common, Footer },
   setup (props, ctx) {
-    const instance = getCurrentInstance().proxy
+    const { $page, $site, $localePath, $themeConfig } = useInstance()
 
     const sidebarItems = computed(() => {
-      if (instance.$page) {
+      if ($page) {
         return resolveSidebarItems(
-          instance.$page,
-          instance.$page.regularPath,
-          instance.$site,
-          instance.$localePath
+          $page,
+          $page.regularPath,
+          $site,
+          $localePath
         )
       } else {
         return []
@@ -36,7 +37,7 @@ export default defineComponent({
     })
 
     const homeCom = computed(() => {
-      const { type } = instance.$themeConfig || {}
+      const { type } = ($themeConfig) || {}
       if (type !== undefined) {
         return type == 'blog' ? 'HomeBlog' : type
       }

@@ -21,19 +21,20 @@
 </template>
 
 <script>
-import { defineComponent, getCurrentInstance } from 'vue-demi'
+import { defineComponent } from 'vue-demi'
 import Common from '@theme/components/Common'
 import TagList from '@theme/components/TagList'
 import NoteAbstract from '@theme/components/NoteAbstract'
 import { ModuleTransition } from '@vuepress-reco/core/lib/components'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
+import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
   mixins: [moduleTransitonMixin],
   components: { Common, NoteAbstract, TagList, ModuleTransition },
 
   setup (props, ctx) {
-    const instance = getCurrentInstance().proxy
+    const instance = useInstance()
 
     const tagClick = (tagInfo) => {
       if (instance.$route.path !== tagInfo.path) {

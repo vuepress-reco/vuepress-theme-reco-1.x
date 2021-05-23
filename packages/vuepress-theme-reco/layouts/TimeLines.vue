@@ -23,17 +23,18 @@
 </template>
 
 <script>
-import { defineComponent, getCurrentInstance } from 'vue-demi'
+import { defineComponent } from 'vue-demi'
 import Common from '@theme/components/Common'
 import { ModuleTransition } from '@vuepress-reco/core/lib/components'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
+import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
   name: 'TimeLine',
   mixins: [moduleTransitonMixin],
   components: { Common, ModuleTransition },
   setup (props, ctx) {
-    const instance = getCurrentInstance().proxy
+    const instance = useInstance()
 
     const go = (url) => {
       instance.$router.push({ path: url })

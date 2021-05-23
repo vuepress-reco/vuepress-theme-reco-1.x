@@ -26,17 +26,18 @@
 </template>
 
 <script>
-import { defineComponent, computed, getCurrentInstance } from 'vue-demi'
+import { defineComponent, computed } from 'vue-demi'
 import { RecoIcon } from '@vuepress-reco/core/lib/components'
 import DropdownLink from '@theme/components/DropdownLink'
 import { resolveNavLinkItem } from '@theme/helpers/utils'
 import NavLink from '@theme/components/NavLink'
+import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
   components: { NavLink, DropdownLink, RecoIcon },
 
   setup (props, ctx) {
-    const instance = getCurrentInstance().proxy
+    const instance = useInstance()
 
     const userNav = computed(() => {
       return instance.$themeLocaleConfig.nav || instance.$themeConfig.nav || []

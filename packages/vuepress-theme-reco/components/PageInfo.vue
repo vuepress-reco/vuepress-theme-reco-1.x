@@ -35,8 +35,9 @@
 </template>
 
 <script>
-import { defineComponent, getCurrentInstance } from 'vue-demi'
+import { defineComponent } from 'vue-demi'
 import { RecoIcon } from '@vuepress-reco/core/lib/components'
+import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
   components: { RecoIcon },
@@ -58,7 +59,7 @@ export default defineComponent({
   },
 
   setup (props, ctx) {
-    const instance = getCurrentInstance().proxy
+    const instance = useInstance()
 
     const numStyle = {
       fontSize: '.9rem',
@@ -97,9 +98,6 @@ export default defineComponent({
       color $accentColor
     &:hover
       color $accentColor
-    + .tag-item:before {
-      content: ", ";
-    }
 @media (max-width: $MQMobile)
   .tags
     display block

@@ -59,18 +59,19 @@
 </template>
 
 <script>
-import { defineComponent, toRefs, reactive, computed, getCurrentInstance, onMounted } from 'vue-demi'
+import { defineComponent, toRefs, reactive, computed, onMounted } from 'vue-demi'
 import TagList from '@theme/components/TagList'
 import FriendLink from '@theme/components/FriendLink'
 import NoteAbstract from '@theme/components/NoteAbstract'
 import { ModuleTransition, RecoIcon } from '@vuepress-reco/core/lib/components'
 import PersonalInfo from '@theme/components/PersonalInfo'
 import { getOneColor } from '@theme/helpers/other'
+import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
   components: { NoteAbstract, TagList, FriendLink, ModuleTransition, PersonalInfo, RecoIcon },
   setup (props, ctx) {
-    const instance = getCurrentInstance().proxy
+    const instance = useInstance()
 
     const state = reactive({
       recoShow: false,

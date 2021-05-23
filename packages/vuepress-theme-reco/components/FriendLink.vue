@@ -40,12 +40,13 @@
 </template>
 
 <script>
-import { defineComponent, getCurrentInstance, reactive, computed, ref, onMounted } from 'vue-demi'
+import { defineComponent, reactive, computed, ref, onMounted } from 'vue-demi'
 import md5 from 'md5'
 import { getOneColor } from '@theme/helpers/other'
+import { useInstance } from '@theme/helpers/composable'
 
 const useDetail = () => {
-  const instance = getCurrentInstance().proxy
+  const instance = useInstance()
   const isPC = ref(true)
 
   const popupWindowStyle = reactive({
@@ -115,7 +116,7 @@ const useDetail = () => {
 
 export default defineComponent({
   setup (props, ctx) {
-    const instance = getCurrentInstance().proxy
+    const instance = useInstance()
 
     const { popupWindowStyle, showDetail, hideDetail } = useDetail()
 

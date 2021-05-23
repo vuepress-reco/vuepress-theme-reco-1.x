@@ -42,9 +42,10 @@
 </template>
 
 <script>
-import { defineComponent, ref, toRefs, computed, getCurrentInstance } from 'vue-demi'
+import { defineComponent, ref, toRefs, computed } from 'vue-demi'
 import md5 from 'md5'
 import { ModuleTransition, RecoIcon } from '@vuepress-reco/core/lib/components'
+import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
   name: 'Password',
@@ -56,7 +57,7 @@ export default defineComponent({
     }
   },
   setup (props, ctx) {
-    const instance = getCurrentInstance().proxy
+    const instance = useInstance()
 
     const year = new Date().getFullYear()
 

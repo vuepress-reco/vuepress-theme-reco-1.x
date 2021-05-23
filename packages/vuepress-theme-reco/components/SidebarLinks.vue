@@ -22,10 +22,11 @@
 </template>
 
 <script>
-import { defineComponent, ref, getCurrentInstance, toRefs, onUpdated, onMounted } from 'vue-demi'
+import { defineComponent, ref, toRefs, onUpdated, onMounted } from 'vue-demi'
 import SidebarGroup from '@theme/components/SidebarGroup'
 import SidebarLink from '@theme/components/SidebarLink'
 import { isActive } from '@theme/helpers/utils'
+import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
   name: 'SidebarLinks',
@@ -39,7 +40,7 @@ export default defineComponent({
   ],
 
   setup (props, ctx) {
-    const instance = getCurrentInstance().proxy
+    const instance = useInstance()
 
     const { items } = toRefs(props)
 

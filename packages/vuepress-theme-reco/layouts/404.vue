@@ -9,7 +9,9 @@
 </template>
 
 <script>
-import { defineComponent, computed, getCurrentInstance, onMounted } from 'vue-demi'
+import { defineComponent, computed, onMounted } from 'vue-demi'
+import { useInstance } from '@theme/helpers/composable'
+
 const msgs = [
   `There's nothing here.`,
   `How did we get here?`,
@@ -19,7 +21,7 @@ const msgs = [
 
 export default defineComponent({
   setup (props, ctx) {
-    const instance = getCurrentInstance().proxy
+    const instance = useInstance()
 
     const noFoundPageByTencent = computed(() => {
       return instance.$themeConfig.noFoundPageByTencent !== false

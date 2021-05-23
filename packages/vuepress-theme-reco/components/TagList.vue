@@ -11,8 +11,9 @@
 </template>
 
 <script>
-import { defineComponent, computed, getCurrentInstance } from 'vue-demi'
+import { defineComponent, computed } from 'vue-demi'
 import { getOneColor } from '@theme/helpers/other'
+import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
   props: {
@@ -22,7 +23,7 @@ export default defineComponent({
     }
   },
   setup (props, ctx) {
-    const instance = getCurrentInstance().proxy
+    const instance = useInstance()
     const tags = computed(() => {
       return [{ name: instance.$recoLocales.all, path: '/tag/' }, ...instance.$tagesList]
     })

@@ -23,20 +23,21 @@
 </template>
 
 <script>
-import { defineComponent, computed, getCurrentInstance } from 'vue-demi'
+import { defineComponent, computed } from 'vue-demi'
 import Common from '@theme/components/Common'
 import NoteAbstract from '@theme/components/NoteAbstract'
 import TagList from '@theme/components/TagList'
 import { ModuleTransition } from '@vuepress-reco/core/lib/components'
 import { sortPostsByStickyAndDate, filterPosts } from '@theme/helpers/postData'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
+import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
   mixins: [moduleTransitonMixin],
   components: { Common, NoteAbstract, TagList, ModuleTransition },
 
   setup (props, ctx) {
-    const instance = getCurrentInstance().proxy
+    const instance = useInstance()
 
     // 时间降序后的博客列表
     const posts = computed(() => {

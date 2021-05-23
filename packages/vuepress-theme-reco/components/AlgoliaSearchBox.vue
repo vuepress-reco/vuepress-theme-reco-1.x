@@ -14,8 +14,9 @@
 </template>
 
 <script>
-import { defineComponent, ref, onMounted, getCurrentInstance } from 'vue-demi'
+import { defineComponent, ref, onMounted } from 'vue-demi'
 import { RecoIcon } from '@vuepress-reco/core/lib/components'
+import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
   components: { RecoIcon },
@@ -23,7 +24,7 @@ export default defineComponent({
   props: ['options'],
 
   setup (props, ctx) {
-    const instance = getCurrentInstance().proxy
+    const instance = useInstance()
 
     const placeholder = ref(undefined)
 

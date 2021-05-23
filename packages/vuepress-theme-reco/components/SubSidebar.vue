@@ -1,10 +1,11 @@
 <script>
-import { defineComponent, computed, getCurrentInstance } from 'vue-demi'
+import { defineComponent, computed } from 'vue-demi'
 import { isActive } from '@theme/helpers/utils'
+import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
   setup (props, ctx) {
-    const instance = getCurrentInstance().proxy
+    const instance = useInstance()
 
     const headers = computed(() => {
       return instance.$showSubSideBar ? instance.$page.headers : []
