@@ -97,9 +97,6 @@ export default defineComponent({
       color $accentColor
     &:hover
       color $accentColor
-    + .tag-item:before {
-      content: ", ";
-    }
 @media (max-width: $MQMobile)
   .tags
     display block
