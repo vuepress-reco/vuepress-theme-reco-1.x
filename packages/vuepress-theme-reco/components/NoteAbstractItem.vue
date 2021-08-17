@@ -5,7 +5,7 @@
     <reco-icon v-if="item.frontmatter.sticky" icon="reco-sticky" />
     <div class="title">
       <reco-icon v-if="item.frontmatter.keys" icon="reco-lock" />
-      <router-link :to="item.path">{{item.title}}</router-link>
+      <router-link :to="item.path">{{title}}</router-link>
     </div>
     <div class="abstract" v-html="item.excerpt"></div>
     <PageInfo
@@ -16,12 +16,24 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue-demi'
+import { defineComponent, onMounted } from 'vue-demi'
 import { RecoIcon } from '@vuepress-reco/core/lib/components'
 import PageInfo from './PageInfo'
 export default defineComponent({
   components: { PageInfo, RecoIcon },
-  props: ['item', 'currentPage', 'currentTag']
+  props: ['item', 'currentPage', 'currentTag'],
+  computed: {
+    title() {
+      if(this.item.path.match(/\/docs\/*/)) {
+        const reg = new RegExp(/(.*\/)(:?\d\.)?(:?[\w|\u4e00-\u9fa5]-?)+\.md/g)
+        let [_, newTitle ] = reg.exec(this.item.relativePath)
+        newTitle = newTitle.replace(/\//g, '.')
+        return `${newTitle}${this.item.title}`
+      } else {
+        return this.item.title
+      }
+    }
+  },
 })
 </script>
 
