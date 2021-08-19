@@ -25,7 +25,7 @@ export default defineComponent({
   computed: {
     title() {
       if(this.item.path.match(/\/docs\/*/)) {
-        const reg = new RegExp(/(.*\/)(:?\d\.)?(:?[\w|\u4e00-\u9fa5]-?)+\.md/g)
+        const reg = new RegExp(/(.*\/)(:?\d+\.)*\d*(:?[\w|\u4e00-\u9fa5]-?)+\.md/g)
         let [_, newTitle ] = reg.exec(this.item.relativePath)
         newTitle = newTitle.replace(/\//g, '.')
         return `${newTitle}${this.item.title}`
