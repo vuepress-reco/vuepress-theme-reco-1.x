@@ -28,7 +28,12 @@ export default defineComponent({
         const reg = new RegExp(/(.*\/)(:?\d+\.)*\d*(:?[\w|\W|\u4e00-\u9fa5]-?)+\.md/g)
         let [_, newTitle ] = reg.exec(this.item.relativePath)
         newTitle = newTitle.replace(/\//g, '.')
-        return `${newTitle}${this.item.title}`
+        let title = this.item.title
+        if (this.item.frontmatter.categories && this.item.frontmatter.categories.length > 0 ) {
+          title = `【${this.item.frontmatter.categories[0]}】${title}`
+        }
+
+        return title
       } else {
         return this.item.title
       }
