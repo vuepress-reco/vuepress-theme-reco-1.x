@@ -35,19 +35,19 @@
         </div>
         <div class="info-wrapper">
           <PersonalInfo/>
-          <h4>
-            <reco-icon icon="reco-category"/>
-            {{ $recoLocales.category }}
-          </h4>
-          <ul class="category-wrapper">
-            <li class="category-item" v-for="(item, index) in this.$categories.list" :key="index">
-              <router-link :to="item.path">
-                <span class="category-name">{{ item.name }}</span>
-                <span class="post-num" :style="{ 'backgroundColor': getOneColor() }">{{ item.pages.length }}</span>
-              </router-link>
-            </li>
-          </ul>
-          <hr>
+<!--          <h4>-->
+<!--            <reco-icon icon="reco-category"/>-->
+<!--            {{ $recoLocales.category }}-->
+<!--          </h4>-->
+<!--          <ul class="category-wrapper">-->
+<!--            <li class="category-item" v-for="(item, index) in this.$categories.list" :key="index">-->
+<!--              <router-link :to="item.path">-->
+<!--                <span class="category-name">{{ item.name }}</span>-->
+<!--                <span class="post-num" :style="{ 'backgroundColor': getOneColor() }">{{ item.pages.length }}</span>-->
+<!--              </router-link>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--          <hr>-->
           <h4 v-if="$tags.list.length !== 0">
             <reco-icon icon="reco-tag"/>
             {{ $recoLocales.tag }}
