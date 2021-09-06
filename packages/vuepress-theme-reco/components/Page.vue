@@ -247,8 +247,8 @@ function flatten (items, res) {
   display block
   .side-bar
     position fixed
-    top 10rem
-    bottom 10rem
+    top 5rem
+    bottom 5rem
     right 2rem
     overflow-y scroll
     &::-webkit-scrollbar
