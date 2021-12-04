@@ -19,7 +19,7 @@
   "author": "reco_luan",
   "main": "index.js",
   "dependencies": {
-    "@vue/composition-api": "1.0.0-beta.26",
+    "@vue/composition-api": "1.0.0-beta.21",
     "@vuepress-reco/core": "^1.6.8",
     "@vuepress-reco/vuepress-plugin-back-to-top": "^1.6.0",
     "@vuepress-reco/vuepress-plugin-comments": "^1.6.0",
