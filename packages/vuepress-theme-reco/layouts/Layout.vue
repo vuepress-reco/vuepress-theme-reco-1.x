@@ -21,9 +21,10 @@ export default defineComponent({
   mixins: [moduleTransitonMixin],
   components: { HomeBlog, Home, Page, Common, Footer },
   setup (props, ctx) {
-    const { $page, $site, $localePath, $themeConfig } = useInstance()
+    const instance = useInstance()
 
     const sidebarItems = computed(() => {
+      const { $page, $site, $localePath } = instance
       if ($page) {
         return resolveSidebarItems(
           $page,
@@ -37,8 +38,8 @@ export default defineComponent({
     })
 
     const homeCom = computed(() => {
-      const { type } = ($themeConfig) || {}
-      if (type !== undefined) {
+      const { type } = instance.$themeConfig || {}
+      if (type) {
         return type == 'blog' ? 'HomeBlog' : type
       }
       return 'Home'
