@@ -21,7 +21,9 @@ export function getOneColor () {
 
 export function registerCodeThemeCss (theme = 'tomorrow') {
   const themeArr = ['tomorrow', 'funky', 'okaidia', 'solarizedlight', 'default']
-  const href = `//prismjs.com/themes/prism${themeArr.indexOf(theme) > -1 ? `-${theme}` : ''}.css`
+  const href = `//prismjs.com/themes/prism${
+    themeArr.indexOf(theme) > -1 ? `-${theme}` : ''
+  }.css`
 
   addLinkToHead(href)
 }
@@ -31,21 +33,22 @@ export function interceptRouterError (router) {
   const originalPush = router.__proto__.push
   // 修改原型对象中的p ush 方法
   router.__proto__.push = function push (location) {
-    return originalPush.call(this, location).catch(err => err)
+    return originalPush.call(this, location).catch((err) => err)
   }
 }
 
 export function fixRouterError404 (router) {
   router.beforeEach((to, from, next) => {
-    // 解决非ASCII文件名的路由, 防止 404
-    const decodedPath = decodeURIComponent(to.path)
-    if (decodedPath !== to.path) {
-      next(Object.assign({}, to, {
-        fullPath: decodeURIComponent(to.fullPath),
-        path: decodedPath
-      }))
-    } else {
-      next()
+    // 解决中文标签/分类路由无法被正确加载的问题
+    // .html有重定向路由，无需特殊处理
+    if (!/\.html$/.test(to.path) && decodeURIComponent(to.path) !== to.path) {
+      return next(
+        Object.assign({}, to, {
+          path: decodeURIComponent(to.path),
+          fullPath: decodeURIComponent(to.fullPath)
+        })
+      )
     }
+    next()
   })
 }
