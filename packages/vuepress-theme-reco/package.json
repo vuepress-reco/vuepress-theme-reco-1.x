@@ -23,7 +23,6 @@
     "@vuepress-reco/core": "^1.6.9",
     "@vuepress-reco/vuepress-plugin-back-to-top": "^1.6.0",
     "@vuepress-reco/vuepress-plugin-comments": "^1.6.0",
-    "@vuepress-reco/vuepress-plugin-loading-page": "^1.6.0",
     "@vuepress-reco/vuepress-plugin-pagation": "^1.6.0",
     "@vuepress/plugin-blog": "1.9.2",
     "@vuepress/plugin-medium-zoom": "1.5.0",
