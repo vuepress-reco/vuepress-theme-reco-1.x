@@ -24,7 +24,7 @@
     "@vssue/api-github-v3": "^1.4.4",
     "@vssue/api-github-v4": "^1.2.0",
     "@vssue/api-gitlab-v4": "^1.1.1",
-    "valine": "^1.4.14",
+    "valine": "^1.4.18",
     "vssue": "^1.4.6"
   },
   "publishConfig": {
