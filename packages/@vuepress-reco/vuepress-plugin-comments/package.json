@@ -1,6 +1,6 @@
 {
   "name": "@vuepress-reco/vuepress-plugin-comments",
-  "version": "1.6.12",
+  "version": "1.6.13",
   "description": "Comments plugin for vuepress-theme-reco or other vuepress theme",
   "keywords": [
     "vuepress-theme-reco",
@@ -29,5 +29,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "gitHead": "3ad01f075170417f327d1a7cd249c82fae442da2"
 }

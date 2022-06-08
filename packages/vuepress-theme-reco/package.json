@@ -1,6 +1,6 @@
 {
   "name": "vuepress-theme-reco",
-  "version": "1.6.12",
+  "version": "1.6.13",
   "description": "A simple and beautiful vuepress Blog & Doc theme.",
   "keywords": [
     "vuepress",
@@ -20,10 +20,10 @@
   "main": "index.js",
   "dependencies": {
     "@vue/composition-api": "1.0.0-beta.21",
-    "@vuepress-reco/core": "^1.6.9",
-    "@vuepress-reco/vuepress-plugin-back-to-top": "^1.6.0",
-    "@vuepress-reco/vuepress-plugin-comments": "^1.6.12",
-    "@vuepress-reco/vuepress-plugin-pagation": "^1.6.0",
+    "@vuepress-reco/core": "^1.6.13",
+    "@vuepress-reco/vuepress-plugin-back-to-top": "^1.6.13",
+    "@vuepress-reco/vuepress-plugin-comments": "^1.6.13",
+    "@vuepress-reco/vuepress-plugin-pagation": "^1.6.13",
     "@vuepress/plugin-blog": "1.9.2",
     "@vuepress/plugin-medium-zoom": "1.5.0",
     "docsearch.js": "2.6.3",
@@ -32,7 +32,7 @@
     "vue-demi": "^0.5.3",
     "vuepress-plugin-smooth-scroll": "^0.0.9"
   },
-  "gitHead": "c3a1db8487bece9341b6269a0f6ebf910cd5462a",
+  "gitHead": "3ad01f075170417f327d1a7cd249c82fae442da2",
   "_from": "vuepress-theme-reco@0.2.1",
   "_resolved": "https://registry.npmmirror.com/vuepress-theme-reco/download/vuepress-theme-reco-0.2.1.tgz"
 }
