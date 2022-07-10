@@ -1,4 +1,4 @@
-import { getCurrentInstance } from 'vue'
+import { getCurrentInstance, inject } from 'vue'
 
 export function useInstance () {
   const vm = getCurrentInstance()
@@ -6,4 +6,10 @@ export function useInstance () {
 
   const instance = vm?.proxy || {}
   return instance
+}
+
+export const showModuleSymbol = Symbol('showModuleSymbol')
+export function useShowModule () {
+  const recoShowModule = inject(showModuleSymbol)
+  return { recoShowModule }
 }

@@ -1,31 +1,26 @@
 <template>
   <Common class="categories-wrapper" :sidebar="false">
     <!-- 分类集合 -->
-    <ModuleTransition>
-      <ul v-show="recoShowModule" class="category-wrapper">
-        <li
-          class="category-item"
-          :class="title == item.name ? 'active': ''"
-          v-for="(item, index) in $categoriesList"
-          v-show="item.pages.length > 0"
-          :key="index">
-          <router-link :to="item.path">
-            <span class="category-name">{{ item.name }}</span>
-            <span class="post-num" :style="{ 'backgroundColor': getOneColor() }">{{ item.pages.length }}</span>
-          </router-link>
-        </li>
-      </ul>
-    </ModuleTransition>
+    <ul class="category-wrapper">
+      <li
+        class="category-item"
+        :class="title == item.name ? 'active': ''"
+        v-for="(item, index) in $categoriesList"
+        v-show="item.pages.length > 0"
+        :key="index">
+        <router-link :to="item.path">
+          <span class="category-name">{{ item.name }}</span>
+          <span class="post-num" :style="{ 'backgroundColor': getOneColor() }">{{ item.pages.length }}</span>
+        </router-link>
+      </li>
+    </ul>
 
     <!-- 博客列表 -->
-    <ModuleTransition delay="0.08">
-      <note-abstract
-        v-show="recoShowModule"
-        class="list"
-        :data="posts"
-        @paginationChange="paginationChange"
-      ></note-abstract>
-    </ModuleTransition>
+    <note-abstract
+      class="list"
+      :data="posts"
+      @paginationChange="paginationChange"
+    ></note-abstract>
   </Common>
 </template>
 
@@ -36,14 +31,12 @@ import NoteAbstract from '@theme/components/NoteAbstract'
 import { ModuleTransition } from '@vuepress-reco/core/lib/components'
 import { sortPostsByStickyAndDate, filterPosts } from '@theme/helpers/postData'
 import { getOneColor } from '@theme/helpers/other'
-import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
-import { useInstance } from '@theme/helpers/composable'
+import { useInstance, useShowModule } from '@theme/helpers/composable'
 
 export default defineComponent({
-  mixins: [moduleTransitonMixin],
   components: { Common, NoteAbstract, ModuleTransition },
 
-  setup (props, ctx) {
+  setup (_, ctx) {
     const instance = useInstance()
 
     const posts = computed(() => {
@@ -67,7 +60,16 @@ export default defineComponent({
       }, 100)
     }
 
-    return { posts, title, getCurrentTag, paginationChange, getOneColor }
+    const recoShowModule = useShowModule()
+
+    return {
+      posts,
+      title,
+      getOneColor,
+      recoShowModule,
+      getCurrentTag,
+      paginationChange
+    }
   }
 })
 </script>

@@ -1,25 +1,29 @@
 <template>
-  <Common :sidebarItems="sidebarItems" :showModule="recoShowModule">
+  <Common :sidebarItems="sidebarItems" :showModule="show">
     <component v-if="$frontmatter.home" :is="homeCom"/>
-    <Page v-else :sidebar-items="sidebarItems"/>
+    <div v-else>
+      <ModuleTransition v-if="sidebarItems.length > 0">
+        <Page :key="path" :sidebar-items="sidebarItems"/>
+      </ModuleTransition>
+      <Page v-else :key="path" :sidebar-items="sidebarItems"/>
+    </div>
     <Footer v-if="$frontmatter.home" class="footer" />
   </Common>
 </template>
 
 <script>
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, ref, onMounted } from 'vue'
 import Home from '@theme/components/Home'
 import HomeBlog from '@theme/components/HomeBlog'
 import Page from '@theme/components/Page'
 import Footer from '@theme/components/Footer'
 import Common from '@theme/components/Common'
 import { resolveSidebarItems } from '@theme/helpers/utils'
-import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 import { useInstance } from '@theme/helpers/composable'
+import { ModuleTransition } from '@vuepress-reco/core/lib/components'
 
 export default defineComponent({
-  mixins: [moduleTransitonMixin],
-  components: { HomeBlog, Home, Page, Common, Footer },
+  components: { HomeBlog, Home, Page, Common, Footer, ModuleTransition },
   setup (props, ctx) {
     const instance = useInstance()
 
@@ -45,7 +49,16 @@ export default defineComponent({
       return 'Home'
     })
 
-    return { sidebarItems, homeCom }
+    const show = ref(false)
+    onMounted(() => {
+      show.value = true
+    })
+
+    const path = computed(() => {
+      return instance?.$page.path
+    })
+
+    return { sidebarItems, homeCom, show, path }
   }
 })
 </script>

@@ -46,14 +46,14 @@
 import { defineComponent, computed } from 'vue'
 import NavLink from '@theme/components/NavLink'
 import { ModuleTransition } from '@vuepress-reco/core/lib/components'
-import { useInstance } from '@theme/helpers/composable'
+import { useInstance, useShowModule } from '@theme/helpers/composable'
 
 export default defineComponent({
   components: { NavLink, ModuleTransition },
 
   setup (props, ctx) {
     const instance = useInstance()
-    const recoShowModule = computed(() => instance && instance.$parent.recoShowModule)
+    const recoShowModule = useShowModule()
     const actionLink = computed(() => instance && {
       link: instance.$frontmatter.actionLink,
       text: instance.$frontmatter.actionText

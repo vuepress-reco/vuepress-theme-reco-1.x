@@ -2,23 +2,17 @@
   <!-- 公共布局 -->
   <Common class="tag-wrapper" :sidebar="false">
     <!-- 标签集合 -->
-    <ModuleTransition>
-      <TagList
-        v-show="recoShowModule"
-        class="tags"
-        :currentTag="$currentTags.key"
-        @getCurrentTag="tagClick"></TagList>
-    </ModuleTransition>
+    <TagList
+      class="tags"
+      :currentTag="$currentTags.key"
+      @getCurrentTag="tagClick"></TagList>
 
     <!-- 博客列表 -->
-    <ModuleTransition delay="0.08">
-      <note-abstract
-        v-show="recoShowModule"
-        class="list"
-        :data="posts"
-        :currentTag="$currentTags.key"
-        @paginationChange="paginationChange"></note-abstract>
-    </ModuleTransition>
+    <note-abstract
+      class="list"
+      :data="posts"
+      :currentTag="$currentTags.key"
+      @paginationChange="paginationChange"></note-abstract>
   </Common>
 </template>
 
@@ -27,14 +21,11 @@ import { defineComponent, computed } from 'vue'
 import Common from '@theme/components/Common'
 import NoteAbstract from '@theme/components/NoteAbstract'
 import TagList from '@theme/components/TagList'
-import { ModuleTransition } from '@vuepress-reco/core/lib/components'
 import { sortPostsByStickyAndDate, filterPosts } from '@theme/helpers/postData'
-import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
-  mixins: [moduleTransitonMixin],
-  components: { Common, NoteAbstract, TagList, ModuleTransition },
+  components: { Common, NoteAbstract, TagList },
 
   setup (props, ctx) {
     const instance = useInstance()

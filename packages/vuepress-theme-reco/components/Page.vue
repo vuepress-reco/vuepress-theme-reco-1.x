@@ -1,61 +1,51 @@
 <template>
   <main class="page" :style="pageStyle">
-    <ModuleTransition delay="0.08">
-      <section v-show="recoShowModule">
-        <div class="page-title">
-          <h1 class="title">{{$page.title}}</h1>
-          <PageInfo :pageInfo="$page" :showAccessNumber="showAccessNumber"></PageInfo>
-        </div>
-        <!-- 这里使用 v-show，否则影响 SSR -->
-        <Content class="theme-reco-content" />
-      </section>
-    </ModuleTransition>
-
-    <ModuleTransition delay="0.16">
-      <footer v-if="recoShowModule" class="page-edit">
-        <div class="edit-link" v-if="editLink">
-          <a
-            :href="editLink"
-            target="_blank"
-            rel="noopener noreferrer"
-          >{{ editLinkText }}</a>
-          <OutboundLink/>
-        </div>
-
-        <div
-          class="last-updated"
-          v-if="lastUpdated"
-        >
-          <span class="prefix">{{ lastUpdatedText }}: </span>
-          <span class="time">{{ lastUpdated }}</span>
-        </div>
-      </footer>
-    </ModuleTransition>
-
-    <ModuleTransition delay="0.24">
-      <div class="page-nav" v-if="recoShowModule && (prev || next)">
-        <p class="inner">
-          <span v-if="prev" class="prev">
-            <router-link v-if="prev" class="prev" :to="prev.path">
-              {{ prev.title || prev.path }}
-            </router-link>
-          </span>
-          <span v-if="next" class="next">
-            <router-link v-if="next" :to="next.path">
-              {{ next.title || next.path }}
-            </router-link>
-          </span>
-        </p>
+    <section v-show="recoShowModule">
+      <div class="page-title">
+        <h1 class="title">{{$page.title}}</h1>
+        <PageInfo :pageInfo="$page" :showAccessNumber="showAccessNumber"></PageInfo>
       </div>
-    </ModuleTransition>
+      <!-- 这里使用 v-show，否则影响 SSR -->
+      <Content class="theme-reco-content" />
+    </section>
 
-    <ModuleTransition delay="0.32">
-      <Comments v-if="recoShowModule" :isShowComments="shouldShowComments"/>
-    </ModuleTransition>
+    <footer v-if="recoShowModule" class="page-edit">
+      <div class="edit-link" v-if="editLink">
+        <a
+          :href="editLink"
+          target="_blank"
+          rel="noopener noreferrer"
+        >{{ editLinkText }}</a>
+        <OutboundLink/>
+      </div>
 
-    <ModuleTransition>
-      <SubSidebar v-if="recoShowModule" class="side-bar" />
-    </ModuleTransition>
+      <div
+        class="last-updated"
+        v-if="lastUpdated"
+      >
+        <span class="prefix">{{ lastUpdatedText }}: </span>
+        <span class="time">{{ lastUpdated }}</span>
+      </div>
+    </footer>
+
+    <div class="page-nav" v-if="recoShowModule && (prev || next)">
+      <p class="inner">
+        <span v-if="prev" class="prev">
+          <router-link v-if="prev" class="prev" :to="prev.path">
+            {{ prev.title || prev.path }}
+          </router-link>
+        </span>
+        <span v-if="next" class="next">
+          <router-link v-if="next" :to="next.path">
+            {{ next.title || next.path }}
+          </router-link>
+        </span>
+      </p>
+    </div>
+
+    <Comments v-if="recoShowModule" :isShowComments="shouldShowComments"/>
+
+    <SubSidebar v-if="recoShowModule" class="side-bar" />
   </main>
 </template>
 
@@ -63,12 +53,11 @@
 import { defineComponent, computed, toRefs } from 'vue'
 import PageInfo from '@theme/components/PageInfo'
 import { resolvePage, outboundRE, endingSlashRE } from '@theme/helpers/utils'
-import { ModuleTransition } from '@vuepress-reco/core/lib/components'
 import SubSidebar from '@theme/components/SubSidebar'
-import { useInstance } from '@theme/helpers/composable'
+import { useInstance, useShowModule } from '@theme/helpers/composable'
 
 export default defineComponent({
-  components: { PageInfo, ModuleTransition, SubSidebar },
+  components: { PageInfo, SubSidebar },
 
   props: ['sidebarItems'],
 
@@ -77,7 +66,7 @@ export default defineComponent({
 
     const { sidebarItems } = toRefs(props)
 
-    const recoShowModule = computed(() => instance.$parent.recoShowModule)
+    const recoShowModule = useShowModule()
 
     // 是否显示评论
     const shouldShowComments = computed(() => {

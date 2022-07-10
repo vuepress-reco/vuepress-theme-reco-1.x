@@ -22,9 +22,10 @@
       </div>
     </div>
     <div v-else>
-      <transition name="fade">
-        <Password v-if="!isHasKey" />
-        <div v-else>
+        <transition name="fade">
+          <Password v-if="!isHasKey" />
+        </transition>
+        <div v-if="isHasKey">
           <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar"/>
 
           <div class="sidebar-mask" @click="toggleSidebar(false)"></div>
@@ -37,19 +38,18 @@
           <Password v-if="!isHasPageKey" :isPage="true"></Password>
           <slot v-else></slot>
         </div>
-      </transition>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, computed, ref, onMounted, toRefs } from 'vue'
+import { defineComponent, computed, ref, onMounted, toRefs, provide } from 'vue'
 import Navbar from '@theme/components/Navbar'
 import Sidebar from '@theme/components/Sidebar'
 import PersonalInfo from '@theme/components/PersonalInfo'
 import Password from '@theme/components/Password'
 import { setTimeout } from 'timers'
-import { useInstance } from '@theme/helpers/composable'
+import { useInstance, showModuleSymbol } from '@theme/helpers/composable'
 
 export default defineComponent({
   components: { Sidebar, Navbar, Password, PersonalInfo },
@@ -159,6 +159,7 @@ export default defineComponent({
         return showModule.value
       }
     })
+    provide(showModuleSymbol, recoShowModule)
 
     onMounted(() => {
       initRouterHandler()

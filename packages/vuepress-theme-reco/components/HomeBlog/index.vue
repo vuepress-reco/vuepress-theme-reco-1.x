@@ -66,7 +66,7 @@ import NoteAbstract from '@theme/components/NoteAbstract'
 import { ModuleTransition, RecoIcon } from '@vuepress-reco/core/lib/components'
 import PersonalInfo from '@theme/components/PersonalInfo'
 import { getOneColor } from '@theme/helpers/other'
-import { useInstance } from '@theme/helpers/composable'
+import { useInstance, useShowModule } from '@theme/helpers/composable'
 
 export default defineComponent({
   components: { NoteAbstract, TagList, FriendLink, ModuleTransition, PersonalInfo, RecoIcon },
@@ -78,7 +78,7 @@ export default defineComponent({
       heroHeight: 0
     })
 
-    const recoShowModule = computed(() => instance && instance.$parent.recoShowModule)
+    const recoShowModule = useShowModule()
 
     const heroImageStyle = computed(() => instance.$frontmatter.heroImageStyle || {})
 

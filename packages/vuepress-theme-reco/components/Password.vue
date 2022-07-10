@@ -1,55 +1,47 @@
 <template>
   <div class="password-shadow">
-    <ModuleTransition>
-      <h3 v-show="recoShowModule" class="title">{{isPage ? $frontmatter.title : $site.title || $localeConfig.title}}</h3>
-    </ModuleTransition>
+    <h3 class="title">{{isPage ? $frontmatter.title : $site.title || $localeConfig.title}}</h3>
 
-    <ModuleTransition delay="0.08">
-      <p class="description" v-if="recoShowModule && !isPage">{{$site.description || $localeConfig.description}}</p>
-    </ModuleTransition>
+    <p class="description" v-if="!isPage">{{$site.description || $localeConfig.description}}</p>
 
-    <ModuleTransition delay="0.16">
-      <label v-show="recoShowModule" class="inputBox" id="box">
-        <input
-          v-model="key"
-          type="password"
-          @keyup.enter="inter"
-          @focus="inputFocus"
-          @blur="inputBlur">
-        <span>{{warningText}}</span>
-        <button ref="passwordBtn" @click="inter">OK</button>
-      </label>
-    </ModuleTransition>
+    <label class="inputBox" id="box">
+      <input
+        v-model="key"
+        type="password"
+        @keyup.enter="inter"
+        @focus="inputFocus"
+        @blur="inputBlur">
+      <span>{{warningText}}</span>
+      <button ref="passwordBtn" @click="inter">OK</button>
+    </label>
 
-    <ModuleTransition delay="0.24">
-      <div v-show="recoShowModule" class="footer">
-        <span>
-          <reco-icon icon="reco-theme" />
-          <a target="blank" href="https://vuepress-theme-reco.recoluan.com">vuePress-theme-reco</a>
-        </span>
-        <span>
-          <reco-icon icon="reco-copyright" />
-          <a>
-            <span v-if="$themeConfig.author">{{ $themeConfig.author }}</span>
-            &nbsp;&nbsp;
-            <span v-if="$themeConfig.startYear && $themeConfig.startYear != year">{{ $themeConfig.startYear }} - </span>
-            {{ year }}
-          </a>
-        </span>
-      </div>
-    </ModuleTransition>
+    <div class="footer">
+      <span>
+        <reco-icon icon="reco-theme" />
+        <a target="blank" href="https://vuepress-theme-reco.recoluan.com">vuePress-theme-reco</a>
+      </span>
+      <span>
+        <reco-icon icon="reco-copyright" />
+        <a>
+          <span v-if="$themeConfig.author">{{ $themeConfig.author }}</span>
+          &nbsp;&nbsp;
+          <span v-if="$themeConfig.startYear && $themeConfig.startYear != year">{{ $themeConfig.startYear }} - </span>
+          {{ year }}
+        </a>
+      </span>
+    </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, ref, toRefs, computed } from 'vue'
+import { defineComponent, ref, toRefs } from 'vue'
 import md5 from 'md5'
-import { ModuleTransition, RecoIcon } from '@vuepress-reco/core/lib/components'
+import { RecoIcon } from '@vuepress-reco/core/lib/components'
 import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
   name: 'Password',
-  components: { ModuleTransition, RecoIcon },
+  components: { RecoIcon },
   props: {
     isPage: {
       type: Boolean,
@@ -63,7 +55,6 @@ export default defineComponent({
 
     const key = ref('')
     const warningText = ref('Konck! Knock!')
-    const recoShowModule = computed(() => instance?.$parent?.recoShowModule)
     const { isPage } = toRefs(props)
 
     const isHasKey = () => {
@@ -109,7 +100,7 @@ export default defineComponent({
       warningText.value = 'Konck! Knock!'
     }
 
-    return { warningText, year, key, recoShowModule, inter, inputFocus, inputBlur }
+    return { warningText, year, key, inter, inputFocus, inputBlur }
   }
 })
 </script>

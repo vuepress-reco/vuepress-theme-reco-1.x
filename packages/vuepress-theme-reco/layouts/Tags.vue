@@ -1,22 +1,16 @@
 <template>
-  <Common  class="tags-wrapper" :sidebar="false">
+  <Common class="tags-wrapper" :sidebar="false">
     <!-- 标签集合 -->
-    <ModuleTransition>
-      <TagList
-        v-show="recoShowModule"
-        :currentTag="$recoLocales.all"
-        @getCurrentTag="tagClick"></TagList>
-    </ModuleTransition>
+    <TagList
+      :currentTag="$recoLocales.all"
+      @getCurrentTag="tagClick"></TagList>
 
     <!-- 博客列表 -->
-    <ModuleTransition delay="0.08">
-      <note-abstract
-        v-show="recoShowModule"
-        class="list"
-        :data="$recoPosts"
-        @paginationChange="paginationChange"
-      ></note-abstract>
-    </ModuleTransition>
+    <note-abstract
+      class="list"
+      :data="$recoPosts"
+      @paginationChange="paginationChange"
+    ></note-abstract>
   </Common>
 </template>
 
@@ -25,13 +19,10 @@ import { defineComponent } from 'vue'
 import Common from '@theme/components/Common'
 import TagList from '@theme/components/TagList'
 import NoteAbstract from '@theme/components/NoteAbstract'
-import { ModuleTransition } from '@vuepress-reco/core/lib/components'
-import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
-  mixins: [moduleTransitonMixin],
-  components: { Common, NoteAbstract, TagList, ModuleTransition },
+  components: { Common, NoteAbstract, TagList },
 
   setup (props, ctx) {
     const instance = useInstance()

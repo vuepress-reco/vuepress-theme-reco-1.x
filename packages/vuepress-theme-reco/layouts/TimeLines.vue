@@ -26,12 +26,10 @@
 import { defineComponent } from 'vue'
 import Common from '@theme/components/Common'
 import { ModuleTransition } from '@vuepress-reco/core/lib/components'
-import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
-import { useInstance } from '@theme/helpers/composable'
+import { useInstance, useShowModule } from '@theme/helpers/composable'
 
 export default defineComponent({
   name: 'TimeLine',
-  mixins: [moduleTransitonMixin],
   components: { Common, ModuleTransition },
   setup (props, ctx) {
     const instance = useInstance()
@@ -52,7 +50,9 @@ export default defineComponent({
       return `${mon}-${day}`
     }
 
-    return { go, dateFormat }
+    const recoShowModule = useShowModule()
+
+    return { recoShowModule, go, dateFormat }
   }
 })
 </script>
