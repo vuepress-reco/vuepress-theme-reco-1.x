@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { defineComponent, computed, ref, onMounted, toRefs } from 'vue-demi'
+import { defineComponent, computed, ref, onMounted, toRefs } from 'vue'
 import Navbar from '@theme/components/Navbar'
 import Sidebar from '@theme/components/Sidebar'
 import PersonalInfo from '@theme/components/PersonalInfo'

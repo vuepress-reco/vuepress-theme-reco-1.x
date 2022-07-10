@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, onMounted, computed } from 'vue-demi'
+import { defineComponent, ref, onMounted, computed } from 'vue'
 import AlgoliaSearchBox from '@AlgoliaSearchBox'
 import SearchBox from '@SearchBox'
 import SidebarButton from '@theme/components/SidebarButton'

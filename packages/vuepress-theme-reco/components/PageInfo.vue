@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue-demi'
+import { defineComponent } from 'vue'
 import { RecoIcon } from '@vuepress-reco/core/lib/components'
 import { useInstance } from '@theme/helpers/composable'
 

@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { defineComponent, toRefs, reactive, computed, onMounted } from 'vue-demi'
+import { defineComponent, toRefs, reactive, computed, onMounted } from 'vue'
 import TagList from '@theme/components/TagList'
 import FriendLink from '@theme/components/FriendLink'
 import NoteAbstract from '@theme/components/NoteAbstract'

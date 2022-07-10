@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive, computed, ref, onMounted } from 'vue-demi'
+import { defineComponent, reactive, computed, ref, onMounted } from 'vue'
 import md5 from 'md5'
 import { getOneColor } from '@theme/helpers/other'
 import { useInstance } from '@theme/helpers/composable'

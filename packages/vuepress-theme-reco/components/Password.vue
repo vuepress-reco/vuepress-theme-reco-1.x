@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, toRefs, computed } from 'vue-demi'
+import { defineComponent, ref, toRefs, computed } from 'vue'
 import md5 from 'md5'
 import { ModuleTransition, RecoIcon } from '@vuepress-reco/core/lib/components'
 import { useInstance } from '@theme/helpers/composable'

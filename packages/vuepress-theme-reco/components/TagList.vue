@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { defineComponent, computed } from 'vue-demi'
+import { defineComponent, computed } from 'vue'
 import { getOneColor } from '@theme/helpers/other'
 import { useInstance } from '@theme/helpers/composable'
 

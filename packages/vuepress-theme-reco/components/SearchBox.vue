@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive, toRefs, computed } from 'vue-demi'
+import { defineComponent, reactive, toRefs, computed } from 'vue'
 import { RecoIcon } from '@vuepress-reco/core/lib/components'
 import { useInstance } from '@theme/helpers/composable'
 

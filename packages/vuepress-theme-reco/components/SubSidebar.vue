@@ -1,5 +1,5 @@
 <script>
-import { defineComponent, computed } from 'vue-demi'
+import { defineComponent, computed } from 'vue'
 import { isActive } from '@theme/helpers/utils'
 import { useInstance } from '@theme/helpers/composable'
 

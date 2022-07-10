@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { defineComponent, computed, toRefs } from 'vue-demi'
+import { defineComponent, computed, toRefs } from 'vue'
 import PageInfo from '@theme/components/PageInfo'
 import { resolvePage, outboundRE, endingSlashRE } from '@theme/helpers/utils'
 import { ModuleTransition } from '@vuepress-reco/core/lib/components'

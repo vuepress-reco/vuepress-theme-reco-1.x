@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { defineComponent, computed, onMounted } from 'vue-demi'
+import { defineComponent, computed, onMounted } from 'vue'
 import { useInstance } from '@theme/helpers/composable'
 
 const msgs = [

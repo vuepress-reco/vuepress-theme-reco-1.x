@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, toRefs, computed, onMounted } from 'vue-demi'
+import { defineComponent, ref, toRefs, computed, onMounted } from 'vue'
 import pagination from '@theme/mixins/pagination'
 import NoteAbstractItem from './NoteAbstractItem'
 import { useInstance } from '@theme/helpers/composable'

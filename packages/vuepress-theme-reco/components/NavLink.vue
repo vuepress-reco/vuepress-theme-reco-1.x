@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { defineComponent, computed, toRefs } from 'vue-demi'
+import { defineComponent, computed, toRefs } from 'vue'
 import { isExternal, isMailto, isTel, ensureExt } from '@theme/helpers/utils'
 import { RecoIcon } from '@vuepress-reco/core/lib/components'
 import { useInstance } from '@theme/helpers/composable'

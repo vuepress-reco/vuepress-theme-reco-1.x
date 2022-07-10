@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, onMounted } from 'vue-demi'
+import { defineComponent, ref, onMounted } from 'vue'
 import { RecoIcon } from '@vuepress-reco/core/lib/components'
 import { useInstance } from '@theme/helpers/composable'
 

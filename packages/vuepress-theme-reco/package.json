@@ -19,7 +19,6 @@
   "author": "reco_luan",
   "main": "index.js",
   "dependencies": {
-    "@vue/composition-api": "1.0.0-beta.21",
     "@vuepress-reco/core": "^1.6.13",
     "@vuepress-reco/vuepress-plugin-back-to-top": "^1.6.13",
     "@vuepress-reco/vuepress-plugin-comments": "^1.6.13",
@@ -29,7 +28,6 @@
     "docsearch.js": "2.6.3",
     "md5": "2.2.1",
     "vue-click-outside": "1.1.0",
-    "vue-demi": "^0.5.3",
     "vuepress-plugin-smooth-scroll": "^0.0.9"
   },
   "gitHead": "3ad01f075170417f327d1a7cd249c82fae442da2",

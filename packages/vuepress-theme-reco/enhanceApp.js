@@ -2,7 +2,6 @@
 import postMixin from '@theme/mixins/posts'
 import localMixin from '@theme/mixins/locales'
 import { interceptRouterError, fixRouterError404 } from '@theme/helpers/other'
-import { install } from 'vue-demi'
 
 export default ({
   Vue,
@@ -10,7 +9,6 @@ export default ({
   isServer,
   router
 }) => {
-  install(Vue)
   Vue.mixin(postMixin)
   Vue.mixin(localMixin)
   // if (!isServer) {

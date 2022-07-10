@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue-demi'
+import { defineComponent } from 'vue'
 export default defineComponent({
   setup (props, ctx) {
     const script = document.createElement('script')

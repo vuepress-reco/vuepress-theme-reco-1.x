@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, toRefs, onUpdated, onMounted } from 'vue-demi'
+import { defineComponent, ref, toRefs, onUpdated, onMounted } from 'vue'
 import SidebarGroup from '@theme/components/SidebarGroup'
 import SidebarLink from '@theme/components/SidebarLink'
 import { isActive } from '@theme/helpers/utils'

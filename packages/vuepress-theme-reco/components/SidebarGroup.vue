@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue-demi'
+import { defineComponent } from 'vue'
 import { isActive } from '@theme/helpers/utils'
 import DropdownTransition from '@theme/components/DropdownTransition'
 import { useInstance } from '@theme/helpers/composable'
