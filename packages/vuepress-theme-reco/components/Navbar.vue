@@ -53,7 +53,7 @@ export default defineComponent({
     })
 
     const isAlgoliaSearch = computed(() => {
-      algolia.value && algolia.value.apiKey && algolia.value.indexName
+      return algolia.value && algolia.value.apiKey && algolia.value.indexName
     })
 
     function css (el, property) {
