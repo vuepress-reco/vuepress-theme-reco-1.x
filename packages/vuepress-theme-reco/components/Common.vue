@@ -19,6 +19,8 @@
         <div :class="{ 'hide': !isHasPageKey }">
           <slot></slot>
         </div>
+
+        <SubSidebar v-if="recoShowModule" class="sub-sidebar" />
       </div>
     </div>
     <div v-else>
@@ -48,11 +50,12 @@ import Navbar from '@theme/components/Navbar'
 import Sidebar from '@theme/components/Sidebar'
 import PersonalInfo from '@theme/components/PersonalInfo'
 import Password from '@theme/components/Password'
+import SubSidebar from '@theme/components/SubSidebar'
 import { setTimeout } from 'timers'
 import { useInstance, showModuleSymbol } from '@theme/helpers/composable'
 
 export default defineComponent({
-  components: { Sidebar, Navbar, Password, PersonalInfo },
+  components: { Sidebar, Navbar, Password, PersonalInfo, SubSidebar },
 
   props: {
     sidebar: {
@@ -182,6 +185,15 @@ export default defineComponent({
 
 <style lang="stylus" scoped>
 .theme-container
+  .sub-sidebar
+    position fixed
+    top 5rem
+    bottom 5rem
+    right 2rem
+    overflow-y scroll
+    &::-webkit-scrollbar
+      width: 0
+      height: 0
   .loading-wrapper
     position absolute
     z-index 22
@@ -216,4 +228,9 @@ export default defineComponent({
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
+
+@media (max-width: $MQMobile)
+  .theme-container
+    .sub-sidebar
+      display none
 </style>

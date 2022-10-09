@@ -44,8 +44,6 @@
     </div>
 
     <Comments v-if="recoShowModule" :isShowComments="shouldShowComments"/>
-
-    <SubSidebar v-if="recoShowModule" class="side-bar" />
   </main>
 </template>
 
@@ -53,11 +51,10 @@
 import { defineComponent, computed, toRefs } from 'vue'
 import PageInfo from '@theme/components/PageInfo'
 import { resolvePage, outboundRE, endingSlashRE } from '@theme/helpers/utils'
-import SubSidebar from '@theme/components/SubSidebar'
 import { useInstance, useShowModule } from '@theme/helpers/composable'
 
 export default defineComponent({
-  components: { PageInfo, SubSidebar },
+  components: { PageInfo },
 
   props: ['sidebarItems'],
 
@@ -235,15 +232,6 @@ function flatten (items, res) {
   padding-bottom 2rem
   padding-right 14rem
   display block
-  .side-bar
-    position fixed
-    top 8rem
-    bottom 5rem
-    right 2rem
-    overflow-y scroll
-    &::-webkit-scrollbar
-      width: 0
-      height: 0
   .page-title
     max-width: $contentWidth;
     margin: 0 auto;
@@ -298,8 +286,6 @@ function flatten (items, res) {
 @media (max-width: $MQMobile)
   .page
     padding-right 0
-    .side-bar
-      display none
     .page-title
       padding: 0 1rem;
     .page-edit
