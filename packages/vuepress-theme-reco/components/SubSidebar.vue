@@ -13,11 +13,6 @@ export default defineComponent({
 
     const isLinkActive = (header) => {
       const active = isActive(instance.$route, instance.$page.path + '#' + header.slug)
-      if (active) {
-        setTimeout(() => {
-          document.querySelector(`.reco-side-${header.slug}`).scrollIntoView()
-        }, 300)
-      }
       return active
     }
 
