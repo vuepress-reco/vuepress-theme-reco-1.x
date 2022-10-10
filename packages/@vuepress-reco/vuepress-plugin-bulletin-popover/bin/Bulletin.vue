@@ -113,15 +113,15 @@ export default {
   .bulletin-content
     box-sizing border-box
     padding 10px 15px 0
-    ::v-deep h5
+    :deep(h5)
       margin .2rem 0
       text-align center
-    ::v-deep img
+    :deep(img)
       width 100%
   .bulletin-footer
     padding 16px
     text-align center
-    ::v-deep .btn
+    :deep(.btn)
       display inline-block
       width 3.4rem
       line-height 3.4rem
@@ -134,10 +134,10 @@ export default {
       cursor pointer
       &:not(:first-child)
         margin-left 10px
-    ::v-deep h5
+    :deep(h5)
       margin .2rem 0
       text-align center
-    ::v-deep img
+    :deep(img)
       width 100%
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;
