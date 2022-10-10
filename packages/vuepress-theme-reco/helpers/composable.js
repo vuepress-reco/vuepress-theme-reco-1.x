@@ -1,4 +1,4 @@
-import { getCurrentInstance, inject } from 'vue'
+import { getCurrentInstance, ref, onMounted, onUpdated } from 'vue'
 
 export function useInstance () {
   const vm = getCurrentInstance()
@@ -8,8 +8,19 @@ export function useInstance () {
   return instance
 }
 
-export const showModuleSymbol = Symbol('showModuleSymbol')
 export function useShowModule () {
-  const recoShowModule = inject(showModuleSymbol)
+  const recoShowModule = ref(false)
+
+  onMounted(() => {
+    recoShowModule.value = true
+  })
+
+  onUpdated(() => {
+    recoShowModule.value = false
+    setTimeout(() => {
+      recoShowModule.value = true
+    }, 100)
+  })
+
   return { recoShowModule }
 }

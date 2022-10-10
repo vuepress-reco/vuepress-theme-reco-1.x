@@ -28,13 +28,12 @@
 import { defineComponent, computed } from 'vue'
 import Common from '@theme/components/Common'
 import NoteAbstract from '@theme/components/NoteAbstract'
-import { ModuleTransition } from '@vuepress-reco/core/lib/components'
 import { sortPostsByStickyAndDate, filterPosts } from '@theme/helpers/postData'
 import { getOneColor } from '@theme/helpers/other'
-import { useInstance, useShowModule } from '@theme/helpers/composable'
+import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
-  components: { Common, NoteAbstract, ModuleTransition },
+  components: { Common, NoteAbstract },
 
   setup (_, ctx) {
     const instance = useInstance()
@@ -60,13 +59,10 @@ export default defineComponent({
       }, 100)
     }
 
-    const recoShowModule = useShowModule()
-
     return {
       posts,
       title,
       getOneColor,
-      recoShowModule,
       getCurrentTag,
       paginationChange
     }

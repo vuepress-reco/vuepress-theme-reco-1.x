@@ -20,7 +20,7 @@
           <slot></slot>
         </div>
 
-        <SubSidebar v-if="recoShowModule" class="sub-sidebar" />
+        <SubSidebar class="sub-sidebar" />
       </div>
     </div>
     <div v-else>
@@ -45,14 +45,14 @@
 </template>
 
 <script>
-import { defineComponent, computed, ref, onMounted, toRefs, provide } from 'vue'
+import { defineComponent, computed, ref, onMounted } from 'vue'
 import Navbar from '@theme/components/Navbar'
 import Sidebar from '@theme/components/Sidebar'
 import PersonalInfo from '@theme/components/PersonalInfo'
 import Password from '@theme/components/Password'
 import SubSidebar from '@theme/components/SubSidebar'
 import { setTimeout } from 'timers'
-import { useInstance, showModuleSymbol } from '@theme/helpers/composable'
+import { useInstance } from '@theme/helpers/composable'
 
 export default defineComponent({
   components: { Sidebar, Navbar, Password, PersonalInfo, SubSidebar },
@@ -153,17 +153,6 @@ export default defineComponent({
       }, time)
     }
 
-    // 首次渲染时，recoShowModule 直接为 true，否则锚点失效
-    const { showModule } = toRefs(props)
-    const recoShowModule = computed(() => {
-      if (firstLoad.value) {
-        return true
-      } else {
-        return showModule.value
-      }
-    })
-    provide(showModuleSymbol, recoShowModule)
-
     onMounted(() => {
       initRouterHandler()
       hasKey()
@@ -171,7 +160,7 @@ export default defineComponent({
       handleLoading()
     })
 
-    return { isSidebarOpen, absoluteEncryption, shouldShowNavbar, shouldShowSidebar, pageClasses, hasKey, hasPageKey, isHasKey, isHasPageKey, toggleSidebar, firstLoad, recoShowModule }
+    return { isSidebarOpen, absoluteEncryption, shouldShowNavbar, shouldShowSidebar, pageClasses, hasKey, hasPageKey, isHasKey, isHasPageKey, toggleSidebar, firstLoad }
   },
 
   watch: {
