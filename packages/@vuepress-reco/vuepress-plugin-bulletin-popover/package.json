@@ -1,6 +1,6 @@
 {
   "name": "@vuepress-reco/vuepress-plugin-bulletin-popover",
-  "version": "1.6.13",
+  "version": "1.6.16",
   "description": "Bulletin popover plugin for vuepress-theme-reco or other vuepress theme",
   "keywords": [
     "vuepress-theme-reco",
