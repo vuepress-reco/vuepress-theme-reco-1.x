@@ -1,5 +1,5 @@
 <template>
-  <div class="pagation" v-show="show">
+  <div class="pagation" v-show="pages > 1">
     <div class="pagation-list">
       <span
         class="jump"
@@ -7,28 +7,29 @@
         @click="goPrev"
         unselectable="on">{{pagationLocales.prev}}</span>
       <span
-        v-show="efont"
+        v-if="showStartFakePageNum"
         class="jump"
         @click="jumpPage(1)">1</span>
       <span
         class="ellipsis"
-        v-show="efont">...</span>
+        v-if="showStartFakePageNum && indexes[0] > 2"
+        >...</span>
       <span
         class="jump"
-        v-for="num in indexs"
+        v-for="num in indexes"
         :key="num"
         :class="{bgprimary:currentPage==num}"
         @click="jumpPage(num)">{{num}}</span>
       <span
         class="ellipsis"
-        v-show="efont&&currentPage<pages-4">...</span>
+        v-if="showLastFakePageNum&&(pages - (indexes.at(-1)) > 1)">...</span>
       <span
-        v-show="efont&&currentPage<pages-4"
+        v-if="showLastFakePageNum"
         class="jump"
         @click="jumpPage(pages)">{{pages}}</span>
       <span
         class="jump"
-        v-show="currentPage < pages"
+        v-if="currentPage < pages"
         @click="goNext">{{pagationLocales.next}}</span>
       <span class="jumppoint">{{pagationLocales.jump}}</span>
       <span class="jumpinp">
@@ -68,17 +69,12 @@ export default {
   },
   computed: {
     pages () {
-      const pageSize = this.pageSize || this.perPage
-      return Math.ceil(this.total / pageSize)
-    },
-    show: function () {
-      return this.pages && this.pages != 1
+      return Math.ceil(this.total / this.pageSize)
     },
     efont: function () {
-      if (this.pages <= 7) return false
-      return this.currentPage > 5
+      return this.pages > 7
     },
-    indexs: function () {
+    indexes: function () {
       var left = 1
       var right = this.pages
       var ar = []
@@ -105,6 +101,12 @@ export default {
     },
     pagationLocales () {
       return pagationLocales(this)
+    },
+    showStartFakePageNum: function () {
+      return this.efont && !this.indexes.includes(1)
+    },
+    showLastFakePageNum: function () {
+      return this.efont && !this.indexes.includes(this.pages)
     }
   },
   methods: {
@@ -127,7 +129,7 @@ export default {
         this.emit(numId)
         return
       }
-      alert(`请输入大于0，并且小于${this.pages}的页码！`)
+      alert(`请输入大于0，并且小于等于${this.pages}的页码！`)
     },
     emit (id) {
       this.$emit('getCurrentPage', id)
