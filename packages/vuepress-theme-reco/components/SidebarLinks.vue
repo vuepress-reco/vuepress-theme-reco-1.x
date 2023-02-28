@@ -73,7 +73,6 @@ export default defineComponent({
       const subtitles = [].slice.call(document.querySelectorAll(AHL_SIDEBAR_LINK_SELECTOR))
       for (let i = 0; i < subtitles.length; i++) {
         if (decodeURIComponent(subtitles[i].getAttribute('href')).indexOf(subtitleName) != -1) {
-          subtitles[i].click()
           activationAnchor()
           return
         }
